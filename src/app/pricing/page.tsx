@@ -101,7 +101,7 @@ const faqs = [
   },
   {
     q: 'What does SMS cost?',
-    a: 'The SMS add-on is $10/month for a dedicated phone number, available on any plan. Per-message rates apply at a small markup over carrier costs. Most builders spend less than $20/month total on messaging.',
+    a: 'The SMS add-on is $5/month per home, available on any plan. Individual messages are $0.02 each. Most builders pass this cost to homeowners at a markup.',
   },
   {
     q: 'Is there a contract?',
@@ -210,7 +210,7 @@ export default function PricingPage() {
                       </li>
                     ))}
                     <li className="flex items-start gap-2 text-sm text-gray-500">
-                      <span className="text-gold font-medium">+$10/mo</span> SMS add-on available
+                      <span className="text-gold font-medium">+$5/mo</span> SMS add-on available
                     </li>
                   </ul>
                   <Link
@@ -230,7 +230,7 @@ export default function PricingPage() {
 
           {/* SMS Callout */}
           <div className="mt-12 bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200">
-            <h3 className="font-bold text-navy text-lg mb-2">SMS Add-on — $10/mo per account</h3>
+            <h3 className="font-bold text-navy text-lg mb-2">SMS Add-on — $5/mo per home</h3>
             <p className="text-gray-600">
               Add a dedicated phone number to any plan. Homeowners opt in to receive text
               notifications for maintenance reminders, warranty updates, and scheduling

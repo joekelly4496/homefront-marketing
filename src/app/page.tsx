@@ -737,7 +737,7 @@ export default function Home() {
                       </li>
                     ))}
                     <li className="flex items-start gap-2 text-sm text-gray-500">
-                      <span className="text-gold font-medium">+$10/mo</span> SMS add-on available
+                      <span className="text-gold font-medium">+$5/mo</span> SMS add-on available
                     </li>
                   </ul>
                   <Link
@@ -758,7 +758,7 @@ export default function Home() {
           {/* SMS Callout */}
           <ScrollAnimation>
             <div className="mt-12 bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200">
-              <h3 className="font-bold text-navy text-lg mb-2">SMS Add-on — $10/mo per account</h3>
+              <h3 className="font-bold text-navy text-lg mb-2">SMS Add-on — $5/mo per home</h3>
               <p className="text-gray-600">
                 Add a dedicated phone number to any plan. Homeowners opt in to receive text
                 notifications for maintenance reminders, warranty updates, and scheduling
