@@ -132,41 +132,211 @@ export default function Home() {
               One Platform. Happier Homeowners. New Revenue.
             </h2>
           </ScrollAnimation>
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                title: 'Warranty Management',
+                title: 'Home & Warranty Management',
                 description:
-                  'Homeowners submit requests through a branded portal. You assign subs, track status, and close tickets — all in one place. No more phone tag, no more lost emails.',
+                  'Track homes, warranty periods, and maintenance items. Homeowners submit requests through a branded portal — no more phone tag.',
                 icon: '🛡️',
               },
               {
-                title: 'Maintenance Reminders',
+                title: 'Service Request System',
                 description:
-                  'Automated email and SMS reminders keep homeowners on top of their home maintenance. They stay engaged, you stay top of mind.',
-                icon: '🔔',
+                  'Receive, assign, schedule, and track warranty and maintenance requests from homeowners — all in one place.',
+                icon: '📋',
               },
               {
                 title: 'Subcontractor Coordination',
                 description:
-                  'Subs get their own portal to acknowledge, schedule, and complete jobs. Your homeowners deal directly with the right people. You stay out of the chaos.',
+                  'Assign trades to subs, who can update status and upload completion photos through their own portal.',
                 icon: '🔧',
               },
               {
                 title: 'Homeowner Portal',
                 description:
-                  'A white-labeled experience your homeowners log into with your branding. Professional. Polished. Yours. Not ours.',
+                  'A white-labeled experience your homeowners log into with your branding. Professional. Polished. Yours.',
                 icon: '🏠',
               },
+              {
+                title: 'SMS Notifications',
+                description:
+                  'Optional add-on so homeowners get text updates on their service requests. Keep them informed without lifting a finger.',
+                icon: '💬',
+              },
+              {
+                title: 'Billing & Revenue Dashboard',
+                description:
+                  'See your MRR, invoice history, per-homeowner revenue, and wholesale costs. Know your profit at a glance.',
+                icon: '📊',
+              },
+              {
+                title: 'Calendar Feeds',
+                description:
+                  'iCal integration for builders, homeowners, and subcontractors. Everyone stays on schedule.',
+                icon: '📅',
+              },
+              {
+                title: 'Stripe Connect Payments',
+                description:
+                  'Homeowner payments go directly to your bank account via Stripe. No middleman, no delays.',
+                icon: '💳',
+              },
             ].map((feature, i) => (
-              <ScrollAnimation key={feature.title} delay={i * 100}>
-                <div className="bg-white rounded-2xl p-8 border border-gray-200 h-full">
+              <ScrollAnimation key={feature.title} delay={i * 75}>
+                <div className="bg-white rounded-2xl p-6 border border-gray-200 h-full">
                   <div className="text-3xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-bold text-navy mb-3">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-lg font-bold text-navy mb-2">{feature.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
                 </div>
               </ScrollAnimation>
             ))}
+          </div>
+
+          {/* Coming Soon */}
+          <ScrollAnimation>
+            <div className="mt-8 flex justify-center">
+              <div className="bg-white rounded-2xl p-6 border border-dashed border-gold/50 inline-flex items-center gap-4">
+                <span className="text-3xl">🧾</span>
+                <div>
+                  <h3 className="text-lg font-bold text-navy">
+                    One-Time Invoicing
+                    <span className="ml-2 text-xs font-semibold bg-gold/10 text-gold px-2 py-1 rounded-full">Coming Soon</span>
+                  </h3>
+                  <p className="text-gray-600 text-sm">Send custom invoices to homeowners for out-of-warranty or billable work like service calls and repairs.</p>
+                </div>
+              </div>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      {/* ===== SECTION 3B: WHO IT'S FOR ===== */}
+      <section className="bg-white py-20 sm:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollAnimation>
+            <h2 className="text-3xl sm:text-4xl font-bold text-navy text-center">
+              Built for Everyone in the Process
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 text-center max-w-2xl mx-auto">
+              Builders, homeowners, and subcontractors each get their own experience.
+            </p>
+          </ScrollAnimation>
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <ScrollAnimation delay={0}>
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 h-full">
+                <div className="text-4xl mb-4">🏗️</div>
+                <h3 className="text-xl font-bold text-navy mb-4">For Builders</h3>
+                <ul className="space-y-3 text-gray-600 text-sm">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Manage homes, warranties, and service requests
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Assign and coordinate subcontractors
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Billing &amp; revenue dashboard with MRR tracking
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Stripe Connect — payments go to your bank
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Calendar feeds and SMS notifications
+                  </li>
+                </ul>
+              </div>
+            </ScrollAnimation>
+            <ScrollAnimation delay={100}>
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 h-full">
+                <div className="text-4xl mb-4">🏡</div>
+                <h3 className="text-xl font-bold text-navy mb-4">For Homeowners</h3>
+                <ul className="space-y-3 text-gray-600 text-sm">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Self-service portal to submit and track requests
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    SMS text updates on request progress
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Pay invoices online via Stripe
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    View billing details and subscription info
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    View full request history and status
+                  </li>
+                </ul>
+              </div>
+            </ScrollAnimation>
+            <ScrollAnimation delay={200}>
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 h-full">
+                <div className="text-4xl mb-4">🔧</div>
+                <h3 className="text-xl font-bold text-navy mb-4">For Subcontractors</h3>
+                <ul className="space-y-3 text-gray-600 text-sm">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Task dashboard to view assigned requests
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Update status and upload completion photos
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Message homeowners and builders directly
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Calendar feed for upcoming scheduled work
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    No app download required — works in the browser
+                  </li>
+                </ul>
+              </div>
+            </ScrollAnimation>
           </div>
         </div>
       </section>
@@ -235,14 +405,15 @@ export default function Home() {
               The First Year Is Your Secret Weapon
             </h2>
             <p className="mt-6 text-lg text-gray-600 text-center max-w-4xl mx-auto leading-relaxed">
-              We recommend offering your homeowners their first year free as part of their home
-              warranty. The first 12 months after closing are the hardest. Homeowners are discovering
+              For newly built homes, we recommend offering the first year free as part of the
+              warranty. The first 12 months after closing are the hardest — homeowners are discovering
               punch list items, appliances are being tested for the first time, and your phone won&apos;t
               stop ringing. With Homefront, homeowners submit everything through their portal —
               directly to the right subcontractor. You&apos;re not the middleman anymore. Your subs handle
               it. Your homeowners are happy. Your phone stays quiet. Then at month 13, they&apos;re already
               enrolled, already love the portal, and converting to a paid plan feels natural — not
-              like a sales pitch.
+              like a sales pitch. For homes from past projects, you can onboard homeowners directly
+              onto a paid plan — no free year needed.
             </p>
           </ScrollAnimation>
 
