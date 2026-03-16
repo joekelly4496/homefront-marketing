@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 export default function LoginPage() {
   useEffect(() => {
-    window.location.href = 'https://builder-service-platform-2n7o24wfe.vercel.app';
+    window.location.href = 'https://builder-service-platform.vercel.app';
   }, []);
 
   return (
@@ -14,7 +14,7 @@ export default function LoginPage() {
         <p className="text-gray-400">
           If you are not redirected automatically,{' '}
           <a
-            href="https://builder-service-platform-2n7o24wfe.vercel.app"
+            href="https://builder-service-platform.vercel.app"
             className="text-gold hover:text-gold-light underline"
           >
             click here
