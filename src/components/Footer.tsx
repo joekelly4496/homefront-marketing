@@ -1,49 +1,77 @@
 import Link from 'next/link';
+import { Logo } from '@/components/ui/Logo';
+
+const columns: { heading: string; links: { href: string; label: string }[] }[] =
+  [
+    {
+      heading: 'Product',
+      links: [
+        { href: '/features', label: 'Features' },
+        { href: '/pricing', label: 'Pricing' },
+        { href: '/for-subcontractors', label: 'For Subcontractors' },
+        { href: '/demo', label: 'Book a demo' },
+      ],
+    },
+    {
+      heading: 'Portals',
+      links: [
+        { href: '/builder/login', label: 'Builder login' },
+        { href: '/homeowner/login', label: 'Homeowner login' },
+        { href: '/sub/login', label: 'Subcontractor login' },
+      ],
+    },
+    {
+      heading: 'Company',
+      links: [
+        { href: '/about', label: 'About' },
+        { href: '/contact', label: 'Contact' },
+        { href: '/privacy', label: 'Privacy' },
+        { href: '/terms', label: 'Terms' },
+      ],
+    },
+  ];
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {/* Brand */}
-          <div>
-            <h3 className="text-2xl font-bold mb-2">Homefront</h3>
-            <p className="text-gray-400 text-sm">
-              Turn every completed home into recurring revenue.
+    <footer className="border-t border-slate-200 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="col-span-2">
+            <Logo />
+            <p className="mt-4 max-w-xs text-sm text-slate-600">
+              The system of record for post-closing home builder service. Built
+              for residential home builders.
             </p>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-wrap gap-x-8 gap-y-3">
-            <Link href="/#how-it-works" className="text-gray-400 hover:text-white text-sm transition-colors">
-              How It Works
-            </Link>
-            <Link href="/pricing" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Pricing
-            </Link>
-            <Link href="/demo" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Demo
-            </Link>
-            <Link href="/login" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Login
-            </Link>
-            <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Terms
-            </Link>
-            <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Privacy
-            </Link>
-          </div>
+          {columns.map((col) => (
+            <div key={col.heading}>
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                {col.heading}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {col.links.map((link) => (
+                  <li key={link.href + link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
 
-          {/* Copyright */}
-          <div className="md:text-right">
-            <p className="text-gray-400 text-sm">
-              &copy; 2025 Homefront. All rights reserved.
-            </p>
-            <p className="text-gray-500 text-xs mt-2">
-              Built by a builder, for builders.
-            </p>
-          </div>
+        <div className="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-slate-500">
+            © {new Date().getFullYear()} Homefront. All rights reserved.
+          </p>
+          <p className="text-xs text-slate-400">
+            Purpose-built for post-closing service. Your brand, not ours.
+          </p>
         </div>
       </div>
     </footer>

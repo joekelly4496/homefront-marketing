@@ -1,28 +1,43 @@
 import type { Metadata } from 'next';
+import { GeistSans } from 'geist/font/sans';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import './globals.css';
 
+const siteUrl = 'https://gethomefront.com';
+
 export const metadata: Metadata = {
-  title: 'Homefront — Turn Every Completed Home Into Monthly Recurring Revenue',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Homefront — Post-closing service, finally organized',
+    template: '%s · Homefront',
+  },
   description:
-    'Homefront helps home builders manage warranties, automate maintenance reminders, and generate recurring revenue from completed homes. Built by a builder, for builders.',
+    'Homefront keeps builders, homeowners, and subcontractors on the same page — from the first warranty request to the final completion photo. The system of record for post-closing home builder service.',
+  keywords: [
+    'home builder warranty software',
+    'post-closing service',
+    'home warranty management',
+    'builder service software',
+    'homeowner portal',
+    'subcontractor management',
+  ],
   openGraph: {
-    title: 'Homefront — Turn Every Completed Home Into Monthly Recurring Revenue',
+    title: 'Homefront — Post-closing service, finally organized',
     description:
-      'Homefront helps home builders manage warranties, automate maintenance reminders, and generate recurring revenue from completed homes.',
-    url: 'https://gethomefront.com',
+      'The system of record for post-closing home builder service. Keep builders, homeowners, and subcontractors on the same page.',
+    url: siteUrl,
     siteName: 'Homefront',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Homefront — Recurring Revenue for Home Builders',
+    title: 'Homefront — Post-closing service, finally organized',
     description:
-      'Turn completed homes into monthly recurring revenue with warranty management, maintenance reminders, and a branded homeowner portal.',
+      'The system of record for post-closing home builder service. Keep builders, homeowners, and subcontractors on the same page.',
   },
-  robots: 'index, follow',
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -31,22 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        {/* Google Analytics GA4 Placeholder — replace G-XXXXXXXXXX with your GA4 ID */}
-        {/*
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
-          `
-        }} />
-        */}
-      </head>
-      <body className="font-sans antialiased">
+    <html lang="en" className={GeistSans.variable}>
+      <body className="font-sans antialiased bg-slate-50 text-slate-900">
         <Navigation />
         <main>{children}</main>
         <Footer />
