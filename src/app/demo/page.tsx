@@ -14,7 +14,7 @@ const points = [
   'A walkthrough of the builder, homeowner, and subcontractor portals',
   'How SLA tracking and reminders keep requests from slipping',
   'How cost intelligence shows what your service work really costs',
-  'A plan that fits your volume — with a free trial to start',
+  'Usage-based pricing that fits your volume — base fee plus per active home',
 ];
 
 export default function DemoPage() {

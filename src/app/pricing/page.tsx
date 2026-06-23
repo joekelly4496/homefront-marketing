@@ -1,34 +1,36 @@
 import type { Metadata } from 'next';
-import { ArrowRight, CheckCircle2, Minus, HardHat, Plus } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Home, Layers, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { Pill } from '@/components/ui/Pill';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container, SectionLabel } from '@/components/ui/Container';
-import { tiers, comparison } from '@/lib/content';
+import { IconBox } from '@/components/ui/IconBox';
+import { pricingModel, pricingIncludes } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
-    'Simple monthly plans for residential home builders — Intro $49, Starter $199, Growth $449, Pro $899. Subcontractors join free. Start a free trial.',
+    'Usage-based pricing for residential home builders — a small base platform fee plus a recurring fee per active home. Subcontractors join free. Request pricing.',
 };
+
+const modelIcons = [Layers, Home];
 
 const faqs = [
   {
+    q: 'How does pricing work?',
+    a: 'Homefront is usage-based: a small base platform fee plus a recurring fee per active home. Your cost scales with the homes you’re actively servicing, so you’re never paying for capacity you don’t use.',
+  },
+  {
     q: 'Do subcontractors pay?',
-    a: 'No. Subcontractors join free and get a mobile job list, status updates, and photo uploads. A Sub Pro add-on ($29/mo) unlocks premium features for subs who want more.',
+    a: 'No. Subcontractors join free and get a mobile job list, status updates, and photo uploads at no cost.',
   },
   {
-    q: 'Are the entitlements fixed?',
-    a: 'The figures shown — active homes, staff seats, advanced reporting — are illustrative. Final entitlements are configurable to fit how your business actually runs.',
+    q: 'What counts as an active home?',
+    a: 'A home that’s currently under warranty service or enrolled in a homeowner maintenance membership. Once a home is no longer active, it no longer counts toward your usage.',
   },
   {
-    q: 'Is there a free trial?',
-    a: 'Yes. Every builder plan starts with a free trial — no credit card required. Book a demo and we’ll get you set up.',
-  },
-  {
-    q: 'Can homeowners be billed through Homefront?',
-    a: 'Where applicable, homeowner subscription billing runs through Stripe Connect on Growth and Pro plans, so you can offer paid service or maintenance plans to your homeowners.',
+    q: 'Can I charge homeowners for ongoing service?',
+    a: 'Yes. You set a monthly homeowner membership price, collected through Stripe Connect, so you can keep serving homeowners with maintenance and service after the warranty period ends.',
   },
 ];
 
@@ -41,157 +43,85 @@ export default function PricingPage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>Pricing</SectionLabel>
             <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              One subscription. Your whole service operation.
+              Pricing that scales with your homes
             </h1>
             <p className="mt-5 text-balance text-lg text-slate-600">
-              Pick a builder plan that fits your volume. Subcontractors always
-              join free. Every plan starts with a free trial.
+              A small base platform fee plus a recurring fee per active home. No
+              rigid tiers, no paying for capacity you don’t use. Subcontractors
+              always join free.
             </p>
           </Reveal>
         </Container>
       </section>
 
-      {/* Tiers */}
+      {/* Pricing model */}
       <section className="py-16 sm:py-20">
-        <Container size="7xl">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {tiers.map((tier, i) => (
-              <Reveal key={tier.name} delay={(i % 4) * 60}>
-                <Card
-                  className={`relative flex h-full flex-col p-6 ${
-                    tier.popular ? 'border-brand-300 ring-1 ring-brand-200' : ''
-                  }`}
-                >
-                  {tier.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <Pill color="brand">Most popular</Pill>
-                    </div>
-                  )}
-                  <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                    {tier.name}
+        <Container size="6xl">
+          <div className="grid gap-6 md:grid-cols-2">
+            {pricingModel.map((point, i) => (
+              <Reveal key={point.title} delay={i * 80}>
+                <Card className="h-full p-6 sm:p-8">
+                  <IconBox icon={modelIcons[i]} accent="brand" />
+                  <h2 className="mt-5 text-xl font-semibold tracking-tight text-slate-900">
+                    {point.title}
                   </h2>
-                  <p className="mt-3">
-                    <span className="text-4xl font-semibold tracking-tight text-slate-900">
-                      ${tier.price}
-                    </span>
-                    <span className="text-sm text-slate-500">/mo</span>
+                  <p className="mt-2 text-base text-slate-600">
+                    {point.description}
                   </p>
-                  <p className="mt-2 text-sm text-slate-600">{tier.blurb}</p>
-                  <ul className="mt-5 flex-1 space-y-2.5 border-t border-slate-100 pt-5">
-                    {tier.highlights.map((h) => (
-                      <li key={h} className="flex gap-2.5">
-                        <CheckCircle2
-                          className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                          aria-hidden="true"
-                        />
-                        <span className="text-sm text-slate-600">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    href="/demo"
-                    variant={tier.popular ? 'primary' : 'secondary'}
-                    className="mt-6 w-full"
-                  >
-                    Start free trial
-                  </Button>
                 </Card>
               </Reveal>
             ))}
           </div>
 
-          {/* Sub Pro add-on */}
           <Reveal delay={120} className="mt-8">
-            <Card className="flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-start gap-4">
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
-                  <HardHat className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-base font-semibold text-slate-900">
-                      Subcontractors join free
-                    </h3>
-                    <Pill color="violet">Sub Pro · $29/mo</Pill>
-                  </div>
-                  <p className="mt-1 text-sm text-slate-600">
-                    Every sub gets a mobile job list at no cost. Sub Pro adds
-                    premium features for trade partners who want more visibility.
-                  </p>
-                </div>
+            <Card className="flex flex-col items-center gap-5 p-8 text-center sm:p-10">
+              <h3 className="text-2xl font-semibold tracking-tight text-slate-900">
+                Let’s build a number that fits your business
+              </h3>
+              <p className="max-w-xl text-base text-slate-600">
+                Tell us how many homes you close and service each year and we’ll
+                put together pricing for your operation — no obligation.
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button href="/demo" size="lg">
+                  Request pricing
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Button>
+                <Button href="/contact" size="lg" variant="secondary">
+                  Talk to us
+                </Button>
               </div>
-              <Button href="/for-subcontractors" variant="secondary">
-                For subcontractors
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Button>
             </Card>
           </Reveal>
         </Container>
       </section>
 
-      {/* Comparison table */}
+      {/* What's included */}
       <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
-        <Container size="7xl">
+        <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-              Compare every plan
+              Everything’s included
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Higher-volume and advanced features unlock as you grow. Final
-              entitlements are configurable.
+              No feature gates and no surprise add-ons. Every builder gets the
+              full platform — you only pay for the homes you’re servicing.
             </p>
           </Reveal>
 
-          <div className="mt-12 overflow-x-auto">
-            <table className="w-full min-w-[720px] border-separate border-spacing-0 text-left">
-              <thead>
-                <tr>
-                  <th className="sticky left-0 z-10 bg-white py-4 pr-4 align-bottom">
-                    <span className="text-sm font-semibold text-slate-900">
-                      Features
-                    </span>
-                  </th>
-                  {tiers.map((tier) => (
-                    <th
-                      key={tier.name}
-                      className="px-4 py-4 align-bottom text-center"
-                    >
-                      <div className="flex flex-col items-center gap-1">
-                        {tier.popular && <Pill color="brand">Popular</Pill>}
-                        <span className="text-sm font-semibold text-slate-900">
-                          {tier.name}
-                        </span>
-                        <span className="text-xs text-slate-500">
-                          ${tier.price}/mo
-                        </span>
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {comparison.map((group) => (
-                  <FeatureGroupRows key={group.group} group={group} />
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button href="/demo" size="lg">
-              Start free trial
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
-            <p className="text-sm text-slate-500">
-              Questions about a plan?{' '}
-              <a
-                href="/contact"
-                className="font-semibold text-brand-600 hover:text-brand-700"
-              >
-                Talk to us
-              </a>
-            </p>
-          </div>
+          <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
+            <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+              {pricingIncludes.map((item) => (
+                <li key={item} className="flex gap-2.5">
+                  <CheckCircle2
+                    className="mt-0.5 h-5 w-5 shrink-0 text-brand-600"
+                    aria-hidden="true"
+                  />
+                  <span className="text-sm text-slate-600">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </Container>
       </section>
 
@@ -221,55 +151,6 @@ export default function PricingPage() {
           </div>
         </Container>
       </section>
-    </>
-  );
-}
-
-function FeatureGroupRows({
-  group,
-}: {
-  group: (typeof comparison)[number];
-}) {
-  return (
-    <>
-      <tr>
-        <td
-          colSpan={5}
-          className="border-t border-slate-200 bg-slate-50 px-0 py-2.5"
-        >
-          <span className="sticky left-0 pl-0 text-xs font-semibold uppercase tracking-wide text-slate-500">
-            {group.group}
-          </span>
-        </td>
-      </tr>
-      {group.rows.map((row) => (
-        <tr key={row.label} className="border-t border-slate-100">
-          <td className="sticky left-0 z-10 bg-white py-3 pr-4 text-sm text-slate-700">
-            {row.label}
-          </td>
-          {row.values.map((value, i) => (
-            <td key={i} className="px-4 py-3 text-center">
-              {typeof value === 'boolean' ? (
-                value ? (
-                  <CheckCircle2
-                    className="mx-auto h-5 w-5 text-brand-600"
-                    aria-label="Included"
-                  />
-                ) : (
-                  <Minus
-                    className="mx-auto h-5 w-5 text-slate-300"
-                    aria-label="Not included"
-                  />
-                )
-              ) : (
-                <span className="text-sm font-medium text-slate-700">
-                  {value}
-                </span>
-              )}
-            </td>
-          ))}
-        </tr>
-      ))}
     </>
   );
 }

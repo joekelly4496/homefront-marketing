@@ -97,7 +97,7 @@ export default function LoginPage() {
               href="/pricing"
               className="font-semibold text-brand-600 hover:text-brand-700"
             >
-              start a free trial
+              see pricing
             </Link>
             .
           </p>
