@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: 'Can homeowners be billed through Homefront?',
-    a: 'Where applicable, homeowner subscription billing runs through Stripe Connect on Growth and Pro plans, so you can offer paid service or maintenance plans under your own brand.',
+    a: 'Where applicable, homeowner subscription billing runs through Stripe Connect on Growth and Pro plans, so you can offer paid service or maintenance plans to your homeowners.',
   },
 ];
 

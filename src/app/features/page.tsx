@@ -10,7 +10,7 @@ import { pillars, differentiators, features } from '@/lib/content';
 export const metadata: Metadata = {
   title: 'Features',
   description:
-    'Three connected portals, stay-ahead automation, and the tools to run post-closing service like a business — SLA tracking, maintenance reminders, photo documentation, cost intelligence, and white-label branding.',
+    'Three connected portals, stay-ahead automation, and the tools to run post-closing service like a business — SLA tracking, maintenance reminders, photo documentation, and cost intelligence.',
 };
 
 export default function FeaturesPage() {

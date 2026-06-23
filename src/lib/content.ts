@@ -8,7 +8,7 @@ import {
   Camera,
   BarChart3,
   CalendarClock,
-  Palette,
+  Smartphone,
   Users,
   ClipboardList,
   type LucideIcon,
@@ -136,11 +136,11 @@ export const features: Feature[] = [
       'Track job cost per sub per trade so you know what things should cost and where the money goes.',
   },
   {
-    icon: Palette,
+    icon: Smartphone,
     accent: 'violet',
-    title: 'White-label experience',
+    title: 'Built around your homeowners',
     description:
-      'The homeowner portal carries your name and your brand — not ours. You stay front and center.',
+      'The portal greets each homeowner by your company name, so it feels like an extension of your service. No app store, no downloads — just a clean link that works on any phone.',
   },
 ];
 
@@ -243,9 +243,9 @@ export const differentiators: Differentiator[] = [
       'Homeowner self-service is the wedge. When homeowners help themselves, your team stops fielding callbacks.',
   },
   {
-    title: 'Your brand, not ours',
+    title: 'Looks like your service',
     description:
-      'Multi-tenant and white-label, so the builder’s brand stays front and center in every homeowner touchpoint.',
+      'The homeowner portal leads with your company name and a light “powered by Homefront,” so homeowners stay in your world during warranty season.',
   },
   {
     title: 'Mobile-first for the field',
@@ -304,7 +304,7 @@ export const tiers: Tier[] = [
       'Up to 350 active homes',
       '15 staff seats',
       'Cost intelligence',
-      'White-label homeowner portal',
+      'Homeowner billing (Stripe Connect)',
     ],
   },
   {
@@ -347,6 +347,10 @@ export const comparison: FeatureGroup[] = [
       { label: 'Homeowner portal', values: [true, true, true, true] },
       { label: 'Subcontractor portal', values: [true, true, true, true] },
       { label: 'One thread per request', values: [true, true, true, true] },
+      {
+        label: 'Co-branded homeowner portal',
+        values: [true, true, true, true],
+      },
     ],
   },
   {
@@ -362,7 +366,6 @@ export const comparison: FeatureGroup[] = [
     group: 'Business',
     rows: [
       { label: 'Cost intelligence', values: [false, false, true, true] },
-      { label: 'White-label branding', values: [false, false, true, true] },
       { label: 'Advanced reporting', values: [false, false, false, true] },
       {
         label: 'Homeowner subscription billing',

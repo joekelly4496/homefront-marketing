@@ -4,6 +4,9 @@ import {
   CheckCircle2,
   XCircle,
   Star,
+  MonitorSmartphone,
+  Smartphone,
+  LogIn,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -263,6 +266,75 @@ export default function HomePage() {
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* Co-branding + install */}
+      <section className="py-20 sm:py-28">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+            <Reveal>
+              <SectionLabel>Your reputation</SectionLabel>
+              <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-slate-900">
+                Looks like your service, runs on Homefront
+              </h2>
+              <p className="mt-4 text-base text-slate-600">
+                The homeowner portal leads with your company name, with a light
+                “powered by Homefront” underneath. Homeowners stay in your world
+                during warranty season — one brand they trust, doing the
+                unglamorous work of service well.
+              </p>
+              <p className="mt-4 text-base text-slate-600">
+                It’s the reputation win without the busywork: every update,
+                photo, and approval happens in a portal that feels like an
+                extension of the home you built.
+              </p>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <Card className="p-6 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  Nothing to install
+                </p>
+                <ul className="mt-5 space-y-5">
+                  <li className="flex gap-4">
+                    <IconBox icon={MonitorSmartphone} accent="brand" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        Works on any device
+                      </p>
+                      <p className="mt-1 text-sm text-slate-600">
+                        Desktop, tablet, phone — the same portal everywhere.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <IconBox icon={Smartphone} accent="brand" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        Add it to your home screen in two taps
+                      </p>
+                      <p className="mt-1 text-sm text-slate-600">
+                        No download, no app store — just a clean link.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <IconBox icon={LogIn} accent="brand" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        Opens straight to your portal
+                      </p>
+                      <p className="mt-1 text-sm text-slate-600">
+                        Builders, homeowners, and subs each land in the right
+                        place automatically.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </Card>
+            </Reveal>
+          </div>
         </Container>
       </section>
 
