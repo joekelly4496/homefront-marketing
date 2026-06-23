@@ -2,127 +2,108 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
+import { Logo } from '@/components/ui/Logo';
+import { buttonVariants } from '@/components/ui/Button';
+
+const navLinks = [
+  { href: '/features', label: 'Features' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/for-subcontractors', label: 'For Subs' },
+];
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  const navLinks = [
-    { href: '/#how-it-works', label: 'How It Works' },
-    { href: '/pricing', label: 'Pricing' },
-    { href: '/demo', label: 'Demo' },
-    { href: '/login', label: 'Login' },
-  ];
+  }, [isOpen]);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white shadow-md'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <span
-              className={`text-2xl font-bold tracking-tight transition-colors duration-300 ${
-                isScrolled ? 'text-navy' : 'text-white'
-              }`}
-            >
-              Homefront
-            </span>
-          </Link>
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex h-16 items-center justify-between">
+          <Logo />
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors duration-300 hover:text-gold ${
-                  isScrolled ? 'text-gray-700' : 'text-white/90'
-                }`}
+                className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors rounded-lg"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Desktop CTAs */}
+          <div className="hidden md:flex items-center gap-3">
             <Link
-              href="/pricing"
-              className="bg-gold hover:bg-gold-dark text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors duration-200"
+              href="/login"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
             >
-              Get Started
+              Sign in
+            </Link>
+            <Link href="/demo" className={buttonVariants({ size: 'sm' })}>
+              Book a demo
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile toggle */}
           <button
-            className="md:hidden p-2"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            type="button"
+            className="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-lg text-slate-700 hover:bg-slate-100"
+            onClick={() => setIsOpen((v) => !v)}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
           >
-            <svg
-              className={`w-6 h-6 transition-colors duration-300 ${
-                isScrolled ? 'text-navy' : 'text-white'
-              }`}
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {isOpen ? (
+              <X className="w-6 h-6" aria-hidden="true" />
+            ) : (
+              <Menu className="w-6 h-6" aria-hidden="true" />
+            )}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
-          <div className="px-4 py-4 space-y-3">
+        <div className="md:hidden border-t border-slate-200 bg-white">
+          <div className="px-4 py-4 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block text-gray-700 hover:text-gold font-medium py-2"
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-lg"
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/pricing"
-              className="block bg-gold hover:bg-gold-dark text-white text-center px-5 py-2.5 rounded-lg font-semibold mt-3"
-            >
-              Get Started
-            </Link>
+            <div className="pt-3 mt-2 border-t border-slate-200 space-y-3">
+              <Link
+                href="/login"
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-lg"
+              >
+                Sign in
+              </Link>
+              <Link
+                href="/demo"
+                onClick={() => setIsOpen(false)}
+                className={buttonVariants({ size: 'lg', className: 'w-full' })}
+              >
+                Book a demo
+              </Link>
+            </div>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 }
