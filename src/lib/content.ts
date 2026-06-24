@@ -252,18 +252,46 @@ export const differentiators: Differentiator[] = [
 /* Pricing — usage-based; never quote dollar amounts for Homefront    */
 /* ------------------------------------------------------------------ */
 
-export type PricingPoint = { title: string; description: string };
+export type PricingPoint = {
+  price: string;
+  unit: string;
+  title: string;
+  description: string;
+};
 
 export const pricingModel: PricingPoint[] = [
   {
-    title: 'A small base platform fee',
+    price: '$99',
+    unit: '/month',
+    title: 'Base platform fee',
     description:
       'One flat monthly fee to run your punch list, warranty, and homeowner handoff on Homefront.',
   },
   {
-    title: 'Plus a fee per active home',
+    price: '$7',
+    unit: '/active home',
+    title: 'Per active home',
     description:
-      'You pay for homes actively under warranty or on a maintenance membership, so your cost scales with your book of business — not a rigid tier.',
+      'You only pay for homes actively under warranty or on a maintenance membership, so your cost scales with your book of business — not a rigid tier.',
+  },
+];
+
+export type AddOn = {
+  price: string;
+  unit: string;
+  title: string;
+  description: string;
+  comingSoon?: boolean;
+};
+
+export const addOns: AddOn[] = [
+  {
+    price: '$19',
+    unit: '/month',
+    title: 'SMS notifications',
+    description:
+      'Text updates to homeowners and subs, up to 500 messages a month.',
+    comingSoon: true,
   },
 ];
 

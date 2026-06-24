@@ -393,9 +393,8 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-base text-slate-600">
               All-in-one platforms bury warranty in an expensive tier full of
-              tools you’ll never use. Homefront charges a small base platform fee
-              plus a fee per active home — so you only pay for the homes you’re
-              servicing.
+              tools you’ll never use. Homefront is $99 a month plus $7 per active
+              home — so you only pay for the homes you’re servicing.
             </p>
           </Reveal>
 
@@ -403,9 +402,15 @@ export default function HomePage() {
             {pricingModel.map((point, i) => (
               <Reveal key={point.title} delay={i * 80}>
                 <Card className="h-full p-6 sm:p-7">
-                  <h3 className="text-lg font-semibold text-slate-900">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                     {point.title}
-                  </h3>
+                  </p>
+                  <p className="mt-2">
+                    <span className="text-3xl font-semibold tracking-tight text-slate-900">
+                      {point.price}
+                    </span>
+                    <span className="text-sm text-slate-500">{point.unit}</span>
+                  </p>
                   <p className="mt-2 text-sm text-slate-600">
                     {point.description}
                   </p>
@@ -413,6 +418,12 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal className="mt-4">
+            <p className="text-center text-sm text-slate-500">
+              Subcontractors always join free. SMS notifications coming soon.
+            </p>
+          </Reveal>
 
           <Reveal className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href="/demo" size="lg">

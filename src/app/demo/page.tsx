@@ -14,7 +14,7 @@ const points = [
   'How the punch list gets you using Homefront on day one of every home',
   'How homeowners reach the right sub directly — so your phone stops ringing',
   'How every request and dispatch lands on the record, protecting your reputation',
-  'Usage-based pricing that fits your volume — base fee plus per active home',
+  'Simple pricing — $99/month plus $7 per active home, and subs join free',
 ];
 
 export default function DemoPage() {

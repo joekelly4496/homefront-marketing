@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
-import { ArrowRight, CheckCircle2, Home, Layers, Plus } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Home, Layers, Plus, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { Pill } from '@/components/ui/Pill';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container, SectionLabel } from '@/components/ui/Container';
 import { IconBox } from '@/components/ui/IconBox';
-import { pricingModel, pricingIncludes } from '@/lib/content';
+import { pricingModel, pricingIncludes, addOns } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
-    'Usage-based pricing for residential home builders — a small base platform fee plus a recurring fee per active home. Subcontractors join free. Request pricing.',
+    'Simple, usage-based pricing for home builders — $99/month plus $7 per active home. No rigid tiers. Subcontractors join free.',
 };
 
 const modelIcons = [Layers, Home];
@@ -18,7 +19,7 @@ const modelIcons = [Layers, Home];
 const faqs = [
   {
     q: 'How does pricing work?',
-    a: 'Homefront is usage-based: a small base platform fee plus a recurring fee per active home. Your cost scales with the homes you’re actively servicing, so you’re never paying for capacity you don’t use.',
+    a: 'Homefront is usage-based: a $99/month base platform fee plus $7 per active home. Your cost scales with the homes you’re actively servicing, so you’re never paying for capacity you don’t use.',
   },
   {
     q: 'Do subcontractors pay?',
@@ -31,6 +32,10 @@ const faqs = [
   {
     q: 'Can I charge homeowners for ongoing service?',
     a: 'Yes. You set a monthly homeowner membership price, collected through Stripe Connect, so you can keep serving homeowners with maintenance and service after the warranty period ends.',
+  },
+  {
+    q: 'What about text notifications?',
+    a: 'SMS notifications are coming soon — text updates to homeowners and subs for $19/month, including up to 500 messages. Everything else works over email today.',
   },
 ];
 
@@ -46,9 +51,8 @@ export default function PricingPage() {
               Pricing that scales with your homes
             </h1>
             <p className="mt-5 text-balance text-lg text-slate-600">
-              A small base platform fee plus a recurring fee per active home. No
-              rigid tiers, no paying for capacity you don’t use. Subcontractors
-              always join free.
+              $99 a month plus $7 per active home. No rigid tiers, no paying for
+              capacity you don’t use. Subcontractors always join free.
             </p>
           </Reveal>
         </Container>
@@ -62,10 +66,16 @@ export default function PricingPage() {
               <Reveal key={point.title} delay={i * 80}>
                 <Card className="h-full p-6 sm:p-8">
                   <IconBox icon={modelIcons[i]} accent="brand" />
-                  <h2 className="mt-5 text-xl font-semibold tracking-tight text-slate-900">
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-slate-500">
                     {point.title}
-                  </h2>
-                  <p className="mt-2 text-base text-slate-600">
+                  </p>
+                  <p className="mt-2">
+                    <span className="text-4xl font-semibold tracking-tight text-slate-900">
+                      {point.price}
+                    </span>
+                    <span className="text-base text-slate-500">{point.unit}</span>
+                  </p>
+                  <p className="mt-3 text-base text-slate-600">
                     {point.description}
                   </p>
                 </Card>
@@ -73,7 +83,47 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <Reveal delay={120} className="mt-8">
+          <Reveal delay={120} className="mt-6">
+            <p className="text-center text-sm text-slate-500">
+              For example, 40 active homes is{' '}
+              <span className="font-semibold text-slate-700">$379/month</span> —
+              the $99 base plus $280.
+            </p>
+          </Reveal>
+
+          {/* Add-ons */}
+          {addOns.map((addOn, i) => (
+            <Reveal key={addOn.title} delay={140 + i * 80} className="mt-8">
+              <Card className="flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-4">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <MessageSquare className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-base font-semibold text-slate-900">
+                        {addOn.title}
+                      </h3>
+                      {addOn.comingSoon && (
+                        <Pill color="amber">Coming soon</Pill>
+                      )}
+                    </div>
+                    <p className="mt-1 text-sm text-slate-600">
+                      {addOn.description}
+                    </p>
+                  </div>
+                </div>
+                <p className="shrink-0">
+                  <span className="text-2xl font-semibold tracking-tight text-slate-900">
+                    {addOn.price}
+                  </span>
+                  <span className="text-sm text-slate-500">{addOn.unit}</span>
+                </p>
+              </Card>
+            </Reveal>
+          ))}
+
+          <Reveal delay={220} className="mt-8">
             <Card className="flex flex-col items-center gap-5 p-8 text-center sm:p-10">
               <h3 className="text-2xl font-semibold tracking-tight text-slate-900">
                 Let’s build a number that fits your business
