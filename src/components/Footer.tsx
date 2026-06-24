@@ -70,7 +70,8 @@ export default function Footer() {
             © {new Date().getFullYear()} Homefront. All rights reserved.
           </p>
           <p className="text-xs text-slate-400">
-            Purpose-built for post-closing service. Your brand, not ours.
+            Purpose-built for post-closing service. Looks like your service,
+            runs on Homefront.
           </p>
         </div>
       </div>

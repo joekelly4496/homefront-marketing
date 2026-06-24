@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   Bell,
   ListChecks,
-  DollarSign,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -49,11 +48,11 @@ const benefits = [
   },
 ];
 
-const subProFeatures = [
-  'Job history across every builder you work with',
-  'Faster payouts and clearer cost records',
-  'Priority support',
-  'Advanced scheduling and availability tools',
+const subIncludes = [
+  'A clear job list from every builder you work with',
+  'One-tap status updates — “on my way,” “complete”',
+  'Before & after photo uploads on every job',
+  'Instant notifications the moment you’re assigned work',
 ];
 
 export default function ForSubcontractorsPage() {
@@ -131,24 +130,21 @@ export default function ForSubcontractorsPage() {
         </Container>
       </section>
 
-      {/* Sub Pro */}
+      {/* Always free */}
       <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
         <Container size="6xl">
           <Reveal>
             <Card className="overflow-hidden p-0">
               <div className="grid gap-8 p-8 sm:p-10 lg:grid-cols-2 lg:items-center">
                 <div>
-                  <div className="flex items-center gap-3">
-                    <IconBox icon={DollarSign} accent="violet" />
-                    <Pill color="violet">Sub Pro · $29/mo</Pill>
-                  </div>
+                  <Pill color="violet">Always free</Pill>
                   <h2 className="mt-5 text-2xl font-semibold tracking-tight text-slate-900">
-                    Want more? Add Sub Pro.
+                    Free for subcontractors. No catch.
                   </h2>
                   <p className="mt-3 text-base text-slate-600">
-                    The free account covers everything you need to do the work.
-                    Sub Pro is for trade partners who want history, faster
-                    payouts, and more control over their schedule.
+                    There’s no charge to use Homefront as a subcontractor. Sign
+                    in, see your assigned jobs, and keep the work moving —
+                    everything you need to do the job is included.
                   </p>
                   <Button href="/sub/login" className="mt-6">
                     Get started free
@@ -156,7 +152,7 @@ export default function ForSubcontractorsPage() {
                   </Button>
                 </div>
                 <ul className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-6">
-                  {subProFeatures.map((f) => (
+                  {subIncludes.map((f) => (
                     <li key={f} className="flex gap-3">
                       <CheckCircle2
                         className="mt-0.5 h-5 w-5 shrink-0 text-violet-600"

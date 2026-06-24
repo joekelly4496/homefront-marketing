@@ -4,6 +4,9 @@ import {
   CheckCircle2,
   XCircle,
   Star,
+  MonitorSmartphone,
+  Smartphone,
+  LogIn,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -18,7 +21,7 @@ import {
   steps,
   features,
   stats,
-  tiers,
+  pricingModel,
 } from '@/lib/content';
 
 const chaos = [
@@ -65,13 +68,14 @@ export default function HomePage() {
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
                   <Button href="/pricing" size="lg" variant="secondary">
-                    Start free trial
+                    See pricing
                   </Button>
                 </div>
               </Reveal>
               <Reveal delay={240}>
                 <p className="mt-6 text-sm text-slate-500">
-                  No credit card to start · Subcontractors join free
+                  Purpose-built for post-closing service · Subcontractors join
+                  free
                 </p>
               </Reveal>
             </div>
@@ -266,6 +270,75 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* Co-branding + install */}
+      <section className="py-20 sm:py-28">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+            <Reveal>
+              <SectionLabel>Your reputation</SectionLabel>
+              <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-slate-900">
+                Looks like your service, runs on Homefront
+              </h2>
+              <p className="mt-4 text-base text-slate-600">
+                The homeowner portal leads with your company name, with a light
+                “powered by Homefront” underneath. Homeowners stay in your world
+                during warranty season — one brand they trust, doing the
+                unglamorous work of service well.
+              </p>
+              <p className="mt-4 text-base text-slate-600">
+                It’s the reputation win without the busywork: every update,
+                photo, and approval happens in a portal that feels like an
+                extension of the home you built.
+              </p>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <Card className="p-6 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  Nothing to install
+                </p>
+                <ul className="mt-5 space-y-5">
+                  <li className="flex gap-4">
+                    <IconBox icon={MonitorSmartphone} accent="brand" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        Works on any device
+                      </p>
+                      <p className="mt-1 text-sm text-slate-600">
+                        Desktop, tablet, phone — the same portal everywhere.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <IconBox icon={Smartphone} accent="brand" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        Add it to your home screen in two taps
+                      </p>
+                      <p className="mt-1 text-sm text-slate-600">
+                        No download, no app store — just a clean link.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <IconBox icon={LogIn} accent="brand" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        Opens straight to your portal
+                      </p>
+                      <p className="mt-1 text-sm text-slate-600">
+                        Builders, homeowners, and subs each land in the right
+                        place automatically.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </Card>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
       {/* Outcomes / stats band */}
       <section className="py-20 sm:py-28">
         <Container>
@@ -345,69 +418,44 @@ export default function HomePage() {
 
       {/* Pricing preview */}
       <section className="py-20 sm:py-28">
-        <Container>
+        <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>Pricing</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Simple plans that scale with your volume
+              Pricing that scales with your homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Start free. Subcontractors always join free. Upgrade as you grow.
+              A small base platform fee plus a recurring fee per active home.
+              The full platform is included — you only pay for the homes you’re
+              servicing. Subcontractors always join free.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {tiers.map((tier, i) => (
-              <Reveal key={tier.name} delay={(i % 4) * 60}>
-                <Card
-                  className={`relative flex h-full flex-col p-6 ${
-                    tier.popular ? 'border-brand-300 ring-1 ring-brand-200' : ''
-                  }`}
-                >
-                  {tier.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <Pill color="brand">Most popular</Pill>
-                    </div>
-                  )}
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                    {tier.name}
+          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
+            {pricingModel.map((point, i) => (
+              <Reveal key={point.title} delay={i * 80}>
+                <Card className="h-full p-6 sm:p-7">
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    {point.title}
                   </h3>
-                  <p className="mt-3">
-                    <span className="text-3xl font-semibold tracking-tight text-slate-900">
-                      ${tier.price}
-                    </span>
-                    <span className="text-sm text-slate-500">/mo</span>
+                  <p className="mt-2 text-sm text-slate-600">
+                    {point.description}
                   </p>
-                  <p className="mt-2 text-sm text-slate-600">{tier.blurb}</p>
-                  <ul className="mt-5 flex-1 space-y-2.5 border-t border-slate-100 pt-5">
-                    {tier.highlights.map((h) => (
-                      <li key={h} className="flex gap-2.5">
-                        <CheckCircle2
-                          className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                          aria-hidden="true"
-                        />
-                        <span className="text-sm text-slate-600">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    href="/demo"
-                    variant={tier.popular ? 'primary' : 'secondary'}
-                    className="mt-6 w-full"
-                  >
-                    Start free trial
-                  </Button>
                 </Card>
               </Reveal>
             ))}
           </div>
 
-          <Reveal className="mt-10 text-center">
+          <Reveal className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button href="/demo" size="lg">
+              Request pricing
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Button>
             <Link
               href="/pricing"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
             >
-              See full pricing & feature comparison
+              See how pricing works
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </Reveal>
@@ -431,7 +479,7 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">
-                Start free trial
+                See pricing
               </Button>
             </div>
           </Reveal>

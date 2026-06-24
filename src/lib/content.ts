@@ -8,7 +8,7 @@ import {
   Camera,
   BarChart3,
   CalendarClock,
-  Palette,
+  Smartphone,
   Users,
   ClipboardList,
   type LucideIcon,
@@ -136,11 +136,11 @@ export const features: Feature[] = [
       'Track job cost per sub per trade so you know what things should cost and where the money goes.',
   },
   {
-    icon: Palette,
+    icon: Smartphone,
     accent: 'violet',
-    title: 'White-label experience',
+    title: 'Built around your homeowners',
     description:
-      'The homeowner portal carries your name and your brand — not ours. You stay front and center.',
+      'The portal greets each homeowner by your company name, so it feels like an extension of your service. No app store, no downloads — just a clean link that works on any phone.',
   },
 ];
 
@@ -243,9 +243,9 @@ export const differentiators: Differentiator[] = [
       'Homeowner self-service is the wedge. When homeowners help themselves, your team stops fielding callbacks.',
   },
   {
-    title: 'Your brand, not ours',
+    title: 'Looks like your service',
     description:
-      'Multi-tenant and white-label, so the builder’s brand stays front and center in every homeowner touchpoint.',
+      'The homeowner portal leads with your company name and a light “powered by Homefront,” so homeowners stay in your world during warranty season.',
   },
   {
     title: 'Mobile-first for the field',
@@ -264,119 +264,32 @@ export const stats: Stat[] = [
   { value: '0', label: 'requests lost to a spreadsheet' },
 ];
 
-export type Tier = {
-  name: string;
-  price: number;
-  blurb: string;
-  popular?: boolean;
-  highlights: string[];
-};
+// Usage-based pricing: a small base platform fee plus a recurring fee per
+// active home. Exact figures are not finalized — never quote dollar amounts.
+export type PricingPoint = { title: string; description: string };
 
-export const tiers: Tier[] = [
+export const pricingModel: PricingPoint[] = [
   {
-    name: 'Intro',
-    price: 49,
-    blurb: 'For builders just getting started.',
-    highlights: [
-      'Up to 25 active homes',
-      '2 staff seats',
-      'All three portals',
-      'SLA tracking & reminders',
-    ],
+    title: 'A small base platform fee',
+    description:
+      'One flat monthly fee to run your entire post-closing service operation on Homefront.',
   },
   {
-    name: 'Starter',
-    price: 199,
-    blurb: 'For a growing service operation.',
-    highlights: [
-      'Up to 100 active homes',
-      '5 staff seats',
-      'Maintenance reminders',
-      'Photo documentation',
-    ],
-  },
-  {
-    name: 'Growth',
-    price: 449,
-    blurb: 'For builders scaling their volume.',
-    popular: true,
-    highlights: [
-      'Up to 350 active homes',
-      '15 staff seats',
-      'Cost intelligence',
-      'White-label homeowner portal',
-    ],
-  },
-  {
-    name: 'Pro',
-    price: 899,
-    blurb: 'For high-volume, multi-team builders.',
-    highlights: [
-      'Unlimited active homes',
-      'Unlimited staff seats',
-      'Advanced reporting',
-      'Priority support & onboarding',
-    ],
+    title: 'Plus a fee per active home',
+    description:
+      'You pay for homes actively under warranty or on a maintenance membership, so your cost scales with your book of business — not a rigid tier.',
   },
 ];
 
-export type FeatureRow = {
-  label: string;
-  values: (string | boolean)[]; // [Intro, Starter, Growth, Pro]
-};
-
-export type FeatureGroup = { group: string; rows: FeatureRow[] };
-
-// Entitlements are illustrative — final entitlements are configurable.
-export const comparison: FeatureGroup[] = [
-  {
-    group: 'Capacity',
-    rows: [
-      { label: 'Active homes', values: ['25', '100', '350', 'Unlimited'] },
-      { label: 'Staff seats', values: ['2', '5', '15', 'Unlimited'] },
-      {
-        label: 'Subcontractor seats',
-        values: ['Unlimited', 'Unlimited', 'Unlimited', 'Unlimited'],
-      },
-    ],
-  },
-  {
-    group: 'Core portals',
-    rows: [
-      { label: 'Builder dashboard', values: [true, true, true, true] },
-      { label: 'Homeowner portal', values: [true, true, true, true] },
-      { label: 'Subcontractor portal', values: [true, true, true, true] },
-      { label: 'One thread per request', values: [true, true, true, true] },
-    ],
-  },
-  {
-    group: 'Automation',
-    rows: [
-      { label: 'SLA tracking & overdue flags', values: [true, true, true, true] },
-      { label: 'Automated reminders', values: [true, true, true, true] },
-      { label: 'Maintenance reminders', values: [false, true, true, true] },
-      { label: 'Photo documentation', values: [false, true, true, true] },
-    ],
-  },
-  {
-    group: 'Business',
-    rows: [
-      { label: 'Cost intelligence', values: [false, false, true, true] },
-      { label: 'White-label branding', values: [false, false, true, true] },
-      { label: 'Advanced reporting', values: [false, false, false, true] },
-      {
-        label: 'Homeowner subscription billing',
-        values: [false, false, true, true],
-      },
-    ],
-  },
-  {
-    group: 'Support',
-    rows: [
-      {
-        label: 'Support',
-        values: ['Email', 'Email', 'Priority', 'Priority + onboarding'],
-      },
-    ],
-  },
+export const pricingIncludes: string[] = [
+  'All three portals — builder, homeowner, and subcontractor',
+  'Unlimited staff seats and subcontractors',
+  'SLA tracking with automatic overdue flags',
+  'Automated reminder emails',
+  'Maintenance reminder scheduling',
+  'Photo documentation on every job',
+  'One thread per request',
+  'Cost intelligence and reporting',
+  'Co-branded homeowner portal',
+  'Homeowner memberships billed through Stripe Connect',
 ];

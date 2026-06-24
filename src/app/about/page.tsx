@@ -65,7 +65,8 @@ export default function AboutPage() {
               </p>
               <p>
                 The result is service work you can run like a business — and a
-                homeowner experience that carries your brand, not ours.
+                homeowner experience that keeps your company name front and
+                center.
               </p>
             </div>
           </Reveal>
