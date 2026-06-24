@@ -6,7 +6,7 @@ import { Pill } from '@/components/ui/Pill';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container, SectionLabel } from '@/components/ui/Container';
 import { IconBox } from '@/components/ui/IconBox';
-import { pricingModel, pricingIncludes, addOns } from '@/lib/content';
+import { pricingModel, pricingIncludes, addOns, signupHref } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -126,19 +126,19 @@ export default function PricingPage() {
           <Reveal delay={220} className="mt-8">
             <Card className="flex flex-col items-center gap-5 p-8 text-center sm:p-10">
               <h3 className="text-2xl font-semibold tracking-tight text-slate-900">
-                Let’s build a number that fits your business
+                Start in minutes
               </h3>
               <p className="max-w-xl text-base text-slate-600">
-                Tell us how many homes you close and service each year and we’ll
-                put together pricing for your operation — no obligation.
+                Create your account, set up your first home, and run your punch
+                list today. No demo, no sales call.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button href="/demo" size="lg">
-                  Request pricing
+                <Button href={signupHref} size="lg">
+                  Get started
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Button>
                 <Button href="/contact" size="lg" variant="secondary">
-                  Talk to us
+                  Questions? Contact us
                 </Button>
               </div>
             </Card>

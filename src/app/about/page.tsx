@@ -6,6 +6,7 @@ import { IconBox } from '@/components/ui/IconBox';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { signupHref } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -93,11 +94,11 @@ export default function AboutPage() {
               Get out of the middle
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Book a demo and we’ll walk through Homefront on your own homes.
+              Create your account and run your first home on Homefront today.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button href="/demo" size="lg">
-                Book a demo
+              <Button href={signupHref} size="lg">
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/features" size="lg" variant="secondary">

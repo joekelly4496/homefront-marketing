@@ -1,30 +1,31 @@
 import type { Metadata } from 'next';
-import { Mail, CalendarClock, HelpCircle, ArrowRight } from 'lucide-react';
+import { Mail, UserPlus, HelpCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { IconBox } from '@/components/ui/IconBox';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { signupHref } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Homefront. Book a demo, ask a question, or talk to us about a plan for your home building business.',
+    'Get in touch with Homefront. Sign up, ask a question, or get help with your account.',
 };
 
 const options = [
   {
-    icon: CalendarClock,
-    title: 'Book a demo',
+    icon: UserPlus,
+    title: 'Get started',
     description:
-      'The fastest way to see Homefront. A 20-minute walkthrough on your own homes.',
-    cta: { label: 'Book a demo', href: '/demo' },
+      'Create your account and set up your first home in minutes — no demo, no sales call.',
+    cta: { label: 'Sign up', href: signupHref },
   },
   {
     icon: Mail,
     title: 'Email us',
-    description: 'Questions about plans, onboarding, or anything else.',
+    description: 'Questions about pricing, onboarding, or anything else.',
     cta: { label: 'joekelly4496@gmail.com', href: 'mailto:joekelly4496@gmail.com' },
   },
   {
@@ -41,7 +42,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Let’s talk"
-        subtitle="Whether you’re ready for a demo or just have a question, we’re glad to help."
+        subtitle="Ready to get started or just have a question? We’re glad to help."
       />
 
       <section className="py-20 sm:py-24">
@@ -70,8 +71,8 @@ export default function ContactPage() {
           </div>
 
           <Reveal delay={120} className="mt-12 text-center">
-            <Button href="/demo" size="lg">
-              Book a demo
+            <Button href={signupHref} size="lg">
+              Get started
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
           </Reveal>

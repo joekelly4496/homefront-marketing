@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
+import { signupHref } from '@/lib/content';
 
 export default function NotFound() {
   return (
@@ -21,8 +22,8 @@ export default function NotFound() {
               Back to home
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
-            <Button href="/demo" size="lg" variant="secondary">
-              Book a demo
+            <Button href={signupHref} size="lg" variant="secondary">
+              Get started
             </Button>
           </div>
         </div>

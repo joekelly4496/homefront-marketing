@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { buttonVariants } from '@/components/ui/Button';
+import { signupHref } from '@/lib/content';
 
 const navLinks = [
   { href: '/features', label: 'Features' },
@@ -49,8 +50,8 @@ export default function Navigation() {
             >
               Sign in
             </Link>
-            <Link href="/demo" className={buttonVariants({ size: 'sm' })}>
-              Book a demo
+            <Link href={signupHref} className={buttonVariants({ size: 'sm' })}>
+              Sign up
             </Link>
           </div>
 
@@ -94,11 +95,11 @@ export default function Navigation() {
                 Sign in
               </Link>
               <Link
-                href="/demo"
+                href={signupHref}
                 onClick={() => setIsOpen(false)}
                 className={buttonVariants({ size: 'lg', className: 'w-full' })}
               >
-                Book a demo
+                Sign up
               </Link>
             </div>
           </div>

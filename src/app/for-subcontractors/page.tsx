@@ -84,8 +84,8 @@ export default function ForSubcontractorsPage() {
                     Subcontractor sign in
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
-                  <Button href="/demo" size="lg" variant="secondary">
-                    Tell my builder
+                  <Button href="/features" size="lg" variant="secondary">
+                    See what builders get
                   </Button>
                 </div>
               </Reveal>
@@ -180,8 +180,8 @@ export default function ForSubcontractorsPage() {
               in one place — and you get paid for documented, completed work.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button href="/demo" size="lg">
-                Tell my builder about Homefront
+              <Button href="/features" size="lg">
+                Show my builder Homefront
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/sub/login" size="lg" variant="secondary">
