@@ -39,8 +39,8 @@ export default function Footer() {
           <div className="col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-sm text-slate-600">
-              The system of record for post-closing home builder service. Built
-              for residential home builders.
+              The warranty and homeowner-handoff platform for home builders.
+              Less work for you, a premium experience for your buyers.
             </p>
           </div>
 
@@ -70,8 +70,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Homefront. All rights reserved.
           </p>
           <p className="text-xs text-slate-400">
-            Purpose-built for post-closing service. Looks like your service,
-            runs on Homefront.
+            Stop being your homeowners’ help desk. Protect your reputation.
           </p>
         </div>
       </div>

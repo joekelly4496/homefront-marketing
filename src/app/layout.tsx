@@ -9,23 +9,23 @@ const siteUrl = 'https://gethomefront.com';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Homefront — Post-closing service, finally organized',
+    default: 'Homefront — Build homes. Not a help desk.',
     template: '%s · Homefront',
   },
   description:
-    'Homefront keeps builders, homeowners, and subcontractors on the same page — from the first warranty request to the final completion photo. The system of record for post-closing home builder service.',
+    'Homefront is the warranty and homeowner-handoff platform for home builders. Homeowners reach the right sub directly, you monitor instead of firefight, and every buyer walks away with a complete home record. Less work, a better reputation.',
   keywords: [
     'home builder warranty software',
-    'post-closing service',
-    'home warranty management',
-    'builder service software',
-    'homeowner portal',
-    'subcontractor management',
+    'home builder help desk',
+    'warranty management for builders',
+    'homeowner handoff',
+    'punch list software',
+    'home maintenance plan',
   ],
   openGraph: {
-    title: 'Homefront — Post-closing service, finally organized',
+    title: 'Homefront — Build homes. Not a help desk.',
     description:
-      'The system of record for post-closing home builder service. Keep builders, homeowners, and subcontractors on the same page.',
+      'The warranty and homeowner-handoff platform for home builders. Get out of the middle, keep your reputation on the record, and hand over something premium.',
     url: siteUrl,
     siteName: 'Homefront',
     type: 'website',
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Homefront — Post-closing service, finally organized',
+    title: 'Homefront — Build homes. Not a help desk.',
     description:
-      'The system of record for post-closing home builder service. Keep builders, homeowners, and subcontractors on the same page.',
+      'The warranty and homeowner-handoff platform for home builders. Your phone stops ringing. Your reviews go up.',
   },
   robots: { index: true, follow: true },
 };

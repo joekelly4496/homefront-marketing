@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Homefront — Post-closing service, finally organized';
+export const alt = 'Homefront — Build homes. Not a help desk.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -63,11 +63,11 @@ export default function OpengraphImage() {
               maxWidth: '950px',
             }}
           >
-            Post-closing service, finally organized.
+            Build homes. Not a help desk.
           </div>
           <div style={{ fontSize: '32px', color: '#475569', maxWidth: '900px' }}>
-            Builders, homeowners, and subcontractors on the same page — from the
-            first warranty request to the final completion photo.
+            Homeowners reach the right sub directly. You monitor instead of
+            firefight. Every buyer walks away with a complete home record.
           </div>
         </div>
 

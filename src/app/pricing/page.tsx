@@ -96,6 +96,21 @@ export default function PricingPage() {
         </Container>
       </section>
 
+      {/* ROI line */}
+      <section className="pb-4">
+        <Container size="6xl">
+          <Reveal>
+            <div className="rounded-3xl bg-brand-700 px-6 py-10 text-center sm:px-12 sm:py-12">
+              <p className="mx-auto max-w-3xl text-balance text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                All-in-one platforms bury warranty in an $800-a-month tier full
+                of tools you’ll never use. Homefront does the one job that
+                actually drives your referrals — for a fraction of the price.
+              </p>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
       {/* What's included */}
       <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
         <Container size="6xl">

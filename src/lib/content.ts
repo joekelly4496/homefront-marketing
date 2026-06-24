@@ -1,63 +1,147 @@
 import {
-  Home,
-  HardHat,
-  Wrench,
   ShieldCheck,
-  Clock,
-  MessageSquare,
-  Camera,
   BarChart3,
   CalendarClock,
-  Smartphone,
-  Users,
-  ClipboardList,
+  ClipboardCheck,
+  PhoneOff,
+  PhoneCall,
+  Phone,
+  FileClock,
+  FolderArchive,
+  BookMarked,
   type LucideIcon,
 } from 'lucide-react';
 import type { Accent } from '@/components/ui/IconBox';
 
-export type Portal = {
+/** A generic icon + title + description block, reused across the site. */
+export type Highlight = {
   icon: LucideIcon;
   accent: Accent;
-  name: string;
-  tagline: string;
-  bullets: string[];
+  title: string;
+  description: string;
 };
 
-export const portals: Portal[] = [
+/* ------------------------------------------------------------------ */
+/* The lifecycle arc — one story told across the life of a home       */
+/* ------------------------------------------------------------------ */
+
+export type Phase = {
+  stage: string;
+  icon: LucideIcon;
+  accent: Accent;
+  title: string;
+  description: string;
+  points: string[];
+};
+
+export const lifecycle: Phase[] = [
   {
-    icon: Home,
+    stage: 'Before handoff',
+    icon: ClipboardCheck,
     accent: 'brand',
-    name: 'Builder portal',
-    tagline: 'Every home, request, and sub in one dashboard.',
-    bullets: [
-      'See open vs. completed work at a glance',
-      'Know who’s assigned and what’s overdue',
-      'One record of every home you’ve closed',
+    title: 'Close out the home',
+    description:
+      'Walk the finished home and run your punch list right in Homefront — log items, assign them to subs, track them to done. You’re using it from day one of every home, before a homeowner ever logs in.',
+    points: [
+      'Log punch items as you walk',
+      'Assign each item to the right sub',
+      'Track every item through to done',
     ],
   },
   {
-    icon: Users,
+    stage: 'During warranty',
+    icon: ShieldCheck,
     accent: 'emerald',
-    name: 'Homeowner portal',
-    tagline: 'Self-service that makes you look buttoned-up.',
-    bullets: [
-      'Submit requests and upload photos in seconds',
-      'Track status and approve schedules',
-      'Message the builder in one place',
+    title: 'Get out of the middle',
+    description:
+      'Homeowners deal directly with the sub who did the work; you monitor instead of fielding every call. Every request is timestamped and every dispatch logged — so you look responsive because you are.',
+    points: [
+      'Homeowners reach the right sub directly',
+      'You monitor instead of firefighting',
+      'Every request and dispatch on the record',
     ],
   },
   {
-    icon: HardHat,
+    stage: 'At handoff & beyond',
+    icon: BookMarked,
     accent: 'violet',
-    name: 'Subcontractor portal',
-    tagline: 'A job list your trades actually use.',
-    bullets: [
-      'Assigned jobs, ready on their phone',
-      'Update status: “on my way,” “complete”',
-      'Upload before & after photos from the field',
+    title: 'Hand over something premium',
+    description:
+      'A maintenance plan, a record of which subs did the work, and a complete “who to call for what” — value that stays useful for years and makes you look like a premium operation long after closing.',
+    points: [
+      'A maintenance plan that never expires',
+      'The exact subs who worked on the home',
+      'A complete home record, theirs to keep',
     ],
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Builder-facing value — less work, better reputation                */
+/* ------------------------------------------------------------------ */
+
+export const builderValue: Highlight[] = [
+  {
+    icon: PhoneOff,
+    accent: 'brand',
+    title: 'Get out of the middle',
+    description:
+      'When something breaks, the homeowner reaches the sub who installed it — tap to call — instead of reaching you. You monitor everything; you field almost none of it.',
+  },
+  {
+    icon: FileClock,
+    accent: 'emerald',
+    title: 'Reputation, on the record',
+    description:
+      'Every request is timestamped and every dispatch logged. You look responsive because you are — and when a delay isn’t on you, the history shows exactly where it sat. Responsiveness is what turns into reviews and referrals.',
+  },
+  {
+    icon: ClipboardCheck,
+    accent: 'amber',
+    title: 'Your final walkthrough, built in',
+    description:
+      'Run your punch list right in Homefront — log items, assign them to subs, track them to done. The same system you use to close out a job becomes the system that serves the homeowner.',
+  },
+  {
+    icon: BarChart3,
+    accent: 'violet',
+    title: 'Know your subs',
+    description:
+      'See which trades are generating callbacks across every home, so you catch a problem sub before it costs you ten more. And when a dispute arises, you’ve got the documentation.',
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Homeowner-facing value — what makes the builder look premium       */
+/* ------------------------------------------------------------------ */
+
+export const homeownerValue: Highlight[] = [
+  {
+    icon: CalendarClock,
+    accent: 'emerald',
+    title: 'A maintenance plan that never expires',
+    description:
+      'Homeowners see exactly what to do and when to keep their home in shape — value that’s still there whether or not they keep a subscription.',
+  },
+  {
+    icon: PhoneCall,
+    accent: 'brand',
+    title: 'Who to call for what',
+    description:
+      'The exact plumber, electrician, and HVAC tech who worked on their home — saved and ready to tap.',
+  },
+  {
+    icon: FolderArchive,
+    accent: 'violet',
+    title: 'A complete home record, theirs to keep',
+    description:
+      'Specs, documents, warranties, and contacts in one place — and a clean handoff they can take with them. You handed over something premium, not a pile of manuals in a drawer.',
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* How it works — what happens when something breaks                  */
+/* ------------------------------------------------------------------ */
 
 export type Step = {
   title: string;
@@ -67,212 +151,114 @@ export type Step = {
 
 export const steps: Step[] = [
   {
-    title: 'Homeowner submits',
+    title: 'The homeowner taps to call',
     description:
-      'A homeowner reports an issue from their portal with photos and details — no more midnight texts.',
-    icon: ClipboardList,
+      'When something breaks, they reach the sub who installed it directly — straight from their home record, not straight to your phone.',
+    icon: Phone,
   },
   {
-    title: 'Builder assigns a sub',
+    title: 'You monitor, you don’t firefight',
     description:
-      'You review the request, set the deadline, and assign the right trade partner in a couple of clicks.',
-    icon: HardHat,
+      'The request lands on your dashboard. You watch it move and only step in when you actually need to.',
+    icon: ShieldCheck,
   },
   {
-    title: 'Sub updates from the field',
+    title: 'It’s all on the record',
     description:
-      'The subcontractor sees the job on their phone, marks progress, and uploads completion photos.',
-    icon: Wrench,
-  },
-  {
-    title: 'Everyone’s notified',
-    description:
-      'Homeowner, builder, and sub stay in sync automatically — every step documented on one thread.',
-    icon: MessageSquare,
+      'Every request is timestamped and every dispatch logged, so the history shows exactly what happened and when.',
+    icon: FileClock,
   },
 ];
 
-export type Feature = {
-  icon: LucideIcon;
-  accent: Accent;
-  title: string;
-  description: string;
-};
+/* ------------------------------------------------------------------ */
+/* The toolkit — a scannable recap of what’s in the box               */
+/* ------------------------------------------------------------------ */
 
-export const features: Feature[] = [
+export const features: Highlight[] = [
   {
-    icon: Clock,
-    accent: 'amber',
-    title: 'SLA tracking',
+    icon: ClipboardCheck,
+    accent: 'brand',
+    title: 'Punch list',
     description:
-      'Every request gets an acknowledgment deadline. Overdue jobs are flagged automatically before they become complaints.',
+      'Walk the finished home, log items, and assign them to subs — your closeout tool and your service tool in one.',
+  },
+  {
+    icon: PhoneCall,
+    accent: 'emerald',
+    title: 'Direct-to-sub dispatch',
+    description:
+      'Homeowners reach the sub who did the work with a tap, so routine fixes never hit your phone.',
+  },
+  {
+    icon: FileClock,
+    accent: 'amber',
+    title: 'Documented accountability',
+    description:
+      'Every request timestamped, every dispatch logged. Responsive on the record — and clear where a delay actually sat.',
   },
   {
     icon: CalendarClock,
     accent: 'brand',
     title: 'Maintenance reminders',
     description:
-      'Schedule recurring upkeep reminders — HVAC filters, gutter cleaning — sent to homeowners long after closing.',
+      'Recurring upkeep reminders — HVAC filters, gutters — keep homeowners ahead of problems long after closing.',
   },
   {
-    icon: Camera,
-    accent: 'emerald',
-    title: 'Photo documentation',
-    description:
-      'Submitted and completion photos live on every job, stored as a permanent record of the work done.',
-  },
-  {
-    icon: MessageSquare,
+    icon: FolderArchive,
     accent: 'violet',
-    title: 'One thread per request',
+    title: 'The home record',
     description:
-      'Builder, homeowner, and sub aligned on a single thread — no scattered texts, no “who said what.”',
-  },
-  {
-    icon: BarChart3,
-    accent: 'brand',
-    title: 'Cost intelligence',
-    description:
-      'Track job cost per sub per trade so you know what things should cost and where the money goes.',
-  },
-  {
-    icon: Smartphone,
-    accent: 'violet',
-    title: 'Built around your homeowners',
-    description:
-      'The portal greets each homeowner by your company name, so it feels like an extension of your service. No app store, no downloads — just a clean link that works on any phone.',
-  },
-];
-
-export type Pillar = {
-  icon: LucideIcon;
-  accent: Accent;
-  title: string;
-  points: { icon: LucideIcon; title: string; description: string }[];
-};
-
-export const pillars: Pillar[] = [
-  {
-    icon: ShieldCheck,
-    accent: 'brand',
-    title: 'Three connected portals',
-    points: [
-      {
-        icon: Home,
-        title: 'Builder dashboard',
-        description:
-          'Every home, service request, and subcontractor in one view — open vs. complete, who’s assigned, what’s overdue.',
-      },
-      {
-        icon: Users,
-        title: 'Homeowner self-service',
-        description:
-          'Homeowners submit requests, upload photos, track status, approve schedules, and message you.',
-      },
-      {
-        icon: HardHat,
-        title: 'Subcontractor app',
-        description:
-          'Subs get a job list, update status from their phone, and upload before/after photos.',
-      },
-    ],
-  },
-  {
-    icon: Clock,
-    accent: 'amber',
-    title: 'Stay-ahead automation',
-    points: [
-      {
-        icon: Clock,
-        title: 'SLA tracking',
-        description:
-          'Acknowledgment deadlines on every request; overdue jobs flagged automatically.',
-      },
-      {
-        icon: MessageSquare,
-        title: 'Automated reminders',
-        description:
-          'Email nudges to the right party so nothing stalls or gets forgotten.',
-      },
-      {
-        icon: CalendarClock,
-        title: 'Maintenance reminders',
-        description:
-          'Recurring upkeep reminders sent to homeowners — a goodwill touch long after closing.',
-      },
-    ],
+      'Specs, documents, warranties, and the subs who did the work — a complete binder the homeowner keeps.',
   },
   {
     icon: BarChart3,
     accent: 'emerald',
-    title: 'Run it like a business',
-    points: [
-      {
-        icon: MessageSquare,
-        title: 'One thread per request',
-        description:
-          'Builder, homeowner, and sub aligned without scattered texts.',
-      },
-      {
-        icon: BarChart3,
-        title: 'Cost intelligence',
-        description:
-          'Track job cost per sub per trade and know what things should cost.',
-      },
-      {
-        icon: HardHat,
-        title: 'Subcontractor management',
-        description:
-          'A roster of trade partners with assignment and full job history.',
-      },
-    ],
+    title: 'Callback insights',
+    description:
+      'See which trades generate callbacks across every home, so you catch a problem sub before it costs you ten more.',
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Why Homefront — differentiators                                    */
+/* ------------------------------------------------------------------ */
 
 export type Differentiator = { title: string; description: string };
 
 export const differentiators: Differentiator[] = [
   {
-    title: 'Purpose-built for post-closing',
+    title: 'The one job that drives referrals',
     description:
-      'Not generic field-service software bent to fit. Homefront is built for the warranty and service work that starts the day a homeowner gets the keys.',
+      'All-in-one platforms bury warranty in an expensive tier full of tools you’ll never use. Homefront does the one job that actually drives your referrals.',
   },
   {
-    title: 'Three-sided by design',
+    title: 'Adopted from day one',
     description:
-      'Homeowner self-service is the wedge. When homeowners help themselves, your team stops fielding callbacks.',
+      'The punch list gets you in the tool on every home before a homeowner ever logs in — so warranty isn’t a separate thing you have to remember to use.',
   },
   {
-    title: 'Looks like your service',
+    title: 'Documented, never adversarial',
     description:
-      'The homeowner portal leads with your company name and a light “powered by Homefront,” so homeowners stay in your world during warranty season.',
+      'The record protects everyone. You look responsive because you are, and when a delay isn’t on you, the history simply shows where it sat — no finger-pointing required.',
   },
   {
-    title: 'Mobile-first for the field',
+    title: 'Value that outlasts the subscription',
     description:
-      'Subs update jobs from their phone on the jobsite — no laptop, no training, no friction.',
+      'The maintenance plan, the contacts, and the home record stay useful to the homeowner whether or not they keep paying — and keep making you look premium for years.',
   },
 ];
 
-export type Stat = { value: string; label: string };
+/* ------------------------------------------------------------------ */
+/* Pricing — usage-based; never quote dollar amounts for Homefront    */
+/* ------------------------------------------------------------------ */
 
-// Placeholder figures — replace with your real numbers before launch.
-export const stats: Stat[] = [
-  { value: '60%', label: 'faster response to warranty requests' },
-  { value: '90%', label: 'of requests resolved without a phone call' },
-  { value: '4.8 / 5', label: 'average homeowner satisfaction' },
-  { value: '0', label: 'requests lost to a spreadsheet' },
-];
-
-// Usage-based pricing: a small base platform fee plus a recurring fee per
-// active home. Exact figures are not finalized — never quote dollar amounts.
 export type PricingPoint = { title: string; description: string };
 
 export const pricingModel: PricingPoint[] = [
   {
     title: 'A small base platform fee',
     description:
-      'One flat monthly fee to run your entire post-closing service operation on Homefront.',
+      'One flat monthly fee to run your punch list, warranty, and homeowner handoff on Homefront.',
   },
   {
     title: 'Plus a fee per active home',
@@ -282,14 +268,14 @@ export const pricingModel: PricingPoint[] = [
 ];
 
 export const pricingIncludes: string[] = [
-  'All three portals — builder, homeowner, and subcontractor',
-  'Unlimited staff seats and subcontractors',
-  'SLA tracking with automatic overdue flags',
+  'Punch list and closeout tracking',
+  'Direct-to-sub dispatch for homeowners',
+  'Documented accountability — timestamps & dispatch logs',
   'Automated reminder emails',
-  'Maintenance reminder scheduling',
+  'Maintenance plans and reminders',
   'Photo documentation on every job',
-  'One thread per request',
-  'Cost intelligence and reporting',
-  'Co-branded homeowner portal',
+  'Callback insights across every home',
+  'A complete home record for every homeowner',
+  'Unlimited staff seats and subcontractors',
   'Homeowner memberships billed through Stripe Connect',
 ];
