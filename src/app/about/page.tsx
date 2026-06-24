@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ArrowRight, Hammer, Heart, ShieldCheck } from 'lucide-react';
+import { ArrowRight, PhoneOff, Heart, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { IconBox } from '@/components/ui/IconBox';
@@ -10,27 +10,27 @@ import { PageHeader } from '@/components/ui/PageHeader';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Homefront is built for residential home builders who care about what happens after closing — replacing texts, spreadsheets, and voicemails with one system of record.',
+    'Homefront is the warranty and homeowner-handoff platform for home builders. It moves post-closing requests off the builder’s phone and onto a tracked system — less work for the builder, a better experience for the homeowner.',
 };
 
 const values = [
   {
-    icon: Hammer,
-    title: 'Built for builders',
+    icon: PhoneOff,
+    title: 'Off your desk',
     description:
-      'We started with one question: where does post-closing service actually break down? Then we built the tool to fix it — not a generic platform bent to fit.',
-  },
-  {
-    icon: Heart,
-    title: 'Homeowners first',
-    description:
-      'A homeowner who feels taken care of is a referral. Self-service and proactive updates protect the reputation you spent years building.',
+      'The default after closing shouldn’t be your phone. Homeowners reach the right sub directly, and you monitor instead of fielding every call.',
   },
   {
     icon: ShieldCheck,
-    title: 'Accountability, not chaos',
+    title: 'Documented, not adversarial',
     description:
-      'Deadlines, documentation, and a clear record of who did what. Service work you can stand behind — and prove.',
+      'The record protects everyone. You look responsive because you are — and when a delay isn’t on you, the history simply shows where it sat.',
+  },
+  {
+    icon: Heart,
+    title: 'A premium handoff',
+    description:
+      'A maintenance plan, the subs who did the work, and a complete home record the buyer keeps. You handed over something premium, not a drawer full of manuals.',
   },
 ];
 
@@ -39,8 +39,8 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="About"
-        title="Post-closing service deserves a real system"
-        subtitle="Homefront replaces the texts, spreadsheets, and voicemails builders use to manage warranty work with one platform that connects builders, homeowners, and subcontractors."
+        title="Stop being your homeowners’ help desk"
+        subtitle="Homefront is the warranty and homeowner-handoff platform for home builders — built to take post-closing requests off your phone and protect the reputation you’ve worked years to earn."
       />
 
       <section className="py-20 sm:py-24">
@@ -48,25 +48,22 @@ export default function AboutPage() {
           <Reveal className="mx-auto max-w-3xl">
             <div className="space-y-5 text-base leading-relaxed text-slate-600">
               <p>
-                After a homeowner gets the keys, the builder is still on the hook
-                for warranty and service requests. For most builders, that work
-                runs on whatever’s within reach — a group text here, a
-                spreadsheet there, a voicemail nobody returns. It works until it
-                doesn’t, and the cost shows up as bad reviews, lost referrals,
-                and liability that slips through the cracks.
+                After closing, the builder is still on the hook for warranty and
+                service requests — and for most builders, all of it runs through
+                their phone. The calls come at dinner and on the weekend. A slow
+                sub becomes the builder’s problem. And the cost shows up as bad
+                reviews and lost referrals.
               </p>
               <p>
-                Homefront brings that work into one place. Homeowners submit
-                requests and track them. Builders see every home, every request,
-                and every subcontractor at a glance. Subs get their jobs on their
-                phone and update them from the field. Everyone stays on the same
-                page, and every job is documented from the first photo to the
-                last.
+                Homefront moves post-closing requests off the builder’s phone and
+                onto a tracked system. Homeowners reach the right sub directly,
+                builders monitor instead of firefight, and every buyer walks away
+                with a complete, lasting record of their home — every request
+                timestamped, every dispatch logged.
               </p>
               <p>
-                The result is service work you can run like a business — and a
-                homeowner experience that keeps your company name front and
-                center.
+                Less work for the builder, a better experience for the homeowner,
+                and a reputation that takes care of itself.
               </p>
             </div>
           </Reveal>
@@ -93,7 +90,7 @@ export default function AboutPage() {
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              See what organized looks like
+              Get out of the middle
             </h2>
             <p className="mt-4 text-base text-slate-600">
               Book a demo and we’ll walk through Homefront on your own homes.

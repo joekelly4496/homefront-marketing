@@ -4,12 +4,14 @@ import {
   Wrench,
   HardHat,
   BarChart3,
+  ClipboardCheck,
   Bell,
 } from 'lucide-react';
 
 const nav = [
   { icon: LayoutDashboard, label: 'Dashboard', active: true },
   { icon: Home, label: 'Homes' },
+  { icon: ClipboardCheck, label: 'Punch list' },
   { icon: Wrench, label: 'Requests' },
   { icon: HardHat, label: 'Subcontractors' },
   { icon: BarChart3, label: 'Reports' },

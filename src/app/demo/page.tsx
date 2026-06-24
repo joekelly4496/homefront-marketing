@@ -7,13 +7,13 @@ import { DemoForm } from './DemoForm';
 export const metadata: Metadata = {
   title: 'Book a demo',
   description:
-    'Book a 20-minute demo and see how Homefront organizes your post-closing warranty and service work in one place.',
+    'Book a 20-minute demo and see how Homefront gets you out of the middle — homeowners reach the right sub directly, you monitor instead of firefight.',
 };
 
 const points = [
-  'A walkthrough of the builder, homeowner, and subcontractor portals',
-  'How SLA tracking and reminders keep requests from slipping',
-  'How cost intelligence shows what your service work really costs',
+  'How the punch list gets you using Homefront on day one of every home',
+  'How homeowners reach the right sub directly — so your phone stops ringing',
+  'How every request and dispatch lands on the record, protecting your reputation',
   'Usage-based pricing that fits your volume — base fee plus per active home',
 ];
 
@@ -24,12 +24,12 @@ export default function DemoPage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              See Homefront on your homes
+              See it on a home
             </h1>
             <p className="mt-5 text-balance text-lg text-slate-600">
-              Book a 20-minute demo and we’ll show you exactly how to organize
-              your post-closing service — from the first warranty request to the
-              final completion photo.
+              Book a 20-minute demo and we’ll show you exactly how Homefront gets
+              the warranty headache off your desk — without taking you out of the
+              loop.
             </p>
             <ul className="mt-8 space-y-3">
               {points.map((point) => (
