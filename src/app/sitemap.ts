@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/pricing',
     '/for-subcontractors',
     '/login',
-    '/demo',
     '/about',
     '/contact',
     '/privacy',
@@ -22,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: now,
     changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1 : route === '/pricing' || route === '/demo' ? 0.9 : 0.7,
+    priority:
+      route === '' ? 1 : route === '/pricing' || route === '/login' ? 0.9 : 0.7,
   }));
 }

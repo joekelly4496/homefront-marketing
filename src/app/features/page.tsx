@@ -12,6 +12,7 @@ import {
   homeownerValue,
   features,
   differentiators,
+  signupHref,
 } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -204,15 +205,15 @@ export default function FeaturesPage() {
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              See it on your own homes
+              Run it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Book a 20-minute demo and we’ll walk through your punch list,
-              warranty, and homeowner handoff in Homefront.
+              Create your account, set up your first home, and run your punch
+              list today — no demo, no sales call.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button href="/demo" size="lg">
-                See it on a home
+              <Button href={signupHref} size="lg">
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">

@@ -13,6 +13,9 @@ import {
 } from 'lucide-react';
 import type { Accent } from '@/components/ui/IconBox';
 
+/** Where every primary "sign up / get started" CTA points (builder self-serve). */
+export const signupHref = '/builder/signup';
+
 /** A generic icon + title + description block, reused across the site. */
 export type Highlight = {
   icon: LucideIcon;

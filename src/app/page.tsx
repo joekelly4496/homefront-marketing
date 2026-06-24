@@ -14,6 +14,7 @@ import {
   homeownerValue,
   steps,
   pricingModel,
+  signupHref,
 } from '@/lib/content';
 
 const helpDesk = [
@@ -75,12 +76,12 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={180}>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href="/demo" size="lg">
-                    See it on a home
+                  <Button href={signupHref} size="lg">
+                    Get started
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
                   <Button href="/features" size="lg" variant="secondary">
-                    Watch a 2-minute demo
+                    See how it works
                   </Button>
                 </div>
               </Reveal>
@@ -426,15 +427,15 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="/demo" size="lg">
-              Request pricing
+            <Button href={signupHref} size="lg">
+              Get started
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
             <Link
               href="/pricing"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
             >
-              See how pricing works
+              See full pricing
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </Reveal>
@@ -453,8 +454,8 @@ export default function HomePage() {
               on the record, and hands every buyer a premium experience.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button href="/demo" size="lg">
-                See it on a home
+              <Button href={signupHref} size="lg">
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">

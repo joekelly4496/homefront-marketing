@@ -6,6 +6,7 @@ import { IconBox } from '@/components/ui/IconBox';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container } from '@/components/ui/Container';
 import type { Accent } from '@/components/ui/IconBox';
+import { signupHref } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Sign in',
@@ -87,10 +88,10 @@ export default function LoginPage() {
           <p className="text-sm text-slate-600">
             New to Homefront?{' '}
             <Link
-              href="/demo"
+              href={signupHref}
               className="font-semibold text-brand-600 hover:text-brand-700"
             >
-              Book a demo
+              Sign up
             </Link>{' '}
             or{' '}
             <Link

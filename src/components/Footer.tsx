@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
+import { signupHref } from '@/lib/content';
 
 const columns: { heading: string; links: { href: string; label: string }[] }[] =
   [
@@ -9,7 +10,7 @@ const columns: { heading: string; links: { href: string; label: string }[] }[] =
         { href: '/features', label: 'Features' },
         { href: '/pricing', label: 'Pricing' },
         { href: '/for-subcontractors', label: 'For Subcontractors' },
-        { href: '/demo', label: 'Book a demo' },
+        { href: signupHref, label: 'Sign up' },
       ],
     },
     {
