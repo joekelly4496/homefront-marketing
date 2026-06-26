@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next';
-
-const baseUrl = 'https://gethomefront.com';
+import { siteUrl as baseUrl } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [

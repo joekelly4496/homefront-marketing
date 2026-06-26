@@ -2,9 +2,8 @@ import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import { siteUrl } from '@/lib/site';
 import './globals.css';
-
-const siteUrl = 'https://gethomefront.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
