@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s · Homefront',
   },
   description:
-    'Homefront is the warranty and homeowner-handoff platform for home builders. Homeowners reach the right sub directly, you monitor instead of firefight, and every buyer walks away with a complete home record. Less work, a better reputation.',
+    'After closing, your homeowners treat you like a 24/7 help desk. Homefront sends every warranty request to the sub who did the work, so your phone stops blowing up — and you stay in the loop without fielding every call.',
   keywords: [
     'home builder warranty software',
     'home builder help desk',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Homefront — Build homes. Not a help desk.',
     description:
-      'The warranty and homeowner-handoff platform for home builders. Get out of the middle, keep your reputation on the record, and hand over something premium.',
+      'Stop being your homeowners’ 24/7 help desk. Homefront sends every warranty request to the right sub, so your phone stops blowing up.',
     url: siteUrl,
     siteName: 'Homefront',
     type: 'website',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Homefront — Build homes. Not a help desk.',
     description:
-      'The warranty and homeowner-handoff platform for home builders. Your phone stops ringing. Your reviews go up.',
+      'Stop being your homeowners’ 24/7 help desk. Your phone stops blowing up — the right sub takes the call.',
   },
   robots: { index: true, follow: true },
 };
