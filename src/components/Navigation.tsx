@@ -51,7 +51,7 @@ export default function Navigation() {
               Sign in
             </Link>
             <Link href={signupHref} className={buttonVariants({ size: 'sm' })}>
-              Sign up
+              Start free trial
             </Link>
           </div>
 
@@ -99,7 +99,7 @@ export default function Navigation() {
                 onClick={() => setIsOpen(false)}
                 className={buttonVariants({ size: 'lg', className: 'w-full' })}
               >
-                Sign up
+                Start free trial
               </Link>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { IconBox } from '@/components/ui/IconBox';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container } from '@/components/ui/Container';
 import type { Accent } from '@/components/ui/IconBox';
-import { signupHref } from '@/lib/content';
+import { signupHref, loginUrls } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Sign in',
@@ -22,7 +22,7 @@ const portals: {
   description: string;
 }[] = [
   {
-    href: '/builder/login',
+    href: loginUrls.builder,
     icon: Home,
     accent: 'brand',
     name: 'Builder',
@@ -30,7 +30,7 @@ const portals: {
       'Manage homes, service requests, and your subcontractor roster.',
   },
   {
-    href: '/homeowner/login',
+    href: loginUrls.homeowner,
     icon: Users,
     accent: 'emerald',
     name: 'Homeowner',
@@ -38,7 +38,7 @@ const portals: {
       'Submit requests, track status, and message your builder.',
   },
   {
-    href: '/sub/login',
+    href: loginUrls.sub,
     icon: HardHat,
     accent: 'violet',
     name: 'Subcontractor',
@@ -91,7 +91,7 @@ export default function LoginPage() {
               href={signupHref}
               className="font-semibold text-brand-600 hover:text-brand-700"
             >
-              Sign up
+              start a free trial
             </Link>{' '}
             or{' '}
             <Link

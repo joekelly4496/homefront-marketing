@@ -14,6 +14,7 @@ import { Pill } from '@/components/ui/Pill';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container, SectionLabel } from '@/components/ui/Container';
 import { PhoneMockup } from '@/components/mockups/PhoneMockup';
+import { loginUrls } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'For Subcontractors',
@@ -80,7 +81,7 @@ export default function ForSubcontractorsPage() {
               </Reveal>
               <Reveal delay={180}>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href="/sub/login" size="lg">
+                  <Button href={loginUrls.sub} external size="lg">
                     Subcontractor sign in
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
@@ -146,7 +147,7 @@ export default function ForSubcontractorsPage() {
                     in, see your assigned jobs, and keep the work moving —
                     everything you need to do the job is included.
                   </p>
-                  <Button href="/sub/login" className="mt-6">
+                  <Button href={loginUrls.sub} external className="mt-6">
                     Get started free
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
@@ -184,7 +185,7 @@ export default function ForSubcontractorsPage() {
                 Show my builder Homefront
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
-              <Button href="/sub/login" size="lg" variant="secondary">
+              <Button href={loginUrls.sub} external size="lg" variant="secondary">
                 Subcontractor sign in
               </Button>
             </div>

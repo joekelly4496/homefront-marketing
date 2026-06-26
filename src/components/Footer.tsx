@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
-import { signupHref } from '@/lib/content';
+import { signupHref, loginUrls } from '@/lib/content';
 
 const columns: { heading: string; links: { href: string; label: string }[] }[] =
   [
@@ -16,9 +16,9 @@ const columns: { heading: string; links: { href: string; label: string }[] }[] =
     {
       heading: 'Portals',
       links: [
-        { href: '/builder/login', label: 'Builder login' },
-        { href: '/homeowner/login', label: 'Homeowner login' },
-        { href: '/sub/login', label: 'Subcontractor login' },
+        { href: loginUrls.builder, label: 'Builder login' },
+        { href: loginUrls.homeowner, label: 'Homeowner login' },
+        { href: loginUrls.sub, label: 'Subcontractor login' },
       ],
     },
     {

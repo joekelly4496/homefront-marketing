@@ -13,6 +13,7 @@ import {
   features,
   differentiators,
   signupHref,
+  trialLength,
 } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -208,12 +209,12 @@ export default function FeaturesPage() {
               Run it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Create your account, set up your first home, and run your punch
-              list today — no demo, no sales call.
+              Start your {trialLength} free trial — set up your first home and
+              run your punch list today. No demo, no sales call.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
+                Start free trial
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">
