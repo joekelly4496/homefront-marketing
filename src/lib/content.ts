@@ -13,8 +13,12 @@ import {
 } from 'lucide-react';
 import type { Accent } from '@/components/ui/IconBox';
 
-/** Where every primary "sign up / get started" CTA points (builder self-serve). */
-export const signupHref = '/builder/signup';
+/** Where every primary "sign up / get started" CTA points — the on-site /signup page. */
+export const signupHref = '/signup';
+
+/** The actual builder sign-up flow in the app, embedded on /signup. */
+export const signupUrl =
+  'https://builder-service-platform.vercel.app/builder/login?signup=1';
 
 /** A generic icon + title + description block, reused across the site. */
 export type Highlight = {
