@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     q: 'What about text notifications?',
-    a: 'SMS notifications are coming soon — text updates to homeowners and subs for $19/month, including up to 500 messages. Everything else works over email today.',
+    a: 'SMS notifications are a paid add-on ($19/month, up to 500 messages) and aren’t included in the free trial. They’re coming soon — everything else works over email today.',
   },
 ];
 
