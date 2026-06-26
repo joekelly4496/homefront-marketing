@@ -16,9 +16,21 @@ import type { Accent } from '@/components/ui/IconBox';
 /** Where every primary "sign up / get started" CTA points — the on-site /signup page. */
 export const signupHref = '/signup';
 
+/** Base URL of the live app where auth/portals live. */
+export const appBase = 'https://builder-service-platform.vercel.app';
+
+/** Portal login URLs in the app (external). */
+export const loginUrls = {
+  builder: `${appBase}/builder/login`,
+  homeowner: `${appBase}/homeowner/login`,
+  sub: `${appBase}/sub/login`,
+};
+
 /** The actual builder sign-up flow in the app, embedded on /signup. */
-export const signupUrl =
-  'https://builder-service-platform.vercel.app/builder/login?signup=1';
+export const signupUrl = `${appBase}/builder/login?signup=1`;
+
+/** Free trial length — used in copy as `${trialLength} free trial`. */
+export const trialLength = '30-day';
 
 /** A generic icon + title + description block, reused across the site. */
 export type Highlight = {

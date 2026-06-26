@@ -23,7 +23,7 @@ export default function NotFound() {
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
             <Button href={signupHref} size="lg" variant="secondary">
-              Get started
+              Start free trial
             </Button>
           </div>
         </div>

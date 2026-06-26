@@ -6,7 +6,7 @@ import { IconBox } from '@/components/ui/IconBox';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
-import { signupHref } from '@/lib/content';
+import { signupHref, trialLength } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -94,11 +94,12 @@ export default function AboutPage() {
               Get out of the middle
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Create your account and run your first home on Homefront today.
+              Start your {trialLength} free trial and run your first home on
+              Homefront today.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
+                Start free trial
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/features" size="lg" variant="secondary">

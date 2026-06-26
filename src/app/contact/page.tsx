@@ -17,10 +17,10 @@ export const metadata: Metadata = {
 const options = [
   {
     icon: UserPlus,
-    title: 'Get started',
+    title: 'Start a free trial',
     description:
       'Create your account and set up your first home in minutes — no demo, no sales call.',
-    cta: { label: 'Sign up', href: signupHref },
+    cta: { label: 'Start free trial', href: signupHref },
   },
   {
     icon: Mail,
@@ -72,7 +72,7 @@ export default function ContactPage() {
 
           <Reveal delay={120} className="mt-12 text-center">
             <Button href={signupHref} size="lg">
-              Get started
+              Start free trial
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
           </Reveal>

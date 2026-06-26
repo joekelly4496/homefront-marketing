@@ -6,20 +6,30 @@ import { Pill } from '@/components/ui/Pill';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container, SectionLabel } from '@/components/ui/Container';
 import { IconBox } from '@/components/ui/IconBox';
-import { pricingModel, pricingIncludes, addOns, signupHref } from '@/lib/content';
+import {
+  pricingModel,
+  pricingIncludes,
+  addOns,
+  signupHref,
+  trialLength,
+} from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
-    'Simple, usage-based pricing for home builders — $99/month plus $7 per active home. No rigid tiers. Subcontractors join free.',
+    'Start with a 30-day free trial. Simple, usage-based pricing for home builders — $99/month plus $7 per active home. No rigid tiers. Subcontractors join free.',
 };
 
 const modelIcons = [Layers, Home];
 
 const faqs = [
   {
+    q: 'Is there a free trial?',
+    a: `Yes. Every account starts with a ${trialLength} free trial, so you can set up a home and run a real punch list and warranty request before you pay a cent.`,
+  },
+  {
     q: 'How does pricing work?',
-    a: 'Homefront is usage-based: a $99/month base platform fee plus $7 per active home. Your cost scales with the homes you’re actively servicing, so you’re never paying for capacity you don’t use.',
+    a: 'After your trial, Homefront is usage-based: a $99/month base platform fee plus $7 per active home. Your cost scales with the homes you’re actively servicing, so you’re never paying for capacity you don’t use.',
   },
   {
     q: 'Do subcontractors pay?',
@@ -51,8 +61,9 @@ export default function PricingPage() {
               Pricing that scales with your homes
             </h1>
             <p className="mt-5 text-balance text-lg text-slate-600">
-              $99 a month plus $7 per active home. No rigid tiers, no paying for
-              capacity you don’t use. Subcontractors always join free.
+              Start with a {trialLength} free trial. Then $99 a month plus $7 per
+              active home — no rigid tiers, no paying for capacity you don’t use.
+              Subcontractors always join free.
             </p>
           </Reveal>
         </Container>
@@ -126,15 +137,15 @@ export default function PricingPage() {
           <Reveal delay={220} className="mt-8">
             <Card className="flex flex-col items-center gap-5 p-8 text-center sm:p-10">
               <h3 className="text-2xl font-semibold tracking-tight text-slate-900">
-                Start in minutes
+                Start your free trial
               </h3>
               <p className="max-w-xl text-base text-slate-600">
-                Create your account, set up your first home, and run your punch
-                list today. No demo, no sales call.
+                Create your account and run your first home free for{' '}
+                {trialLength.replace('-day', ' days')}. No demo, no sales call.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button href={signupHref} size="lg">
-                  Get started
+                  Start free trial
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Button>
                 <Button href="/contact" size="lg" variant="secondary">

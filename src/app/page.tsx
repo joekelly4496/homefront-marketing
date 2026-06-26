@@ -15,6 +15,7 @@ import {
   steps,
   pricingModel,
   signupHref,
+  trialLength,
 } from '@/lib/content';
 
 const helpDesk = [
@@ -77,7 +78,7 @@ export default function HomePage() {
               <Reveal delay={180}>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button href={signupHref} size="lg">
-                    Get started
+                    Start free trial
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
                   <Button href="/features" size="lg" variant="secondary">
@@ -87,7 +88,7 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={240}>
                 <p className="mt-6 text-sm text-slate-500">
-                  Your phone stops ringing · Your reviews go up
+                  {trialLength} free trial · Subcontractors join free
                 </p>
               </Reveal>
             </div>
@@ -422,13 +423,14 @@ export default function HomePage() {
 
           <Reveal className="mt-4">
             <p className="text-center text-sm text-slate-500">
-              Subcontractors always join free. SMS notifications coming soon.
+              Start with a {trialLength} free trial. Subcontractors always join
+              free. SMS notifications coming soon.
             </p>
           </Reveal>
 
           <Reveal className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href={signupHref} size="lg">
-              Get started
+              Start free trial
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
             <Link
@@ -450,12 +452,13 @@ export default function HomePage() {
               Get the warranty headache off your desk
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              See how Homefront gets you out of the middle, keeps your reputation
-              on the record, and hands every buyer a premium experience.
+              Try Homefront free for {trialLength.replace('-day', ' days')} — get
+              out of the middle, keep your reputation on the record, and hand
+              every buyer a premium experience.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
+                Start free trial
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">

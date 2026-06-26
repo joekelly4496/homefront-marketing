@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import { ExternalLink } from 'lucide-react';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container } from '@/components/ui/Container';
-import { signupUrl } from '@/lib/content';
+import { signupUrl, trialLength } from '@/lib/content';
 
 export const metadata: Metadata = {
-  title: 'Sign up',
+  title: 'Start your free trial',
   description:
-    'Create your Homefront account and start running your punch list, warranty, and homeowner handoff in minutes. $99/month plus $7 per active home.',
+    'Start your 30-day free trial. Create your Homefront account and run your punch list, warranty, and homeowner handoff in minutes. Then $99/month plus $7 per active home.',
 };
 
 export default function SignupPage() {
@@ -16,11 +16,12 @@ export default function SignupPage() {
       <Container size="6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-            Create your account
+            Start your free trial
           </h1>
           <p className="mt-4 text-balance text-lg text-slate-600">
-            Get started in minutes — no demo, no sales call. $99/month plus $7
-            per active home, and subcontractors join free.
+            Your first {trialLength.replace('-day', ' days')} are free — no demo,
+            no sales call. After that it’s $99/month plus $7 per active home, and
+            subcontractors join free.
           </p>
         </Reveal>
 
