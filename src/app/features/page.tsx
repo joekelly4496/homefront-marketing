@@ -27,9 +27,9 @@ const halves = [
     icon: Hammer,
     accent: 'brand' as const,
     label: 'The half you pay for',
-    title: 'Less work, better reputation',
+    title: 'Less work, more of your time',
     blurb:
-      'Fewer calls on your phone, a record that protects you, and the visibility to run a tighter operation.',
+      'Hours back every week, a record that protects you, and the visibility to run a tighter operation.',
     items: builderValue,
   },
   {
@@ -55,9 +55,9 @@ export default function FeaturesPage() {
               Get out of the middle. Stay in the loop.
             </h1>
             <p className="mt-5 text-balance text-lg text-slate-600">
-              Homefront splits cleanly in two: a builder-facing half that takes
-              the work off your desk, and a homeowner-facing half that makes you
-              look premium long after closing.
+              Homefront splits cleanly in two: a builder-facing half that hands
+              you back your time, and a homeowner-facing half that makes you look
+              premium long after closing.
             </p>
           </Reveal>
         </Container>

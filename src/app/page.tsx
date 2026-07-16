@@ -34,9 +34,9 @@ const calm = [
 
 const promise = [
   {
-    title: 'Off your desk',
+    title: 'Time back',
     description:
-      'Routine warranty calls go to the right sub, not to you. You monitor; you don’t firefight.',
+      'Routine warranty calls go to the right sub, not to you — so your evenings and weekends are yours again.',
   },
   {
     title: 'On the record',
@@ -218,11 +218,11 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>What you get</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Less work. Better reputation.
+              Less work. More time. Better reputation.
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              This is the half you pay for: fewer calls on your phone, a record
-              that protects you, and the visibility to run a tighter operation.
+              This is the half you pay for: hours back every week, a record that
+              protects you, and the visibility to run a tighter operation.
             </p>
           </Reveal>
 
@@ -320,7 +320,7 @@ export default function HomePage() {
                   Your phone stops ringing. Your reviews go up.
                 </h2>
                 <p className="mt-3 text-base text-brand-100">
-                  You’re not buying software. You’re buying relief — and a
+                  You’re not buying software. You’re buying back your time — and a
                   reputation that takes care of itself.
                 </p>
               </div>
