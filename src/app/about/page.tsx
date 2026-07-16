@@ -63,8 +63,11 @@ export default function AboutPage() {
                 timestamped, every dispatch logged.
               </p>
               <p>
-                Less work for the builder, a better experience for the homeowner,
-                and a reputation that takes care of itself.
+                Builders are business owners, and their scarcest resource is
+                time. That’s what Homefront is really selling back: hours that
+                used to disappear into callbacks. Less work for the builder, a
+                better experience for the homeowner, and a reputation that takes
+                care of itself.
               </p>
             </div>
           </Reveal>

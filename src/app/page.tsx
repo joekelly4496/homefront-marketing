@@ -19,10 +19,10 @@ import {
 } from '@/lib/content';
 
 const helpDesk = [
-  'Every callback comes straight to your phone — at dinner, on a jobsite, on the weekend.',
-  'Homeowners feel ignored when they can’t reach you, and it shows up in your reviews.',
-  'You’re relaying messages between homeowners and subs with no record of who said what.',
-  'A slow sub becomes your problem, and you have nothing to show where the delay really sat.',
+  'You’re the 24/7 help desk — every question and callback lands on your personal cell.',
+  'The calls come at dinner, on weekends, and in the middle of another job.',
+  'You relay messages between homeowners and subs, with no record of who said what.',
+  'When a sub drags their feet, it’s your phone that rings — and your name on the review.',
 ];
 
 const calm = [
@@ -34,9 +34,9 @@ const calm = [
 
 const promise = [
   {
-    title: 'Off your desk',
+    title: 'Time back',
     description:
-      'Routine warranty calls go to the right sub, not to you. You monitor; you don’t firefight.',
+      'Routine warranty calls go to the right sub, not to you — so your evenings and weekends are yours again.',
   },
   {
     title: 'On the record',
@@ -68,11 +68,11 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={120}>
                 <p className="mt-5 max-w-xl text-balance text-lg text-slate-600">
-                  After closing, homeowners go straight to the right sub — not
-                  straight to your phone. Every request is tracked, every handoff
-                  documented, and every buyer gets a complete home record that
-                  makes you look great for years. Homefront takes the warranty
-                  headache off your desk without taking you out of the loop.
+                  Your homeowners have your cell number — and they use it at
+                  dinner, on the weekend, on a jobsite. Homefront sends every
+                  warranty request to the sub who did the work, so your phone
+                  stops blowing up. You see everything; you field almost none of
+                  it.
                 </p>
               </Reveal>
               <Reveal delay={180}>
@@ -109,12 +109,12 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>The problem</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Somewhere after closing, you became the help desk
+              You sold them a home. Now you’re their 24/7 help desk.
             </h2>
             <p className="mt-4 text-base text-slate-600">
               The work doesn’t stop when the keys change hands — and right now
-              all of it runs through your phone. Here’s what changes when you get
-              out of the middle.
+              every bit of it runs through your phone. Here’s what changes when
+              you get out of the middle.
             </p>
           </Reveal>
 
@@ -218,11 +218,11 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>What you get</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Less work. Better reputation.
+              Less work. More time. Better reputation.
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              This is the half you pay for: fewer calls on your phone, a record
-              that protects you, and the visibility to run a tighter operation.
+              This is the half you pay for: hours back every week, a record that
+              protects you, and the visibility to run a tighter operation.
             </p>
           </Reveal>
 
@@ -320,7 +320,7 @@ export default function HomePage() {
                   Your phone stops ringing. Your reviews go up.
                 </h2>
                 <p className="mt-3 text-base text-brand-100">
-                  You’re not buying software. You’re buying relief — and a
+                  You’re not buying software. You’re buying back your time — and a
                   reputation that takes care of itself.
                 </p>
               </div>
@@ -391,12 +391,12 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>Pricing</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              The job that drives referrals — for a fraction of the price
+              Worth it the first weekend you don’t get a call
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              All-in-one platforms bury warranty in an expensive tier full of
-              tools you’ll never use. Homefront is $99 a month plus $7 per active
-              home — so you only pay for the homes you’re servicing.
+              $99 a month plus $7 per active home — far less than an all-in-one
+              platform full of tools you’ll never use. You only pay for the homes
+              you’re servicing.
             </p>
           </Reveal>
 
@@ -449,12 +449,12 @@ export default function HomePage() {
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              Get the warranty headache off your desk
+              Get your nights and weekends back
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Try Homefront free for {trialLength.replace('-day', ' days')} — get
-              out of the middle, keep your reputation on the record, and hand
-              every buyer a premium experience.
+              Try Homefront free for {trialLength.replace('-day', ' days')} — stop
+              being the help desk, get out of the middle, and let the right sub
+              take the call.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

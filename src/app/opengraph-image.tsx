@@ -66,8 +66,9 @@ export default function OpengraphImage() {
             Build homes. Not a help desk.
           </div>
           <div style={{ fontSize: '32px', color: '#475569', maxWidth: '900px' }}>
-            Homeowners reach the right sub directly. You monitor instead of
-            firefight. Every buyer walks away with a complete home record.
+            After closing, your homeowners treat you like a 24/7 help desk.
+            Homefront sends every warranty request to the right sub — so your
+            phone stops blowing up.
           </div>
         </div>
 

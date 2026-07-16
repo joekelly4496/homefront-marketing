@@ -71,7 +71,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Homefront. All rights reserved.
           </p>
           <p className="text-xs text-slate-400">
-            Stop being your homeowners’ help desk. Protect your reputation.
+            Stop being your homeowners’ help desk. Get your time back.
           </p>
         </div>
       </div>

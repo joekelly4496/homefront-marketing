@@ -106,7 +106,7 @@ export const builderValue: Highlight[] = [
     accent: 'brand',
     title: 'Get out of the middle',
     description:
-      'When something breaks, the homeowner reaches the sub who installed it — tap to call — instead of reaching you. You monitor everything; you field almost none of it.',
+      'When something breaks, the homeowner reaches the sub who installed it — tap to call — instead of reaching you. You monitor everything, field almost none of it, and get hours of your week back.',
   },
   {
     icon: FileClock,
