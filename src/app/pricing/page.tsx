@@ -44,6 +44,10 @@ const faqs = [
     a: 'Yes. You set a monthly homeowner membership price, collected through Stripe Connect. Most builders keep it free during the warranty period — billing starts automatically when the warranty ends, so homeowners never have to opt in early.',
   },
   {
+    q: 'Do you offer volume discounts?',
+    a: 'Yes. The per-home rate steps down as your active-home count grows. If you’re servicing a large book of homes, contact us and we’ll set up your rate.',
+  },
+  {
     q: 'What about text messaging?',
     a: 'SMS is a $19/month add-on (up to 500 messages) and isn’t included in the free trial. All texting comes from one business number, and subs can confirm or decline jobs with a simple reply — no app to install. Everything else works over email.',
   },
@@ -98,7 +102,8 @@ export default function PricingPage() {
             <p className="text-center text-sm text-slate-500">
               For example, 40 active homes is{' '}
               <span className="font-semibold text-slate-700">$369/month</span> —
-              the $89 base plus $280.
+              the $89 base plus $280. Volume discounts apply at higher home
+              counts.
             </p>
           </Reveal>
 
