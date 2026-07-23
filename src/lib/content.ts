@@ -214,7 +214,7 @@ export const features: Highlight[] = [
     accent: 'amber',
     title: 'Documented accountability',
     description:
-      'Every request timestamped, every dispatch logged. Responsive on the record — and clear where a delay actually sat.',
+      'Every request timestamped, every dispatch logged — and response clocks respect your business hours, so a 5pm request doesn’t tick against you overnight.',
   },
   {
     icon: CalendarClock,
@@ -281,7 +281,7 @@ export type PricingPoint = {
 
 export const pricingModel: PricingPoint[] = [
   {
-    price: '$99',
+    price: '$89',
     unit: '/month',
     title: 'Base platform fee',
     description:
@@ -292,7 +292,7 @@ export const pricingModel: PricingPoint[] = [
     unit: '/active home',
     title: 'Per active home',
     description:
-      'You only pay for homes actively under warranty or on a maintenance membership, so your cost scales with your book of business — not a rigid tier.',
+      'You only pay for homes you’re actively servicing — under warranty, on a membership, or on a service agreement. Dormant and archived homes are never charged.',
   },
 ];
 
@@ -308,10 +308,9 @@ export const addOns: AddOn[] = [
   {
     price: '$19',
     unit: '/month',
-    title: 'SMS notifications',
+    title: 'SMS add-on',
     description:
-      'Text updates to homeowners and subs, up to 500 messages a month.',
-    comingSoon: true,
+      'Texting from one business number — subs confirm jobs with a reply, no app to install. Up to 500 messages a month.',
   },
 ];
 
@@ -319,9 +318,11 @@ export const pricingIncludes: string[] = [
   'Punch list and closeout tracking',
   'Direct-to-sub dispatch for homeowners',
   'Documented accountability — timestamps & dispatch logs',
+  'Business hours & quiet hours — response clocks respect your schedule',
   'Automated reminder emails',
   'Maintenance plans and reminders',
   'Photo documentation on every job',
+  'Job costs kept private — homeowners only see the price you set',
   'Callback insights across every home',
   'A complete home record for every homeowner',
   'Unlimited staff seats and subcontractors',

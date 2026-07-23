@@ -394,7 +394,7 @@ export default function HomePage() {
               Worth it the first weekend you don’t get a call
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              $99 a month plus $7 per active home — far less than an all-in-one
+              $89 a month plus $7 per active home — far less than an all-in-one
               platform full of tools you’ll never use. You only pay for the homes
               you’re servicing.
             </p>
@@ -424,7 +424,7 @@ export default function HomePage() {
           <Reveal className="mt-4">
             <p className="text-center text-sm text-slate-500">
               Start with a {trialLength} free trial. Subcontractors always join
-              free. SMS notifications coming soon.
+              free. Optional SMS add-on for $19/month.
             </p>
           </Reveal>
 

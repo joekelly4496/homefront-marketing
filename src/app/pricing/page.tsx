@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
-    'Start with a 30-day free trial. Simple, usage-based pricing for home builders — $99/month plus $7 per active home. No rigid tiers. Subcontractors join free.',
+    'Start with a 30-day free trial. Simple, usage-based pricing for home builders — $89/month plus $7 per active home. No rigid tiers. Subcontractors join free.',
 };
 
 const modelIcons = [Layers, Home];
@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: 'How does pricing work?',
-    a: 'After your trial, Homefront is usage-based: a $99/month base platform fee plus $7 per active home. Your cost scales with the homes you’re actively servicing, so you’re never paying for capacity you don’t use.',
+    a: 'After your trial, Homefront is usage-based: an $89/month base platform fee plus $7 per active home. Your cost scales with the homes you’re actively servicing, so you’re never paying for capacity you don’t use.',
   },
   {
     q: 'Do subcontractors pay?',
@@ -37,15 +37,19 @@ const faqs = [
   },
   {
     q: 'What counts as an active home?',
-    a: 'A home that’s currently under warranty service or enrolled in a homeowner maintenance membership. Once a home is no longer active, it no longer counts toward your usage.',
+    a: 'You decide. For new-construction builders it’s typically homes under warranty or on a paying membership; for remodeling companies it’s homes on an active service agreement. Dormant or archived homes are never charged.',
   },
   {
     q: 'Can I charge homeowners for ongoing service?',
-    a: 'Yes. You set a monthly homeowner membership price, collected through Stripe Connect, so you can keep serving homeowners with maintenance and service after the warranty period ends.',
+    a: 'Yes. You set a monthly homeowner membership price, collected through Stripe Connect. Most builders keep it free during the warranty period — billing starts automatically when the warranty ends, so homeowners never have to opt in early.',
   },
   {
-    q: 'What about text notifications?',
-    a: 'SMS notifications are a paid add-on ($19/month, up to 500 messages) and aren’t included in the free trial. They’re coming soon — everything else works over email today.',
+    q: 'Do you offer volume discounts?',
+    a: 'Yes. The per-home rate steps down as your active-home count grows. If you’re servicing a large book of homes, contact us and we’ll set up your rate.',
+  },
+  {
+    q: 'What about text messaging?',
+    a: 'SMS is a $19/month add-on (up to 500 messages) and isn’t included in the free trial. All texting comes from one business number, and subs can confirm or decline jobs with a simple reply — no app to install. Everything else works over email.',
   },
 ];
 
@@ -61,7 +65,7 @@ export default function PricingPage() {
               Pricing that scales with your homes
             </h1>
             <p className="mt-5 text-balance text-lg text-slate-600">
-              Start with a {trialLength} free trial. Then $99 a month plus $7 per
+              Start with a {trialLength} free trial. Then $89 a month plus $7 per
               active home — no rigid tiers, no paying for capacity you don’t use.
               Subcontractors always join free.
             </p>
@@ -97,8 +101,9 @@ export default function PricingPage() {
           <Reveal delay={120} className="mt-6">
             <p className="text-center text-sm text-slate-500">
               For example, 40 active homes is{' '}
-              <span className="font-semibold text-slate-700">$379/month</span> —
-              the $99 base plus $280.
+              <span className="font-semibold text-slate-700">$369/month</span> —
+              the $89 base plus $280. Volume discounts apply at higher home
+              counts.
             </p>
           </Reveal>
 
