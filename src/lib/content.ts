@@ -269,62 +269,15 @@ export const differentiators: Differentiator[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Pricing — usage-based; never quote dollar amounts for Homefront    */
+/* Pricing — one plan; all copy lives on /pricing                     */
 /* ------------------------------------------------------------------ */
 
-export type PricingPoint = {
-  price: string;
-  unit: string;
-  title: string;
-  description: string;
-};
+/**
+ * Founding-builder spots remaining, shown on /pricing as
+ * "[N] of 10 spots remaining". EDIT THIS NUMBER MANUALLY as spots fill.
+ */
+export const foundingSpotsRemaining = '10';
 
-export const pricingModel: PricingPoint[] = [
-  {
-    price: '$89',
-    unit: '/month',
-    title: 'Base platform fee',
-    description:
-      'One flat monthly fee to run your punch list, warranty, and homeowner handoff on Homefront.',
-  },
-  {
-    price: '$7',
-    unit: '/active home',
-    title: 'Per active home',
-    description:
-      'You only pay for homes you’re actively servicing — under warranty, on a membership, or on a service agreement. Dormant and archived homes are never charged.',
-  },
-];
-
-export type AddOn = {
-  price: string;
-  unit: string;
-  title: string;
-  description: string;
-  comingSoon?: boolean;
-};
-
-export const addOns: AddOn[] = [
-  {
-    price: '$19',
-    unit: '/month',
-    title: 'SMS add-on',
-    description:
-      'Texting from one business number — subs confirm jobs with a reply, no app to install. Up to 500 messages a month.',
-  },
-];
-
-export const pricingIncludes: string[] = [
-  'Punch list and closeout tracking',
-  'Direct-to-sub dispatch for homeowners',
-  'Documented accountability — timestamps & dispatch logs',
-  'Business hours & quiet hours — response clocks respect your schedule',
-  'Automated reminder emails',
-  'Maintenance plans and reminders',
-  'Photo documentation on every job',
-  'Job costs kept private — homeowners only see the price you set',
-  'Callback insights across every home',
-  'A complete home record for every homeowner',
-  'Unlimited staff seats and subcontractors',
-  'Homeowner memberships billed through Stripe Connect',
-];
+/** The only approved pricing line outside /pricing. */
+export const pricingLine =
+  'From $149/month plus $10 per active home — every feature included.';

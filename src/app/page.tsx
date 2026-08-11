@@ -13,7 +13,7 @@ import {
   builderValue,
   homeownerValue,
   steps,
-  pricingModel,
+  pricingLine,
   signupHref,
   trialLength,
 } from '@/lib/content';
@@ -393,38 +393,13 @@ export default function HomePage() {
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
               Worth it the first weekend you don’t get a call
             </h2>
-            <p className="mt-4 text-base text-slate-600">
-              $89 a month plus $7 per active home — far less than an all-in-one
-              platform full of tools you’ll never use. You only pay for the homes
-              you’re servicing.
-            </p>
+            <p className="mt-4 text-base text-slate-600">{pricingLine}</p>
           </Reveal>
-
-          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
-            {pricingModel.map((point, i) => (
-              <Reveal key={point.title} delay={i * 80}>
-                <Card className="h-full p-6 sm:p-7">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    {point.title}
-                  </p>
-                  <p className="mt-2">
-                    <span className="text-3xl font-semibold tracking-tight text-slate-900">
-                      {point.price}
-                    </span>
-                    <span className="text-sm text-slate-500">{point.unit}</span>
-                  </p>
-                  <p className="mt-2 text-sm text-slate-600">
-                    {point.description}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
 
           <Reveal className="mt-4">
             <p className="text-center text-sm text-slate-500">
               Start with a {trialLength} free trial. Subcontractors always join
-              free. Optional SMS add-on for $19/month.
+              free.
             </p>
           </Reveal>
 
