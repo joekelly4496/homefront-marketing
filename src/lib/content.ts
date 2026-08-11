@@ -272,12 +272,6 @@ export const differentiators: Differentiator[] = [
 /* Pricing — one plan; all copy lives on /pricing                     */
 /* ------------------------------------------------------------------ */
 
-/**
- * Founding-builder spots remaining, shown on /pricing as
- * "[N] of 10 spots remaining". EDIT THIS NUMBER MANUALLY as spots fill.
- */
-export const foundingSpotsRemaining = '10';
-
 /** The only approved pricing line outside /pricing. */
 export const pricingLine =
   'From $149/month plus $10 per active home — every feature included.';

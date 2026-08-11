@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container, SectionLabel } from '@/components/ui/Container';
-import { signupHref, foundingSpotsRemaining } from '@/lib/content';
+import { signupHref } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -202,30 +202,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* 3 — Founding builder banner */}
-      <section className="pb-16 sm:pb-20">
-        <Container size="6xl">
-          <Reveal>
-            <div className="flex flex-col items-center justify-between gap-5 rounded-3xl bg-brand-700 px-6 py-8 text-center sm:flex-row sm:px-10 sm:text-left">
-              <p className="text-balance text-lg font-semibold text-white">
-                Founding rate for the first 10 builders: $89/month + $7 per
-                active home, locked for 3 years.{' '}
-                <span className="whitespace-nowrap rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-brand-50">
-                  {foundingSpotsRemaining} of 10 spots remaining
-                </span>
-              </p>
-              <div className="shrink-0">
-                <Button href={signupHref} size="lg" variant="secondary">
-                  Claim a founding spot
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Button>
-              </div>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* 4 — Example bills */}
+      {/* Example bills */}
       <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
