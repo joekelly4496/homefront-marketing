@@ -2,41 +2,50 @@ import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { siteUrl } from '@/lib/site';
+import { JsonLd } from '@/components/JsonLd';
+import { siteUrl, absoluteUrl } from '@/lib/site';
+import { brand } from '@/lib/content';
+import {
+  graph,
+  organizationSchema,
+  websiteSchema,
+  softwareApplicationSchema,
+} from '@/lib/schema';
 import './globals.css';
+
+const defaultTitle =
+  'Afterkey — Post-Closing Software for Home Builders';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Homefront — Build homes. Not a help desk.',
-    template: '%s · Homefront',
+    default: defaultTitle,
+    template: `%s · ${brand.name}`,
   },
   description:
-    'After closing, your homeowners treat you like a 24/7 help desk. Homefront sends every warranty request to the sub who did the work, so your phone stops blowing up — and you stay in the loop without fielding every call.',
-  keywords: [
-    'home builder warranty software',
-    'home builder help desk',
-    'warranty management for builders',
-    'homeowner handoff',
-    'punch list software',
-    'home maintenance plan',
-  ],
+    'Post-closing software for residential home builders. Warranty requests, subcontractor coordination, homeowner portals, and AI-built maintenance schedules.',
+  applicationName: brand.name,
+  alternates: { canonical: absoluteUrl('/') },
   openGraph: {
-    title: 'Homefront — Build homes. Not a help desk.',
+    title: defaultTitle,
     description:
-      'Stop being your homeowners’ 24/7 help desk. Homefront sends every warranty request to the right sub, so your phone stops blowing up.',
-    url: siteUrl,
-    siteName: 'Homefront',
+      'Post-closing software for residential home builders. Warranty requests, subcontractor coordination, homeowner portals, and AI-built maintenance schedules.',
+    url: absoluteUrl('/'),
+    siteName: brand.name,
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Homefront — Build homes. Not a help desk.',
+    title: defaultTitle,
     description:
-      'Stop being your homeowners’ 24/7 help desk. Your phone stops blowing up — the right sub takes the call.',
+      'Post-closing software for residential home builders. Warranty, subcontractors, homeowner portals, and AI-built maintenance schedules.',
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
 };
 
 export default function RootLayout({
@@ -44,11 +53,27 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Site-wide entity graph: who Afterkey is, what the site is, what the
+  // product is and what it costs. Emitted on every page so any single page
+  // an answer engine lands on can resolve the entity.
+  const siteGraph = graph([
+    organizationSchema(),
+    websiteSchema(),
+    softwareApplicationSchema(),
+  ]);
+
   return (
     <html lang="en" className={GeistSans.variable}>
       <body className="font-sans antialiased bg-slate-50 text-slate-900">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        >
+          Skip to content
+        </a>
+        <JsonLd data={siteGraph} />
         <Navigation />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>

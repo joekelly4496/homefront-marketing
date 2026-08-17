@@ -9,6 +9,7 @@ import { signupHref } from '@/lib/content';
 
 const navLinks = [
   { href: '/features', label: 'Features' },
+  { href: '/use-cases', label: 'Use cases' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/for-subcontractors', label: 'For Subs' },
 ];
@@ -25,7 +26,7 @@ export default function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6" aria-label="Main">
         <div className="flex h-16 items-center justify-between">
           <Logo />
 

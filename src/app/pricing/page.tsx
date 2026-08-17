@@ -1,149 +1,140 @@
-import type { Metadata } from 'next';
-import {
-  ArrowRight,
-  CheckCircle2,
-  Plus,
-  MessageSquare,
-  BookOpenCheck,
-  Lock,
-  Users,
-  FileX2,
-  Gauge,
-  Mail,
-} from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container, SectionLabel } from '@/components/ui/Container';
-import { signupHref, foundingSpotsRemaining } from '@/lib/content';
+import { FaqList } from '@/components/ui/FaqList';
+import { StatusPill } from '@/components/ui/StatusPill';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
+import {
+  graph,
+  breadcrumbSchema,
+  faqPageSchema,
+  webPageSchema,
+} from '@/lib/schema';
+import {
+  brand,
+  pricing,
+  commitments,
+  pricingFaqs,
+  signupHref,
+  trialLength,
+  smsStatus,
+} from '@/lib/content';
 
-export const metadata: Metadata = {
-  title: 'Pricing',
-  description:
-    'Simple pricing. Published. Locked. $149/month plus $10 per active home — every feature included, rate locked for two years. Start free, no card required.',
-};
+const title = `Pricing: $${pricing.base}/month + $${pricing.perHome} Per Active Home`;
+const description =
+  `One plan, published. $${pricing.base}/month plus $${pricing.perHome} per active home, unlimited users and subcontractors. Optional AI and SMS add-ons. No contracts, no quote calls.`;
+
+export const metadata = pageMetadata({
+  title,
+  description,
+  path: '/pricing',
+});
 
 const priceLines = [
   {
-    price: '$149',
+    price: `$${pricing.base}`,
     unit: '/month',
     title: 'Platform base',
     description:
-      'Unlimited team members and subs — no per-user fees, ever.',
+      'Unlimited team members and unlimited subcontractors. Headcount never changes your bill.',
   },
   {
-    price: '+ $10',
+    price: `+ $${pricing.perHome}`,
     unit: '/month per active home',
     title: 'Per active home',
     description:
-      'Only homes under warranty or an active service agreement. Dormant homes are never billed, and homes go dormant automatically.',
+      'Flat at any age. Billed only while a home is under warranty or on an active service plan — dormant homes are never billed, and homes go dormant automatically.',
   },
   {
-    price: '+ $29',
+    price: `+ $${pricing.ai.price}`,
+    unit: '/month per active home (optional)',
+    title: 'AI add-on',
+    description: `${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all your homes. Appliances already in the shared library are free and don’t count. Beyond the pool, $${pricing.ai.overagePerAction.toFixed(2)} per action with a live meter and a ceiling you set.`,
+  },
+  {
+    price: `+ $${pricing.sms.price}`,
     unit: '/month (optional)',
     title: 'SMS add-on',
-    description:
-      'Your own branded business number with two-way texting, 1,000 messages included.',
+    description: `Your own dedicated business number with ${pricing.sms.includedSegments.toLocaleString()} segments included. Additional segments are $${pricing.sms.overagePer1000} per 1,000, on a live meter with a ceiling you set.`,
   },
 ];
 
+/**
+ * Illustrative bills. Arithmetic only — these are the published rates applied
+ * to a home count, not a claim about what any customer pays.
+ */
 const exampleBills = [
-  { homes: '15 active homes', bill: '$328', memberships: '~$405/mo' },
-  { homes: '30 active homes', bill: '$478', memberships: '~$810/mo' },
-  { homes: '50 active homes', bill: '$678', memberships: '~$1,350/mo' },
-  { homes: '100 active homes', bill: '$1,178', memberships: '~$2,700/mo' },
-];
+  { homes: 15 },
+  { homes: 30 },
+  { homes: 50 },
+  { homes: 100 },
+].map(({ homes }) => {
+  const core = pricing.base + homes * pricing.perHome;
+  const withAi = core + homes * pricing.ai.price;
+  return {
+    homes: `${homes} active homes`,
+    core: `$${core.toLocaleString()}`,
+    withAi: `$${withAi.toLocaleString()}`,
+    withBoth: `$${(withAi + pricing.sms.price).toLocaleString()}`,
+  };
+});
 
 const included = [
-  'Builder dashboard with SLA tracking',
-  'Homeowner portal, white-labeled with your branding',
-  'Subcontractor dispatch by text — no app for subs to install',
-  'Digital home binders with AI document import',
-  'Maintenance schedules and reminders',
-  'Maintenance membership plans with automated billing',
-  'Service catalog with homeowner recommendations',
-  'Punch lists',
-  'Month-view scheduling calendar',
-  'Per-home profit reporting',
-  'Unlimited service requests',
-  'Unlimited team seats',
-  'Unlimited subs',
-  'Email notifications, free and unmetered',
-];
-
-const promises = [
-  {
-    icon: BookOpenCheck,
-    text: 'Prices are published. No quote calls, no volume brackets, no sales gate.',
-  },
-  {
-    icon: Lock,
-    text: 'No repricing surprises. Your rate is locked for your first 24 months. After that, any change comes with 60 days’ notice, applies at your next billing cycle, and is never mid-term or retroactive.',
-  },
-  {
-    icon: Users,
-    text: 'No per-user fees. Your whole team and every sub, included.',
-  },
-  {
-    icon: FileX2,
-    text: 'No contracts, no termination fees. Month-to-month; annual prepay is a discount, not a handcuff.',
-  },
-  {
-    icon: Gauge,
-    text: 'No surprise bills. SMS usage is visible live, capped by a ceiling you control.',
-  },
-  {
-    icon: Mail,
-    text: 'Email is free forever. We meter SMS because it costs us per message; we don’t meter what doesn’t.',
-  },
-];
-
-const faqs = [
-  {
-    q: 'What counts as an "active home"?',
-    a: 'A home is active while it’s under your builder warranty or has an active service agreement or membership. When neither applies, it goes dormant automatically and you pay nothing for it. If the homeowner later starts a membership — even after a resale — it reactivates automatically.',
-  },
-  {
-    q: 'Do older homes cost more?',
-    a: 'No. $10/month flat, whether the home is six months old or six years old.',
-  },
-  {
-    q: 'Are there per-user fees?',
-    a: 'Never. Add your whole team and every sub at no extra cost.',
-  },
-  {
-    q: 'What’s the 2.5% platform fee?',
-    a: 'It applies only to homeowner payments you process through the platform (like membership billing). Standard card processing fees are passed through at cost. If you don’t process payments through Homefront, you never see it.',
-  },
-  {
-    q: 'Is there a contract?',
-    a: 'No. Month-to-month, cancel anytime, no termination fees. Annual prepay just saves you 10%.',
-  },
-  {
-    q: 'What’s concierge onboarding?',
-    a: 'For a one-time $499, we build the digital binder for your entire home roster from your documents. Standard onboarding — doing it yourself with our AI import tools — is free.',
-  },
+  'Warranty and service request management with SLA tracking',
+  'Punch list and closeout items in the same queue',
+  'Automated email reminders, free and unmetered',
+  'Subcontractor dispatch with per-trade assignment',
+  'Day-of arrival tracking and subcontractor ratings',
+  'Subcontractor cost intelligence across every home',
+  'Compliance document tracking with expiration reminders',
+  'Compliance gating on dispatch, with logged overrides',
+  'Homeowner portal — requests, status, messaging, history',
+  'Subcontractor portal — jobs, photo updates, documents',
+  'AI Home Binder with cited maintenance schedules',
+  'Shared appliance library — reused models are always free',
+  'Homeowner memberships and service plans with recurring billing',
+  'Competitive maintenance quotes across your own roster',
+  'Photo documentation on every request',
+  'Unlimited homes, team members, and subcontractors',
 ];
 
 export default function PricingPage() {
+  const pageGraph = graph([
+    webPageSchema({ name: title, description, path: '/pricing' }),
+    breadcrumbSchema([{ name: 'Pricing', path: '/pricing' }]),
+    faqPageSchema(pricingFaqs),
+  ]);
+
+  const annualBase = (
+    pricing.base *
+    (1 - pricing.annualDiscountPercent / 100)
+  ).toFixed(2);
+
   return (
     <>
+      <JsonLd data={pageGraph} />
+
       {/* 1 — Hero */}
       <section className="border-b border-slate-200 bg-white">
         <Container className="py-16 sm:py-20">
-          <Reveal className="mx-auto max-w-2xl text-center">
+          <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>Pricing</SectionLabel>
             <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Simple pricing. Published. Locked.
+              One plan. Published price. No quote calls.
             </h1>
-            <p className="mt-5 text-balance text-lg text-slate-600">
-              $149/month plus $10 per active home. Every feature included. Your
-              rate is locked for two years — and any change after that comes with
-              60 days’ notice, never a surprise.
+            <p className="mt-5 text-lg text-slate-600">
+              Afterkey costs ${pricing.base} per month plus ${pricing.perHome}{' '}
+              per active home. Unlimited team members and unlimited
+              subcontractors are included, there are no tiers, and there is no
+              per-user fee. Optional add-ons for AI and SMS are priced below.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free — no card required
+                Start your {trialLength} free trial
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <a
@@ -162,13 +153,14 @@ export default function PricingPage() {
         <Container size="6xl">
           <Reveal>
             <Card className="mx-auto max-w-3xl p-6 sm:p-10">
+              <h2 className="sr-only">Price breakdown</h2>
               <ul className="divide-y divide-slate-200">
                 {priceLines.map((line) => (
                   <li
                     key={line.title}
                     className="flex flex-col gap-1 py-5 first:pt-0 last:pb-0 sm:flex-row sm:items-baseline sm:gap-6"
                   >
-                    <p className="w-56 shrink-0">
+                    <p className="w-64 shrink-0">
                       <span className="text-3xl font-semibold tracking-tight text-slate-900">
                         {line.price}
                       </span>
@@ -177,9 +169,9 @@ export default function PricingPage() {
                       </span>
                     </p>
                     <div>
-                      <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                      <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
                         {line.title}
-                      </p>
+                      </h3>
                       <p className="mt-1 text-base text-slate-600">
                         {line.description}
                       </p>
@@ -190,74 +182,67 @@ export default function PricingPage() {
             </Card>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-5 max-w-3xl">
-            <p className="text-center text-sm text-slate-500">
-              Annual prepay: 10% off the base (and SMS), and active homes bill at
-              $9/month while annual is active. Optional concierge onboarding — we
-              build the digital binder for your entire home roster from your
-              documents — $499 one-time. Standard onboarding is free. A 2.5%
-              platform fee applies to homeowner payments processed through the
-              platform (card processing at cost).
+            <p className="text-center text-sm leading-relaxed text-slate-500">
+              Annual prepay takes {pricing.annualDiscountPercent}% off the base
+              (${annualBase}/month). A {pricing.platformFeePercent}% platform fee
+              applies to homeowner payments processed through {brand.name}, with
+              card processing passed through at cost. Optional concierge
+              onboarding — we build the digital binder for your entire existing
+              home roster from your documents — is ${pricing.conciergeOnboarding}{' '}
+              one-time. Standard self-serve onboarding is free.
             </p>
           </Reveal>
         </Container>
       </section>
 
-      {/* 3 — Founding builder banner */}
-      <section className="pb-16 sm:pb-20">
-        <Container size="6xl">
-          <Reveal>
-            <div className="flex flex-col items-center justify-between gap-5 rounded-3xl bg-brand-700 px-6 py-8 text-center sm:flex-row sm:px-10 sm:text-left">
-              <p className="text-balance text-lg font-semibold text-white">
-                Founding rate for the first 10 builders: $89/month + $7 per
-                active home, locked for 3 years.{' '}
-                <span className="whitespace-nowrap rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-brand-50">
-                  {foundingSpotsRemaining} of 10 spots remaining
-                </span>
-              </p>
-              <div className="shrink-0">
-                <Button href={signupHref} size="lg" variant="secondary">
-                  Claim a founding spot
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Button>
-              </div>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* 4 — Example bills */}
+      {/* 3 — Example bills */}
       <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-              What builders actually pay — and what they earn back.
+              What the plan costs at your size
             </h2>
+            <p className="mt-4 text-base text-slate-600">
+              The published rates, multiplied out. Nothing here is an estimate —
+              it is the same arithmetic you can do yourself.
+            </p>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
             <div className="overflow-x-auto rounded-2xl border border-slate-200">
-              <table className="w-full min-w-[540px] text-left text-sm">
+              <table className="w-full min-w-[560px] text-left text-sm">
+                <caption className="sr-only">
+                  Monthly Afterkey cost by number of active homes, with and
+                  without the optional AI and SMS add-ons
+                </caption>
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wide text-slate-500">
                     <th scope="col" className="px-5 py-3.5">
-                      Your homes
+                      Active homes
                     </th>
                     <th scope="col" className="px-5 py-3.5">
-                      Monthly bill
+                      Base + homes
                     </th>
                     <th scope="col" className="px-5 py-3.5">
-                      What memberships typically generate*
+                      + AI add-on
+                    </th>
+                    <th scope="col" className="px-5 py-3.5">
+                      + AI and SMS
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 bg-white">
                   {exampleBills.map((row) => (
                     <tr key={row.homes}>
-                      <td className="px-5 py-4 font-medium text-slate-900">
+                      <th
+                        scope="row"
+                        className="px-5 py-4 text-left font-medium text-slate-900"
+                      >
                         {row.homes}
-                      </td>
-                      <td className="px-5 py-4 text-slate-600">{row.bill}</td>
-                      <td className="px-5 py-4 font-semibold text-emerald-600">
-                        {row.memberships}
+                      </th>
+                      <td className="px-5 py-4 text-slate-600">{row.core}</td>
+                      <td className="px-5 py-4 text-slate-600">{row.withAi}</td>
+                      <td className="px-5 py-4 text-slate-600">
+                        {row.withBoth}
                       </td>
                     </tr>
                   ))}
@@ -265,25 +250,52 @@ export default function PricingPage() {
               </table>
             </div>
             <p className="mt-4 text-xs text-slate-500">
-              *At a 60% membership attach rate and $45/month membership pricing.
-              Includes the SMS add-on. Builders offering premium service catalogs
-              typically exceed these figures.
+              Per month, before any AI or SMS overage. Only homes under warranty
+              or on an active plan count toward the total.
             </p>
-            <p className="mt-6 text-center text-base font-bold text-slate-900">
-              The average builder using memberships generates 2x their Homefront
-              bill in maintenance revenue they had no way to collect before.
-            </p>
+          </Reveal>
+
+          {/* Membership math — explicitly illustrative, not a customer claim */}
+          <Reveal delay={120} className="mx-auto mt-10 max-w-3xl">
+            <Card className="border-emerald-200 bg-emerald-50/50 p-6 sm:p-8">
+              <h3 className="text-lg font-semibold text-slate-900">
+                Illustrative: what memberships could offset
+              </h3>
+              <p className="mt-2 text-sm font-medium text-emerald-800">
+                Worked example, not a benchmark. Afterkey is early and has no
+                customer averages to publish. Substitute your own plan price and
+                your own attach rate.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                Say you have <strong>50 active homes</strong> and you sell a{' '}
+                <strong>$45/month</strong> maintenance membership to{' '}
+                <strong>40% of them</strong>. That is 20 memberships, or{' '}
+                <strong>$900/month</strong> in gross homeowner billing. Afterkey
+                takes {pricing.platformFeePercent}% of payments processed through
+                the platform ($22.50), and card processing is passed through at
+                cost. Your Afterkey bill at 50 homes with the AI add-on is $899.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                Whether that math works depends entirely on your plan price and
+                how many buyers say yes — both of which you control, and neither
+                of which we are going to pretend to predict for you.
+              </p>
+            </Card>
           </Reveal>
         </Container>
       </section>
 
-      {/* 5 — What's included */}
-      <section id="included" className="py-20 sm:py-24">
+      {/* 4 — What's included */}
+      <section id="included" className="scroll-mt-20 py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
               One plan. Everything in it.
             </h2>
+            <p className="mt-4 text-base text-slate-600">
+              There is no upsell tier. Everything below is in the ${pricing.base}{' '}
+              base plus your per-home rate.
+            </p>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
             <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
@@ -301,48 +313,99 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* 6 — SMS detail */}
+      {/* 5 — Add-on detail */}
       <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
         <Container size="6xl">
-          <Reveal className="mx-auto max-w-3xl">
-            <Card className="flex flex-col gap-5 p-8 sm:flex-row sm:items-start sm:p-10">
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <MessageSquare className="h-6 w-6" aria-hidden="true" />
-              </span>
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-                  Texting that pays for itself
-                </h2>
+          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+            <Reveal>
+              <Card className="h-full p-8">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
+                  <Sparkles className="h-6 w-6" aria-hidden="true" />
+                </span>
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+                    The AI add-on
+                  </h2>
+                  <StatusPill status="live" />
+                </div>
                 <p className="mt-3 text-base text-slate-600">
-                  Add a branded business number with two-way texting for
-                  $29/month, including 1,000 messages. Heavy month? Additional
-                  messages are $25 per 1,000, tracked on a live meter with a
-                  spending cap you control. You’ll get alerts at 80% and 100% of
-                  your included messages — no surprise bills, ever. Emergency
-                  alerts and job dispatch texts always send.
+                  ${pricing.ai.price}/month per active home, with{' '}
+                  {pricing.ai.actionsPerHome} AI actions per home per month
+                  pooled across your whole portfolio — so a complicated home can
+                  borrow from ten simple ones. Appliances already in the shared
+                  library cost nothing and never touch the pool.
                 </p>
-              </div>
-            </Card>
-          </Reveal>
+                <p className="mt-3 text-base text-slate-600">
+                  Afterkey shows you a cost preview before it spends anything:
+                  which appliances are free, which are new, the dollar estimate,
+                  and a do-it-yourself option if you would rather save the money.
+                  Overage is ${pricing.ai.overagePerAction.toFixed(2)} per action
+                  against a ceiling you set. Without the add-on you still get{' '}
+                  {pricing.ai.freeActionsWithoutAddOn} free actions a month to
+                  try it.
+                </p>
+              </Card>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <Card className="h-full p-8">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <MessageSquare className="h-6 w-6" aria-hidden="true" />
+                </span>
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+                    The SMS add-on
+                  </h2>
+                  <StatusPill
+                    status={smsStatus === 'live' ? 'live' : 'coming-soon'}
+                  />
+                </div>
+                <p className="mt-3 text-base text-slate-600">
+                  ${pricing.sms.price}/month for your own dedicated business
+                  number, including{' '}
+                  {pricing.sms.includedSegments.toLocaleString()} segments.
+                  Automated maintenance reminders, day-of coordination, and
+                  inbound calls forwarded to you.
+                </p>
+                <p className="mt-3 text-base text-slate-600">
+                  Additional segments are ${pricing.sms.overagePer1000} per
+                  1,000, tracked on a live meter with a ceiling you control. You
+                  get alerts as you approach your included volume — no surprise
+                  bills.
+                </p>
+                <p className="mt-3 text-sm text-slate-500">
+                  Messages currently send under {brand.legalName}’s carrier
+                  registration. Per-builder branded sender identity is planned;
+                  your dedicated number is yours either way.
+                </p>
+              </Card>
+            </Reveal>
+          </div>
         </Container>
       </section>
 
-      {/* 7 — Pricing promises */}
+      {/* 6 — The six commitments */}
       <section className="py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-              Our pricing promises
+            <SectionLabel>Published commitments</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
+              Six things we put in writing
             </h2>
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {promises.map((p, i) => (
-              <Reveal key={p.text} delay={(i % 3) * 80}>
+            {commitments.map((c, i) => (
+              <Reveal key={c.title} delay={(i % 3) * 80}>
                 <Card className="h-full p-6">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                    <p.icon className="h-5 w-5" aria-hidden="true" />
+                    <c.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <p className="mt-4 text-sm text-slate-600">{p.text}</p>
+                  <h3 className="mt-4 text-base font-semibold text-slate-900">
+                    {c.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-slate-600">
+                    {c.description}
+                  </p>
                 </Card>
               </Reveal>
             ))}
@@ -350,7 +413,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* 8 — FAQ */}
+      {/* 7 — FAQ */}
       <section className="border-t border-slate-200 bg-white py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -358,40 +421,41 @@ export default function PricingPage() {
               Pricing questions
             </h2>
           </Reveal>
-          <div className="mx-auto mt-10 max-w-3xl divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
-            {faqs.map((faq) => (
-              <details key={faq.q} className="group p-6">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                  <span className="text-base font-semibold text-slate-900">
-                    {faq.q}
-                  </span>
-                  <Plus
-                    className="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-45"
-                    aria-hidden="true"
-                  />
-                </summary>
-                <p className="mt-3 text-sm text-slate-600">{faq.a}</p>
-              </details>
-            ))}
-          </div>
+          <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
+            <FaqList faqs={pricingFaqs} />
+            <p className="mt-6 text-center text-sm text-slate-600">
+              Looking for something else?{' '}
+              <Link
+                href="/faq"
+                className="font-semibold text-brand-600 hover:text-brand-700"
+              >
+                Read the full FAQ
+              </Link>
+              .
+            </p>
+          </Reveal>
         </Container>
       </section>
 
-      {/* 9 — Footer CTA */}
+      {/* 8 — Footer CTA */}
       <section className="py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <p className="text-balance text-lg text-slate-600">
-              No contracts. No per-user fees. No termination fees. No sales calls
-              required — but we’re happy to give you a tour.
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              Try it on a real home
+            </h2>
+            <p className="mt-4 text-balance text-lg text-slate-600">
+              {trialLength} free trial. No contracts, no per-user fees, no
+              termination fees, and no sales call required — though we are happy
+              to walk you through it.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free
+                Start free trial
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/contact" size="lg" variant="secondary">
-                Book a tour
+                Ask a question
               </Button>
             </div>
           </Reveal>

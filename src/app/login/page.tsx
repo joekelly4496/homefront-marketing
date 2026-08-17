@@ -1,50 +1,20 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Home, Users, HardHat, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { IconBox } from '@/components/ui/IconBox';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container } from '@/components/ui/Container';
-import type { Accent } from '@/components/ui/IconBox';
-import { signupHref, loginUrls } from '@/lib/content';
+import { pageMetadata } from '@/lib/seo';
+import { brand, portals, signupHref } from '@/lib/content';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Sign in',
-  description:
-    'Sign in to Homefront — choose your portal: builder, homeowner, or subcontractor.',
-};
-
-const portals: {
-  href: string;
-  icon: typeof Home;
-  accent: Accent;
-  name: string;
-  description: string;
-}[] = [
-  {
-    href: loginUrls.builder,
-    icon: Home,
-    accent: 'brand',
-    name: 'Builder',
-    description:
-      'Manage homes, service requests, and your subcontractor roster.',
-  },
-  {
-    href: loginUrls.homeowner,
-    icon: Users,
-    accent: 'emerald',
-    name: 'Homeowner',
-    description:
-      'Submit requests, track status, and message your builder.',
-  },
-  {
-    href: loginUrls.sub,
-    icon: HardHat,
-    accent: 'violet',
-    name: 'Subcontractor',
-    description: 'See your assigned jobs and update them from the field.',
-  },
-];
+  description: `Sign in to ${brand.name} — choose your portal: builder, homeowner, or subcontractor.`,
+  path: '/login',
+  // A sign-in doorway has no search value and would only compete with the
+  // pages that do. Kept crawlable for link equity, out of the index.
+  noIndex: true,
+});
 
 export default function LoginPage() {
   return (
@@ -62,7 +32,8 @@ export default function LoginPage() {
         <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-3">
           {portals.map((portal, i) => (
             <Reveal key={portal.name} delay={i * 80}>
-              <Link href={portal.href} className="group block h-full">
+              {/* External — the portals live in the app, not this site. */}
+              <a href={portal.href} className="group block h-full">
                 <Card interactive className="flex h-full flex-col p-6">
                   <IconBox icon={portal.icon} accent={portal.accent} />
                   <h2 className="mt-5 text-lg font-semibold text-slate-900">
@@ -79,20 +50,20 @@ export default function LoginPage() {
                     />
                   </span>
                 </Card>
-              </Link>
+              </a>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={120} className="mt-10 text-center">
           <p className="text-sm text-slate-600">
-            New to Homefront?{' '}
-            <Link
+            New to {brand.name}?{' '}
+            <a
               href={signupHref}
               className="font-semibold text-brand-600 hover:text-brand-700"
             >
-              start a free trial
-            </Link>{' '}
+              Start a free trial
+            </a>{' '}
             or{' '}
             <Link
               href="/pricing"

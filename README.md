@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Afterkey marketing site
 
-## Getting Started
+The public marketing site for **Afterkey** — a post-closing software platform
+for residential home builders.
 
-First, run the development server:
+Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · TypeScript.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Single source of truth: `src/lib/content.ts`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Every fact on this site — the product definition, every price, every feature,
+every FAQ answer — lives in `src/lib/content.ts` and nowhere else.** Pages,
+JSON-LD structured data, and `/llms.txt` all read from it.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This is deliberate. Search engines and AI answer engines penalize conflicting
+signals: if the pricing page says one thing and the FAQ says another, models
+get an unreliable picture of what Afterkey is and costs. Changing a fact in one
+place changes it everywhere, so the site cannot contradict itself.
 
-## Learn More
+**If you are updating a price, a feature, or a claim, edit `content.ts`.** Do
+not hard-code it into a page.
 
-To learn more about Next.js, take a look at the following resources:
+Key exports:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Export | What it controls |
+| --- | --- |
+| `brand` | Name, legal name, domain, support email, and the canonical one-sentence definition |
+| `pricing` | Every dollar figure on the site |
+| `smsStatus` | `'live'` or `'coming-soon'` — flips all SMS copy site-wide |
+| `featureGroups` | Feature list, each tagged `live` / `coming-soon` / `roadmap` |
+| `portals` | The three-portal story |
+| `commitments` | The six published pricing commitments |
+| `coreFaqs`, `pricingFaqs` | FAQ copy *and* the `FAQPage` structured data |
+| `useCases` | The four use-case pages, including their metadata and FAQs |
+| `comparisons`, `notList` | Comparison page content and the "what Afterkey is not" boundaries |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Copy rules
 
-## Deploy on Vercel
+These are product-truth constraints, not style preferences. Breaking them
+creates legal, carrier, or credibility exposure:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Never describe competitive quoting as a marketplace, network, or contractor
+  directory.** It is private, closed-roster, and builder-only. No "find new
+  subs" language.
+- **Never promise a *branded* SMS sender.** Each builder gets their own
+  dedicated number, but messages currently send under Afterkey Inc.'s carrier
+  registration. Branded sender identity is a planned upgrade.
+- **Keep AI claims grounded.** The AI cites its sources, the builder reviews and
+  confirms every line, and it never invents a maintenance interval. This honesty
+  is the selling point — do not soften it into generic "AI-powered" language.
+- **Mark unreleased features.** Anything not shipping carries a `StatusPill` of
+  `coming-soon` or `roadmap`.
+- **Do not fabricate social proof.** There are no customers to quote yet. The
+  testimonial and logo sections are intentionally not rendered (see the comment
+  in `src/app/page.tsx`). Add them back when real quotes exist.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## SEO / AEO
+
+- `src/lib/seo.ts` — `pageMetadata()` builds title, description, canonical, Open
+  Graph, and Twitter card for every page. No page should ship without it.
+- `src/lib/schema.ts` — JSON-LD builders. `Organization`, `WebSite`, and
+  `SoftwareApplication` (with an `Offer` per pricing line) are emitted site-wide
+  from the root layout; pages add `WebPage`, `BreadcrumbList`, and `FAQPage`.
+- `src/app/llms.txt/route.ts` — plain-text summary for AI answer engines,
+  generated from `content.ts` so it can never drift from the site.
+- `src/app/robots.ts` — permissive, with reputable AI crawlers named explicitly.
+- One primary keyword per page, no cannibalization:
+
+| Route | Primary keyword |
+| --- | --- |
+| `/` | post-closing software for home builders |
+| `/features` | home builder warranty management software |
+| `/use-cases/warranty-service-requests` | punch list / service request software |
+| `/use-cases/subcontractor-management` | subcontractor management for builders |
+| `/use-cases/home-maintenance-reminders` | home maintenance reminder software for builders |
+| `/use-cases/homeowner-portal` | builder homeowner portal |
+
+`/login` is `noindex` and excluded from the sitemap — it is a sign-in doorway
+with no search value.
+
+## Environment
+
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Overrides the canonical origin. Defaults to `https://getafterkey.com`; Vercel deploy URLs are detected automatically. |
+
+The app itself (all three portals) lives at `https://app.getafterkey.com` —
+configured as `appBase` in `content.ts`.

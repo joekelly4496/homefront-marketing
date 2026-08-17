@@ -4,16 +4,16 @@ import {
   Wrench,
   HardHat,
   BarChart3,
-  ClipboardCheck,
+  FileCheck2,
   Bell,
 } from 'lucide-react';
 
 const nav = [
   { icon: LayoutDashboard, label: 'Dashboard', active: true },
   { icon: Home, label: 'Homes' },
-  { icon: ClipboardCheck, label: 'Punch list' },
   { icon: Wrench, label: 'Requests' },
   { icon: HardHat, label: 'Subcontractors' },
+  { icon: FileCheck2, label: 'Compliance' },
   { icon: BarChart3, label: 'Reports' },
 ];
 
@@ -63,14 +63,18 @@ const stats = [
 
 export function BuilderDashboard() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/5">
+    <div
+      className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/5"
+      role="img"
+      aria-label="The Afterkey builder dashboard, showing open warranty service requests across four homes with the assigned subcontractor and status for each, plus counts for open requests, overdue requests, and average response time."
+    >
       {/* Browser chrome */}
       <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-3">
         <span className="h-3 w-3 rounded-full bg-slate-300" />
         <span className="h-3 w-3 rounded-full bg-slate-300" />
         <span className="h-3 w-3 rounded-full bg-slate-300" />
         <div className="ml-3 hidden flex-1 items-center rounded-md border border-slate-200 bg-white px-3 py-1 text-xs text-slate-400 sm:flex">
-          app.gethomefront.com/dashboard
+          app.getafterkey.com/dashboard
         </div>
       </div>
 
@@ -82,7 +86,7 @@ export function BuilderDashboard() {
               <Home className="h-3.5 w-3.5 text-white" aria-hidden="true" />
             </span>
             <span className="text-sm font-semibold text-slate-900">
-              Homefront
+              Afterkey
             </span>
           </div>
           <nav className="space-y-1">

@@ -1,19 +1,29 @@
-import type { Metadata } from 'next';
 import { LegalPage, type LegalSection } from '@/components/ui/LegalPage';
+import { pageMetadata } from '@/lib/seo';
+import { brand, pricing } from '@/lib/content';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Terms of Service',
-  description: 'The terms that govern your use of Homefront.',
-};
+  description: `The terms that govern your use of ${brand.name}, the post-closing platform for residential home builders.`,
+  path: '/terms',
+});
 
 const sections: LegalSection[] = [
   {
     heading: 'Acceptance of terms',
-    body: 'By accessing or using Homefront’s services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.',
+    body: `By accessing or using ${brand.name}'s services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.`,
   },
   {
     heading: 'Description of service',
-    body: 'Homefront provides a post-closing service and warranty management platform for residential home builders. Our services include builder, homeowner, and subcontractor portals, service request management, SLA tracking, maintenance reminders, photo documentation, cost intelligence, and related features as described on our website.',
+    body: `${brand.name} provides a post-closing software platform for residential home builders. The service includes builder, homeowner, and subcontractor portals; warranty and service request management with SLA tracking and automated reminders; subcontractor dispatch, ratings, and cost intelligence; subcontractor compliance document tracking; AI-assisted home maintenance schedules; homeowner membership and service plan billing; photo documentation; and related features as described on our website.`,
+  },
+  {
+    heading: 'AI-generated content',
+    body: `${brand.name} uses automated systems to propose home maintenance schedules from documents you provide and from publicly available manufacturer information. These proposals are suggestions that cite their sources and require your review and confirmation before they are published to a homeowner. You remain responsible for the accuracy of any maintenance guidance you approve and distribute. ${brand.name} does not warrant that automated suggestions are complete or suitable for a particular home, and they do not replace the manufacturer's documentation.`,
+  },
+  {
+    heading: 'Subcontractor compliance features',
+    body: `Compliance tracking, expiration reminders, and dispatch warnings are administrative tools to help you manage your own requirements. They do not verify the authenticity or adequacy of any insurance policy, license, or other document, and they do not constitute legal, insurance, or risk-management advice. You remain solely responsible for determining which documents to require and whether a subcontractor is adequately covered, including when you choose to override a compliance warning.`,
   },
   {
     heading: 'Account registration',
@@ -21,15 +31,19 @@ const sections: LegalSection[] = [
   },
   {
     heading: 'Billing and payments',
-    body: 'Builder subscription fees are billed monthly as selected during registration. Where applicable, homeowner subscription billing is processed via Stripe Connect. All fees are non-refundable except as required by law. We reserve the right to change pricing with 30 days’ notice.',
+    body: `Builder subscription fees are billed monthly and consist of a $${pricing.base} platform base plus $${pricing.perHome} per active home, together with any optional add-ons you enable. Metered features are billed against the allowances described on our pricing page, subject to any spending ceiling you set. Where applicable, homeowner subscription and service billing is processed through our payment processor, and a ${pricing.platformFeePercent}% platform fee applies to homeowner payments processed through ${brand.name}, with card processing passed through at cost. All fees are non-refundable except as required by law.`,
+  },
+  {
+    heading: 'Price changes',
+    body: 'Any change to published pricing will be communicated with at least 60 days’ notice and will take effect at the start of your next billing cycle following that notice period. Price changes are never applied mid-term and are never applied retroactively.',
   },
   {
     heading: 'Cancellation',
-    body: 'You may cancel your subscription at any time. Upon cancellation, your account will remain active until the end of your current billing period. No contracts, no cancellation fees.',
+    body: 'You may cancel your subscription at any time. Upon cancellation, your account remains active until the end of your current billing period. There are no contracts and no cancellation fees.',
   },
   {
     heading: 'Contact',
-    body: 'For questions about these terms, please contact us at joekelly4496@gmail.com.',
+    body: `For questions about these terms, please contact us at ${brand.email}.`,
   },
 ];
 
@@ -37,8 +51,8 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of Service"
-      updated="January 2025"
-      intro="The terms that govern your use of Homefront."
+      updated="August 2026"
+      intro={`The terms that govern your use of ${brand.name}.`}
       sections={sections}
       disclaimer="This is a placeholder Terms of Service. Please consult a legal professional to create comprehensive terms appropriate for your business."
     />
