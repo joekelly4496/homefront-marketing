@@ -1,16 +1,16 @@
-import Link from 'next/link';
-import { ArrowRight, CheckCircle2, XCircle, Quote } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { IconBox } from '@/components/ui/IconBox';
-import { Pill } from '@/components/ui/Pill';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container, SectionLabel } from '@/components/ui/Container';
-import { FaqList } from '@/components/ui/FaqList';
-import { JsonLd } from '@/components/JsonLd';
-import { BuilderDashboard } from '@/components/mockups/BuilderDashboard';
-import { PhoneMockup } from '@/components/mockups/PhoneMockup';
-import { graph, faqPageSchema, webPageSchema } from '@/lib/schema';
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, XCircle, Quote } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { IconBox } from "@/components/ui/IconBox";
+import { Pill } from "@/components/ui/Pill";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container, SectionLabel } from "@/components/ui/Container";
+import { FaqList } from "@/components/ui/FaqList";
+import { JsonLd } from "@/components/JsonLd";
+import { BuilderDashboard } from "@/components/mockups/BuilderDashboard";
+import { PhoneMockup } from "@/components/mockups/PhoneMockup";
+import { graph, faqPageSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
   portals,
@@ -24,44 +24,45 @@ import {
   pricingLine,
   signupHref,
   trialLength,
+  trial,
   useCases,
-} from '@/lib/content';
+} from "@/lib/content";
 
 const withoutAfterkey = [
-  'Warranty requests arrive by text and voicemail, and the only queue is your memory.',
-  'A sub says they called, the homeowner says nobody came, and there is no record either way.',
-  'Insurance certificates expire in an inbox until a claim makes you go looking.',
-  'Maintenance guidance is a paper binder the homeowner loses inside a year.',
-  'Post-closing is a cost center you absorb, and the callbacks come out of your margin.',
+  "Warranty requests arrive by text and voicemail, and the only queue is your memory.",
+  "A sub says they called, the homeowner says nobody came, and there is no record either way.",
+  "Insurance certificates expire in an inbox until a claim makes you go looking.",
+  "Maintenance guidance is a paper binder the homeowner loses inside a year.",
+  "Post-closing is a cost center you absorb, and the callbacks come out of your margin.",
 ];
 
 const withAfterkey = [
-  'Every request lands in one queue with a response clock and an assigned trade.',
-  'Each dispatch, arrival, and completion is timestamped on the home’s permanent record.',
-  'Compliance documents are tracked with expirations, and lapsed coverage warns you before dispatch.',
-  'Each home gets an AI-built maintenance schedule with a cited source on every line.',
-  'Memberships turn homes you already built into recurring revenue.',
+  "Every request lands in one queue with a response clock and an assigned trade.",
+  "Each dispatch, arrival, and completion is timestamped on the home’s permanent record.",
+  "Compliance documents are tracked with expirations, and lapsed coverage warns you before dispatch.",
+  "Each home gets an AI-built maintenance schedule with a cited source on every line.",
+  "Memberships turn homes you already built into recurring revenue.",
 ];
 
-const aiBinder = featureGroups.find((g) => g.id === 'ai-binder')!;
+const aiBinder = featureGroups.find((g) => g.id === "ai-binder")!;
 
 /** The FAQs surfaced on the home page — the highest-intent subset. */
 const homeFaqs = coreFaqs.filter((f) =>
   [
-    'What is Afterkey?',
-    'Who is Afterkey for?',
-    'How much does Afterkey cost?',
-    'What does the AI in Afterkey actually do?',
-    'How is Afterkey different from a general CRM?',
-  ].includes(f.q)
+    "What is Afterkey?",
+    "Who is Afterkey for?",
+    "How much does Afterkey cost?",
+    "What does the AI in Afterkey actually do?",
+    "How is Afterkey different from a general CRM?",
+  ].includes(f.q),
 );
 
 export default function HomePage() {
   const pageGraph = graph([
     webPageSchema({
-      name: 'Afterkey — Post-Closing Software for Home Builders',
+      name: "Afterkey — Post-Closing Software for Home Builders",
       description: brand.definition,
-      path: '/',
+      path: "/",
     }),
     faqPageSchema(homeFaqs),
   ]);
@@ -92,7 +93,7 @@ export default function HomePage() {
                 <p className="mt-5 max-w-xl text-lg text-slate-600">
                   <strong className="font-semibold text-slate-900">
                     {brand.definition}
-                  </strong>{' '}
+                  </strong>{" "}
                   {brand.purpose}
                 </p>
               </Reveal>
@@ -112,6 +113,9 @@ export default function HomePage() {
                   ${pricing.base}/month + ${pricing.perHome} per active home ·
                   Unlimited users and subs · No contracts
                 </p>
+              </Reveal>
+              <Reveal delay={280}>
+                <p className="mt-2 text-sm text-slate-500">{trial.terms}</p>
               </Reveal>
             </div>
 
@@ -293,8 +297,8 @@ export default function HomePage() {
                   Every AI suggestion in Afterkey carries a numbered footnote:
                   the manufacturer’s published maintenance, the document you
                   uploaded, or an honest “typical schedule — verify against the
-                  manual” label. The AI never invents an interval, and you review
-                  and confirm every line before a homeowner sees it.
+                  manual” label. The AI never invents an interval, and you
+                  review and confirm every line before a homeowner sees it.
                 </p>
               </div>
             </Card>
@@ -311,8 +315,8 @@ export default function HomePage() {
               Fewer callbacks. Subs who show up. Homeowners who refer you.
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              The easier and more professional the post-closing relationship, the
-              stickier your brand. That is the entire thesis.
+              The easier and more professional the post-closing relationship,
+              the stickier your brand. That is the entire thesis.
             </p>
           </Reveal>
 
@@ -499,8 +503,8 @@ export default function HomePage() {
             <p className="mt-4 text-base text-slate-600">{pricingLine}</p>
             <p className="mt-3 text-sm text-slate-500">
               Optional add-ons: AI at ${pricing.ai.price}/month per active home,
-              SMS at ${pricing.sms.price}/month. Every metered feature has a live
-              meter and a ceiling you set.
+              SMS at ${pricing.sms.price}/month. Every metered feature has a
+              live meter and a ceiling you set.
             </p>
           </Reveal>
 
@@ -537,8 +541,8 @@ export default function HomePage() {
                 className="font-semibold text-brand-600 hover:text-brand-700"
               >
                 Read all {coreFaqs.length} questions
-              </Link>{' '}
-              or{' '}
+              </Link>{" "}
+              or{" "}
               <Link
                 href="/compare"
                 className="font-semibold text-brand-600 hover:text-brand-700"

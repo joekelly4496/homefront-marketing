@@ -1,19 +1,24 @@
-import Link from 'next/link';
-import { ArrowRight, CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container, SectionLabel } from '@/components/ui/Container';
-import { FaqList } from '@/components/ui/FaqList';
-import { StatusPill } from '@/components/ui/StatusPill';
-import { JsonLd } from '@/components/JsonLd';
-import { pageMetadata } from '@/lib/seo';
+import Link from "next/link";
+import {
+  ArrowRight,
+  CheckCircle2,
+  MessageSquare,
+  Sparkles,
+} from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container, SectionLabel } from "@/components/ui/Container";
+import { FaqList } from "@/components/ui/FaqList";
+import { StatusPill } from "@/components/ui/StatusPill";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import {
   graph,
   breadcrumbSchema,
   faqPageSchema,
   webPageSchema,
-} from '@/lib/schema';
+} from "@/lib/schema";
 import {
   brand,
   pricing,
@@ -21,44 +26,44 @@ import {
   pricingFaqs,
   signupHref,
   trialLength,
+  trial,
   smsStatus,
-} from '@/lib/content';
+} from "@/lib/content";
 
 const title = `Pricing: $${pricing.base}/month + $${pricing.perHome} Per Active Home`;
-const description =
-  `One plan, published. $${pricing.base}/month plus $${pricing.perHome} per active home, unlimited users and subcontractors. Optional AI and SMS add-ons. No contracts, no quote calls.`;
+const description = `One plan, published. $${pricing.base}/month plus $${pricing.perHome} per active home, unlimited users and subcontractors. Optional AI and SMS add-ons. No contracts, no quote calls.`;
 
 export const metadata = pageMetadata({
   title,
   description,
-  path: '/pricing',
+  path: "/pricing",
 });
 
 const priceLines = [
   {
     price: `$${pricing.base}`,
-    unit: '/month',
-    title: 'Platform base',
+    unit: "/month",
+    title: "Platform base",
     description:
-      'Unlimited team members and unlimited subcontractors. Headcount never changes your bill.',
+      "Unlimited team members and unlimited subcontractors. Headcount never changes your bill.",
   },
   {
     price: `+ $${pricing.perHome}`,
-    unit: '/month per active home',
-    title: 'Per active home',
+    unit: "/month per active home",
+    title: "Per active home",
     description:
-      'Flat at any age. Billed only while a home is under warranty or on an active service plan — dormant homes are never billed, and homes go dormant automatically.',
+      "Flat at any age. Billed only while a home is under warranty or on an active service plan — dormant homes are never billed, and homes go dormant automatically.",
   },
   {
     price: `+ $${pricing.ai.price}`,
-    unit: '/month per active home (optional)',
-    title: 'AI add-on',
+    unit: "/month per active home (optional)",
+    title: "AI add-on",
     description: `${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all your homes. Appliances already in the shared library are free and don’t count. Beyond the pool, $${pricing.ai.overagePerAction.toFixed(2)} per action with a live meter and a ceiling you set.`,
   },
   {
     price: `+ $${pricing.sms.price}`,
-    unit: '/month (optional)',
-    title: 'SMS add-on',
+    unit: "/month (optional)",
+    title: "SMS add-on",
     description: `Your own dedicated business number with ${pricing.sms.includedSegments.toLocaleString()} segments included. Additional segments are $${pricing.sms.overagePer1000} per 1,000, on a live meter with a ceiling you set.`,
   },
 ];
@@ -84,28 +89,28 @@ const exampleBills = [
 });
 
 const included = [
-  'Warranty and service request management with SLA tracking',
-  'Punch list and closeout items in the same queue',
-  'Automated email reminders, free and unmetered',
-  'Subcontractor dispatch with per-trade assignment',
-  'Day-of arrival tracking and subcontractor ratings',
-  'Subcontractor cost intelligence across every home',
-  'Compliance document tracking with expiration reminders',
-  'Compliance gating on dispatch, with logged overrides',
-  'Homeowner portal — requests, status, messaging, history',
-  'Subcontractor portal — jobs, photo updates, documents',
-  'AI Home Binder with cited maintenance schedules',
-  'Shared appliance library — reused models are always free',
-  'Homeowner memberships and service plans with recurring billing',
-  'Competitive maintenance quotes across your own roster',
-  'Photo documentation on every request',
-  'Unlimited homes, team members, and subcontractors',
+  "Warranty and service request management with SLA tracking",
+  "Punch list and closeout items in the same queue",
+  "Automated email reminders, free and unmetered",
+  "Subcontractor dispatch with per-trade assignment",
+  "Day-of arrival tracking and subcontractor ratings",
+  "Subcontractor cost intelligence across every home",
+  "Compliance document tracking with expiration reminders",
+  "Compliance gating on dispatch, with logged overrides",
+  "Homeowner portal — requests, status, messaging, history",
+  "Subcontractor portal — jobs, photo updates, documents",
+  "AI Home Binder with cited maintenance schedules",
+  "Shared appliance library — reused models are always free",
+  "Homeowner memberships and service plans with recurring billing",
+  "Competitive maintenance quotes across your own roster",
+  "Photo documentation on every request",
+  "Unlimited homes, team members, and subcontractors",
 ];
 
 export default function PricingPage() {
   const pageGraph = graph([
-    webPageSchema({ name: title, description, path: '/pricing' }),
-    breadcrumbSchema([{ name: 'Pricing', path: '/pricing' }]),
+    webPageSchema({ name: title, description, path: "/pricing" }),
+    breadcrumbSchema([{ name: "Pricing", path: "/pricing" }]),
     faqPageSchema(pricingFaqs),
   ]);
 
@@ -127,7 +132,7 @@ export default function PricingPage() {
               One plan. Published price. No quote calls.
             </h1>
             <p className="mt-5 text-lg text-slate-600">
-              Afterkey costs ${pricing.base} per month plus ${pricing.perHome}{' '}
+              Afterkey costs ${pricing.base} per month plus ${pricing.perHome}{" "}
               per active home. Unlimited team members and unlimited
               subcontractors are included, there are no tiers, and there is no
               per-user fee. Optional add-ons for AI and SMS are priced below.
@@ -144,6 +149,7 @@ export default function PricingPage() {
                 See everything included ↓
               </a>
             </div>
+            <p className="mt-5 text-sm text-slate-500">{trial.terms}</p>
           </Reveal>
         </Container>
       </section>
@@ -184,12 +190,13 @@ export default function PricingPage() {
           <Reveal delay={80} className="mx-auto mt-5 max-w-3xl">
             <p className="text-center text-sm leading-relaxed text-slate-500">
               Annual prepay takes {pricing.annualDiscountPercent}% off the base
-              (${annualBase}/month). A {pricing.platformFeePercent}% platform fee
-              applies to homeowner payments processed through {brand.name}, with
-              card processing passed through at cost. Optional concierge
+              (${annualBase}/month). A {pricing.platformFeePercent}% platform
+              fee applies to homeowner payments processed through {brand.name},
+              with card processing passed through at cost. Optional concierge
               onboarding — we build the digital binder for your entire existing
-              home roster from your documents — is ${pricing.conciergeOnboarding}{' '}
-              one-time. Standard self-serve onboarding is free.
+              home roster from your documents — is $
+              {pricing.conciergeOnboarding} one-time. Standard self-serve
+              onboarding is free.
             </p>
           </Reveal>
         </Container>
@@ -267,13 +274,14 @@ export default function PricingPage() {
                 your own attach rate.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                Say you have <strong>50 active homes</strong> and you sell a{' '}
-                <strong>$45/month</strong> maintenance membership to{' '}
-                <strong>40% of them</strong>. That is 20 memberships, or{' '}
+                Say you have <strong>50 active homes</strong> and you sell a{" "}
+                <strong>$45/month</strong> maintenance membership to{" "}
+                <strong>40% of them</strong>. That is 20 memberships, or{" "}
                 <strong>$900/month</strong> in gross homeowner billing. Afterkey
-                takes {pricing.platformFeePercent}% of payments processed through
-                the platform ($22.50), and card processing is passed through at
-                cost. Your Afterkey bill at 50 homes with the AI add-on is $899.
+                takes {pricing.platformFeePercent}% of payments processed
+                through the platform ($22.50), and card processing is passed
+                through at cost. Your Afterkey bill at 50 homes with the AI
+                add-on is $899.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Whether that math works depends entirely on your plan price and
@@ -293,8 +301,8 @@ export default function PricingPage() {
               One plan. Everything in it.
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              There is no upsell tier. Everything below is in the ${pricing.base}{' '}
-              base plus your per-home rate.
+              There is no upsell tier. Everything below is in the $
+              {pricing.base} base plus your per-home rate.
             </p>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
@@ -329,7 +337,7 @@ export default function PricingPage() {
                   <StatusPill status="live" />
                 </div>
                 <p className="mt-3 text-base text-slate-600">
-                  ${pricing.ai.price}/month per active home, with{' '}
+                  ${pricing.ai.price}/month per active home, with{" "}
                   {pricing.ai.actionsPerHome} AI actions per home per month
                   pooled across your whole portfolio — so a complicated home can
                   borrow from ten simple ones. Appliances already in the shared
@@ -338,11 +346,11 @@ export default function PricingPage() {
                 <p className="mt-3 text-base text-slate-600">
                   Afterkey shows you a cost preview before it spends anything:
                   which appliances are free, which are new, the dollar estimate,
-                  and a do-it-yourself option if you would rather save the money.
-                  Overage is ${pricing.ai.overagePerAction.toFixed(2)} per action
-                  against a ceiling you set. Without the add-on you still get{' '}
-                  {pricing.ai.freeActionsWithoutAddOn} free actions a month to
-                  try it.
+                  and a do-it-yourself option if you would rather save the
+                  money. Overage is ${pricing.ai.overagePerAction.toFixed(2)}{" "}
+                  per action against a ceiling you set. Without the add-on you
+                  still get {pricing.ai.freeActionsWithoutAddOn} free actions a
+                  month to try it.
                 </p>
               </Card>
             </Reveal>
@@ -357,12 +365,12 @@ export default function PricingPage() {
                     The SMS add-on
                   </h2>
                   <StatusPill
-                    status={smsStatus === 'live' ? 'live' : 'coming-soon'}
+                    status={smsStatus === "live" ? "live" : "coming-soon"}
                   />
                 </div>
                 <p className="mt-3 text-base text-slate-600">
                   ${pricing.sms.price}/month for your own dedicated business
-                  number, including{' '}
+                  number, including{" "}
                   {pricing.sms.includedSegments.toLocaleString()} segments.
                   Automated maintenance reminders, day-of coordination, and
                   inbound calls forwarded to you.
@@ -424,7 +432,7 @@ export default function PricingPage() {
           <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
             <FaqList faqs={pricingFaqs} />
             <p className="mt-6 text-center text-sm text-slate-600">
-              Looking for something else?{' '}
+              Looking for something else?{" "}
               <Link
                 href="/faq"
                 className="font-semibold text-brand-600 hover:text-brand-700"
@@ -449,6 +457,7 @@ export default function PricingPage() {
               termination fees, and no sales call required — though we are happy
               to walk you through it.
             </p>
+            <p className="mt-3 text-sm text-slate-500">{trial.terms}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
                 Start free trial

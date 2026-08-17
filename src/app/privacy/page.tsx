@@ -8,6 +8,13 @@ export const metadata = pageMetadata({
   path: '/privacy',
 });
 
+/*
+ * VERIFY BEFORE LAUNCH: the "Documents and AI processing" section below states
+ * that the shared appliance library holds no home- or homeowner-identifying
+ * data. That is the intended behavior, but it is a binding commitment in a
+ * privacy policy — confirm it against the implementation, and have counsel
+ * review this file alongside /terms.
+ */
 const sections: LegalSection[] = [
   {
     heading: 'Information we collect',
@@ -19,7 +26,7 @@ const sections: LegalSection[] = [
   },
   {
     heading: 'Documents and AI processing',
-    body: `Documents you upload to a home's binder — such as owner's manuals, spec sheets, and invoices — are processed to build that home's maintenance record and may be sent to third-party AI providers for that purpose. ${brand.name} also maintains a shared library of appliance maintenance schedules keyed to manufacturer make and model. That library contains equipment maintenance information only; it does not contain your customers' names, addresses, documents, or any other identifying details about a home or the people in it.`,
+    body: `Documents you upload to a home's binder — such as owner's manuals, spec sheets, and invoices — are processed to build that home's maintenance record and may be sent to third-party AI providers for that purpose. ${brand.name} also maintains a shared library of appliance maintenance schedules keyed to manufacturer make and model. We do not place homeowner names, addresses, uploaded documents, or other information identifying a home or its occupants into that shared library; it holds equipment maintenance information only.`,
   },
   {
     heading: 'Access between parties',

@@ -80,7 +80,7 @@ ${section(
 - Platform fee: ${pricing.platformFeePercent}% on homeowner payments processed through Afterkey. Card processing is passed through at cost, separately.
 - Onboarding: standard self-serve onboarding is free. Optional concierge onboarding is $${pricing.conciergeOnboarding} one-time.
 - Annual prepay: ${pricing.annualDiscountPercent}% off the base.
-- Trial: ${trialLength} free trial, self-serve, no sales call required.
+- Trial: ${trialLength} free trial, self-serve, no sales call required. A payment card is required to start the trial, and no charge is made if the account is cancelled before the trial ends. The trial is not limited by home count.
 
 Example monthly totals (published rates multiplied out, not customer averages):
 - 15 active homes: $${pricing.base + 15 * pricing.perHome}/month base plus homes.
@@ -96,7 +96,7 @@ ${section(
   'How the AI works',
   `Afterkey's AI Home Binder converts a home's documents into a proposed maintenance schedule. For appliances with a known make and model, it looks up the manufacturer's published maintenance and cites the source. Every AI suggestion carries a numbered footnote that is one of: a link to the manufacturer's published schedule, a reference to the document the builder uploaded, or an explicit "typical schedule — verify against the manual" label. The AI does not invent maintenance intervals, and the builder reviews and confirms every line before it is published to a homeowner.
 
-Afterkey maintains a platform-wide shared library of appliance maintenance schedules. Once any builder researches a model, every future home with that model reuses the schedule instantly and at no cost. The library holds equipment maintenance information only and contains no homeowner or home-identifying data.
+Afterkey maintains a platform-wide shared library of appliance maintenance schedules. Once any builder researches a model, every future home with that model reuses the schedule instantly and at no cost. The library holds equipment maintenance information only; homeowner and home-identifying data is not placed into it.
 
 Before any AI spend, Afterkey shows a cost preview listing which appliances are already in the library (free) and which are new, with a dollar estimate and an option for the builder to enter the schedule manually instead.`
 )}
