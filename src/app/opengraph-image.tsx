@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Homefront — Build homes. Not a help desk.';
+export const alt =
+  'Afterkey — post-closing software for residential home builders';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -31,6 +32,7 @@ export default function OpengraphImage() {
               justifyContent: 'center',
             }}
           >
+            {/* Key — the "after the keys are handed over" mark */}
             <svg
               width="34"
               height="34"
@@ -41,21 +43,23 @@ export default function OpengraphImage() {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M3 9.5 12 3l9 6.5" />
-              <path d="M5 9.5V21h14V9.5" />
+              <circle cx="7.5" cy="15.5" r="4.5" />
+              <path d="m10.7 12.3 8.5-8.5" />
+              <path d="m17 5 3 3" />
+              <path d="m14 8 3 3" />
             </svg>
           </div>
           <span
             style={{ fontSize: '40px', fontWeight: 600, color: '#0f172a' }}
           >
-            Homefront
+            Afterkey
           </span>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <div
             style={{
-              fontSize: '72px',
+              fontSize: '68px',
               fontWeight: 600,
               color: '#0f172a',
               letterSpacing: '-0.03em',
@@ -63,12 +67,12 @@ export default function OpengraphImage() {
               maxWidth: '950px',
             }}
           >
-            Build homes. Not a help desk.
+            Everything that happens after the keys.
           </div>
-          <div style={{ fontSize: '32px', color: '#475569', maxWidth: '900px' }}>
-            After closing, your homeowners treat you like a 24/7 help desk.
-            Homefront sends every warranty request to the right sub — so your
-            phone stops blowing up.
+          <div style={{ fontSize: '30px', color: '#475569', maxWidth: '920px' }}>
+            Post-closing software for residential home builders — warranty
+            requests, subcontractor coordination, and AI-built maintenance
+            schedules for every home.
           </div>
         </div>
 
@@ -80,7 +84,7 @@ export default function OpengraphImage() {
             fontWeight: 600,
           }}
         >
-          Built for residential home builders
+          getafterkey.com
         </div>
       </div>
     ),

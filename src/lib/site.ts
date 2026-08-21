@@ -1,11 +1,10 @@
 /**
- * Canonical site URL used for metadata, Open Graph/preview images, the
- * sitemap, and robots. Resolution order:
- *   1. NEXT_PUBLIC_SITE_URL — set this to the real domain (e.g. the live
- *      gethomefront.com) when it's ready.
+ * Canonical site URL used for metadata, Open Graph/preview images, canonical
+ * tags, JSON-LD, the sitemap, and robots. Resolution order:
+ *   1. NEXT_PUBLIC_SITE_URL — override for previews or a domain change.
  *   2. Vercel's production domain (auto-set on Vercel builds).
  *   3. The current Vercel deployment URL.
- *   4. A sensible default for local/dev.
+ *   4. The production domain.
  *
  * This must point at a domain that actually serves the site, or link
  * previews (which fetch og:image from this base) come up blank.
@@ -20,7 +19,11 @@ function resolveSiteUrl(): string {
   const deployment = process.env.VERCEL_URL;
   if (deployment) return `https://${deployment}`;
 
-  return 'https://homefront-marketing.vercel.app';
+  return 'https://getafterkey.com';
 }
 
 export const siteUrl = resolveSiteUrl();
+
+/** Absolute URL for a site-relative path. */
+export const absoluteUrl = (path = '') =>
+  `${siteUrl}${path.startsWith('/') ? path : path ? `/${path}` : ''}`;

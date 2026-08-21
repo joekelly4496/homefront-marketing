@@ -1,47 +1,60 @@
-import type { Metadata } from 'next';
-import { ArrowRight, PhoneOff, Heart, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Receipt, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { IconBox } from '@/components/ui/IconBox';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
-import { signupHref, trialLength } from '@/lib/content';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
+import { graph, breadcrumbSchema, webPageSchema } from '@/lib/schema';
+import { brand, signupHref, trialLength } from '@/lib/content';
 
-export const metadata: Metadata = {
-  title: 'About',
-  description:
-    'Homefront is the warranty and homeowner-handoff platform for home builders. It moves post-closing requests off the builder’s phone and onto a tracked system — less work for the builder, a better experience for the homeowner.',
-};
+const title = 'About';
+const description =
+  'Afterkey is post-closing software for residential home builders — built so warranty work, subcontractors, and homeowner relationships run on one system.';
+
+export const metadata = pageMetadata({
+  title,
+  description,
+  path: '/about',
+});
 
 const values = [
-  {
-    icon: PhoneOff,
-    title: 'Off your desk',
-    description:
-      'The default after closing shouldn’t be your phone. Homeowners reach the right sub directly, and you monitor instead of fielding every call.',
-  },
   {
     icon: ShieldCheck,
     title: 'Documented, not adversarial',
     description:
-      'The record protects everyone. You look responsive because you are — and when a delay isn’t on you, the history simply shows where it sat.',
+      'A complete record protects everyone in the transaction. The builder can show what happened, the subcontractor can show the work was done, and the homeowner can see it without asking. Nobody has to win an argument from memory.',
   },
   {
-    icon: Heart,
-    title: 'A premium handoff',
+    icon: Sparkles,
+    title: 'AI that shows its work',
     description:
-      'A maintenance plan, the subs who did the work, and a complete home record the buyer keeps. You handed over something premium, not a drawer full of manuals.',
+      'Software that guesses about someone’s furnace is worse than software that admits it doesn’t know. Every AI suggestion in Afterkey cites its source or says plainly that it’s a typical schedule to verify. The builder confirms every line.',
+  },
+  {
+    icon: Receipt,
+    title: 'Prices you can read',
+    description:
+      'Published rates, live meters on anything metered, ceilings you set, and 60 days’ notice before anything changes. If a pricing page needs a phone call to decode, that is a choice somebody made.',
   },
 ];
 
 export default function AboutPage() {
+  const pageGraph = graph([
+    webPageSchema({ name: title, description, path: '/about' }),
+    breadcrumbSchema([{ name: 'About', path: '/about' }]),
+  ]);
+
   return (
     <>
+      <JsonLd data={pageGraph} />
+
       <PageHeader
         eyebrow="About"
-        title="Stop being your homeowners’ help desk"
-        subtitle="Homefront is the warranty and homeowner-handoff platform for home builders — built to take post-closing requests off your phone and protect the reputation you’ve worked years to earn."
+        title="The part of homebuilding nobody built software for"
+        subtitle={`${brand.definition}`}
       />
 
       <section className="py-20 sm:py-24">
@@ -49,25 +62,43 @@ export default function AboutPage() {
           <Reveal className="mx-auto max-w-3xl">
             <div className="space-y-5 text-base leading-relaxed text-slate-600">
               <p>
-                After closing, the builder is still on the hook for warranty and
-                service requests — and for most builders, all of it runs through
-                their phone. The calls come at dinner and on the weekend. A slow
-                sub becomes the builder’s problem. And the cost shows up as bad
-                reviews and lost referrals.
+                A builder’s job doesn’t end at closing. The warranty period runs
+                for a year or more, the subcontractors who did the work still
+                have to come back, and the homeowner has questions for years
+                after that. For most builders none of it runs on a system — it
+                runs on a phone, a truck-seat notepad, and whoever remembers.
               </p>
               <p>
-                Homefront moves post-closing requests off the builder’s phone and
-                onto a tracked system. Homeowners reach the right sub directly,
-                builders monitor instead of firefight, and every buyer walks away
-                with a complete, lasting record of their home — every request
-                timestamped, every dispatch logged.
+                That gap is expensive in a way that is hard to see on a P&amp;L.
+                Callbacks get handled late because nobody was tracking them. A
+                subcontractor’s coverage lapses and nobody notices until there
+                is a claim. Deferred maintenance turns into a warranty repair the
+                builder eats. And the buyer who felt ignored writes the review
+                that quietly costs the next three referrals.
               </p>
               <p>
-                Builders are business owners, and their scarcest resource is
-                time. That’s what Homefront is really selling back: hours that
-                used to disappear into callbacks. Less work for the builder, a
-                better experience for the homeowner, and a reputation that takes
-                care of itself.
+                {brand.name} exists to close that gap. It gives the builder one
+                place to run warranty and service requests, dispatch and manage
+                subcontractors, track compliance documents, and hand every
+                homeowner a maintenance schedule built from their own home’s
+                documents. It gives the homeowner somewhere to go besides the
+                builder’s cell phone, and it gives the subcontractor a clear job
+                list and a place to keep their paperwork current.
+              </p>
+              <p>
+                The premise is simple: the easier and more professional the
+                post-closing relationship, the stickier the builder’s brand.
+                Referrals and repeat business come from how a builder behaves
+                after the sale, not during it. {brand.name} is built to make that
+                part effortless — and, through homeowner memberships, to make it
+                pay for itself instead of eating margin.
+              </p>
+              <p>
+                We are early. There is no customer logo wall on this site because
+                we have not earned one yet, and we would rather show you the
+                product than borrow someone else’s credibility. The pricing is
+                published, the trial is self-serve, and you can find out whether
+                it fits your operation without talking to anybody.
               </p>
             </div>
           </Reveal>
@@ -77,9 +108,9 @@ export default function AboutPage() {
               <Reveal key={v.title} delay={i * 70}>
                 <Card className="h-full p-6">
                   <IconBox icon={v.icon} accent="brand" />
-                  <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                  <h2 className="mt-4 text-lg font-semibold text-slate-900">
                     {v.title}
-                  </h3>
+                  </h2>
                   <p className="mt-1.5 text-sm text-slate-600">
                     {v.description}
                   </p>
@@ -94,11 +125,11 @@ export default function AboutPage() {
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              Get out of the middle
+              See it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Start your {trialLength} free trial and run your first home on
-              Homefront today.
+              Start a {trialLength} free trial and run your next closing on{' '}
+              {brand.name}.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

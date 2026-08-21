@@ -1,94 +1,99 @@
-import type { Metadata } from 'next';
-import { ArrowRight, CheckCircle2, Hammer, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, CheckCircle2, Minus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { IconBox } from '@/components/ui/IconBox';
-import { Pill } from '@/components/ui/Pill';
 import { Reveal } from '@/components/ui/Reveal';
 import { Container, SectionLabel } from '@/components/ui/Container';
+import { StatusPill } from '@/components/ui/StatusPill';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
+import { graph, breadcrumbSchema, webPageSchema } from '@/lib/schema';
 import {
-  lifecycle,
-  builderValue,
-  homeownerValue,
-  features,
+  brand,
+  featureGroups,
+  portals,
   differentiators,
+  notList,
   signupHref,
   trialLength,
+  useCases,
 } from '@/lib/content';
 
-export const metadata: Metadata = {
-  title: 'Features',
-  description:
-    'Punch list, direct-to-sub dispatch, documented accountability, maintenance plans, and a complete home record — the warranty and homeowner-handoff platform built for home builders.',
-};
+const title = 'Home Builder Warranty Management Software';
+const description =
+  'Afterkey manages warranty requests, subcontractor dispatch and compliance, homeowner portals, and AI-built maintenance schedules. See every feature.';
 
-const halves = [
-  {
-    icon: Hammer,
-    accent: 'brand' as const,
-    label: 'The half you pay for',
-    title: 'Less work, more of your time',
-    blurb:
-      'Hours back every week, a record that protects you, and the visibility to run a tighter operation.',
-    items: builderValue,
-  },
-  {
-    icon: Sparkles,
-    accent: 'violet' as const,
-    label: 'The half that keeps you sticky',
-    title: 'A handoff that makes you look premium',
-    blurb:
-      'Maintenance, who-to-call, and a lasting home record — built to make the builder look great for years.',
-    items: homeownerValue,
-  },
-];
+export const metadata = pageMetadata({
+  title,
+  description,
+  path: '/features',
+});
 
 export default function FeaturesPage() {
+  const pageGraph = graph([
+    webPageSchema({ name: title, description, path: '/features' }),
+    breadcrumbSchema([{ name: 'Features', path: '/features' }]),
+  ]);
+
   return (
     <>
+      <JsonLd data={pageGraph} />
+
       {/* Header */}
       <section className="border-b border-slate-200 bg-white">
         <Container className="py-16 sm:py-20">
-          <Reveal className="mx-auto max-w-2xl text-center">
+          <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>Features</SectionLabel>
             <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Get out of the middle. Stay in the loop.
+              Everything post-closing, in one platform
             </h1>
-            <p className="mt-5 text-balance text-lg text-slate-600">
-              Homefront splits cleanly in two: a builder-facing half that hands
-              you back your time, and a homeowner-facing half that makes you look
-              premium long after closing.
+            <p className="mt-5 text-lg text-slate-600">
+              Afterkey is home builder warranty management software that covers
+              the full post-closing workload: service requests with SLA
+              tracking, subcontractor dispatch and compliance, homeowner
+              memberships, and AI-built maintenance schedules that cite their
+              sources.
+            </p>
+            <p className="mt-4 text-sm text-slate-500">
+              Every feature below is marked with its real availability. Nothing
+              on this page is aspirational unless it says so.
             </p>
           </Reveal>
         </Container>
       </section>
 
-      {/* The two halves */}
+      {/* Feature groups */}
       <section className="py-20 sm:py-24">
         <Container>
           <div className="space-y-16">
-            {halves.map((half) => (
-              <Reveal key={half.title}>
-                <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
+            {featureGroups.map((group) => (
+              <Reveal key={group.id}>
+                <div
+                  id={group.id}
+                  className="grid scroll-mt-24 gap-8 lg:grid-cols-[300px_1fr] lg:gap-12"
+                >
                   <div>
-                    <IconBox icon={half.icon} accent={half.accent} />
-                    <Pill color={half.accent} className="mt-4">
-                      {half.label}
-                    </Pill>
+                    <IconBox icon={group.icon} accent={group.accent} />
+                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                      <SectionLabel>{group.label}</SectionLabel>
+                      <StatusPill status={group.status} />
+                    </div>
                     <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
-                      {half.title}
+                      {group.title}
                     </h2>
-                    <p className="mt-2 text-sm text-slate-600">{half.blurb}</p>
+                    <p className="mt-2 text-sm text-slate-600">
+                      {group.summary}
+                    </p>
                   </div>
                   <div className="grid gap-5 sm:grid-cols-2">
-                    {half.items.map((item) => (
-                      <Card key={item.title} className="h-full p-5">
-                        <IconBox icon={item.icon} accent={item.accent} />
-                        <h3 className="mt-4 text-base font-semibold text-slate-900">
-                          {item.title}
+                    {group.points.map((point) => (
+                      <Card key={point.title} className="h-full p-5">
+                        <h3 className="text-base font-semibold text-slate-900">
+                          {point.title}
                         </h3>
                         <p className="mt-1.5 text-sm text-slate-600">
-                          {item.description}
+                          {point.description}
                         </p>
                       </Card>
                     ))}
@@ -100,31 +105,28 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      {/* Lifecycle arc */}
+      {/* Three portals */}
       <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
         <Container>
           <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>The lifecycle</SectionLabel>
+            <SectionLabel>The three portals</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              One story, across the life of the home
+              One home, three views of it
             </h2>
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {lifecycle.map((phase) => (
-              <Reveal key={phase.title}>
+            {portals.map((portal) => (
+              <Reveal key={portal.name}>
                 <Card className="flex h-full flex-col p-6 sm:p-7">
-                  <div className="flex items-center justify-between">
-                    <IconBox icon={phase.icon} accent={phase.accent} />
-                    <Pill color={phase.accent}>{phase.stage}</Pill>
-                  </div>
+                  <IconBox icon={portal.icon} accent={portal.accent} />
                   <h3 className="mt-5 text-lg font-semibold text-slate-900">
-                    {phase.title}
+                    {portal.name}
                   </h3>
                   <p className="mt-1.5 text-sm text-slate-600">
-                    {phase.description}
+                    {portal.description}
                   </p>
                   <ul className="mt-5 space-y-2.5 border-t border-slate-100 pt-5">
-                    {phase.points.map((p) => (
+                    {portal.points.map((p) => (
                       <li key={p} className="flex gap-2.5">
                         <CheckCircle2
                           className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
@@ -141,39 +143,13 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      {/* Toolkit at a glance */}
+      {/* Differentiators */}
       <section className="py-20 sm:py-24">
         <Container>
           <Reveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-              The toolkit at a glance
-            </h2>
-          </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, i) => (
-              <Reveal key={feature.title} delay={(i % 3) * 60}>
-                <Card interactive className="h-full p-6">
-                  <IconBox icon={feature.icon} accent={feature.accent} />
-                  <h3 className="mt-4 text-base font-semibold text-slate-900">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm text-slate-600">
-                    {feature.description}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Differentiators */}
-      <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
-        <Container>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>Why Homefront</SectionLabel>
+            <SectionLabel>Why {brand.name}</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              The one job that drives your referrals
+              What you won’t get anywhere else
             </h2>
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
@@ -201,16 +177,87 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      {/* CTA */}
+      {/* What Afterkey is not */}
+      <section className="border-y border-slate-200 bg-white py-20 sm:py-24">
+        <Container size="6xl">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <SectionLabel>Straight talk</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
+              What {brand.name} is not
+            </h2>
+            <p className="mt-4 text-base text-slate-600">
+              Knowing what a tool doesn’t do saves everyone a demo.
+            </p>
+          </Reveal>
+          <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
+            <ul className="space-y-4">
+              {notList.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <Minus
+                    className="mt-1 h-4 w-4 shrink-0 text-slate-400"
+                    aria-hidden="true"
+                  />
+                  <span className="text-base text-slate-600">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-center text-sm text-slate-600">
+              <Link
+                href="/compare"
+                className="font-semibold text-brand-600 hover:text-brand-700"
+              >
+                Compare Afterkey to a CRM, a spreadsheet, and an all-in-one suite
+              </Link>
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Use cases */}
       <section className="py-20 sm:py-24">
+        <Container>
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
+              Go deeper on the part that matters to you
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {useCases.map((useCase) => (
+              <Reveal key={useCase.slug}>
+                <Link
+                  href={`/use-cases/${useCase.slug}`}
+                  className="group block h-full"
+                >
+                  <Card interactive className="h-full p-5">
+                    <IconBox icon={useCase.icon} accent={useCase.accent} />
+                    <h3 className="mt-4 text-base font-semibold text-slate-900">
+                      {useCase.title}
+                    </h3>
+                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 group-hover:text-brand-700">
+                      Read more
+                      <ArrowRight
+                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </Card>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-slate-200 bg-white py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
               Run it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Start your {trialLength} free trial — set up your first home and
-              run your punch list today. No demo, no sales call.
+              Start a {trialLength} free trial, add your first home, and log a
+              real request today. Self-serve setup, no demo required.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
