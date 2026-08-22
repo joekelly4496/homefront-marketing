@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { siteUrl as baseUrl } from '@/lib/site';
+import { absoluteUrl } from '@/lib/site';
 import { useCases } from '@/lib/content';
 
 /**
@@ -28,8 +28,10 @@ const routes: { path: string; priority: number; changeFrequency: 'weekly' | 'mon
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
+  // absoluteUrl normalizes '' to '/', matching the canonical tag exactly.
+  // A sitemap URL that differs from its page's canonical is a wasted signal.
   return routes.map((route) => ({
-    url: `${baseUrl}${route.path}`,
+    url: absoluteUrl(route.path || '/'),
     lastModified: now,
     changeFrequency: route.changeFrequency,
     priority: route.priority,

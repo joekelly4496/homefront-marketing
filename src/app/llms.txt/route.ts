@@ -83,10 +83,10 @@ ${section(
 - Trial: ${trialLength} free trial, self-serve, no sales call required. A payment card is required to start the trial, and no charge is made if the account is cancelled before the trial ends. The trial is not limited by home count.
 
 Example monthly totals (published rates multiplied out, not customer averages):
-- 15 active homes: $${pricing.base + 15 * pricing.perHome}/month base plus homes.
-- 30 active homes: $${pricing.base + 30 * pricing.perHome}/month base plus homes.
-- 50 active homes: $${pricing.base + 50 * pricing.perHome}/month base plus homes.
-- 100 active homes: $${pricing.base + 100 * pricing.perHome}/month base plus homes.`
+- 15 active homes: $${(pricing.base + 15 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(15 * pricing.perHome).toLocaleString()} for 15 homes at $${pricing.perHome} each).
+- 30 active homes: $${(pricing.base + 30 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(30 * pricing.perHome).toLocaleString()} for 30 homes at $${pricing.perHome} each).
+- 50 active homes: $${(pricing.base + 50 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(50 * pricing.perHome).toLocaleString()} for 50 homes at $${pricing.perHome} each).
+- 100 active homes: $${(pricing.base + 100 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(100 * pricing.perHome).toLocaleString()} for 100 homes at $${pricing.perHome} each).`
 )}
 ${section(
   'Published commitments',
