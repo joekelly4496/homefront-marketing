@@ -34,6 +34,8 @@ Key exports:
 | `pricing` | Every dollar figure on the site |
 | `smsStatus` | `'live'` or `'coming-soon'` — flips all SMS copy site-wide |
 | `guarantee` | The 30-day money-back guarantee wording. Also quoted in `/terms` |
+| `brand.whiteLabel` | The white-label fact — a top-tier selling point, state it high |
+| `brand.founder` | Approved founder line. Do not extend it (see Copy rules) |
 | `perHomeFraming` | Mandatory framing for the per-home fee (see Copy rules) |
 | `featureGroups` | Feature list, each tagged `live` / `coming-soon` / `roadmap` |
 | `portals` | The three-portal story |
@@ -67,6 +69,16 @@ creates legal, carrier, or credibility exposure:
   `perHomeFraming` — it is small enough to price into the home at closing, so
   post-closing is a line item on the home rather than overhead the builder
   absorbs.
+- **Lead with white-labeling.** The homeowner-facing side carries the
+  builder's business name and branding, not Afterkey's — buyers barely see
+  Afterkey at all. This is one of the strongest reasons a builder buys, so it
+  belongs high on the page, not in a feature list. The mockups encode it too:
+  `BuilderDashboard` shows Afterkey, `PhoneMockup` shows the builder's brand.
+  Keep that contrast if you edit them.
+- **The founder line is exactly `brand.founder` and nothing more.** You may say
+  Afterkey is built by a residential home builder on Long Island. Do NOT claim
+  it is piloted, tested, or running on his own homes — that claim has been
+  explicitly declined.
 - **Do not fabricate social proof.** There are no customers to quote yet. The
   testimonial and logo sections are intentionally not rendered (see the comment
   in `src/app/page.tsx`). Add them back when real quotes exist.

@@ -97,6 +97,15 @@ export default function HomePage() {
                   {brand.purpose}
                 </p>
               </Reveal>
+              <Reveal delay={150}>
+                <p className="mt-3 max-w-xl text-lg text-slate-600">
+                  <strong className="font-semibold text-slate-900">
+                    And it’s white-labeled.
+                  </strong>{" "}
+                  Your buyers see your business on the portal they use — not
+                  ours.
+                </p>
+              </Reveal>
               <Reveal delay={180}>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button href={signupHref} size="lg">
@@ -354,9 +363,10 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>What your buyers get</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              The handoff that keeps your name on the house
+              Under your brand, not ours
             </h2>
-            <p className="mt-4 text-base text-slate-600">
+            <p className="mt-4 text-base text-slate-600">{brand.whiteLabel}</p>
+            <p className="mt-3 text-base text-slate-600">
               A homeowner who can see what’s happening doesn’t call to ask. One
               who’s handed a real maintenance schedule tells their neighbors who
               built it.

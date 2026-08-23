@@ -8,6 +8,7 @@ import {
   FileClock,
   FolderArchive,
   BookMarked,
+  BadgeCheck,
   Sparkles,
   FileCheck2,
   Gavel,
@@ -28,7 +29,6 @@ import type { Accent } from "@/components/ui/IconBox";
 export const brand = {
   name: "Afterkey",
   legalName: "Afterkey Inc.",
-  domain: "getafterkey.com",
   email: "support@getafterkey.com",
   /** The category sentence. Plain, declarative, no adjectives. */
   category: "post-closing software platform for residential home builders",
@@ -42,6 +42,19 @@ export const brand = {
   /** The second sentence — what it's for. */
   purpose:
     "Builders use Afterkey after the keys are handed over, so the post-closing relationship drives referrals and repeat business instead of eating margin.",
+  /**
+   * White-labeling is a top-tier selling point, not a footnote: the homeowner
+   * experience carries the builder's business, not Afterkey's. State it high
+   * on any page a builder lands on.
+   */
+  whiteLabel:
+    "Afterkey is white-labeled. The homeowner portal carries the builder's business name and branding, so buyers experience it as their builder's system — they barely see Afterkey at all.",
+  /**
+   * Founder credibility line. APPROVED WORDING ONLY — Joe has explicitly
+   * declined any claim that Afterkey is piloted or tested on his own homes.
+   * Do not add one.
+   */
+  founder: "Afterkey is built by a residential home builder on Long Island.",
 } as const;
 
 /** Base URL of the live app where auth and the three portals live. */
@@ -213,8 +226,9 @@ export const portals: Portal[] = [
     accent: "emerald",
     audience: "Your buyers",
     description:
-      "Where your homeowner submits a request, watches it move, and finds the maintenance schedule for their home — instead of calling your cell.",
+      "Your brand, not ours. Where your homeowner submits a request, watches it move, and finds the maintenance schedule for their home — instead of calling your cell.",
     points: [
+      "White-labeled under your business",
       "Submit a service request",
       "Track status end to end",
       "Message you directly",
@@ -550,8 +564,15 @@ export const builderValue: Highlight[] = [
 
 export const homeownerValue: Highlight[] = [
   {
-    icon: MessageSquare,
+    icon: BadgeCheck,
     accent: "brand",
+    title: "Your name on it, not ours",
+    description:
+      "The portal your buyers use carries your business, not Afterkey’s. They experience it as the system their builder gave them — which is the point. You get the credit for the software.",
+  },
+  {
+    icon: MessageSquare,
+    accent: "amber",
     title: "One place to ask",
     description:
       "They submit a request in their portal and watch it move, instead of texting your cell at 9pm and wondering whether it landed.",
@@ -641,7 +662,7 @@ export const comparisons: Comparison[] = [
         "Starts at the close and runs for the life of the home",
         "Tracks warranty periods, appliances, and maintenance intervals",
         "Per-trade dispatch with ratings and compliance gating built in",
-        "A homeowner portal your buyers actually use",
+        "A homeowner portal your buyers actually use, under your brand",
         "Priced per home, with unlimited users at no extra cost",
       ],
     },
@@ -716,6 +737,11 @@ export type Differentiator = { title: string; description: string };
 
 export const differentiators: Differentiator[] = [
   {
+    title: "Your buyers see your brand, not ours",
+    description:
+      "Afterkey is white-labeled. The homeowner portal carries your business name and branding, so the professional post-closing experience reflects on you. Handing a buyer a polished system is the kind of thing that gets mentioned to their neighbors — and it should be your name they mention.",
+  },
+  {
     title: "AI that shows its work",
     description:
       "Every maintenance suggestion carries a numbered footnote — the manufacturer’s published schedule, the document you uploaded, or an honest “typical schedule, verify against the manual” label. It never invents an interval, and you confirm every line before a homeowner sees it.",
@@ -770,8 +796,12 @@ export const coreFaqs: Faq[] = [
     a: "A CRM is organized around leads, deals, and a pipeline that ends when a sale closes. Afterkey is organized around homes, service requests, and subcontractors, and begins at the moment a CRM would finish. Afterkey understands warranty periods, appliances, and maintenance intervals; it dispatches subcontractors by trade and tracks their insurance and license expirations; and it gives the homeowner a portal of their own. Afterkey is also priced per home with unlimited users, rather than per seat.",
   },
   {
+    q: "Is Afterkey white-labeled?",
+    a: "Yes. The homeowner-facing side of Afterkey carries the builder's business name and branding rather than Afterkey's. Homeowners experience it as their builder's system and see very little of Afterkey itself. The builder portal and the subcontractor portal are the working tools behind that; the brand the buyer associates with a professional post-closing experience is the builder's.",
+  },
+  {
     q: "How do homeowners use Afterkey?",
-    a: "Homeowners get access to a browser-based portal — there is no app to download. They submit warranty and service requests with photos, track the status of each request through to completion, message the builder directly, view the maintenance schedule built for their specific home and appliances, and see the full service history of the house. If the builder sells a maintenance membership or service plan, the homeowner subscribes and pays through the same portal.",
+    a: "Homeowners get access to a browser-based portal, white-labeled under the builder's business — there is no app to download. They submit warranty and service requests with photos, track the status of each request through to completion, message the builder directly, view the maintenance schedule built for their specific home and appliances, and see the full service history of the house. If the builder sells a maintenance membership or service plan, the homeowner subscribes and pays through the same portal.",
   },
   {
     q: "Do subcontractors have to pay for Afterkey?",

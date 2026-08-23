@@ -98,6 +98,7 @@ const included = [
   "Subcontractor cost intelligence across every home",
   "Compliance document tracking with expiration reminders",
   "Compliance gating on dispatch, with logged overrides",
+  "Homeowner portal, white-labeled under your business",
   "Homeowner portal — requests, status, messaging, history",
   "Subcontractor portal — jobs, photo updates, documents",
   "AI Home Binder with cited maintenance schedules",

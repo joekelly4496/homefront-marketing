@@ -94,6 +94,18 @@ export default function AboutPage() {
                 make it pay for itself instead of eating margin.
               </p>
               <p>
+                {brand.founder} That is why it starts at closing instead of at
+                the permit: the year after handoff is the part of the job nobody
+                writes software for, and it is the part that decides whether the
+                next buyer calls you.
+              </p>
+              <p>
+                It is also why the homeowner side is white-labeled.{" "}
+                {brand.whiteLabel} A builder spends years earning a name. The
+                software running underneath the experience should not be the one
+                collecting the credit for it.
+              </p>
+              <p>
                 We are early. There is no customer logo wall on this site
                 because we have not earned one yet, and we would rather show you
                 the product than borrow someone else’s credibility. The pricing
