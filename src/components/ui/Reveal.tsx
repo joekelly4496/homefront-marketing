@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function Reveal({
   children,
-  className = '',
+  className = "",
   delay = 0,
 }: {
   children: ReactNode;
@@ -27,7 +27,7 @@ export function Reveal({
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
     );
 
     observer.observe(node);
@@ -37,7 +37,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`${visible ? 'animate-fade-up' : 'opacity-0'} ${className}`.trim()}
+      className={`${visible ? "animate-fade-up" : "opacity-0"} ${className}`.trim()}
       style={visible && delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       {children}

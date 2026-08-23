@@ -1,6 +1,6 @@
-import { Reveal } from '@/components/ui/Reveal';
-import { Container } from '@/components/ui/Container';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { Reveal } from "@/components/ui/Reveal";
+import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export type LegalSection = { heading: string; body: string };
 

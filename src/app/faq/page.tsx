@@ -1,36 +1,36 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container, SectionLabel } from '@/components/ui/Container';
-import { FaqList } from '@/components/ui/FaqList';
-import { PageHeader } from '@/components/ui/PageHeader';
-import { JsonLd } from '@/components/JsonLd';
-import { pageMetadata } from '@/lib/seo';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container, SectionLabel } from "@/components/ui/Container";
+import { FaqList } from "@/components/ui/FaqList";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import {
   graph,
   breadcrumbSchema,
   faqPageSchema,
   webPageSchema,
-} from '@/lib/schema';
+} from "@/lib/schema";
 import {
   brand,
   pricing,
   coreFaqs,
   pricingFaqs,
   signupHref,
-  trialLength,
-} from '@/lib/content';
+  guarantee,
+} from "@/lib/content";
 
-const title = 'Frequently Asked Questions';
+const title = "Frequently Asked Questions";
 const description =
-  'What Afterkey is, who it is for, what it costs, what the AI does, how homeowners use it, and how it differs from a CRM. Straight answers, no sales call.';
+  "What Afterkey is, who it is for, what it costs, what the AI does, how homeowners use it, and how it differs from a CRM. Straight answers, no sales call.";
 
 export const metadata = pageMetadata({
   title,
   description,
-  path: '/faq',
+  path: "/faq",
 });
 
 /** Pricing FAQs live on /pricing too; both pages render the same source text. */
@@ -38,8 +38,8 @@ const allFaqs = [...coreFaqs, ...pricingFaqs];
 
 export default function FaqPage() {
   const pageGraph = graph([
-    webPageSchema({ name: title, description, path: '/faq' }),
-    breadcrumbSchema([{ name: 'FAQ', path: '/faq' }]),
+    webPageSchema({ name: title, description, path: "/faq" }),
+    breadcrumbSchema([{ name: "FAQ", path: "/faq" }]),
     faqPageSchema(allFaqs),
   ]);
 
@@ -63,9 +63,9 @@ export default function FaqPage() {
               </h2>
               <p className="mt-3 text-base leading-relaxed text-slate-700">
                 {brand.definition} {brand.purpose} It costs ${pricing.base} per
-                month plus ${pricing.perHome} per active home, includes unlimited
-                team members and subcontractors, and is sold month-to-month with
-                no contract.
+                month plus ${pricing.perHome} per active home, includes
+                unlimited team members and subcontractors, and is sold
+                month-to-month with no contract.
               </p>
             </Card>
           </Reveal>
@@ -100,7 +100,7 @@ export default function FaqPage() {
             <FaqList faqs={pricingFaqs} />
             <p className="mt-6 text-sm text-slate-600">
               The full breakdown, including add-ons and worked examples, is on
-              the{' '}
+              the{" "}
               <Link
                 href="/pricing"
                 className="font-semibold text-brand-600 hover:text-brand-700"
@@ -121,19 +121,19 @@ export default function FaqPage() {
               Still have a question?
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Email{' '}
+              Email{" "}
               <a
                 href={`mailto:${brand.email}`}
                 className="font-semibold text-brand-600 hover:text-brand-700"
               >
                 {brand.email}
-              </a>{' '}
-              and a person will answer. Or start a {trialLength} free trial and
-              find out for yourself — self-serve, no sales call.
+              </a>{" "}
+              and a person will answer. Or just start and find out for yourself.{" "}
+              {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/compare" size="lg" variant="secondary">

@@ -23,8 +23,8 @@ import {
   pricing,
   pricingLine,
   signupHref,
-  trialLength,
-  trial,
+  guarantee,
+  perHomeFraming,
   useCases,
 } from "@/lib/content";
 
@@ -100,7 +100,7 @@ export default function HomePage() {
               <Reveal delay={180}>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button href={signupHref} size="lg">
-                    Start your {trialLength} free trial
+                    Get started
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
                   <Button href="/pricing" size="lg" variant="secondary">
@@ -110,12 +110,12 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={240}>
                 <p className="mt-6 text-sm text-slate-500">
-                  ${pricing.base}/month + ${pricing.perHome} per active home ·
-                  Unlimited users and subs · No contracts
+                  ${pricing.base}/month base · Unlimited users and subs · No
+                  contracts
                 </p>
               </Reveal>
               <Reveal delay={280}>
-                <p className="mt-2 text-sm text-slate-500">{trial.terms}</p>
+                <p className="mt-2 text-sm text-slate-500">{guarantee.short}</p>
               </Reveal>
             </div>
 
@@ -501,6 +501,7 @@ export default function HomePage() {
               One plan. Published price. No sales call.
             </h2>
             <p className="mt-4 text-base text-slate-600">{pricingLine}</p>
+            <p className="mt-3 text-base text-slate-600">{perHomeFraming}</p>
             <p className="mt-3 text-sm text-slate-500">
               Optional add-ons: AI at ${pricing.ai.price}/month per active home,
               SMS at ${pricing.sms.price}/month. Every metered feature has a
@@ -510,7 +511,7 @@ export default function HomePage() {
 
           <Reveal className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href={signupHref} size="lg">
-              Start your {trialLength} free trial
+              Get started
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
             <Link
@@ -564,12 +565,11 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-base text-slate-600">
               Set up your first home, add your subs, and log a real request
-              today. {trialLength} free trial, self-serve setup, no sales call
-              required.
+              today. Self-serve setup, no sales call required. {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">

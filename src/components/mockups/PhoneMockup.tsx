@@ -1,11 +1,11 @@
-import { CalendarClock, CheckCircle2, Clock, FileText } from 'lucide-react';
+import { CalendarClock, CheckCircle2, Clock, FileText } from "lucide-react";
 
 /**
  * The homeowner portal, as a buyer sees it on their phone: an open request
  * with real status, and a maintenance item carrying its source footnote —
  * the honesty detail that makes the AI schedule credible.
  */
-export function PhoneMockup({ className = '' }: { className?: string }) {
+export function PhoneMockup({ className = "" }: { className?: string }) {
   return (
     <div
       className={`w-[230px] overflow-hidden rounded-[2rem] border-[6px] border-slate-900 bg-white shadow-2xl shadow-slate-900/20 ${className}`.trim()}
@@ -22,7 +22,9 @@ export function PhoneMockup({ className = '' }: { className?: string }) {
           <p className="text-[10px] font-semibold uppercase tracking-wide text-brand-600">
             Your home
           </p>
-          <p className="text-sm font-semibold text-slate-900">142 Maple Court</p>
+          <p className="text-sm font-semibold text-slate-900">
+            142 Maple Court
+          </p>
           <p className="text-[11px] text-slate-500">Built by Whitfield Homes</p>
         </div>
 

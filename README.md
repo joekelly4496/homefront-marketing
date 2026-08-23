@@ -33,6 +33,8 @@ Key exports:
 | `brand` | Name, legal name, domain, support email, and the canonical one-sentence definition |
 | `pricing` | Every dollar figure on the site |
 | `smsStatus` | `'live'` or `'coming-soon'` — flips all SMS copy site-wide |
+| `guarantee` | The 30-day money-back guarantee wording. Also quoted in `/terms` |
+| `perHomeFraming` | Mandatory framing for the per-home fee (see Copy rules) |
 | `featureGroups` | Feature list, each tagged `live` / `coming-soon` / `roadmap` |
 | `portals` | The three-portal story |
 | `commitments` | The six published pricing commitments |
@@ -56,6 +58,15 @@ creates legal, carrier, or credibility exposure:
   is the selling point — do not soften it into generic "AI-powered" language.
 - **Mark unreleased features.** Anything not shipping carries a `StatusPill` of
   `coming-soon` or `roadmap`.
+- **There is no free trial.** Afterkey sells with a 30-day money-back
+  guarantee instead. Never write "free trial," "try it free," or "start free" —
+  the FAQ answers the trial question directly with a no, which is deliberate:
+  an answer engine should find an explicit denial, not silence.
+- **The per-home fee never appears as a naked recurring charge.** Wherever
+  `$10 per active home` shows up outside `/pricing`, pair it with
+  `perHomeFraming` — it is small enough to price into the home at closing, so
+  post-closing is a line item on the home rather than overhead the builder
+  absorbs.
 - **Do not fabricate social proof.** There are no customers to quote yet. The
   testimonial and logo sections are intentionally not rendered (see the comment
   in `src/app/page.tsx`). Add them back when real quotes exist.

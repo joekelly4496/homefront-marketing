@@ -1,16 +1,16 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Card } from '@/components/ui/Card';
-import { IconBox } from '@/components/ui/IconBox';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container } from '@/components/ui/Container';
-import { pageMetadata } from '@/lib/seo';
-import { brand, portals, signupHref } from '@/lib/content';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Card } from "@/components/ui/Card";
+import { IconBox } from "@/components/ui/IconBox";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container } from "@/components/ui/Container";
+import { pageMetadata } from "@/lib/seo";
+import { brand, portals, signupHref } from "@/lib/content";
 
 export const metadata = pageMetadata({
-  title: 'Sign in',
+  title: "Sign in",
   description: `Sign in to ${brand.name} — choose your portal: builder, homeowner, or subcontractor.`,
-  path: '/login',
+  path: "/login",
   // A sign-in doorway has no search value and would only compete with the
   // pages that do. Kept crawlable for link equity, out of the index.
   noIndex: true,
@@ -57,14 +57,14 @@ export default function LoginPage() {
 
         <Reveal delay={120} className="mt-10 text-center">
           <p className="text-sm text-slate-600">
-            New to {brand.name}?{' '}
+            New to {brand.name}?{" "}
             <a
               href={signupHref}
               className="font-semibold text-brand-600 hover:text-brand-700"
             >
-              Start a free trial
-            </a>{' '}
-            or{' '}
+              Get started
+            </a>{" "}
+            or{" "}
             <Link
               href="/pricing"
               className="font-semibold text-brand-600 hover:text-brand-700"

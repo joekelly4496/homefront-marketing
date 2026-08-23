@@ -54,29 +54,26 @@ export const loginUrls = {
   sub: `${appBase}/sub/login`,
 };
 
-/** Where every primary "start free trial" CTA points. */
+/** Where every primary "get started" CTA points. */
 export const signupHref = `${appBase}/builder/login?signup=1`;
 
-/** Free trial length — used in copy as `${trialLength} free trial`. */
-export const trialLength = "30-day";
-
 /**
- * Trial terms.
+ * The 30-day money-back guarantee — the risk reversal that replaced the free
+ * trial. Builders pay from day one and can get every dollar back.
  *
- * `homeLimit: null` is deliberate — the trial is NOT capped by home count.
- * Most of what justifies the price (subcontractor ratings across homes, cost
- * intelligence, pooled AI actions, compliance across a roster) is invisible on
- * a single home, and billing is per-home, so capping homes caps the exact thing
- * a builder is evaluating. Real trial cost exposure is AI actions and SMS
- * segments, and both are already metered with ceilings. Set a number here if
- * that ever needs to change; copy reads from this value.
+ * `headline` and `body` are the approved wording. Use them verbatim rather
+ * than paraphrasing: this promise also appears in the Terms of Service, and
+ * a marketing page that describes it differently from the contract is a real
+ * problem, not a style inconsistency.
  */
-export const trial = {
-  requiresCard: true,
-  homeLimit: null as number | null,
-  /** One-line summary used under CTAs. */
-  terms:
-    "Card required to start. Cancel any time before day 30 and you are not charged.",
+export const guarantee = {
+  days: 30,
+  headline: "30-day money-back guarantee",
+  /** The full promise. Featured on /pricing and echoed in /terms. */
+  body: "If it’s not working for you, we refund every dollar Afterkey charged. The only exception is usage costs already paid to carriers and payment processors on your behalf.",
+  /** One-line version for microcopy under a CTA. */
+  short:
+    "30-day money-back guarantee — if it’s not working, we refund every dollar Afterkey charged.",
 } as const;
 
 /**
@@ -91,6 +88,9 @@ export const trial = {
  * and llms.txt switches to waitlist language. Nothing else needs editing.
  */
 export const smsStatus: "live" | "coming-soon" = "live";
+
+/** The standard label for the primary call to action. */
+export const primaryCta = "Get started";
 
 /* ------------------------------------------------------------------ */
 /* Pricing — the numbers are final. Every price on the site reads      */
@@ -118,6 +118,14 @@ export const pricing = {
 
 /** The only approved one-line price summary for use outside /pricing. */
 export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.perHome} per active home. No per-user fees, no contracts, no quote calls.`;
+
+/**
+ * The per-home fee is never stated as a naked recurring charge. It always
+ * carries this framing: it is small enough to price into the home at closing,
+ * so post-closing is a line item on the home rather than overhead the builder
+ * absorbs. Pair it with `pricingLine` anywhere outside /pricing.
+ */
+export const perHomeFraming = `At $${pricing.perHome} per active home, it’s small enough to build into the home’s cost at closing — so post-closing is a line item on the home, not overhead you carry.`;
 
 /* ------------------------------------------------------------------ */
 /* The six published commitments — brand promises, quoted verbatim on  */
@@ -747,7 +755,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. A home is billed only while it is under warranty or on an active service plan, and dormant homes are never billed. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). A 2.5% platform fee applies to homeowner payments processed through Afterkey, with card processing passed through at cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Annual prepay takes 10% off the base.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. A home is billed only while it is under warranty or on an active service plan, and dormant homes are never billed. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). A 2.5% platform fee applies to homeowner payments processed through Afterkey, with card processing passed through at cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Annual prepay takes 10% off the base. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "What does the AI in Afterkey actually do?",
@@ -779,11 +787,11 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Standard onboarding is self-serve and free: you create an account, add your homes and subcontractors, and start logging requests the same day. The 30-day free trial requires a card to start, but you are not charged if you cancel before the trial ends, and no sales call is required. The trial is not limited by home count — you can load your whole roster and evaluate Afterkey the way you would actually use it. AI actions during the trial run at the free allowance of 5 per month, and Afterkey shows a cost preview before spending anything. Builders who want their existing home roster loaded for them can buy optional concierge onboarding for a one-time $499, where Afterkey builds the digital binder for every home from the documents you provide.",
+    a: "Standard onboarding is self-serve and free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial and no sales call — instead, every new account is covered by a 30-day money-back guarantee, so you evaluate Afterkey on your real homes rather than in a sandbox. Builders who want their existing home roster loaded for them can buy optional concierge onboarding for a one-time $499, where Afterkey builds the digital binder for every home from the documents you provide.",
   },
   {
     q: "Can I cancel Afterkey at any time?",
-    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. Annual prepay is available as a 10% discount on the base, not as a commitment requirement. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, every dollar Afterkey charged is refunded, excluding usage costs already paid to carriers and payment processors on your behalf. Annual prepay is available as a 10% discount on the base, not as a commitment requirement. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
   },
 ];
 
@@ -818,8 +826,8 @@ export const pricingFaqs: Faq[] = [
     a: "Only with 60 days’ notice, and only at your next billing cycle. Increases are never applied mid-term and never retroactively. Prices are published on this page rather than quoted, so you can always see exactly what the plan costs.",
   },
   {
-    q: "Does the free trial require a credit card?",
-    a: "Yes. A card is required to start the 30-day free trial, which keeps trial accounts tied to real businesses. You are not charged if you cancel before the trial ends, and there is no contract or termination fee if you continue and later cancel. The trial is not capped by home count — you can add your full roster during it. AI actions run at the free allowance of 5 per month during the trial unless you enable the AI add-on, and Afterkey always shows a cost preview before spending anything.",
+    q: "Is there a free trial?",
+    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you within 30 days, we refund every dollar Afterkey charged. The only exception is usage costs already paid to carriers and payment processors on your behalf — SMS segments already sent and card processing fees already incurred cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
   },
   {
     q: "What is concierge onboarding?",

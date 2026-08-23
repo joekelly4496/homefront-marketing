@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { Logo } from '@/components/ui/Logo';
-import { buttonVariants } from '@/components/ui/Button';
-import { signupHref } from '@/lib/content';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
+import { buttonVariants } from "@/components/ui/Button";
+import { signupHref, primaryCta } from "@/lib/content";
 
 const navLinks = [
-  { href: '/features', label: 'Features' },
-  { href: '/use-cases', label: 'Use cases' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/for-subcontractors', label: 'For Subs' },
+  { href: "/features", label: "Features" },
+  { href: "/use-cases", label: "Use cases" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/for-subcontractors", label: "For Subs" },
 ];
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -51,8 +51,8 @@ export default function Navigation() {
             >
               Sign in
             </Link>
-            <Link href={signupHref} className={buttonVariants({ size: 'sm' })}>
-              Start free trial
+            <Link href={signupHref} className={buttonVariants({ size: "sm" })}>
+              {primaryCta}
             </Link>
           </div>
 
@@ -61,7 +61,7 @@ export default function Navigation() {
             type="button"
             className="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-lg text-slate-700 hover:bg-slate-100"
             onClick={() => setIsOpen((v) => !v)}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
           >
             {isOpen ? (
@@ -98,9 +98,9 @@ export default function Navigation() {
               <Link
                 href={signupHref}
                 onClick={() => setIsOpen(false)}
-                className={buttonVariants({ size: 'lg', className: 'w-full' })}
+                className={buttonVariants({ size: "lg", className: "w-full" })}
               >
-                Start free trial
+                {primaryCta}
               </Link>
             </div>
           </div>

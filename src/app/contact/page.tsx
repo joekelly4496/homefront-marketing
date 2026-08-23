@@ -1,59 +1,59 @@
-import { Mail, UserPlus, HelpCircle, ArrowRight, BookOpen } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { IconBox } from '@/components/ui/IconBox';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container } from '@/components/ui/Container';
-import { PageHeader } from '@/components/ui/PageHeader';
-import { JsonLd } from '@/components/JsonLd';
-import { pageMetadata } from '@/lib/seo';
-import { graph, breadcrumbSchema, webPageSchema } from '@/lib/schema';
-import { brand, signupHref, trialLength } from '@/lib/content';
+import { Mail, UserPlus, HelpCircle, ArrowRight, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { IconBox } from "@/components/ui/IconBox";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
+import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { brand, signupHref, guarantee } from "@/lib/content";
 
-const title = 'Contact';
+const title = "Contact";
 const description =
-  'Start a free trial, email the Afterkey team with a question about pricing or onboarding, or sign in to your builder, homeowner, or subcontractor portal.';
+  "Get started with Afterkey, email the team a question about pricing or onboarding, or sign in to your builder, homeowner, or subcontractor portal.";
 
 export const metadata = pageMetadata({
   title,
   description,
-  path: '/contact',
+  path: "/contact",
 });
 
 const options = [
   {
     icon: UserPlus,
-    title: 'Start a free trial',
-    description: `Create your account and set up your first home in minutes. ${trialLength} trial, self-serve, no demo required.`,
-    cta: { label: 'Start free trial', href: signupHref },
+    title: "Get started",
+    description: `Create your account and set up your first home in minutes. Self-serve, no demo required, and a ${guarantee.days}-day money-back guarantee.`,
+    cta: { label: "Get started", href: signupHref },
   },
   {
     icon: Mail,
-    title: 'Email us',
+    title: "Email us",
     description:
-      'Questions about pricing, onboarding, or whether Afterkey fits how you work. A person answers.',
+      "Questions about pricing, onboarding, or whether Afterkey fits how you work. A person answers.",
     cta: { label: brand.email, href: `mailto:${brand.email}` },
   },
   {
     icon: BookOpen,
-    title: 'Read the answers first',
+    title: "Read the answers first",
     description:
-      'Most questions are already answered in writing — what it is, what it costs, what the AI does, and how it compares.',
-    cta: { label: 'Go to the FAQ', href: '/faq' },
+      "Most questions are already answered in writing — what it is, what it costs, what the AI does, and how it compares.",
+    cta: { label: "Go to the FAQ", href: "/faq" },
   },
   {
     icon: HelpCircle,
-    title: 'Already a customer?',
+    title: "Already a customer?",
     description:
-      'Sign in to your portal — builder, homeowner, or subcontractor.',
-    cta: { label: 'Go to sign in', href: '/login' },
+      "Sign in to your portal — builder, homeowner, or subcontractor.",
+    cta: { label: "Go to sign in", href: "/login" },
   },
 ];
 
 export default function ContactPage() {
   const pageGraph = graph([
-    webPageSchema({ name: title, description, path: '/contact' }),
-    breadcrumbSchema([{ name: 'Contact', path: '/contact' }]),
+    webPageSchema({ name: title, description, path: "/contact" }),
+    breadcrumbSchema([{ name: "Contact", path: "/contact" }]),
   ]);
 
   return (
@@ -63,7 +63,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Talk to us — or skip us entirely"
-        subtitle="Pricing is published and the trial is self-serve, so you never have to sit through a call to find out what Afterkey costs. But if you want to talk to somebody, we are glad to."
+        subtitle="Pricing is published and setup is self-serve, so you never have to sit through a call to find out what Afterkey costs. But if you want to talk to somebody, we are glad to."
       />
 
       <section className="py-20 sm:py-24">
@@ -93,7 +93,7 @@ export default function ContactPage() {
 
           <Reveal delay={140} className="mt-12 text-center">
             <Button href={signupHref} size="lg">
-              Start your {trialLength} free trial
+              Get started
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
           </Reveal>

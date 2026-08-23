@@ -1,42 +1,42 @@
-import Link from 'next/link';
-import { Logo } from '@/components/ui/Logo';
-import { brand, signupHref, loginUrls, useCases } from '@/lib/content';
+import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
+import { brand, signupHref, loginUrls, useCases } from "@/lib/content";
 
 const columns: { heading: string; links: { href: string; label: string }[] }[] =
   [
     {
-      heading: 'Product',
+      heading: "Product",
       links: [
-        { href: '/features', label: 'Features' },
-        { href: '/pricing', label: 'Pricing' },
-        { href: '/compare', label: 'Compare' },
-        { href: '/faq', label: 'FAQ' },
-        { href: '/for-subcontractors', label: 'For Subcontractors' },
+        { href: "/features", label: "Features" },
+        { href: "/pricing", label: "Pricing" },
+        { href: "/compare", label: "Compare" },
+        { href: "/faq", label: "FAQ" },
+        { href: "/for-subcontractors", label: "For Subcontractors" },
       ],
     },
     {
-      heading: 'Use cases',
+      heading: "Use cases",
       links: useCases.map((u) => ({
         href: `/use-cases/${u.slug}`,
         label: u.navLabel,
       })),
     },
     {
-      heading: 'Portals',
+      heading: "Portals",
       links: [
-        { href: loginUrls.builder, label: 'Builder login' },
-        { href: loginUrls.homeowner, label: 'Homeowner login' },
-        { href: loginUrls.sub, label: 'Subcontractor login' },
-        { href: signupHref, label: 'Start free trial' },
+        { href: loginUrls.builder, label: "Builder login" },
+        { href: loginUrls.homeowner, label: "Homeowner login" },
+        { href: loginUrls.sub, label: "Subcontractor login" },
+        { href: signupHref, label: "Get started" },
       ],
     },
     {
-      heading: 'Company',
+      heading: "Company",
       links: [
-        { href: '/about', label: 'About' },
-        { href: '/contact', label: 'Contact' },
-        { href: '/privacy', label: 'Privacy' },
-        { href: '/terms', label: 'Terms' },
+        { href: "/about", label: "About" },
+        { href: "/contact", label: "Contact" },
+        { href: "/privacy", label: "Privacy" },
+        { href: "/terms", label: "Terms" },
       ],
     },
   ];
@@ -84,8 +84,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} {brand.legalName}. All rights
-            reserved.
+            © {new Date().getFullYear()} {brand.legalName}. All rights reserved.
           </p>
           <p className="text-xs text-slate-400">
             Post-closing software for residential home builders.

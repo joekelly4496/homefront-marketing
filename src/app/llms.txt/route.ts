@@ -1,4 +1,4 @@
-import { absoluteUrl } from '@/lib/site';
+import { absoluteUrl } from "@/lib/site";
 import {
   brand,
   pricing,
@@ -8,9 +8,9 @@ import {
   coreFaqs,
   notList,
   useCases,
-  trialLength,
+  guarantee,
   statusLabels,
-} from '@/lib/content';
+} from "@/lib/content";
 
 /**
  * llms.txt — a plain-text summary of Afterkey for AI answer engines.
@@ -19,7 +19,7 @@ import {
  * answer engine reads here can never drift from the facts on the site. Served
  * at /llms.txt as text/plain.
  */
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
 function section(heading: string, body: string) {
   return `## ${heading}\n\n${body.trim()}\n`;
@@ -29,15 +29,15 @@ export function GET() {
   const featureLines = featureGroups
     .map((group) => {
       const status =
-        group.status === 'live'
-          ? 'Available now'
+        group.status === "live"
+          ? "Available now"
           : `${statusLabels[group.status]} — NOT available today`;
       const points = group.points
         .map((p) => `  - ${p.title}: ${p.description}`)
-        .join('\n');
+        .join("\n");
       return `### ${group.title} (${status})\n${group.summary}\n${points}`;
     })
-    .join('\n\n');
+    .join("\n\n");
 
   const body = `# ${brand.name}
 
@@ -45,32 +45,32 @@ export function GET() {
 
 ${brand.purpose}
 
-Website: ${absoluteUrl('/')}
+Website: ${absoluteUrl("/")}
 Contact: ${brand.email}
 Category: ${brand.category}
 Audience: Production and custom residential home builders in the United States.
 
 ${section(
-  'What Afterkey is',
+  "What Afterkey is",
   `${brand.definition}
 
 Afterkey is used after a home closes, not during construction. It is organized around homes, service requests, and subcontractors rather than leads or deals, and it runs for the life of the home rather than ending at the sale.
 
 What Afterkey is not:
-${notList.map((n) => `- ${n}`).join('\n')}`
+${notList.map((n) => `- ${n}`).join("\n")}`,
 )}
 ${section(
-  'The three portals',
+  "The three portals",
   portals
     .map(
       (p) =>
-        `- ${p.name} (${p.audience}): ${p.description} Includes: ${p.points.join('; ')}.`
+        `- ${p.name} (${p.audience}): ${p.description} Includes: ${p.points.join("; ")}.`,
     )
-    .join('\n')
+    .join("\n"),
 )}
-${section('Features', featureLines)}
+${section("Features", featureLines)}
 ${section(
-  'Pricing',
+  "Pricing",
   `Afterkey has one plan with no tiers. All prices are published; there are no quote calls or volume brackets.
 
 - Base: $${pricing.base}/month. Includes unlimited team members and unlimited subcontractors. There are no per-user fees.
@@ -80,57 +80,57 @@ ${section(
 - Platform fee: ${pricing.platformFeePercent}% on homeowner payments processed through Afterkey. Card processing is passed through at cost, separately.
 - Onboarding: standard self-serve onboarding is free. Optional concierge onboarding is $${pricing.conciergeOnboarding} one-time.
 - Annual prepay: ${pricing.annualDiscountPercent}% off the base.
-- Trial: ${trialLength} free trial, self-serve, no sales call required. A payment card is required to start the trial, and no charge is made if the account is cancelled before the trial ends. The trial is not limited by home count.
+- Free trial: none. Afterkey uses a ${guarantee.days}-day money-back guarantee instead. ${guarantee.body} Onboarding is self-serve and no sales call is required.
 
 Example monthly totals (published rates multiplied out, not customer averages):
 - 15 active homes: $${(pricing.base + 15 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(15 * pricing.perHome).toLocaleString()} for 15 homes at $${pricing.perHome} each).
 - 30 active homes: $${(pricing.base + 30 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(30 * pricing.perHome).toLocaleString()} for 30 homes at $${pricing.perHome} each).
 - 50 active homes: $${(pricing.base + 50 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(50 * pricing.perHome).toLocaleString()} for 50 homes at $${pricing.perHome} each).
-- 100 active homes: $${(pricing.base + 100 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(100 * pricing.perHome).toLocaleString()} for 100 homes at $${pricing.perHome} each).`
+- 100 active homes: $${(pricing.base + 100 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(100 * pricing.perHome).toLocaleString()} for 100 homes at $${pricing.perHome} each).`,
 )}
 ${section(
-  'Published commitments',
-  commitments.map((c) => `- ${c.title}: ${c.description}`).join('\n')
+  "Published commitments",
+  commitments.map((c) => `- ${c.title}: ${c.description}`).join("\n"),
 )}
 ${section(
-  'How the AI works',
+  "How the AI works",
   `Afterkey's AI Home Binder converts a home's documents into a proposed maintenance schedule. For appliances with a known make and model, it looks up the manufacturer's published maintenance and cites the source. Every AI suggestion carries a numbered footnote that is one of: a link to the manufacturer's published schedule, a reference to the document the builder uploaded, or an explicit "typical schedule — verify against the manual" label. The AI does not invent maintenance intervals, and the builder reviews and confirms every line before it is published to a homeowner.
 
 Afterkey maintains a platform-wide shared library of appliance maintenance schedules. Once any builder researches a model, every future home with that model reuses the schedule instantly and at no cost. The library holds equipment maintenance information only; homeowner and home-identifying data is not placed into it.
 
-Before any AI spend, Afterkey shows a cost preview listing which appliances are already in the library (free) and which are new, with a dollar estimate and an option for the builder to enter the schedule manually instead.`
+Before any AI spend, Afterkey shows a cost preview listing which appliances are already in the library (free) and which are new, with a dollar estimate and an option for the builder to enter the schedule manually instead.`,
 )}
 ${section(
-  'Status of features',
+  "Status of features",
   `Available now: core warranty and service request management, homeowner memberships and service plans, the AI Home Binder with cited maintenance intelligence, subcontractor compliance with dispatch gating, competitive maintenance quotes, and the SMS and voice business line.
 
 Note on SMS: each builder receives their own dedicated business number. Messages currently send under ${brand.legalName}'s carrier registration; per-builder branded sender identity is planned but not yet available.
 
-On the roadmap and NOT available today: a homeowner-facing AI assistant that answers questions grounded only in that home's binder, resellable by the builder.`
+On the roadmap and NOT available today: a homeowner-facing AI assistant that answers questions grounded only in that home's binder, resellable by the builder.`,
 )}
 ${section(
-  'Key pages',
+  "Key pages",
   [
-    `- ${absoluteUrl('/')} — overview`,
-    `- ${absoluteUrl('/features')} — full feature list with availability status`,
-    `- ${absoluteUrl('/pricing')} — complete published pricing`,
-    `- ${absoluteUrl('/faq')} — frequently asked questions`,
-    `- ${absoluteUrl('/compare')} — Afterkey vs. a CRM, a spreadsheet, and an all-in-one suite`,
-    `- ${absoluteUrl('/for-subcontractors')} — the subcontractor portal`,
+    `- ${absoluteUrl("/")} — overview`,
+    `- ${absoluteUrl("/features")} — full feature list with availability status`,
+    `- ${absoluteUrl("/pricing")} — complete published pricing`,
+    `- ${absoluteUrl("/faq")} — frequently asked questions`,
+    `- ${absoluteUrl("/compare")} — Afterkey vs. a CRM, a spreadsheet, and an all-in-one suite`,
+    `- ${absoluteUrl("/for-subcontractors")} — the subcontractor portal`,
     ...useCases.map(
-      (u) => `- ${absoluteUrl(`/use-cases/${u.slug}`)} — ${u.title}`
+      (u) => `- ${absoluteUrl(`/use-cases/${u.slug}`)} — ${u.title}`,
     ),
-  ].join('\n')
+  ].join("\n"),
 )}
 ${section(
-  'Frequently asked questions',
-  coreFaqs.map((faq) => `Q: ${faq.q}\nA: ${faq.a}`).join('\n\n')
+  "Frequently asked questions",
+  coreFaqs.map((faq) => `Q: ${faq.q}\nA: ${faq.a}`).join("\n\n"),
 )}`;
 
   return new Response(body, {
     headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=3600, s-maxage=86400",
     },
   });
 }

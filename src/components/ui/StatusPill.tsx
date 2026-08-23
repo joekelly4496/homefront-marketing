@@ -1,10 +1,10 @@
-import { Pill, type PillColor } from '@/components/ui/Pill';
-import { statusLabels, type FeatureStatus } from '@/lib/content';
+import { Pill, type PillColor } from "@/components/ui/Pill";
+import { statusLabels, type FeatureStatus } from "@/lib/content";
 
 const colors: Record<FeatureStatus, PillColor> = {
-  live: 'emerald',
-  'coming-soon': 'amber',
-  roadmap: 'slate',
+  live: "emerald",
+  "coming-soon": "amber",
+  roadmap: "slate",
 };
 
 /**

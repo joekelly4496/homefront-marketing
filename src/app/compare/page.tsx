@@ -1,37 +1,37 @@
-import Link from 'next/link';
-import { ArrowRight, Check, Minus, X } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container, SectionLabel } from '@/components/ui/Container';
-import { PageHeader } from '@/components/ui/PageHeader';
-import { JsonLd } from '@/components/JsonLd';
-import { pageMetadata } from '@/lib/seo';
-import { graph, breadcrumbSchema, webPageSchema } from '@/lib/schema';
+import Link from "next/link";
+import { ArrowRight, Check, Minus, X } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container, SectionLabel } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
+import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
   pricing,
   comparisons,
   notList,
   signupHref,
-  trialLength,
-} from '@/lib/content';
+  guarantee,
+} from "@/lib/content";
 
-const title = 'Afterkey vs. a CRM, a Spreadsheet, or a Suite';
+const title = "Afterkey vs. a CRM, a Spreadsheet, or a Suite";
 const description =
-  'A direct comparison of Afterkey against general CRMs, spreadsheets, and all-in-one construction suites for managing post-closing warranty work.';
+  "A direct comparison of Afterkey against general CRMs, spreadsheets, and all-in-one construction suites for managing post-closing warranty work.";
 
 export const metadata = pageMetadata({
   title,
   description,
-  path: '/compare',
+  path: "/compare",
   absoluteTitle: true,
 });
 
 export default function ComparePage() {
   const pageGraph = graph([
-    webPageSchema({ name: title, description, path: '/compare' }),
-    breadcrumbSchema([{ name: 'Compare', path: '/compare' }]),
+    webPageSchema({ name: title, description, path: "/compare" }),
+    breadcrumbSchema([{ name: "Compare", path: "/compare" }]),
   ]);
 
   return (
@@ -152,20 +152,20 @@ export default function ComparePage() {
                 {pricing.conciergeOnboarding}.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
-                Still deciding?{' '}
+                Still deciding?{" "}
                 <Link
                   href="/faq"
                   className="font-semibold text-brand-600 hover:text-brand-700"
                 >
                   The FAQ
-                </Link>{' '}
-                answers the specifics, and{' '}
+                </Link>{" "}
+                answers the specifics, and{" "}
                 <Link
                   href="/pricing"
                   className="font-semibold text-brand-600 hover:text-brand-700"
                 >
                   pricing
-                </Link>{' '}
+                </Link>{" "}
                 is published in full — no call required to find out what it
                 costs.
               </p>
@@ -182,12 +182,12 @@ export default function ComparePage() {
               See it against your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              A {trialLength} free trial beats a comparison table. Load one home
-              and see whether it fits how you work.
+              Your own homes beat a comparison table. Load one in and see
+              whether it fits how you work. {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/features" size="lg" variant="secondary">

@@ -1,10 +1,10 @@
-import { absoluteUrl } from '@/lib/site';
-import { brand, pricing, type Faq } from '@/lib/content';
+import { absoluteUrl } from "@/lib/site";
+import { brand, pricing, type Faq } from "@/lib/content";
 
 /** Stable @id values so the graph nodes can reference each other. */
-export const organizationId = `${absoluteUrl('/')}#organization`;
-export const softwareId = `${absoluteUrl('/')}#software`;
-export const websiteId = `${absoluteUrl('/')}#website`;
+export const organizationId = `${absoluteUrl("/")}#organization`;
+export const softwareId = `${absoluteUrl("/")}#software`;
+export const websiteId = `${absoluteUrl("/")}#website`;
 
 /**
  * Organization — the entity node. Answer engines use this to resolve
@@ -16,35 +16,35 @@ export const websiteId = `${absoluteUrl('/')}#website`;
  */
 export function organizationSchema() {
   return {
-    '@type': 'Organization',
-    '@id': organizationId,
+    "@type": "Organization",
+    "@id": organizationId,
     name: brand.name,
     legalName: brand.legalName,
-    url: absoluteUrl('/'),
+    url: absoluteUrl("/"),
     description: brand.definition,
     email: brand.email,
     logo: {
-      '@type': 'ImageObject',
-      url: absoluteUrl('/opengraph-image'),
+      "@type": "ImageObject",
+      url: absoluteUrl("/opengraph-image"),
     },
     contactPoint: {
-      '@type': 'ContactPoint',
+      "@type": "ContactPoint",
       email: brand.email,
-      contactType: 'customer support',
-      availableLanguage: 'English',
+      contactType: "customer support",
+      availableLanguage: "English",
     },
   };
 }
 
 export function websiteSchema() {
   return {
-    '@type': 'WebSite',
-    '@id': websiteId,
+    "@type": "WebSite",
+    "@id": websiteId,
     name: brand.name,
-    url: absoluteUrl('/'),
+    url: absoluteUrl("/"),
     description: brand.definition,
-    publisher: { '@id': organizationId },
-    inLanguage: 'en-US',
+    publisher: { "@id": organizationId },
+    inLanguage: "en-US",
   };
 }
 
@@ -55,99 +55,99 @@ export function websiteSchema() {
  */
 export function softwareApplicationSchema() {
   return {
-    '@type': 'SoftwareApplication',
-    '@id': softwareId,
+    "@type": "SoftwareApplication",
+    "@id": softwareId,
     name: brand.name,
-    url: absoluteUrl('/'),
+    url: absoluteUrl("/"),
     description: brand.definition,
-    applicationCategory: 'BusinessApplication',
-    applicationSubCategory: 'Construction Management Software',
-    operatingSystem: 'Web browser',
-    publisher: { '@id': organizationId },
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "Construction Management Software",
+    operatingSystem: "Web browser",
+    publisher: { "@id": organizationId },
     audience: {
-      '@type': 'Audience',
-      audienceType: 'Residential home builders',
+      "@type": "Audience",
+      audienceType: "Residential home builders",
     },
     featureList: [
-      'Warranty and service request management with SLA tracking',
-      'Subcontractor dispatch, ratings, and cost intelligence',
-      'Subcontractor compliance document tracking with dispatch gating',
-      'AI-built home maintenance schedules with cited sources',
-      'Homeowner portal with request submission and status tracking',
-      'Homeowner maintenance memberships and recurring billing',
-      'Photo documentation and complete service history',
-      'Dedicated SMS and voice business line',
+      "Warranty and service request management with SLA tracking",
+      "Subcontractor dispatch, ratings, and cost intelligence",
+      "Subcontractor compliance document tracking with dispatch gating",
+      "AI-built home maintenance schedules with cited sources",
+      "Homeowner portal with request submission and status tracking",
+      "Homeowner maintenance memberships and recurring billing",
+      "Photo documentation and complete service history",
+      "Dedicated SMS and voice business line",
     ],
     offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'USD',
+      "@type": "AggregateOffer",
+      priceCurrency: "USD",
       lowPrice: pricing.base,
       offerCount: 4,
       offers: [
         {
-          '@type': 'Offer',
-          name: 'Platform base',
+          "@type": "Offer",
+          name: "Platform base",
           description:
-            'Base subscription including unlimited team members and unlimited subcontractors.',
+            "Base subscription including unlimited team members and unlimited subcontractors.",
           price: pricing.base,
-          priceCurrency: 'USD',
+          priceCurrency: "USD",
           priceSpecification: {
-            '@type': 'UnitPriceSpecification',
+            "@type": "UnitPriceSpecification",
             price: pricing.base,
-            priceCurrency: 'USD',
-            unitText: 'MONTH',
+            priceCurrency: "USD",
+            unitText: "MONTH",
             billingDuration: 1,
             billingIncrement: 1,
           },
         },
         {
-          '@type': 'Offer',
-          name: 'Per active home',
+          "@type": "Offer",
+          name: "Per active home",
           description:
-            'Charged per home while it is under warranty or on an active service plan. Dormant homes are not billed.',
+            "Charged per home while it is under warranty or on an active service plan. Dormant homes are not billed.",
           price: pricing.perHome,
-          priceCurrency: 'USD',
+          priceCurrency: "USD",
           priceSpecification: {
-            '@type': 'UnitPriceSpecification',
+            "@type": "UnitPriceSpecification",
             price: pricing.perHome,
-            priceCurrency: 'USD',
-            unitText: 'MONTH',
+            priceCurrency: "USD",
+            unitText: "MONTH",
             referenceQuantity: {
-              '@type': 'QuantitativeValue',
+              "@type": "QuantitativeValue",
               value: 1,
-              unitText: 'active home',
+              unitText: "active home",
             },
           },
         },
         {
-          '@type': 'Offer',
-          name: 'AI add-on',
+          "@type": "Offer",
+          name: "AI add-on",
           description: `Optional AI add-on including ${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all homes. Additional actions are $${pricing.ai.overagePerAction} each.`,
           price: pricing.ai.price,
-          priceCurrency: 'USD',
+          priceCurrency: "USD",
           priceSpecification: {
-            '@type': 'UnitPriceSpecification',
+            "@type": "UnitPriceSpecification",
             price: pricing.ai.price,
-            priceCurrency: 'USD',
-            unitText: 'MONTH',
+            priceCurrency: "USD",
+            unitText: "MONTH",
             referenceQuantity: {
-              '@type': 'QuantitativeValue',
+              "@type": "QuantitativeValue",
               value: 1,
-              unitText: 'active home',
+              unitText: "active home",
             },
           },
         },
         {
-          '@type': 'Offer',
-          name: 'SMS add-on',
+          "@type": "Offer",
+          name: "SMS add-on",
           description: `Optional dedicated business number including ${pricing.sms.includedSegments.toLocaleString()} segments per month. Additional segments are $${pricing.sms.overagePer1000} per 1,000.`,
           price: pricing.sms.price,
-          priceCurrency: 'USD',
+          priceCurrency: "USD",
           priceSpecification: {
-            '@type': 'UnitPriceSpecification',
+            "@type": "UnitPriceSpecification",
             price: pricing.sms.price,
-            priceCurrency: 'USD',
-            unitText: 'MONTH',
+            priceCurrency: "USD",
+            unitText: "MONTH",
           },
         },
       ],
@@ -158,22 +158,22 @@ export function softwareApplicationSchema() {
 /** FAQPage — only emit on pages that actually render the same Q&A visibly. */
 export function faqPageSchema(faqs: Faq[]) {
   return {
-    '@type': 'FAQPage',
+    "@type": "FAQPage",
     mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
+      "@type": "Question",
       name: faq.q,
-      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
     })),
   };
 }
 
 /** BreadcrumbList. Pass the trail without the home crumb — it's prepended. */
 export function breadcrumbSchema(trail: { name: string; path: string }[]) {
-  const items = [{ name: 'Home', path: '/' }, ...trail];
+  const items = [{ name: "Home", path: "/" }, ...trail];
   return {
-    '@type': 'BreadcrumbList',
+    "@type": "BreadcrumbList",
     itemListElement: items.map((item, i) => ({
-      '@type': 'ListItem',
+      "@type": "ListItem",
       position: i + 1,
       name: item.name,
       item: absoluteUrl(item.path),
@@ -192,19 +192,19 @@ export function webPageSchema({
   path: string;
 }) {
   return {
-    '@type': 'WebPage',
-    '@id': `${absoluteUrl(path)}#webpage`,
+    "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
     url: absoluteUrl(path),
     name,
     description,
-    isPartOf: { '@id': websiteId },
-    about: { '@id': softwareId },
-    publisher: { '@id': organizationId },
-    inLanguage: 'en-US',
+    isPartOf: { "@id": websiteId },
+    about: { "@id": softwareId },
+    publisher: { "@id": organizationId },
+    inLanguage: "en-US",
   };
 }
 
 /** Wraps nodes into a single @graph document. */
 export function graph(nodes: object[]) {
-  return { '@context': 'https://schema.org', '@graph': nodes };
+  return { "@context": "https://schema.org", "@graph": nodes };
 }

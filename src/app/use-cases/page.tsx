@@ -1,30 +1,30 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { IconBox } from '@/components/ui/IconBox';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container } from '@/components/ui/Container';
-import { PageHeader } from '@/components/ui/PageHeader';
-import { JsonLd } from '@/components/JsonLd';
-import { pageMetadata } from '@/lib/seo';
-import { graph, breadcrumbSchema, webPageSchema } from '@/lib/schema';
-import { useCases, signupHref, trialLength } from '@/lib/content';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { IconBox } from "@/components/ui/IconBox";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
+import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { useCases, signupHref } from "@/lib/content";
 
-const title = 'Use Cases for Home Builders';
+const title = "Use Cases for Home Builders";
 const description =
-  'How residential builders use Afterkey: warranty and service requests, subcontractor management, maintenance reminders, and the homeowner portal.';
+  "How residential builders use Afterkey: warranty and service requests, subcontractor management, maintenance reminders, and the homeowner portal.";
 
 export const metadata = pageMetadata({
   title,
   description,
-  path: '/use-cases',
+  path: "/use-cases",
 });
 
 export default function UseCasesPage() {
   const pageGraph = graph([
-    webPageSchema({ name: title, description, path: '/use-cases' }),
-    breadcrumbSchema([{ name: 'Use cases', path: '/use-cases' }]),
+    webPageSchema({ name: title, description, path: "/use-cases" }),
+    breadcrumbSchema([{ name: "Use cases", path: "/use-cases" }]),
   ]);
 
   return (
@@ -76,12 +76,12 @@ export default function UseCasesPage() {
               All four, in one platform
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              They are not separate products or separate tiers. Start a{' '}
-              {trialLength} free trial and you get all of it.
+              They are not separate products or separate tiers. One plan
+              includes every one of them.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/features" size="lg" variant="secondary">

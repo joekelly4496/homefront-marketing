@@ -11,7 +11,7 @@
  */
 function resolveSiteUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
-  if (explicit) return explicit.replace(/\/$/, '');
+  if (explicit) return explicit.replace(/\/$/, "");
 
   const prod = process.env.VERCEL_PROJECT_PRODUCTION_URL;
   if (prod) return `https://${prod}`;
@@ -19,11 +19,11 @@ function resolveSiteUrl(): string {
   const deployment = process.env.VERCEL_URL;
   if (deployment) return `https://${deployment}`;
 
-  return 'https://getafterkey.com';
+  return "https://getafterkey.com";
 }
 
 export const siteUrl = resolveSiteUrl();
 
 /** Absolute URL for a site-relative path. */
-export const absoluteUrl = (path = '') =>
-  `${siteUrl}${path.startsWith('/') ? path : path ? `/${path}` : ''}`;
+export const absoluteUrl = (path = "") =>
+  `${siteUrl}${path.startsWith("/") ? path : path ? `/${path}` : ""}`;

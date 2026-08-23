@@ -6,59 +6,59 @@ import {
   BarChart3,
   FileCheck2,
   Bell,
-} from 'lucide-react';
+} from "lucide-react";
 
 const nav = [
-  { icon: LayoutDashboard, label: 'Dashboard', active: true },
-  { icon: Home, label: 'Homes' },
-  { icon: Wrench, label: 'Requests' },
-  { icon: HardHat, label: 'Subcontractors' },
-  { icon: FileCheck2, label: 'Compliance' },
-  { icon: BarChart3, label: 'Reports' },
+  { icon: LayoutDashboard, label: "Dashboard", active: true },
+  { icon: Home, label: "Homes" },
+  { icon: Wrench, label: "Requests" },
+  { icon: HardHat, label: "Subcontractors" },
+  { icon: FileCheck2, label: "Compliance" },
+  { icon: BarChart3, label: "Reports" },
 ];
 
 const requests = [
   {
-    home: '142 Maple Court',
-    issue: 'HVAC not cooling',
-    sub: 'Cool Air Co.',
-    status: 'Overdue',
-    tone: 'red',
+    home: "142 Maple Court",
+    issue: "HVAC not cooling",
+    sub: "Cool Air Co.",
+    status: "Overdue",
+    tone: "red",
   },
   {
-    home: '88 Birch Lane',
-    issue: 'Cabinet door alignment',
-    sub: 'Finish Pros',
-    status: 'In progress',
-    tone: 'amber',
+    home: "88 Birch Lane",
+    issue: "Cabinet door alignment",
+    sub: "Finish Pros",
+    status: "In progress",
+    tone: "amber",
   },
   {
-    home: '7 Oakridge Dr',
-    issue: 'Grout touch-up',
-    sub: 'TileWorks',
-    status: 'Scheduled',
-    tone: 'brand',
+    home: "7 Oakridge Dr",
+    issue: "Grout touch-up",
+    sub: "TileWorks",
+    status: "Scheduled",
+    tone: "brand",
   },
   {
-    home: '215 Cedar Way',
-    issue: 'Garage door sensor',
-    sub: 'Open/Close LLC',
-    status: 'Complete',
-    tone: 'emerald',
+    home: "215 Cedar Way",
+    issue: "Garage door sensor",
+    sub: "Open/Close LLC",
+    status: "Complete",
+    tone: "emerald",
   },
 ];
 
 const toneClasses: Record<string, string> = {
-  red: 'bg-red-50 text-red-700 border-red-200',
-  amber: 'bg-amber-50 text-amber-700 border-amber-200',
-  brand: 'bg-brand-50 text-brand-700 border-brand-200',
-  emerald: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  red: "bg-red-50 text-red-700 border-red-200",
+  amber: "bg-amber-50 text-amber-700 border-amber-200",
+  brand: "bg-brand-50 text-brand-700 border-brand-200",
+  emerald: "bg-emerald-50 text-emerald-700 border-emerald-200",
 };
 
 const stats = [
-  { label: 'Open requests', value: '23', tone: 'text-slate-900' },
-  { label: 'Overdue', value: '3', tone: 'text-red-600' },
-  { label: 'Avg. response', value: '4h', tone: 'text-emerald-600' },
+  { label: "Open requests", value: "23", tone: "text-slate-900" },
+  { label: "Overdue", value: "3", tone: "text-red-600" },
+  { label: "Avg. response", value: "4h", tone: "text-emerald-600" },
 ];
 
 export function BuilderDashboard() {
@@ -94,9 +94,7 @@ export function BuilderDashboard() {
               <div
                 key={item.label}
                 className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-xs font-medium ${
-                  item.active
-                    ? 'bg-brand-50 text-brand-700'
-                    : 'text-slate-500'
+                  item.active ? "bg-brand-50 text-brand-700" : "text-slate-500"
                 }`}
               >
                 <item.icon className="h-4 w-4" aria-hidden="true" />
@@ -139,7 +137,7 @@ export function BuilderDashboard() {
               <div
                 key={r.home}
                 className={`flex items-center justify-between gap-3 px-3 py-2.5 ${
-                  i !== requests.length - 1 ? 'border-b border-slate-100' : ''
+                  i !== requests.length - 1 ? "border-b border-slate-100" : ""
                 }`}
               >
                 <div className="min-w-0">

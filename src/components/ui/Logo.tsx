@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import { KeyRound } from 'lucide-react';
-import { brand } from '@/lib/content';
+import Link from "next/link";
+import { KeyRound } from "lucide-react";
+import { brand } from "@/lib/content";
 
 export function Logo({
-  className = '',
-  tone = 'dark',
+  className = "",
+  tone = "dark",
 }: {
   className?: string;
-  tone?: 'dark' | 'light';
+  tone?: "dark" | "light";
 }) {
-  const text = tone === 'light' ? 'text-white' : 'text-slate-900';
+  const text = tone === "light" ? "text-white" : "text-slate-900";
   return (
     <Link
       href="/"

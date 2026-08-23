@@ -1,27 +1,27 @@
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { IconBox } from '@/components/ui/IconBox';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container, SectionLabel } from '@/components/ui/Container';
-import { FaqList } from '@/components/ui/FaqList';
-import { JsonLd } from '@/components/JsonLd';
-import { pageMetadata } from '@/lib/seo';
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowRight, CheckCircle2, XCircle } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { IconBox } from "@/components/ui/IconBox";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container, SectionLabel } from "@/components/ui/Container";
+import { FaqList } from "@/components/ui/FaqList";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import {
   graph,
   breadcrumbSchema,
   faqPageSchema,
   webPageSchema,
-} from '@/lib/schema';
+} from "@/lib/schema";
 import {
   useCases,
   findUseCase,
   pricing,
   signupHref,
-  trialLength,
-} from '@/lib/content';
+  guarantee,
+} from "@/lib/content";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -57,7 +57,7 @@ export default async function UseCasePage({ params }: Params) {
       path,
     }),
     breadcrumbSchema([
-      { name: 'Use cases', path: '/use-cases' },
+      { name: "Use cases", path: "/use-cases" },
       { name: useCase.title, path },
     ]),
     faqPageSchema(useCase.faqs),
@@ -93,7 +93,7 @@ export default async function UseCasePage({ params }: Params) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start your {trialLength} free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">
@@ -219,12 +219,12 @@ export default async function UseCasePage({ params }: Params) {
             </h2>
             <p className="mt-4 text-base text-slate-600">
               ${pricing.base}/month plus ${pricing.perHome} per active home,
-              unlimited users and subs, no contracts. Start a {trialLength} free
-              trial and set up your first home today.
+              unlimited users and subs, no contracts. Set up your first home
+              today. {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/features" size="lg" variant="secondary">
