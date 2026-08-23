@@ -48,10 +48,10 @@ export const brand = {
    * on any page a builder lands on.
    */
   whiteLabel:
-    "Afterkey is white-labeled. Your logo, your brand colors, and your business name appear on everything the homeowner touches — the portal, every email, payment receipts, and the handoff binder. Buyers experience it as their builder’s system and barely see Afterkey at all.",
+    "Afterkey is white-labeled. Your logo, your brand colors, and your business name appear on everything the homeowner touches — the portal, every email, payment receipts, and the handoff binder. Buyers experience it as their builder’s system, with Afterkey in the background — your brand is what’s front and center, not ours.",
   /** The approved headline for the white-label story. */
   whiteLabelHeadline:
-    "Your name, your logo, your colors, your phone number. We’re invisible.",
+    "Your name, your logo, your colors, your phone number. We stay in the background.",
   /**
    * Founder credibility line. APPROVED WORDING ONLY — Joe has explicitly
    * declined any claim that Afterkey is piloted or tested on his own homes.
@@ -285,7 +285,7 @@ export const whiteLabelPoints: { title: string; description: string }[] = [
   {
     title: "Your name on everything",
     description:
-      "The portal, every email notification, payment receipts, and the handoff binder all carry your business name. The homeowner has no reason to think about who makes the software.",
+      "The portal, every email notification, payment receipts, and the handoff binder all carry your business name. Yours is the brand the homeowner associates with the experience.",
   },
   {
     title: "Your phone number",
@@ -352,7 +352,7 @@ export const featureGroups: FeatureGroup[] = [
     label: "White label",
     title: "Your brand on everything the homeowner touches",
     summary:
-      "Afterkey is white-labeled. Your logo, your colors, and your business name carry the whole homeowner experience — buyers barely see Afterkey at all.",
+      "Afterkey is white-labeled. Your logo, your colors, and your business name lead the homeowner experience — Afterkey stays in the background.",
     points: whiteLabelPoints,
   },
   {
@@ -849,7 +849,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Is Afterkey white-labeled?",
-    a: "Yes. Afterkey is white-labeled, and the branding is the builder’s throughout. Builders upload their own logo and set their brand colors in settings, and those carry across the homeowner portal. The builder’s business name appears on the portal, on every email notification, on payment receipts, and on the handoff binder given to the homeowner. Builders on the SMS add-on also get a dedicated business number that homeowners text directly. Two specifics worth stating plainly: homeowners reach the portal through branded links rather than a custom domain of the builder’s own, and while every email carries the builder’s business name, the messages are sent by Afterkey’s infrastructure rather than from the builder’s own email address. Everything the homeowner sees and reads is the builder’s brand.",
+    a: "Yes. Afterkey is white-labeled, and the branding is the builder’s throughout. Builders upload their own logo and set their brand colors in settings, and those carry across the homeowner portal. The builder’s business name appears on the portal, on every email notification, on payment receipts, and on the handoff binder given to the homeowner. Builders on the SMS add-on also get a dedicated business number that homeowners text directly. A few specifics worth stating plainly: homeowners reach the portal through branded links rather than a custom domain of the builder’s own; every email carries the builder’s business name but is sent by Afterkey’s infrastructure rather than from the builder’s own email address; and Afterkey still appears in a few places by necessity, such as the terms of service and small platform references. The brand that leads the homeowner experience is the builder’s.",
   },
   {
     q: "How do homeowners use Afterkey?",

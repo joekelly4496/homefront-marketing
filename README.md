@@ -74,8 +74,12 @@ creates legal, carrier, or credibility exposure:
   bullet. What is confirmed real: logo upload in settings, brand color theming
   across the homeowner portal, the builder's business name on the portal, every
   email, payment receipts and the handoff binder, and (with the SMS add-on) a
-  dedicated business number homeowners text. Two claims are **forbidden**, and
-  `whiteLabelPoints` in `content.ts` documents why:
+  dedicated business number homeowners text. Frame it as the builder's brand
+  *leading* with Afterkey *in the background* — never as Afterkey being
+  "invisible" or the homeowner "never seeing" us: Afterkey appears in the terms
+  of service and in small platform references, and an absolute claim would be
+  falsified the first time a homeowner reads a footer. Two further claims are
+  **forbidden**, and `whiteLabelPoints` in `content.ts` documents why:
   - **No custom domains.** Homeowners arrive via branded links, never a typed
     URL. This is deliberate — the FAQ says so plainly rather than implying a
     vanity domain exists.
