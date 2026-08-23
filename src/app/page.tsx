@@ -22,6 +22,7 @@ import {
   coreFaqs,
   pricing,
   pricingLine,
+  whiteLabelPoints,
   signupHref,
   guarantee,
   perHomeFraming,
@@ -357,16 +358,50 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* White label — the strongest reason a builder buys */}
+      <section className="border-b border-slate-200 bg-white py-20 sm:py-28">
+        <Container>
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <SectionLabel>White label</SectionLabel>
+            <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              {brand.whiteLabelHeadline}
+            </h2>
+            <p className="mt-5 text-base text-slate-600">{brand.whiteLabel}</p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {whiteLabelPoints.map((point, i) => (
+              <Reveal key={point.title} delay={(i % 4) * 70}>
+                <Card className="h-full p-6">
+                  <h3 className="text-base font-semibold text-slate-900">
+                    {point.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-slate-600">
+                    {point.description}
+                  </p>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={160} className="mx-auto mt-10 max-w-3xl">
+            <p className="text-center text-sm text-slate-500">
+              You spent years building a name. The software running underneath
+              it shouldn’t be the one collecting the credit.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
       {/* Homeowner value */}
       <section className="py-20 sm:py-28">
         <Container>
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>What your buyers get</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Under your brand, not ours
+              The handoff that keeps your name on the house
             </h2>
-            <p className="mt-4 text-base text-slate-600">{brand.whiteLabel}</p>
-            <p className="mt-3 text-base text-slate-600">
+            <p className="mt-4 text-base text-slate-600">
               A homeowner who can see what’s happening doesn’t call to ask. One
               who’s handed a real maintenance schedule tells their neighbors who
               built it.

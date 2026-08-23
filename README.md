@@ -69,12 +69,23 @@ creates legal, carrier, or credibility exposure:
   `perHomeFraming` — it is small enough to price into the home at closing, so
   post-closing is a line item on the home rather than overhead the builder
   absorbs.
-- **Lead with white-labeling.** The homeowner-facing side carries the
-  builder's business name and branding, not Afterkey's — buyers barely see
-  Afterkey at all. This is one of the strongest reasons a builder buys, so it
-  belongs high on the page, not in a feature list. The mockups encode it too:
-  `BuilderDashboard` shows Afterkey, `PhoneMockup` shows the builder's brand.
-  Keep that contrast if you edit them.
+- **Lead with white-labeling.** It is one of the strongest reasons a builder
+  buys, so it gets its own home-page section and a `/features` group — not a
+  bullet. What is confirmed real: logo upload in settings, brand color theming
+  across the homeowner portal, the builder's business name on the portal, every
+  email, payment receipts and the handoff binder, and (with the SMS add-on) a
+  dedicated business number homeowners text. Two claims are **forbidden**, and
+  `whiteLabelPoints` in `content.ts` documents why:
+  - **No custom domains.** Homeowners arrive via branded links, never a typed
+    URL. This is deliberate — the FAQ says so plainly rather than implying a
+    vanity domain exists.
+  - **Emails do not send from the builder's own address.** The builder's *name*
+    appears on every email; the sending domain is Afterkey's. Never write
+    "emails come from your address."
+
+  The mockups encode the positioning too: `BuilderDashboard` shows Afterkey
+  (the builder's working tool), `PhoneMockup` shows the builder's brand in
+  neutral slate. Keep that contrast if you edit them.
 - **The founder line is exactly `brand.founder` and nothing more.** You may say
   Afterkey is built by a residential home builder on Long Island. Do NOT claim
   it is piloted, tested, or running on his own homes — that claim has been
