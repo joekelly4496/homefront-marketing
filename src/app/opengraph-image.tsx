@@ -31,7 +31,7 @@ export default function OpengraphImage() {
             justifyContent: "center",
           }}
         >
-          {/* Key — the "after the keys are handed over" mark */}
+          {/* The Afterkey house mark — same glyph as the favicon and nav logo */}
           <svg
             width="34"
             height="34"
@@ -42,10 +42,8 @@ export default function OpengraphImage() {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <circle cx="7.5" cy="15.5" r="4.5" />
-            <path d="m10.7 12.3 8.5-8.5" />
-            <path d="m17 5 3 3" />
-            <path d="m14 8 3 3" />
+            <path d="M3 9.5 12 3l9 6.5" />
+            <path d="M5 9.5V21h14V9.5" />
           </svg>
         </div>
         <span style={{ fontSize: "40px", fontWeight: 600, color: "#0f172a" }}>

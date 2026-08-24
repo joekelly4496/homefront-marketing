@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { KeyRound } from "lucide-react";
+import { Home } from "lucide-react";
 import { brand } from "@/lib/content";
 
 export function Logo({
@@ -17,7 +17,7 @@ export function Logo({
       className={`inline-flex items-center gap-2 ${className}`.trim()}
     >
       <span className="inline-flex w-8 h-8 rounded-lg bg-brand-600 items-center justify-center">
-        <KeyRound className="w-[18px] h-[18px] text-white" aria-hidden="true" />
+        <Home className="w-[18px] h-[18px] text-white" aria-hidden="true" />
       </span>
       <span className={`text-lg font-semibold tracking-tight ${text}`}>
         {brand.name}
