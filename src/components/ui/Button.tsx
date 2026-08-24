@@ -1,29 +1,29 @@
-import Link from 'next/link';
-import type { ComponentProps, ReactNode } from 'react';
+import Link from "next/link";
+import type { ComponentProps, ReactNode } from "react";
 
-type Variant = 'primary' | 'secondary' | 'ghost';
-type Size = 'sm' | 'md' | 'lg';
+type Variant = "primary" | "secondary" | "ghost";
+type Size = "sm" | "md" | "lg";
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 disabled:opacity-60 disabled:pointer-events-none';
+  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 disabled:opacity-60 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-brand-600 text-white hover:bg-brand-700',
+  primary: "bg-brand-600 text-white hover:bg-brand-700",
   secondary:
-    'bg-white text-slate-900 border border-slate-300 hover:bg-slate-50 hover:border-slate-400',
-  ghost: 'text-slate-700 hover:text-slate-900 hover:bg-slate-100',
+    "bg-white text-slate-900 border border-slate-300 hover:bg-slate-50 hover:border-slate-400",
+  ghost: "text-slate-700 hover:text-slate-900 hover:bg-slate-100",
 };
 
 const sizes: Record<Size, string> = {
-  sm: 'h-9 px-3.5 text-sm',
-  md: 'h-11 px-5 text-sm',
-  lg: 'h-12 px-6 text-base',
+  sm: "h-9 px-3.5 text-sm",
+  md: "h-11 px-5 text-sm",
+  lg: "h-12 px-6 text-base",
 };
 
 export function buttonVariants({
-  variant = 'primary',
-  size = 'md',
-  className = '',
+  variant = "primary",
+  size = "md",
+  className = "",
 }: {
   variant?: Variant;
   size?: Size;
@@ -37,7 +37,7 @@ type ButtonAsButton = {
   variant?: Variant;
   size?: Size;
   children: ReactNode;
-} & ComponentProps<'button'>;
+} & ComponentProps<"button">;
 
 type ButtonAsLink = {
   href: string;

@@ -1,29 +1,47 @@
-import { CalendarClock, CheckCircle2, Clock, FileText } from 'lucide-react';
+import { CalendarClock, CheckCircle2, Clock, FileText } from "lucide-react";
 
 /**
  * The homeowner portal, as a buyer sees it on their phone: an open request
  * with real status, and a maintenance item carrying its source footnote —
  * the honesty detail that makes the AI schedule credible.
  */
-export function PhoneMockup({ className = '' }: { className?: string }) {
+export function PhoneMockup({ className = "" }: { className?: string }) {
   return (
     <div
       className={`w-[230px] overflow-hidden rounded-[2rem] border-[6px] border-slate-900 bg-white shadow-2xl shadow-slate-900/20 ${className}`.trim()}
       role="img"
-      aria-label="The Afterkey homeowner portal on a phone, showing an in-progress service request assigned to an HVAC subcontractor and a maintenance reminder citing the manufacturer's published schedule."
+      aria-label="The Afterkey homeowner portal on a phone, white-labeled under the builder's brand 'Whitfield Homes', showing an in-progress service request assigned to an HVAC subcontractor and a maintenance reminder citing the manufacturer's published schedule."
     >
       {/* status bar */}
       <div className="flex items-center justify-center bg-slate-900 py-1.5">
         <span className="h-1 w-16 rounded-full bg-slate-700" />
       </div>
 
+      {/*
+        The builder's brand bar, not Afterkey's. Afterkey is white-labeled, so
+        the homeowner view must read as the builder's own product — deliberately
+        rendered in a neutral slate rather than Afterkey's indigo.
+      */}
+      <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-900 px-4 py-2.5">
+        <span className="inline-flex h-5 w-5 items-center justify-center rounded bg-white/15 text-[9px] font-bold text-white">
+          W
+        </span>
+        <span className="text-[11px] font-semibold tracking-wide text-white">
+          WHITFIELD HOMES
+        </span>
+      </div>
+
       <div className="p-4">
         <div className="mb-3">
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-brand-600">
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
             Your home
           </p>
-          <p className="text-sm font-semibold text-slate-900">142 Maple Court</p>
-          <p className="text-[11px] text-slate-500">Built by Whitfield Homes</p>
+          <p className="text-sm font-semibold text-slate-900">
+            142 Maple Court
+          </p>
+          <p className="text-[11px] text-slate-500">
+            Homeowner portal · Whitfield Homes
+          </p>
         </div>
 
         {/* open request */}

@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container } from '@/components/ui/Container';
+import type { ReactNode } from "react";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container } from "@/components/ui/Container";
 
 export function PageHeader({
   eyebrow,

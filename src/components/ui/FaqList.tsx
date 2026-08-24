@@ -1,5 +1,5 @@
-import { Plus } from 'lucide-react';
-import type { Faq } from '@/lib/content';
+import { Plus } from "lucide-react";
+import type { Faq } from "@/lib/content";
 
 /**
  * Renders a FAQ list. Each question is a real heading with the answer
@@ -14,11 +14,11 @@ import type { Faq } from '@/lib/content';
  */
 export function FaqList({
   faqs,
-  headingLevel = 'h3',
+  headingLevel = "h3",
   defaultOpen = false,
 }: {
   faqs: Faq[];
-  headingLevel?: 'h2' | 'h3';
+  headingLevel?: "h2" | "h3";
   defaultOpen?: boolean;
 }) {
   const Heading = headingLevel;

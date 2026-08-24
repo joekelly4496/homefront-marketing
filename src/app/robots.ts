@@ -1,5 +1,5 @@
-import type { MetadataRoute } from 'next';
-import { siteUrl } from '@/lib/site';
+import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 
 /**
  * Permissive by design. Traditional search crawlers and AI answer-engine
@@ -10,29 +10,29 @@ import { siteUrl } from '@/lib/site';
  * /login is excluded: it is a sign-in doorway with no search value.
  */
 const aiCrawlers = [
-  'GPTBot',
-  'OAI-SearchBot',
-  'ChatGPT-User',
-  'ClaudeBot',
-  'Claude-User',
-  'Claude-SearchBot',
-  'PerplexityBot',
-  'Perplexity-User',
-  'Google-Extended',
-  'Applebot-Extended',
-  'Bingbot',
-  'DuckAssistBot',
-  'cohere-ai',
+  "GPTBot",
+  "OAI-SearchBot",
+  "ChatGPT-User",
+  "ClaudeBot",
+  "Claude-User",
+  "Claude-SearchBot",
+  "PerplexityBot",
+  "Perplexity-User",
+  "Google-Extended",
+  "Applebot-Extended",
+  "Bingbot",
+  "DuckAssistBot",
+  "cohere-ai",
 ];
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: '*', allow: '/', disallow: '/login' },
+      { userAgent: "*", allow: "/", disallow: "/login" },
       ...aiCrawlers.map((userAgent) => ({
         userAgent,
-        allow: '/',
-        disallow: '/login',
+        allow: "/",
+        disallow: "/login",
       })),
     ],
     sitemap: `${siteUrl}/sitemap.xml`,

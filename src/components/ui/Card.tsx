@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 export function Card({
   children,
-  className = '',
+  className = "",
   interactive = false,
 }: {
   children: ReactNode;
@@ -13,8 +13,8 @@ export function Card({
     <div
       className={`bg-white rounded-2xl border border-slate-200 shadow-sm ${
         interactive
-          ? 'transition-all duration-200 hover:shadow-md hover:-translate-y-0.5'
-          : ''
+          ? "transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+          : ""
       } ${className}`.trim()}
     >
       {children}

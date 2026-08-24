@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Container } from '@/components/ui/Container';
-import { signupHref } from '@/lib/content';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { signupHref } from "@/lib/content";
 
 const suggestions = [
-  { href: '/features', label: 'Features' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/use-cases', label: 'Use cases' },
-  { href: '/faq', label: 'FAQ' },
+  { href: "/features", label: "Features" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/use-cases", label: "Use cases" },
+  { href: "/faq", label: "FAQ" },
 ];
 
 export default function NotFound() {
@@ -43,7 +43,7 @@ export default function NotFound() {
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
             <Button href={signupHref} size="lg" variant="secondary">
-              Start free trial
+              Get started
             </Button>
           </div>
         </div>

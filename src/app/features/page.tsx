@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import { ArrowRight, CheckCircle2, Minus } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { IconBox } from '@/components/ui/IconBox';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container, SectionLabel } from '@/components/ui/Container';
-import { StatusPill } from '@/components/ui/StatusPill';
-import { JsonLd } from '@/components/JsonLd';
-import { pageMetadata } from '@/lib/seo';
-import { graph, breadcrumbSchema, webPageSchema } from '@/lib/schema';
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, Minus } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { IconBox } from "@/components/ui/IconBox";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container, SectionLabel } from "@/components/ui/Container";
+import { StatusPill } from "@/components/ui/StatusPill";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
+import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
   featureGroups,
@@ -16,24 +16,24 @@ import {
   differentiators,
   notList,
   signupHref,
-  trialLength,
+  guarantee,
   useCases,
-} from '@/lib/content';
+} from "@/lib/content";
 
-const title = 'Home Builder Warranty Management Software';
+const title = "Home Builder Warranty Management Software";
 const description =
-  'Afterkey manages warranty requests, subcontractor dispatch and compliance, homeowner portals, and AI-built maintenance schedules. See every feature.';
+  "Afterkey manages warranty requests, subcontractor dispatch and compliance, homeowner portals, and AI-built maintenance schedules. See every feature.";
 
 export const metadata = pageMetadata({
   title,
   description,
-  path: '/features',
+  path: "/features",
 });
 
 export default function FeaturesPage() {
   const pageGraph = graph([
-    webPageSchema({ name: title, description, path: '/features' }),
-    breadcrumbSchema([{ name: 'Features', path: '/features' }]),
+    webPageSchema({ name: title, description, path: "/features" }),
+    breadcrumbSchema([{ name: "Features", path: "/features" }]),
   ]);
 
   return (
@@ -206,7 +206,8 @@ export default function FeaturesPage() {
                 href="/compare"
                 className="font-semibold text-brand-600 hover:text-brand-700"
               >
-                Compare Afterkey to a CRM, a spreadsheet, and an all-in-one suite
+                Compare Afterkey to a CRM, a spreadsheet, and an all-in-one
+                suite
               </Link>
             </p>
           </Reveal>
@@ -256,12 +257,12 @@ export default function FeaturesPage() {
               Run it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Start a {trialLength} free trial, add your first home, and log a
-              real request today. Self-serve setup, no demo required.
+              Add your first home and log a real request today. Self-serve
+              setup, no demo required. {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">

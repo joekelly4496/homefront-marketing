@@ -1,50 +1,50 @@
-import { ArrowRight, ShieldCheck, Receipt, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { IconBox } from '@/components/ui/IconBox';
-import { Reveal } from '@/components/ui/Reveal';
-import { Container } from '@/components/ui/Container';
-import { PageHeader } from '@/components/ui/PageHeader';
-import { JsonLd } from '@/components/JsonLd';
-import { pageMetadata } from '@/lib/seo';
-import { graph, breadcrumbSchema, webPageSchema } from '@/lib/schema';
-import { brand, signupHref, trialLength } from '@/lib/content';
+import { ArrowRight, ShieldCheck, Receipt, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { IconBox } from "@/components/ui/IconBox";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
+import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { brand, signupHref, guarantee } from "@/lib/content";
 
-const title = 'About';
+const title = "About";
 const description =
-  'Afterkey is post-closing software for residential home builders — built so warranty work, subcontractors, and homeowner relationships run on one system.';
+  "Afterkey is post-closing software for residential home builders — built so warranty work, subcontractors, and homeowner relationships run on one system.";
 
 export const metadata = pageMetadata({
   title,
   description,
-  path: '/about',
+  path: "/about",
 });
 
 const values = [
   {
     icon: ShieldCheck,
-    title: 'Documented, not adversarial',
+    title: "Documented, not adversarial",
     description:
-      'A complete record protects everyone in the transaction. The builder can show what happened, the subcontractor can show the work was done, and the homeowner can see it without asking. Nobody has to win an argument from memory.',
+      "A complete record protects everyone in the transaction. The builder can show what happened, the subcontractor can show the work was done, and the homeowner can see it without asking. Nobody has to win an argument from memory.",
   },
   {
     icon: Sparkles,
-    title: 'AI that shows its work',
+    title: "AI that shows its work",
     description:
-      'Software that guesses about someone’s furnace is worse than software that admits it doesn’t know. Every AI suggestion in Afterkey cites its source or says plainly that it’s a typical schedule to verify. The builder confirms every line.',
+      "Software that guesses about someone’s furnace is worse than software that admits it doesn’t know. Every AI suggestion in Afterkey cites its source or says plainly that it’s a typical schedule to verify. The builder confirms every line.",
   },
   {
     icon: Receipt,
-    title: 'Prices you can read',
+    title: "Prices you can read",
     description:
-      'Published rates, live meters on anything metered, ceilings you set, and 60 days’ notice before anything changes. If a pricing page needs a phone call to decode, that is a choice somebody made.',
+      "Published rates, live meters on anything metered, ceilings you set, and 60 days’ notice before anything changes. If a pricing page needs a phone call to decode, that is a choice somebody made.",
   },
 ];
 
 export default function AboutPage() {
   const pageGraph = graph([
-    webPageSchema({ name: title, description, path: '/about' }),
-    breadcrumbSchema([{ name: 'About', path: '/about' }]),
+    webPageSchema({ name: title, description, path: "/about" }),
+    breadcrumbSchema([{ name: "About", path: "/about" }]),
   ]);
 
   return (
@@ -72,9 +72,9 @@ export default function AboutPage() {
                 That gap is expensive in a way that is hard to see on a P&amp;L.
                 Callbacks get handled late because nobody was tracking them. A
                 subcontractor’s coverage lapses and nobody notices until there
-                is a claim. Deferred maintenance turns into a warranty repair the
-                builder eats. And the buyer who felt ignored writes the review
-                that quietly costs the next three referrals.
+                is a claim. Deferred maintenance turns into a warranty repair
+                the builder eats. And the buyer who felt ignored writes the
+                review that quietly costs the next three referrals.
               </p>
               <p>
                 {brand.name} exists to close that gap. It gives the builder one
@@ -89,16 +89,29 @@ export default function AboutPage() {
                 The premise is simple: the easier and more professional the
                 post-closing relationship, the stickier the builder’s brand.
                 Referrals and repeat business come from how a builder behaves
-                after the sale, not during it. {brand.name} is built to make that
-                part effortless — and, through homeowner memberships, to make it
-                pay for itself instead of eating margin.
+                after the sale, not during it. {brand.name} is built to make
+                that part effortless — and, through homeowner memberships, to
+                make it pay for itself instead of eating margin.
               </p>
               <p>
-                We are early. There is no customer logo wall on this site because
-                we have not earned one yet, and we would rather show you the
-                product than borrow someone else’s credibility. The pricing is
-                published, the trial is self-serve, and you can find out whether
-                it fits your operation without talking to anybody.
+                {brand.founder} That is why it starts at closing instead of at
+                the permit: the year after handoff is the part of the job nobody
+                writes software for, and it is the part that decides whether the
+                next buyer calls you.
+              </p>
+              <p>
+                It is also why the homeowner side is white-labeled.{" "}
+                {brand.whiteLabel} A builder spends years earning a name. The
+                software running underneath the experience should not be the one
+                collecting the credit for it.
+              </p>
+              <p>
+                We are early. There is no customer logo wall on this site
+                because we have not earned one yet, and we would rather show you
+                the product than borrow someone else’s credibility. The pricing
+                is published, setup is self-serve, and a 30-day money-back
+                guarantee means you can find out whether it fits your operation
+                without talking to anybody first.
               </p>
             </div>
           </Reveal>
@@ -128,12 +141,11 @@ export default function AboutPage() {
               See it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Start a {trialLength} free trial and run your next closing on{' '}
-              {brand.name}.
+              Run your next closing on {brand.name}. {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/features" size="lg" variant="secondary">

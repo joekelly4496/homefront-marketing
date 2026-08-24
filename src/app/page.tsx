@@ -22,9 +22,10 @@ import {
   coreFaqs,
   pricing,
   pricingLine,
+  whiteLabelPoints,
   signupHref,
-  trialLength,
-  trial,
+  guarantee,
+  perHomeFraming,
   useCases,
 } from "@/lib/content";
 
@@ -97,10 +98,19 @@ export default function HomePage() {
                   {brand.purpose}
                 </p>
               </Reveal>
+              <Reveal delay={150}>
+                <p className="mt-3 max-w-xl text-lg text-slate-600">
+                  <strong className="font-semibold text-slate-900">
+                    And it’s white-labeled.
+                  </strong>{" "}
+                  Your buyers see your business on the portal they use — not
+                  ours.
+                </p>
+              </Reveal>
               <Reveal delay={180}>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button href={signupHref} size="lg">
-                    Start your {trialLength} free trial
+                    Get started
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
                   <Button href="/pricing" size="lg" variant="secondary">
@@ -110,12 +120,12 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={240}>
                 <p className="mt-6 text-sm text-slate-500">
-                  ${pricing.base}/month + ${pricing.perHome} per active home ·
-                  Unlimited users and subs · No contracts
+                  ${pricing.base}/month base · Unlimited users and subs · No
+                  contracts
                 </p>
               </Reveal>
               <Reveal delay={280}>
-                <p className="mt-2 text-sm text-slate-500">{trial.terms}</p>
+                <p className="mt-2 text-sm text-slate-500">{guarantee.short}</p>
               </Reveal>
             </div>
 
@@ -348,6 +358,41 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* White label — the strongest reason a builder buys */}
+      <section className="border-b border-slate-200 bg-white py-20 sm:py-28">
+        <Container>
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <SectionLabel>White label</SectionLabel>
+            <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              {brand.whiteLabelHeadline}
+            </h2>
+            <p className="mt-5 text-base text-slate-600">{brand.whiteLabel}</p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {whiteLabelPoints.map((point, i) => (
+              <Reveal key={point.title} delay={(i % 4) * 70}>
+                <Card className="h-full p-6">
+                  <h3 className="text-base font-semibold text-slate-900">
+                    {point.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-slate-600">
+                    {point.description}
+                  </p>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={160} className="mx-auto mt-10 max-w-3xl">
+            <p className="text-center text-sm text-slate-500">
+              You spent years building a name. The software running underneath
+              it shouldn’t be the one collecting the credit.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
       {/* Homeowner value */}
       <section className="py-20 sm:py-28">
         <Container>
@@ -501,6 +546,7 @@ export default function HomePage() {
               One plan. Published price. No sales call.
             </h2>
             <p className="mt-4 text-base text-slate-600">{pricingLine}</p>
+            <p className="mt-3 text-base text-slate-600">{perHomeFraming}</p>
             <p className="mt-3 text-sm text-slate-500">
               Optional add-ons: AI at ${pricing.ai.price}/month per active home,
               SMS at ${pricing.sms.price}/month. Every metered feature has a
@@ -510,7 +556,7 @@ export default function HomePage() {
 
           <Reveal className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href={signupHref} size="lg">
-              Start your {trialLength} free trial
+              Get started
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
             <Link
@@ -564,12 +610,11 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-base text-slate-600">
               Set up your first home, add your subs, and log a real request
-              today. {trialLength} free trial, self-serve setup, no sales call
-              required.
+              today. Self-serve setup, no sales call required. {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">

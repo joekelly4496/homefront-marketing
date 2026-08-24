@@ -1,20 +1,19 @@
-import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import { JsonLd } from '@/components/JsonLd';
-import { siteUrl, absoluteUrl } from '@/lib/site';
-import { brand } from '@/lib/content';
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
+import { siteUrl, absoluteUrl } from "@/lib/site";
+import { brand } from "@/lib/content";
 import {
   graph,
   organizationSchema,
   websiteSchema,
   softwareApplicationSchema,
-} from '@/lib/schema';
-import './globals.css';
+} from "@/lib/schema";
+import "./globals.css";
 
-const defaultTitle =
-  'Afterkey — Post-Closing Software for Home Builders';
+const defaultTitle = "Afterkey — Post-Closing Software for Home Builders";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -23,28 +22,28 @@ export const metadata: Metadata = {
     template: `%s · ${brand.name}`,
   },
   description:
-    'Post-closing software for residential home builders. Warranty requests, subcontractor coordination, homeowner portals, and AI-built maintenance schedules.',
+    "Post-closing software for residential home builders. Warranty requests, subcontractor coordination, homeowner portals, and AI-built maintenance schedules.",
   applicationName: brand.name,
-  alternates: { canonical: absoluteUrl('/') },
+  alternates: { canonical: absoluteUrl("/") },
   openGraph: {
     title: defaultTitle,
     description:
-      'Post-closing software for residential home builders. Warranty requests, subcontractor coordination, homeowner portals, and AI-built maintenance schedules.',
-    url: absoluteUrl('/'),
+      "Post-closing software for residential home builders. Warranty requests, subcontractor coordination, homeowner portals, and AI-built maintenance schedules.",
+    url: absoluteUrl("/"),
     siteName: brand.name,
-    type: 'website',
-    locale: 'en_US',
+    type: "website",
+    locale: "en_US",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: defaultTitle,
     description:
-      'Post-closing software for residential home builders. Warranty, subcontractors, homeowner portals, and AI-built maintenance schedules.',
+      "Post-closing software for residential home builders. Warranty, subcontractors, homeowner portals, and AI-built maintenance schedules.",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
 };
 

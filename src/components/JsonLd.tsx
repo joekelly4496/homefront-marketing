@@ -9,7 +9,7 @@ export function JsonLd({ data }: { data: object }) {
       // Escaping `<` prevents a "</script>" inside any string value from
       // terminating the tag early.
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(data).replace(/</g, '\\u003c'),
+        __html: JSON.stringify(data).replace(/</g, "\\u003c"),
       }}
     />
   );

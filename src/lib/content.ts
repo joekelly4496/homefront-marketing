@@ -8,6 +8,7 @@ import {
   FileClock,
   FolderArchive,
   BookMarked,
+  BadgeCheck,
   Sparkles,
   FileCheck2,
   Gavel,
@@ -28,7 +29,6 @@ import type { Accent } from "@/components/ui/IconBox";
 export const brand = {
   name: "Afterkey",
   legalName: "Afterkey Inc.",
-  domain: "getafterkey.com",
   email: "support@getafterkey.com",
   /** The category sentence. Plain, declarative, no adjectives. */
   category: "post-closing software platform for residential home builders",
@@ -42,6 +42,22 @@ export const brand = {
   /** The second sentence — what it's for. */
   purpose:
     "Builders use Afterkey after the keys are handed over, so the post-closing relationship drives referrals and repeat business instead of eating margin.",
+  /**
+   * White-labeling is a top-tier selling point, not a footnote: the homeowner
+   * experience carries the builder's business, not Afterkey's. State it high
+   * on any page a builder lands on.
+   */
+  whiteLabel:
+    "Afterkey is white-labeled. Your logo, your brand colors, and your business name appear on everything the homeowner touches — the portal, every email, payment receipts, and the handoff binder. Buyers experience it as their builder’s system, with Afterkey in the background — your brand is what’s front and center, not ours.",
+  /** The approved headline for the white-label story. */
+  whiteLabelHeadline:
+    "Your name, your logo, your colors, your phone number. We stay in the background.",
+  /**
+   * Founder credibility line. APPROVED WORDING ONLY — Joe has explicitly
+   * declined any claim that Afterkey is piloted or tested on his own homes.
+   * Do not add one.
+   */
+  founder: "Afterkey is built by a residential home builder on Long Island.",
 } as const;
 
 /** Base URL of the live app where auth and the three portals live. */
@@ -54,29 +70,26 @@ export const loginUrls = {
   sub: `${appBase}/sub/login`,
 };
 
-/** Where every primary "start free trial" CTA points. */
+/** Where every primary "get started" CTA points. */
 export const signupHref = `${appBase}/builder/login?signup=1`;
 
-/** Free trial length — used in copy as `${trialLength} free trial`. */
-export const trialLength = "30-day";
-
 /**
- * Trial terms.
+ * The 30-day money-back guarantee — the risk reversal that replaced the free
+ * trial. Builders pay from day one and can get every dollar back.
  *
- * `homeLimit: null` is deliberate — the trial is NOT capped by home count.
- * Most of what justifies the price (subcontractor ratings across homes, cost
- * intelligence, pooled AI actions, compliance across a roster) is invisible on
- * a single home, and billing is per-home, so capping homes caps the exact thing
- * a builder is evaluating. Real trial cost exposure is AI actions and SMS
- * segments, and both are already metered with ceilings. Set a number here if
- * that ever needs to change; copy reads from this value.
+ * `headline` and `body` are the approved wording. Use them verbatim rather
+ * than paraphrasing: this promise also appears in the Terms of Service, and
+ * a marketing page that describes it differently from the contract is a real
+ * problem, not a style inconsistency.
  */
-export const trial = {
-  requiresCard: true,
-  homeLimit: null as number | null,
-  /** One-line summary used under CTAs. */
-  terms:
-    "Card required to start. Cancel any time before day 30 and you are not charged.",
+export const guarantee = {
+  days: 30,
+  headline: "30-day money-back guarantee",
+  /** The full promise. Featured on /pricing and echoed in /terms. */
+  body: "If it’s not working for you, we refund every dollar Afterkey charged. The only exception is usage costs already paid to carriers and payment processors on your behalf.",
+  /** One-line version for microcopy under a CTA. */
+  short:
+    "30-day money-back guarantee — if it’s not working, we refund every dollar Afterkey charged.",
 } as const;
 
 /**
@@ -91,6 +104,9 @@ export const trial = {
  * and llms.txt switches to waitlist language. Nothing else needs editing.
  */
 export const smsStatus: "live" | "coming-soon" = "live";
+
+/** The standard label for the primary call to action. */
+export const primaryCta = "Get started";
 
 /* ------------------------------------------------------------------ */
 /* Pricing — the numbers are final. Every price on the site reads      */
@@ -118,6 +134,14 @@ export const pricing = {
 
 /** The only approved one-line price summary for use outside /pricing. */
 export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.perHome} per active home. No per-user fees, no contracts, no quote calls.`;
+
+/**
+ * The per-home fee is never stated as a naked recurring charge. It always
+ * carries this framing: it is small enough to price into the home at closing,
+ * so post-closing is a line item on the home rather than overhead the builder
+ * absorbs. Pair it with `pricingLine` anywhere outside /pricing.
+ */
+export const perHomeFraming = `At $${pricing.perHome} per active home, it’s small enough to build into the home’s cost at closing — so post-closing is a line item on the home, not overhead you carry.`;
 
 /* ------------------------------------------------------------------ */
 /* The six published commitments — brand promises, quoted verbatim on  */
@@ -205,8 +229,9 @@ export const portals: Portal[] = [
     accent: "emerald",
     audience: "Your buyers",
     description:
-      "Where your homeowner submits a request, watches it move, and finds the maintenance schedule for their home — instead of calling your cell.",
+      "Your brand, not ours. Where your homeowner submits a request, watches it move, and finds the maintenance schedule for their home — instead of calling your cell.",
     points: [
+      "White-labeled under your business",
       "Submit a service request",
       "Track status end to end",
       "Message you directly",
@@ -228,6 +253,44 @@ export const portals: Portal[] = [
       "Compliance document uploads",
     ],
     href: loginUrls.sub,
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* White-labeling — what actually carries the builder's brand          */
+/* ------------------------------------------------------------------ */
+
+/**
+ * The concrete white-label surfaces. Two claims are deliberately absent and
+ * must NOT be added:
+ *
+ *   1. Custom domains. Homeowners reach the portal through branded links, not
+ *      a typed URL. This is a design choice, not a gap — say so plainly rather
+ *      than implying a vanity domain exists.
+ *   2. Sending from the builder's own email address. The builder's business
+ *      NAME appears on every email; the sending domain is Afterkey's. Never
+ *      write "emails come from your address."
+ */
+export const whiteLabelPoints: { title: string; description: string }[] = [
+  {
+    title: "Your logo",
+    description:
+      "Upload your logo file in settings and it appears across the homeowner experience. No ticket to support, no professional-services fee.",
+  },
+  {
+    title: "Your colors",
+    description:
+      "Set your brand colors and the homeowner portal takes them. It looks like something your company had built, because as far as your buyer is concerned, you did.",
+  },
+  {
+    title: "Your name on everything",
+    description:
+      "The portal, every email notification, payment receipts, and the handoff binder all carry your business name. Yours is the brand the homeowner associates with the experience.",
+  },
+  {
+    title: "Your phone number",
+    description:
+      "With the SMS add-on, homeowners text a dedicated business number that reaches your operation — not a generic shortcode, and not your personal cell.",
   },
 ];
 
@@ -280,6 +343,17 @@ export const featureGroups: FeatureGroup[] = [
           "Every request, dispatch, and completion is timestamped on the home’s record — the documentation you want when a dispute shows up two years later.",
       },
     ],
+  },
+  {
+    id: "white-label",
+    icon: BadgeCheck,
+    accent: "brand",
+    status: "live",
+    label: "White label",
+    title: "Your brand on everything the homeowner touches",
+    summary:
+      "Afterkey is white-labeled. Your logo, your colors, and your business name lead the homeowner experience — Afterkey stays in the background.",
+    points: whiteLabelPoints,
   },
   {
     id: "ai-binder",
@@ -542,8 +616,15 @@ export const builderValue: Highlight[] = [
 
 export const homeownerValue: Highlight[] = [
   {
-    icon: MessageSquare,
+    icon: BadgeCheck,
     accent: "brand",
+    title: "Your name on it, not ours",
+    description:
+      "The portal your buyers use carries your business, not Afterkey’s. They experience it as the system their builder gave them — which is the point. You get the credit for the software.",
+  },
+  {
+    icon: MessageSquare,
+    accent: "amber",
     title: "One place to ask",
     description:
       "They submit a request in their portal and watch it move, instead of texting your cell at 9pm and wondering whether it landed.",
@@ -633,7 +714,7 @@ export const comparisons: Comparison[] = [
         "Starts at the close and runs for the life of the home",
         "Tracks warranty periods, appliances, and maintenance intervals",
         "Per-trade dispatch with ratings and compliance gating built in",
-        "A homeowner portal your buyers actually use",
+        "A homeowner portal your buyers actually use, under your brand",
         "Priced per home, with unlimited users at no extra cost",
       ],
     },
@@ -708,6 +789,11 @@ export type Differentiator = { title: string; description: string };
 
 export const differentiators: Differentiator[] = [
   {
+    title: "Your buyers see your brand, not ours",
+    description:
+      "Afterkey is white-labeled. The homeowner portal carries your business name and branding, so the professional post-closing experience reflects on you. Handing a buyer a polished system is the kind of thing that gets mentioned to their neighbors — and it should be your name they mention.",
+  },
+  {
     title: "AI that shows its work",
     description:
       "Every maintenance suggestion carries a numbered footnote — the manufacturer’s published schedule, the document you uploaded, or an honest “typical schedule, verify against the manual” label. It never invents an interval, and you confirm every line before a homeowner sees it.",
@@ -747,7 +833,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. A home is billed only while it is under warranty or on an active service plan, and dormant homes are never billed. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). A 2.5% platform fee applies to homeowner payments processed through Afterkey, with card processing passed through at cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Annual prepay takes 10% off the base.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. A home is billed only while it is under warranty or on an active service plan, and dormant homes are never billed. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). A 2.5% platform fee applies to homeowner payments processed through Afterkey, with card processing passed through at cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Annual prepay takes 10% off the base. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "What does the AI in Afterkey actually do?",
@@ -762,8 +848,12 @@ export const coreFaqs: Faq[] = [
     a: "A CRM is organized around leads, deals, and a pipeline that ends when a sale closes. Afterkey is organized around homes, service requests, and subcontractors, and begins at the moment a CRM would finish. Afterkey understands warranty periods, appliances, and maintenance intervals; it dispatches subcontractors by trade and tracks their insurance and license expirations; and it gives the homeowner a portal of their own. Afterkey is also priced per home with unlimited users, rather than per seat.",
   },
   {
+    q: "Is Afterkey white-labeled?",
+    a: "Yes. Afterkey is white-labeled, and the branding is the builder’s throughout. Builders upload their own logo and set their brand colors in settings, and those carry across the homeowner portal. The builder’s business name appears on the portal, on every email notification, on payment receipts, and on the handoff binder given to the homeowner. Builders on the SMS add-on also get a dedicated business number that homeowners text directly. A few specifics worth stating plainly: homeowners reach the portal through branded links rather than a custom domain of the builder’s own; every email carries the builder’s business name but is sent by Afterkey’s infrastructure rather than from the builder’s own email address; and Afterkey still appears in a few places by necessity, such as the terms of service and small platform references. The brand that leads the homeowner experience is the builder’s.",
+  },
+  {
     q: "How do homeowners use Afterkey?",
-    a: "Homeowners get access to a browser-based portal — there is no app to download. They submit warranty and service requests with photos, track the status of each request through to completion, message the builder directly, view the maintenance schedule built for their specific home and appliances, and see the full service history of the house. If the builder sells a maintenance membership or service plan, the homeowner subscribes and pays through the same portal.",
+    a: "Homeowners get access to a browser-based portal, white-labeled under the builder's business — there is no app to download. They submit warranty and service requests with photos, track the status of each request through to completion, message the builder directly, view the maintenance schedule built for their specific home and appliances, and see the full service history of the house. If the builder sells a maintenance membership or service plan, the homeowner subscribes and pays through the same portal.",
   },
   {
     q: "Do subcontractors have to pay for Afterkey?",
@@ -779,11 +869,11 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Standard onboarding is self-serve and free: you create an account, add your homes and subcontractors, and start logging requests the same day. The 30-day free trial requires a card to start, but you are not charged if you cancel before the trial ends, and no sales call is required. The trial is not limited by home count — you can load your whole roster and evaluate Afterkey the way you would actually use it. AI actions during the trial run at the free allowance of 5 per month, and Afterkey shows a cost preview before spending anything. Builders who want their existing home roster loaded for them can buy optional concierge onboarding for a one-time $499, where Afterkey builds the digital binder for every home from the documents you provide.",
+    a: "Standard onboarding is self-serve and free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial and no sales call — instead, every new account is covered by a 30-day money-back guarantee, so you evaluate Afterkey on your real homes rather than in a sandbox. Builders who want their existing home roster loaded for them can buy optional concierge onboarding for a one-time $499, where Afterkey builds the digital binder for every home from the documents you provide.",
   },
   {
     q: "Can I cancel Afterkey at any time?",
-    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. Annual prepay is available as a 10% discount on the base, not as a commitment requirement. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, every dollar Afterkey charged is refunded, excluding usage costs already paid to carriers and payment processors on your behalf. Annual prepay is available as a 10% discount on the base, not as a commitment requirement. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
   },
 ];
 
@@ -818,8 +908,8 @@ export const pricingFaqs: Faq[] = [
     a: "Only with 60 days’ notice, and only at your next billing cycle. Increases are never applied mid-term and never retroactively. Prices are published on this page rather than quoted, so you can always see exactly what the plan costs.",
   },
   {
-    q: "Does the free trial require a credit card?",
-    a: "Yes. A card is required to start the 30-day free trial, which keeps trial accounts tied to real businesses. You are not charged if you cancel before the trial ends, and there is no contract or termination fee if you continue and later cancel. The trial is not capped by home count — you can add your full roster during it. AI actions run at the free allowance of 5 per month during the trial unless you enable the AI add-on, and Afterkey always shows a cost preview before spending anything.",
+    q: "Is there a free trial?",
+    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you within 30 days, we refund every dollar Afterkey charged. The only exception is usage costs already paid to carriers and payment processors on your behalf — SMS segments already sent and card processing fees already incurred cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
   },
   {
     q: "What is concierge onboarding?",

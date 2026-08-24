@@ -3,6 +3,7 @@ import {
   ArrowRight,
   CheckCircle2,
   MessageSquare,
+  ShieldCheck,
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -25,8 +26,8 @@ import {
   commitments,
   pricingFaqs,
   signupHref,
-  trialLength,
-  trial,
+  guarantee,
+  perHomeFraming,
   smsStatus,
 } from "@/lib/content";
 
@@ -97,6 +98,7 @@ const included = [
   "Subcontractor cost intelligence across every home",
   "Compliance document tracking with expiration reminders",
   "Compliance gating on dispatch, with logged overrides",
+  "White-labeled homeowner experience — your logo, colors, and name",
   "Homeowner portal — requests, status, messaging, history",
   "Subcontractor portal — jobs, photo updates, documents",
   "AI Home Binder with cited maintenance schedules",
@@ -139,7 +141,7 @@ export default function PricingPage() {
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start your {trialLength} free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <a
@@ -149,7 +151,7 @@ export default function PricingPage() {
                 See everything included ↓
               </a>
             </div>
-            <p className="mt-5 text-sm text-slate-500">{trial.terms}</p>
+            <p className="mt-5 text-sm text-slate-500">{guarantee.short}</p>
           </Reveal>
         </Container>
       </section>
@@ -186,6 +188,11 @@ export default function PricingPage() {
                 ))}
               </ul>
             </Card>
+          </Reveal>
+          <Reveal delay={70} className="mx-auto mt-6 max-w-3xl">
+            <p className="text-center text-base text-slate-600">
+              {perHomeFraming}
+            </p>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-5 max-w-3xl">
             <p className="text-center text-sm leading-relaxed text-slate-500">
@@ -392,7 +399,38 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* 6 — The six commitments */}
+      {/* 6 — The money-back guarantee */}
+      <section className="pb-4 sm:pb-8">
+        <Container size="6xl">
+          <Reveal>
+            <Card className="mx-auto max-w-3xl border-emerald-200 bg-emerald-50/60 p-8 sm:p-10">
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                  <ShieldCheck className="h-6 w-6" aria-hidden="true" />
+                </span>
+                <div>
+                  <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+                    {guarantee.headline}
+                  </h2>
+                  <p className="mt-3 text-base leading-relaxed text-slate-700">
+                    {guarantee.body}
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                    There is no free trial, on purpose. The parts of Afterkey
+                    worth judging — which trade keeps generating callbacks, what
+                    a maintenance schedule does to your callback volume — take
+                    longer than a sandbox week to show up. So run it on real
+                    homes instead, and if it isn’t earning its keep, ask for
+                    your money back.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* 7 — The six commitments */}
       <section className="py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -421,7 +459,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* 7 — FAQ */}
+      {/* 8 — FAQ */}
       <section className="border-t border-slate-200 bg-white py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -445,7 +483,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* 8 — Footer CTA */}
+      {/* 9 — Footer CTA */}
       <section className="py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -453,14 +491,13 @@ export default function PricingPage() {
               Try it on a real home
             </h2>
             <p className="mt-4 text-balance text-lg text-slate-600">
-              {trialLength} free trial. No contracts, no per-user fees, no
-              termination fees, and no sales call required — though we are happy
-              to walk you through it.
+              No contracts, no per-user fees, no termination fees, and no sales
+              call required — though we are happy to walk you through it.
             </p>
-            <p className="mt-3 text-sm text-slate-500">{trial.terms}</p>
+            <p className="mt-3 text-sm text-slate-500">{guarantee.short}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Start free trial
+                Get started
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button href="/contact" size="lg" variant="secondary">

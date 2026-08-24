@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
-import { absoluteUrl } from '@/lib/site';
-import { brand } from '@/lib/content';
+import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/site";
+import { brand } from "@/lib/content";
 
 /**
  * Builds a complete per-page Metadata object: title, description, canonical
@@ -40,11 +40,11 @@ export function pageMetadata({
       description,
       url,
       siteName: brand.name,
-      type: 'website',
-      locale: 'en_US',
+      type: "website",
+      locale: "en_US",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: socialTitle,
       description,
     },
