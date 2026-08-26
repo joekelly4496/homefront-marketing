@@ -4,6 +4,8 @@ import {
   CalendarClock,
   ClipboardCheck,
   PhoneCall,
+  PhoneOff,
+  KeyRound,
   MessageSquare,
   FileClock,
   FolderArchive,
@@ -459,8 +461,18 @@ export const featureGroups: FeatureGroup[] = [
     label: "Revenue",
     title: "Homeowner memberships and service plans",
     summary:
-      "Sell your homeowners a maintenance plan and bill it through Afterkey — recurring revenue from homes you’ve already built.",
+      "Sell your homeowners a maintenance plan — starting at the final walkthrough — and bill it through Afterkey. Recurring revenue from homes you’ve already built.",
     points: [
+      {
+        title: "Sell it at the end of the build",
+        description:
+          "Offer the plan at the final walkthrough, while you’re handing over the keys, the binder, and the maintenance schedule. The homeowner is looking at the value in real time — it will never be an easier yes.",
+      },
+      {
+        title: "It works during the warranty period too",
+        description:
+          "The warranty covers defects. The plan covers the maintenance the home needs regardless — filters, servicing, seasonal upkeep. You’re taking care of the home anyway; the plan pays you for the part that was never warranty work.",
+      },
       {
         title: "Plans you define and price",
         description:
@@ -573,6 +585,46 @@ export const statusLabels: Record<FeatureStatus, string> = {
 };
 
 /* ------------------------------------------------------------------ */
+/* The play — the timeline story: sell the plan at handoff, run the    */
+/* warranty year off your phone, keep the revenue after it expires.    */
+/* ------------------------------------------------------------------ */
+
+export type LifecycleStage = {
+  stage: string;
+  icon: LucideIcon;
+  accent: Accent;
+  title: string;
+  description: string;
+};
+
+export const lifecycle: LifecycleStage[] = [
+  {
+    stage: "At the end of the build",
+    icon: KeyRound,
+    accent: "brand",
+    title: "Sell the plan when you hand over the keys",
+    description:
+      "The final walkthrough is the best sales moment you will ever have with this homeowner. You’re already handing them the binder, the maintenance schedule, and their portal — offer the service plan right there. It will never be an easier yes than the day the keys change hands.",
+  },
+  {
+    stage: "During the warranty period",
+    icon: PhoneOff,
+    accent: "emerald",
+    title: "The warranty year comes off your phone",
+    description:
+      "Requests land in the portal with photos — not on your personal cell at 9pm. You dispatch the right sub in one step, automated reminders do the chasing, and the homeowner watches status instead of calling you for it. The plan can already be running too: the warranty covers defects, the plan covers the maintenance the home needs regardless. You’re taking care of everything anyway — the plan pays you for the part that was never warranty work.",
+  },
+  {
+    stage: "After the warranty expires",
+    icon: Wallet,
+    accent: "violet",
+    title: "The end of warranty is the start of revenue",
+    description:
+      "For most builders, the relationship with a home ends the day the warranty does. On Afterkey it converts: the homeowner keeps the portal and the maintenance schedule, the home stays active on a plan they pay for, and the warranty end date becomes a revenue start date. Homes without a plan go dormant and cost you nothing until they come back.",
+  },
+];
+
+/* ------------------------------------------------------------------ */
 /* Builder outcomes — benefit-led, for the home page                   */
 /* ------------------------------------------------------------------ */
 
@@ -587,9 +639,9 @@ export const builderValue: Highlight[] = [
   {
     icon: FileClock,
     accent: "brand",
-    title: "Fewer callbacks that turn into problems",
+    title: "Your evenings back",
     description:
-      "Every request has an owner, a clock, and a record. Things get handled before they escalate — and when a delay isn’t on you, the history shows exactly where it sat.",
+      "Warranty requests land in the portal with photos attached — not on your personal cell at 9pm. Every request has an owner, a clock, and a record, and automated reminders chase the sub so following up isn’t your job either.",
   },
   {
     icon: HardHat,
@@ -862,6 +914,10 @@ export const coreFaqs: Faq[] = [
   {
     q: "Does Afterkey find new subcontractors for me?",
     a: "No. Afterkey is not a marketplace, a network, or a contractor directory, and it does not send you leads for new trades. It works only with the subcontractors you have already vetted and added to your own roster. The competitive quoting tool puts planned maintenance out to bid among those subcontractors so you can compare pricing — it is a private, back-office tool, and homeowners never see it.",
+  },
+  {
+    q: "When should a builder sell the homeowner a service plan?",
+    a: "At the end of the build — the final walkthrough or closing, when the keys, the handoff binder, and the maintenance schedule are changing hands. That is the moment the homeowner is looking at the value directly, and attach rates are never higher. The plan can start during the warranty period: a builder warranty covers defects in workmanship and materials, while the plan covers the routine maintenance the home needs regardless, so the two run side by side. When the warranty expires, the plan simply continues — the homeowner keeps their portal and maintenance schedule, and the builder’s relationship with the home converts into recurring revenue instead of ending.",
   },
   {
     q: "What is an “active home”?",

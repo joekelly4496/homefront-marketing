@@ -14,6 +14,7 @@ import { graph, faqPageSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
   portals,
+  lifecycle,
   builderValue,
   homeownerValue,
   steps,
@@ -30,19 +31,19 @@ import {
 } from "@/lib/content";
 
 const withoutAfterkey = [
-  "Warranty requests arrive by text and voicemail, and the only queue is your memory.",
+  "The 9pm “quick question” text lands on your personal cell — and so does the next one.",
+  "Your mornings go to chasing subs who still haven’t called the homeowner back.",
+  "Scheduling means you, relaying messages between a homeowner and a plumber.",
   "A sub says they called, the homeowner says nobody came, and there is no record either way.",
-  "Insurance certificates expire in an inbox until a claim makes you go looking.",
-  "Maintenance guidance is a paper binder the homeowner loses inside a year.",
-  "Post-closing is a cost center you absorb, and the callbacks come out of your margin.",
+  "The day the warranty expires, the relationship — and any shot at revenue — ends with it.",
 ];
 
 const withAfterkey = [
-  "Every request lands in one queue with a response clock and an assigned trade.",
-  "Each dispatch, arrival, and completion is timestamped on the home’s permanent record.",
-  "Compliance documents are tracked with expirations, and lapsed coverage warns you before dispatch.",
-  "Each home gets an AI-built maintenance schedule with a cited source on every line.",
-  "Memberships turn homes you already built into recurring revenue.",
+  "Requests land in a queue with photos and a response clock — not on your phone at night.",
+  "Automated reminders chase the sub who hasn’t responded, so you don’t have to.",
+  "Dispatch and scheduling happen in one step, with day-of arrival tracking.",
+  "Every dispatch, arrival, and completion is timestamped on the home’s permanent record.",
+  "At warranty end, the homeowner stays on a paid service plan instead of disappearing.",
 ];
 
 const aiBinder = featureGroups.find((g) => g.id === "ai-binder")!;
@@ -82,7 +83,7 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={60}>
                 <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">
-                  Post-closing that earns referrals instead of eating margin.
+                  Get warranty work off your phone. Get paid after it ends.
                 </h1>
               </Reveal>
               <Reveal delay={120}>
@@ -145,13 +146,12 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>The problem</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              The work doesn’t stop at closing. Most builders just stop tracking
-              it.
+              You know the warranty-year drill. It runs through your cell.
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Warranty obligations, subcontractor coordination, and homeowner
-              questions run for years after handoff — usually on nobody’s system
-              at all. Here is what changes when they run on one.
+              Late-night texts, callbacks, scheduling, chasing subs — for most
+              builders, the entire warranty period runs on their personal phone
+              and their memory. Here is what changes when it runs on a system.
             </p>
           </Reveal>
 
@@ -203,8 +203,48 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Three portals */}
+      {/* The play — handoff, warranty year, after warranty */}
       <section className="border-y border-slate-200 bg-white py-20 sm:py-28">
+        <Container>
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <SectionLabel>The play</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
+              Run it on every home you close
+            </h2>
+            <p className="mt-4 text-base text-slate-600">
+              Afterkey follows the home from the day you hand over the keys to
+              years past the warranty — and the money runs the same direction.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {lifecycle.map((phase, i) => (
+              <Reveal key={phase.title} delay={i * 80}>
+                <Card className="flex h-full flex-col p-6 sm:p-7">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-sm font-semibold text-white">
+                      {i + 1}
+                    </span>
+                    <Pill color={phase.accent}>{phase.stage}</Pill>
+                  </div>
+                  <div className="mt-5 flex items-center gap-3">
+                    <IconBox icon={phase.icon} accent={phase.accent} />
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {phase.title}
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                    {phase.description}
+                  </p>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Three portals */}
+      <section className="py-20 sm:py-28">
         <Container>
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>How it’s built</SectionLabel>
