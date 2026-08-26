@@ -94,6 +94,11 @@ creates legal, carrier, or credibility exposure:
   Afterkey is built by a residential home builder on Long Island. Do NOT claim
   it is piloted, tested, or running on his own homes — that claim has been
   explicitly declined.
+- **Never claim instant or automatic subcontractor payouts.** Split/instant
+  payout is built but attorney-gated; until written clearance, the truthful
+  version is: the homeowner pays one clean price on-platform and records are
+  automatic. "The sub is paid the moment the homeowner approves" is a strong
+  line — hold it until it is true.
 - **Do not fabricate social proof.** There are no customers to quote yet. The
   testimonial and logo sections are intentionally not rendered (see the comment
   in `src/app/page.tsx`). Add them back when real quotes exist.

@@ -620,7 +620,7 @@ export const lifecycle: LifecycleStage[] = [
     accent: "violet",
     title: "The end of warranty is the start of revenue",
     description:
-      "For most builders, the relationship with a home ends the day the warranty does. On Afterkey it converts: the homeowner keeps the portal and the maintenance schedule, the home stays active on a plan they pay for, and the warranty end date becomes a revenue start date. Homes without a plan go dormant and cost you nothing until they come back.",
+      "For most builders, the relationship with a home ends the day the warranty does. On Afterkey it converts: the homeowner keeps the portal and the maintenance schedule, the home stays active on a plan they pay for, and the warranty end date becomes a revenue start date. And your name stays on the house — years later, when they’re ready to build again or a neighbor asks who built it, yours is the brand on the portal they’ve used all along. Homes without a plan go dormant and cost you nothing until they come back.",
   },
 ];
 
