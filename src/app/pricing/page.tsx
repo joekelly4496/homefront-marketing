@@ -28,6 +28,7 @@ import {
   signupHref,
   guarantee,
   perHomeFraming,
+  processingLine,
   smsStatus,
 } from "@/lib/content";
 
@@ -53,7 +54,7 @@ const priceLines = [
     unit: "/month per active home",
     title: "Per active home",
     description:
-      "Flat at any age. Billed only while a home is under warranty or on an active service plan — dormant homes are never billed, and homes go dormant automatically.",
+      "Flat at any age, for homes you’re actively serving. Win-back prospect homes are free while you pitch them, and archived homes are free, read-only, and keep their full history.",
   },
   {
     price: `+ $${pricing.ai.price}`,
@@ -100,6 +101,10 @@ const included = [
   "Compliance gating on dispatch, with logged overrides",
   "White-labeled homeowner experience — your logo, colors, and name",
   "Homeowner portal — requests, status, messaging, history",
+  "Win-back prospect homes with one-click claim invites",
+  "Membership pitches with your tiers and quote expirations",
+  "Repair estimates with homeowner approval and billing",
+  "Two-way messaging with homeowners and subs, ticket or general",
   "Subcontractor portal — jobs, photo updates, documents",
   "AI Home Binder with cited maintenance schedules",
   "Shared appliance library — reused models are always free",
@@ -196,14 +201,13 @@ export default function PricingPage() {
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-5 max-w-3xl">
             <p className="text-center text-sm leading-relaxed text-slate-500">
-              Annual prepay takes {pricing.annualDiscountPercent}% off the base
-              (${annualBase}/month). A {pricing.platformFeePercent}% platform
-              fee applies to homeowner payments processed through {brand.name},
-              with card processing passed through at cost. Optional concierge
-              onboarding — we build the digital binder for your entire existing
-              home roster from your documents — is $
-              {pricing.conciergeOnboarding} one-time. Standard self-serve
-              onboarding is free.
+              Annual prepay takes {pricing.annualDiscountPercent}% off — the
+              base prepaid at ${annualBase}/month, with active homes billing
+              monthly at $9 instead of ${pricing.perHome} while annual is
+              active. {processingLine} Optional concierge onboarding — we build
+              the digital binder for your entire existing home roster from your
+              documents — is ${pricing.conciergeOnboarding} one-time. Standard
+              self-serve onboarding is free.
             </p>
           </Reveal>
         </Container>
@@ -264,8 +268,9 @@ export default function PricingPage() {
               </table>
             </div>
             <p className="mt-4 text-xs text-slate-500">
-              Per month, before any AI or SMS overage. Only homes under warranty
-              or on an active plan count toward the total.
+              Per month, before any AI or SMS overage. Only homes you’re
+              actively serving count toward the total — prospect and archived
+              homes are free.
             </p>
           </Reveal>
 
@@ -285,10 +290,13 @@ export default function PricingPage() {
                 <strong>$45/month</strong> maintenance membership to{" "}
                 <strong>40% of them</strong>. That is 20 memberships, or{" "}
                 <strong>$900/month</strong> in gross homeowner billing. Afterkey
-                takes {pricing.platformFeePercent}% of payments processed
-                through the platform ($22.50), and card processing is passed
-                through at cost. Your Afterkey bill at 50 homes with the AI
-                add-on is $899.
+                takes no platform fee on those payments — the only cost is
+                payment processing at the published flat rates (
+                {pricing.processing.bankPercent}% bank,{" "}
+                {pricing.processing.cardPercent}% +{" "}
+                {pricing.processing.cardFixedCents}¢ card), and you choose
+                whether the homeowner’s price includes it or you absorb it.
+                Your Afterkey bill at 50 homes with the AI add-on is $899.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Whether that math works depends entirely on your plan price and
@@ -436,7 +444,7 @@ export default function PricingPage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>Published commitments</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Six things we put in writing
+              Seven things we put in writing
             </h2>
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

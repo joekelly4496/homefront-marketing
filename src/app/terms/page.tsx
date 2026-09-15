@@ -31,11 +31,11 @@ const sections: LegalSection[] = [
   },
   {
     heading: "Billing and payments",
-    body: `Builder subscription fees are billed monthly and consist of a $${pricing.base} platform base plus $${pricing.perHome} per active home, together with any optional add-ons you enable. Metered features are billed against the allowances described on our pricing page, subject to any spending ceiling you set. Where applicable, homeowner subscription and service billing is processed through our payment processor, and a ${pricing.platformFeePercent}% platform fee applies to homeowner payments processed through ${brand.name}, with card processing passed through at cost. Except as provided under the money-back guarantee below, fees are non-refundable except as required by law.`,
+    body: `Builder subscription fees are billed monthly and consist of a $${pricing.base} platform base plus $${pricing.perHome} per active home, together with any optional add-ons you enable. Metered features are billed against the allowances described on our pricing page, subject to any spending ceiling you set. Where applicable, homeowner subscription and service billing is processed through our payment processor. ${brand.name} charges no platform fee on homeowner payments; payment processing is charged at the published flat rates shown on our pricing page (currently ${pricing.processing.bankPercent}% for bank payments and ${pricing.processing.cardPercent}% plus $0.30 for card payments), which are all-in rates that include payment processing and payout costs. Except as provided under the money-back guarantee below, fees are non-refundable except as required by law.`,
   },
   {
     heading: "Money-back guarantee",
-    body: `New ${brand.name} accounts are covered by a ${guarantee.days}-day money-back guarantee beginning on the date of your first paid charge. ${guarantee.body} Those usage costs are amounts already remitted to third parties on your behalf — such as SMS segments already sent and card processing fees already incurred — and cannot be recovered once spent. To request a refund under this guarantee, contact ${brand.email} within ${guarantee.days} days of your first charge.`,
+    body: `New ${brand.name} accounts are covered by a ${guarantee.days}-day money-back guarantee beginning on the date of your first paid charge. ${guarantee.body} Those exceptions are carrier costs already incurred for a phone number and messages actually used, and cannot be recovered once spent. To request a refund under this guarantee, contact ${brand.email} within ${guarantee.days} days of your first charge.`,
   },
   {
     heading: "Price changes",

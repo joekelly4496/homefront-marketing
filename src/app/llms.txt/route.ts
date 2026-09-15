@@ -74,12 +74,12 @@ ${section(
   `Afterkey has one plan with no tiers. All prices are published; there are no quote calls or volume brackets.
 
 - Base: $${pricing.base}/month. Includes unlimited team members and unlimited subcontractors. There are no per-user fees.
-- Per active home: $${pricing.perHome}/month per home, flat at any age. A home is billed only while it is under warranty or on an active service plan. Dormant homes are never billed and reactivate automatically if a homeowner starts a membership later.
+- Per active home: $${pricing.perHome}/month per home, flat at any age, for homes the builder is actively serving. Prospect homes (past builds being pitched a membership — outreach and offers only) and archived homes (read-only history, reactivate any time) are free. A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set.
 - AI add-on (optional): $${pricing.ai.price}/month per active home. Includes ${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all homes. Appliances already in the shared library are free and do not count against the pool. Overage is $${pricing.ai.overagePerAction.toFixed(2)} per action, with a live meter and a builder-set ceiling. Without the add-on, builders get ${pricing.ai.freeActionsWithoutAddOn} free AI actions per month.
 - SMS add-on (optional): $${pricing.sms.price}/month. Includes a dedicated business number and ${pricing.sms.includedSegments.toLocaleString()} segments. Overage is $${pricing.sms.overagePer1000} per 1,000 segments, with a live meter and a builder-set ceiling.
-- Platform fee: ${pricing.platformFeePercent}% on homeowner payments processed through Afterkey. Card processing is passed through at cost, separately.
+- Platform fee on homeowner payments: none. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for card payments — all-in rates that include every payment processing and payout cost.
 - Onboarding: standard self-serve onboarding is free. Optional concierge onboarding is $${pricing.conciergeOnboarding} one-time.
-- Annual prepay: ${pricing.annualDiscountPercent}% off the base.
+- Annual prepay: ${pricing.annualDiscountPercent}% off — the base (and SMS add-on) prepaid for the year, with active homes billing monthly at $9 instead of $${pricing.perHome} while annual is active.
 - Free trial: none. Afterkey uses a ${guarantee.days}-day money-back guarantee instead. ${guarantee.body} Onboarding is self-serve and no sales call is required.
 
 Example monthly totals (published rates multiplied out, not customer averages):
@@ -102,7 +102,7 @@ Before any AI spend, Afterkey shows a cost preview listing which appliances are 
 )}
 ${section(
   "Status of features",
-  `Available now: core warranty and service request management, homeowner memberships and service plans, the AI Home Binder with cited maintenance intelligence, subcontractor compliance with dispatch gating, competitive maintenance quotes, and the SMS and voice business line.
+  `Available now: core warranty and service request management, homeowner memberships and service plans, win-back prospect homes with one-click claim invites and expiring membership offers, paid repair work with homeowner-approved estimates and billing, the AI Home Binder with cited maintenance intelligence, subcontractor compliance with dispatch gating, competitive maintenance quotes, and the SMS and voice business line with two-way texting.
 
 Note on SMS: each builder receives their own dedicated business number. Messages currently send under ${brand.legalName}'s carrier registration; per-builder branded sender identity is planned but not yet available.
 

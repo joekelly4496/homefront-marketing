@@ -86,7 +86,7 @@ export const guarantee = {
   days: 30,
   headline: "30-day money-back guarantee",
   /** The full promise. Featured on /pricing and echoed in /terms. */
-  body: "If it’s not working for you, we refund every dollar Afterkey charged. The only exception is usage costs already paid to carriers and payment processors on your behalf.",
+  body: "If it’s not working for you, we refund every dollar Afterkey charged. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
   /** One-line version for microcopy under a CTA. */
   short:
     "30-day money-back guarantee — if it’s not working, we refund every dollar Afterkey charged.",
@@ -127,10 +127,28 @@ export const pricing = {
     overagePerAction: 1.5,
     freeActionsWithoutAddOn: 5,
   },
-  platformFeePercent: 2.5,
+  /**
+   * Payment processing on homeowner payments. There is NO platform fee —
+   * these are Afterkey's published flat all-in rates, which include every
+   * payment processing and payout cost. FRAMING RULES: never describe the
+   * rate as the payment processor's own fee, and never as "at cost."
+   */
+  processing: {
+    bankPercent: 1,
+    cardPercent: 3.5,
+    cardFixedCents: 30,
+  },
   conciergeOnboarding: 499,
   annualDiscountPercent: 10,
 } as const;
+
+/**
+ * The only approved description of homeowner-payment costs. No platform fee;
+ * flat published all-in processing rates. Never "at cost", never "Stripe's
+ * fee" — the rates include every processing and payout cost, and that is the
+ * honest way to say it.
+ */
+export const processingLine = `There’s no platform fee on homeowner payments. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for cards — all-in rates that include every processing and payout cost.`;
 
 /** The only approved one-line price summary for use outside /pricing. */
 export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.perHome} per active home. No per-user fees, no contracts, no quote calls.`;
@@ -144,8 +162,8 @@ export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.per
 export const perHomeFraming = `At $${pricing.perHome} per active home, it’s small enough to build into the home’s cost at closing — so post-closing is a line item on the home, not overhead you carry.`;
 
 /* ------------------------------------------------------------------ */
-/* The six published commitments — brand promises, quoted verbatim on  */
-/* /pricing and referenced elsewhere.                                  */
+/* The seven published commitments — brand promises, quoted verbatim   */
+/* on /pricing and referenced elsewhere.                               */
 /* ------------------------------------------------------------------ */
 
 export type Commitment = {
@@ -190,6 +208,12 @@ export const commitments: Commitment[] = [
     title: "Email free forever",
     description:
       "We meter what costs us per unit. Email notifications aren’t metered and never will be.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "30-day money-back guarantee",
+    description:
+      "If it’s not working for you in the first 30 days, we refund every dollar Afterkey charged. The only exceptions: the SMS add-on for the number you used, and SMS usage over your allotment.",
   },
 ];
 
@@ -469,12 +493,76 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Payments run through the platform",
         description:
-          "Homeowners pay in their portal. A 2.5% platform fee applies to payments processed through Afterkey; card processing is passed through at cost.",
+          "Homeowners pay in their portal, by bank or card. There’s no platform fee on homeowner payments — just published flat processing rates (1% bank, 3.5% + 30¢ card), all-in, covering every processing and payout cost. You choose whether the homeowner’s price includes processing or your margin absorbs it.",
       },
       {
         title: "Maintenance the plan actually delivers",
         description:
           "The AI-built maintenance schedule is what makes the plan worth buying — the homeowner sees real upkeep happening, not a line item.",
+      },
+    ],
+  },
+  {
+    id: "win-back",
+    icon: Home,
+    accent: "emerald",
+    status: "live",
+    label: "Win-back",
+    title: "Win back the homes you’ve already built",
+    summary:
+      "Every home you’ve ever delivered is a membership prospect. Add past builds free, send the pitch, and pay only when they say yes.",
+    points: [
+      {
+        title: "Prospect homes are free",
+        description:
+          "Add a past build as a prospect and it costs nothing while you court it. Billing starts only when the homeowner joins a plan or you activate the home to start working it.",
+      },
+      {
+        title: "One-click claim invites",
+        description:
+          "Send the homeowner a personalized membership pitch by email. One click and they’re inside their own portal — signed in, home already set up, your offer in front of them. No password gauntlet.",
+      },
+      {
+        title: "Your pitch, your tiers",
+        description:
+          "Offer one plan or several, at prices you set per home. The homeowner picks a tier and subscribes right in the portal.",
+      },
+      {
+        title: "Quotes that expire",
+        description:
+          "Set how long each offer is good for, so a homeowner who circles back two years later gets today’s pricing — not a quote from a different economy.",
+      },
+    ],
+  },
+  {
+    id: "repair-billing",
+    icon: FileClock,
+    accent: "amber",
+    status: "live",
+    label: "Repair billing",
+    title: "Paid repair work, from estimate to payment",
+    summary:
+      "Out-of-warranty and odd-job work runs through estimates and approvals — the homeowner knows the price before anyone is scheduled, and is never charged more than they approved.",
+    points: [
+      {
+        title: "Estimates the homeowner approves first",
+        description:
+          "You price the job, the homeowner approves it in their portal, and only then does the work get scheduled. Approval also secures a payment method, so completed work actually gets paid.",
+      },
+      {
+        title: "Never above the approved amount",
+        description:
+          "The charge can never exceed the price the homeowner approved. If the scope grows, they approve the new number before it bills.",
+      },
+      {
+        title: "Photos before money moves",
+        description:
+          "Subs are required to attach completion photos, so the record shows the finished work before payment happens.",
+      },
+      {
+        title: "Handyman and odd jobs",
+        description:
+          "Homeowners can request paid work beyond warranty — hang the TV, fix the fence gate — and it flows through the same estimate-and-approval path. Post-warranty service becomes a revenue line.",
       },
     ],
   },
@@ -486,7 +574,7 @@ export const featureGroups: FeatureGroup[] = [
     label: "SMS + Voice",
     title: "A dedicated business line for every builder",
     summary:
-      "Your own dedicated business number for automated maintenance reminders, day-of coordination, and inbound calls forwarded straight to you.",
+      "Your own dedicated business number for real two-way texting, automated maintenance reminders, day-of coordination, and inbound calls forwarded straight to you.",
     points: [
       {
         title: "Your own dedicated number",
@@ -507,6 +595,11 @@ export const featureGroups: FeatureGroup[] = [
         title: "Inbound calls forwarded to you",
         description:
           "When a homeowner calls the number, it forwards to you — so the business line is the number on the record, not your personal cell.",
+      },
+      {
+        title: "Real two-way texting",
+        description:
+          "Homeowners and subs can simply text back. Replies land in your Afterkey inbox matched to the right request, right next to the portal messages — one conversation, whichever channel they used.",
       },
     ],
   },
@@ -833,7 +926,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. A home is billed only while it is under warranty or on an active service plan, and dormant homes are never billed. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). A 2.5% platform fee applies to homeowner payments processed through Afterkey, with card processing passed through at cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Annual prepay takes 10% off the base. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). There is no platform fee on homeowner payments; payment processing runs at published flat rates of 1% for bank payments and 3.5% plus 30¢ for cards — all-in rates that include every processing and payout cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Annual prepay takes 10% off. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "What does the AI in Afterkey actually do?",
@@ -865,7 +958,11 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "What is an “active home”?",
-    a: "A home is active while it is under your builder warranty or has an active service plan or membership. Active homes bill at $10 per month, flat, regardless of the home’s age. When neither a warranty nor a plan applies, the home goes dormant automatically and you pay nothing for it. If a homeowner later starts a membership — including after a resale — the home reactivates automatically.",
+    a: "An active home is a home you are actively serving on Afterkey. It bills at $10 per month, flat, regardless of the home’s age. Two home states are free. A prospect home is a past build you are trying to win back: adding it costs nothing, and you can pitch memberships and send claim invites, but full service features stay off until it converts — which happens automatically when the homeowner starts a membership or a warranty date is set, or when you activate it yourself. An archived home is the honest exit: free and read-only, with the full history and binder preserved, and you can reactivate it any time, which resumes billing.",
+  },
+  {
+    q: "Can Afterkey help me win back homes I built years ago?",
+    a: "Yes. Add a past build as a prospect home — it costs nothing while you court it. You build a membership pitch with one or more plan tiers at prices you set, and Afterkey emails the homeowner a claim invite: one click signs them into their own portal, home already set up, with your offer in front of them. If they join, the home converts to active automatically and normal billing starts. You can also put an expiration on any offer so an old quote does not linger at old pricing.",
   },
   {
     q: "How long does it take to get started with Afterkey?",
@@ -873,7 +970,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Can I cancel Afterkey at any time?",
-    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, every dollar Afterkey charged is refunded, excluding usage costs already paid to carriers and payment processors on your behalf. Annual prepay is available as a 10% discount on the base, not as a commitment requirement. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, every dollar Afterkey charged is refunded — the only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Annual prepay is available as a 10% discount, not as a commitment requirement. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
   },
 ];
 
@@ -881,7 +978,7 @@ export const coreFaqs: Faq[] = [
 export const pricingFaqs: Faq[] = [
   {
     q: "What counts as an active home?",
-    a: "A home is active while it is under your builder warranty or has an active service plan or membership. When neither applies, it goes dormant automatically and you pay nothing for it. If the homeowner later starts a membership — even after a resale — it reactivates automatically.",
+    a: "An active home is one you are actively serving on the platform — it bills $10 per month, flat. Two states are free: prospect homes (past builds you are pitching a membership — outreach and offers only, until they convert) and archived homes (read-only, full history kept, reactivate any time). A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set.",
   },
   {
     q: "Do older homes cost more?",
@@ -896,12 +993,12 @@ export const pricingFaqs: Faq[] = [
     a: "The AI add-on is $5 per month per active home and includes 8 AI actions per home per month, pooled across all your homes — so a home that needs 20 actions can borrow from homes that need none. Appliances already in the shared library are free and do not count against the pool. Beyond the pool, actions are $1.50 each, with a live meter and a ceiling you set. Without the add-on you get 5 free actions per month to try it, and Afterkey always shows a cost preview before spending anything.",
   },
   {
-    q: "What is the 2.5% platform fee?",
-    a: "It applies only to homeowner payments you process through Afterkey, such as membership billing. Standard card processing fees are passed through at cost, separately. If you do not process homeowner payments through Afterkey, you never see this fee.",
+    q: "Does Afterkey take a cut of homeowner payments?",
+    a: "No — there is no platform fee on homeowner payments. When homeowners pay through Afterkey, whether for a membership or a repair invoice, the only cost is payment processing at published flat rates: 1% for bank payments and 3.5% plus 30¢ for cards. Those are all-in rates that include every processing and payout cost, and bank is listed first everywhere because it is the cheaper rail. You choose whether homeowner pricing includes processing or your margin absorbs it. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
   },
   {
     q: "Is there a contract?",
-    a: "No. Month-to-month, cancel anytime, no termination fees. Annual prepay simply saves you 10% on the base.",
+    a: "No. Month-to-month, cancel anytime, no termination fees. Annual prepay simply saves you 10%: the base (and SMS add-on) prepaid for the year, with active homes billing monthly at $9 instead of $10 while annual is active.",
   },
   {
     q: "Can prices go up after I sign up?",
@@ -909,7 +1006,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Is there a free trial?",
-    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you within 30 days, we refund every dollar Afterkey charged. The only exception is usage costs already paid to carriers and payment processors on your behalf — SMS segments already sent and card processing fees already incurred cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
+    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you within 30 days, we refund every dollar Afterkey charged. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment — carrier costs for messages already sent cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
   },
   {
     q: "What is concierge onboarding?",
