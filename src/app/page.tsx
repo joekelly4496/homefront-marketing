@@ -505,7 +505,7 @@ export default function HomePage() {
             <div className="rounded-3xl bg-brand-700 px-6 py-12 sm:px-12 sm:py-16">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                  Six things we put in writing
+                  Seven things we put in writing
                 </h2>
                 <p className="mt-3 text-base text-brand-100">
                   Published prices, honest meters, and no clause that only works

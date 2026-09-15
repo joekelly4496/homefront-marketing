@@ -104,7 +104,7 @@ export function softwareApplicationSchema() {
           "@type": "Offer",
           name: "Per active home",
           description:
-            "Charged per home while it is under warranty or on an active service plan. Dormant homes are not billed.",
+            "Charged per home the builder is actively serving, flat at any age. Prospect and archived homes are not billed.",
           price: pricing.perHome,
           priceCurrency: "USD",
           priceSpecification: {
