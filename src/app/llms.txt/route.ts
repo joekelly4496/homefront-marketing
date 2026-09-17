@@ -79,7 +79,6 @@ ${section(
 - SMS add-on (optional): $${pricing.sms.price}/month. Includes a dedicated business number and ${pricing.sms.includedSegments.toLocaleString()} segments. Overage is $${pricing.sms.overagePer1000} per 1,000 segments, with a live meter and a builder-set ceiling.
 - Platform fee on homeowner payments: none. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for card payments — all-in rates that include every payment processing and payout cost.
 - Onboarding: standard self-serve onboarding is free. Optional concierge onboarding is $${pricing.conciergeOnboarding} one-time.
-- Annual prepay: ${pricing.annualDiscountPercent}% off — the base (and SMS add-on) prepaid for the year, with active homes billing monthly at $9 instead of $${pricing.perHome} while annual is active.
 - Free trial: none. Afterkey uses a ${guarantee.days}-day money-back guarantee instead. ${guarantee.body} Onboarding is self-serve and no sales call is required.
 
 Example monthly totals (published rates multiplied out, not customer averages):

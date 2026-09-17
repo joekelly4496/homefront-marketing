@@ -139,7 +139,6 @@ export const pricing = {
     cardFixedCents: 30,
   },
   conciergeOnboarding: 499,
-  annualDiscountPercent: 10,
 } as const;
 
 /**
@@ -195,7 +194,7 @@ export const commitments: Commitment[] = [
     icon: FileCheck2,
     title: "No contracts",
     description:
-      "Month-to-month. Cancel anytime, no termination fee. Annual prepay is a discount, not a handcuff.",
+      "Month-to-month. Cancel anytime, no termination fee. One simple monthly bill.",
   },
   {
     icon: BarChart3,
@@ -926,7 +925,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). There is no platform fee on homeowner payments; payment processing runs at published flat rates of 1% for bank payments and 3.5% plus 30¢ for cards — all-in rates that include every processing and payout cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Annual prepay takes 10% off. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). There is no platform fee on homeowner payments; payment processing runs at published flat rates of 1% for bank payments and 3.5% plus 30¢ for cards — all-in rates that include every processing and payout cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "What does the AI in Afterkey actually do?",
@@ -970,7 +969,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Can I cancel Afterkey at any time?",
-    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, every dollar Afterkey charged is refunded — the only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Annual prepay is available as a 10% discount, not as a commitment requirement. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, every dollar Afterkey charged is refunded — the only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
   },
 ];
 
@@ -998,7 +997,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Is there a contract?",
-    a: "No. Month-to-month, cancel anytime, no termination fees. Annual prepay simply saves you 10%: the base (and SMS add-on) prepaid for the year, with active homes billing monthly at $9 instead of $10 while annual is active.",
+    a: "No. Month-to-month, cancel anytime, no termination fees. There is one simple monthly bill and nothing to commit to up front.",
   },
   {
     q: "Can prices go up after I sign up?",
