@@ -121,11 +121,6 @@ export default function PricingPage() {
     faqPageSchema(pricingFaqs),
   ]);
 
-  const annualBase = (
-    pricing.base *
-    (1 - pricing.annualDiscountPercent / 100)
-  ).toFixed(2);
-
   return (
     <>
       <JsonLd data={pageGraph} />
@@ -201,10 +196,7 @@ export default function PricingPage() {
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-5 max-w-3xl">
             <p className="text-center text-sm leading-relaxed text-slate-500">
-              Annual prepay takes {pricing.annualDiscountPercent}% off — the
-              base prepaid at ${annualBase}/month, with active homes billing
-              monthly at $9 instead of ${pricing.perHome} while annual is
-              active. {processingLine} Optional concierge onboarding — we build
+              {processingLine} Optional concierge onboarding — we build
               the digital binder for your entire existing home roster from your
               documents — is ${pricing.conciergeOnboarding} one-time. Standard
               self-serve onboarding is free.
