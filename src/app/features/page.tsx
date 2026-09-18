@@ -7,6 +7,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Container, SectionLabel } from "@/components/ui/Container";
 import { StatusPill } from "@/components/ui/StatusPill";
 import { JsonLd } from "@/components/JsonLd";
+import { BinderMockup } from "@/components/mockups/BinderMockup";
+import { RequestFlow } from "@/components/mockups/RequestFlow";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import {
@@ -85,6 +87,12 @@ export default function FeaturesPage() {
                     <p className="mt-2 text-sm text-slate-600">
                       {group.summary}
                     </p>
+                    {group.id === "warranty" && (
+                      <RequestFlow className="mt-6" />
+                    )}
+                    {group.id === "ai-binder" && (
+                      <BinderMockup className="mt-6" />
+                    )}
                   </div>
                   <div className="grid gap-5 sm:grid-cols-2">
                     {group.points.map((point) => (

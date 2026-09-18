@@ -430,8 +430,8 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* 7 — The six commitments */}
-      <section className="py-20 sm:py-24">
+      {/* 7 — The seven commitments (anchor target for the home page band) */}
+      <section id="commitments" className="scroll-mt-24 py-20 sm:py-24">
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>Published commitments</SectionLabel>
