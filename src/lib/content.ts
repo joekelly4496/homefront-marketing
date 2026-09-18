@@ -134,7 +134,7 @@ export const pricing = {
    * rate as the payment processor's own fee, and never as "at cost."
    */
   processing: {
-    bankPercent: 1,
+    bankPercent: 1.25,
     cardPercent: 3.5,
     cardFixedCents: 30,
   },
@@ -492,7 +492,7 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Payments run through the platform",
         description:
-          "Homeowners pay in their portal, by bank or card. There’s no platform fee on homeowner payments — just published flat processing rates (1% bank, 3.5% + 30¢ card), all-in, covering every processing and payout cost. You choose whether the homeowner’s price includes processing or your margin absorbs it.",
+          "Homeowners pay in their portal, by bank or card. There’s no platform fee on homeowner payments — just published flat processing rates (1.25% bank, 3.5% + 30¢ card), all-in, covering every processing and payout cost. You choose whether the homeowner’s price includes processing or your margin absorbs it.",
       },
       {
         title: "Maintenance the plan actually delivers",
@@ -925,7 +925,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). There is no platform fee on homeowner payments; payment processing runs at published flat rates of 1% for bank payments and 3.5% plus 30¢ for cards — all-in rates that include every processing and payout cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). There is no platform fee on homeowner payments; payment processing runs at published flat rates of 1.25% for bank payments and 3.5% plus 30¢ for cards — all-in rates that include every processing and payout cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "What does the AI in Afterkey actually do?",
@@ -993,7 +993,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Does Afterkey take a cut of homeowner payments?",
-    a: "No — there is no platform fee on homeowner payments. When homeowners pay through Afterkey, whether for a membership or a repair invoice, the only cost is payment processing at published flat rates: 1% for bank payments and 3.5% plus 30¢ for cards. Those are all-in rates that include every processing and payout cost, and bank is listed first everywhere because it is the cheaper rail. You choose whether homeowner pricing includes processing or your margin absorbs it. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
+    a: "No — there is no platform fee on homeowner payments. When homeowners pay through Afterkey, whether for a membership or a repair invoice, the only cost is payment processing at published flat rates: 1.25% for bank payments and 3.5% plus 30¢ for cards. Those are all-in rates that include every processing and payout cost, and bank is listed first everywhere because it is the cheaper rail. You choose whether homeowner pricing includes processing or your margin absorbs it. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
   },
   {
     q: "Is there a contract?",
