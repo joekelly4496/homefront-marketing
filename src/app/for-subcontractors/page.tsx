@@ -163,9 +163,15 @@ export default function ForSubcontractorsPage() {
               Built for the jobsite, not the office
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Centered wrap, not a grid: five cards never fill 2 or 3
+              columns evenly — this way the short last row centers. */}
+          <div className="mt-12 flex flex-wrap justify-center gap-6">
             {benefits.map((b, i) => (
-              <Reveal key={b.title} delay={(i % 3) * 70}>
+              <Reveal
+                key={b.title}
+                delay={(i % 3) * 70}
+                className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+              >
                 <Card interactive className="h-full p-6 sm:p-7">
                   <IconBox icon={b.icon} accent="violet" />
                   <h3 className="mt-4 text-lg font-semibold text-slate-900">

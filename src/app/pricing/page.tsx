@@ -439,9 +439,15 @@ export default function PricingPage() {
               Seven things we put in writing
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Centered wrap, not a grid: seven cards never fill 2 or 3
+              columns evenly — this way the short last row centers. */}
+          <div className="mt-12 flex flex-wrap justify-center gap-6">
             {commitments.map((c, i) => (
-              <Reveal key={c.title} delay={(i % 3) * 80}>
+              <Reveal
+                key={c.title}
+                delay={(i % 3) * 80}
+                className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+              >
                 <Card className="h-full p-6">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
                     <c.icon className="h-5 w-5" aria-hidden="true" />

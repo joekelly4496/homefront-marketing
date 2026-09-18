@@ -467,9 +467,11 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {/* Four items — a 2x2 grid, matching the builder-value section.
+              Never three columns here: 4 into 3 leaves an orphan card. */}
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {homeownerValue.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80}>
+              <Reveal key={item.title} delay={(i % 2) * 80}>
                 <Card interactive className="h-full p-6 sm:p-7">
                   <IconBox icon={item.icon} accent={item.accent} />
                   <h3 className="mt-4 text-lg font-semibold text-slate-900">
@@ -577,12 +579,13 @@ export default function HomePage() {
                 </p>
               </div>
               {/* Titles only here — every commitment is spelled out in full
-                  on the pricing page, one tap away. */}
-              <div className="mt-10 grid gap-x-8 gap-y-3.5 sm:grid-cols-2 lg:grid-cols-3">
+                  on the pricing page, one tap away. Centered wrap instead of
+                  a grid: seven items never fill a column count evenly. */}
+              <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3.5">
                 {commitments.map((c) => (
-                  <p key={c.title} className="flex gap-2.5">
+                  <p key={c.title} className="flex items-center gap-2">
                     <CheckCircle2
-                      className="mt-0.5 h-4 w-4 shrink-0 text-brand-200"
+                      className="h-4 w-4 shrink-0 text-brand-200"
                       aria-hidden="true"
                     />
                     <span className="text-sm font-medium text-white">
