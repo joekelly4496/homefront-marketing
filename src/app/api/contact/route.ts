@@ -53,6 +53,9 @@ export async function POST(request: Request) {
     const homes = String(body.homes ?? "").trim().slice(0, 40);
     const message = String(body.message ?? "").trim().slice(0, 4000);
     const honeypot = String(body.website ?? "").trim();
+    // Where the lead came from: the contact page form or the floating
+    // site-wide widget. Anything unexpected reads as the page form.
+    const source = body.source === "widget" ? "the site widget" : "the contact form";
 
     // Bots fill every field; people never see this one. Answer success so
     // the bot moves on.
@@ -98,9 +101,9 @@ export async function POST(request: Request) {
         from: process.env.CONTACT_FROM || "Afterkey Website <noreply@getafterkey.com>",
         to: [to],
         reply_to: email,
-        subject: `New lead: ${name}${company ? ` — ${company}` : ""}`,
-        html: `<h2 style="font-size:16px;color:#0f172a">New contact form message</h2><table>${rows}</table><p style="margin-top:16px;font-size:14px;color:#0f172a;white-space:pre-wrap">${esc(message)}</p><p style="margin-top:16px;font-size:12px;color:#94a3b8">Sent from the getafterkey.com contact form. Reply goes straight to them.</p>`,
-        text: `New lead from the contact form\n\nName: ${name}\nCompany: ${company || "-"}\nEmail: ${email}\nPhone: ${phone || "-"}\nHomes per year: ${homes || "-"}\n\n${message}`,
+        subject: `New lead: ${name}${company ? ` — ${company}` : ""}${body.source === "widget" ? " (site widget)" : ""}`,
+        html: `<h2 style="font-size:16px;color:#0f172a">New message from ${source}</h2><table>${rows}</table><p style="margin-top:16px;font-size:14px;color:#0f172a;white-space:pre-wrap">${esc(message)}</p><p style="margin-top:16px;font-size:12px;color:#94a3b8">Sent from ${source} on getafterkey.com. Reply goes straight to them.</p>`,
+        text: `New lead from ${source}\n\nName: ${name}\nCompany: ${company || "-"}\nEmail: ${email}\nPhone: ${phone || "-"}\nHomes per year: ${homes || "-"}\n\n${message}`,
       }),
     });
 
