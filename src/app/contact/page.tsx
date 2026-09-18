@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { brand, signupHref, guarantee } from "@/lib/content";
+import { ContactForm } from "./ContactForm";
 
 const title = "Contact";
 const description =
@@ -68,27 +69,46 @@ export default function ContactPage() {
 
       <section className="py-20 sm:py-24">
         <Container size="6xl">
-          <div className="grid gap-6 sm:grid-cols-2">
-            {options.map((opt, i) => (
-              <Reveal key={opt.title} delay={(i % 2) * 70}>
-                <Card className="flex h-full flex-col p-6 sm:p-7">
-                  <IconBox icon={opt.icon} accent="brand" />
-                  <h2 className="mt-4 text-lg font-semibold text-slate-900">
-                    {opt.title}
-                  </h2>
-                  <p className="mt-1.5 flex-1 text-sm text-slate-600">
-                    {opt.description}
-                  </p>
-                  <a
-                    href={opt.cta.href}
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
-                  >
-                    {opt.cta.label}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </a>
-                </Card>
-              </Reveal>
-            ))}
+          <div className="grid gap-10 lg:grid-cols-[1fr_340px] lg:gap-14">
+            {/* The form is the main event — a mailto link loses the builder
+                whose phone has no mail app set up. */}
+            <Reveal>
+              <Card className="p-6 sm:p-8">
+                <h2 className="text-lg font-semibold text-slate-900">
+                  Send us a message
+                </h2>
+                <p className="mt-1.5 text-sm text-slate-600">
+                  Pricing, onboarding, or whether Afterkey fits how you work. A
+                  person answers within one business day.
+                </p>
+                <div className="mt-6">
+                  <ContactForm />
+                </div>
+              </Card>
+            </Reveal>
+
+            <div className="space-y-5">
+              {options.map((opt, i) => (
+                <Reveal key={opt.title} delay={i * 70}>
+                  <Card className="flex h-full flex-col p-5 sm:p-6">
+                    <IconBox icon={opt.icon} accent="brand" />
+                    <h2 className="mt-3 text-base font-semibold text-slate-900">
+                      {opt.title}
+                    </h2>
+                    <p className="mt-1 flex-1 text-sm text-slate-600">
+                      {opt.description}
+                    </p>
+                    <a
+                      href={opt.cta.href}
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
+                    >
+                      {opt.cta.label}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </Card>
+                </Reveal>
+              ))}
+            </div>
           </div>
 
           <Reveal delay={140} className="mt-12 text-center">
