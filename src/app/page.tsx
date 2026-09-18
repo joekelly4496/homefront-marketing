@@ -10,6 +10,9 @@ import { FaqList } from "@/components/ui/FaqList";
 import { JsonLd } from "@/components/JsonLd";
 import { BuilderDashboard } from "@/components/mockups/BuilderDashboard";
 import { PhoneMockup } from "@/components/mockups/PhoneMockup";
+import { BinderMockup } from "@/components/mockups/BinderMockup";
+import { WhiteLabelSwap } from "@/components/mockups/WhiteLabelSwap";
+import { RequestFlow } from "@/components/mockups/RequestFlow";
 import { graph, faqPageSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
@@ -30,19 +33,19 @@ import {
 } from "@/lib/content";
 
 const withoutAfterkey = [
-  "Warranty requests arrive by text and voicemail, and the only queue is your memory.",
-  "A sub says they called, the homeowner says nobody came, and there is no record either way.",
-  "Insurance certificates expire in an inbox until a claim makes you go looking.",
-  "Maintenance guidance is a paper binder the homeowner loses inside a year.",
-  "Post-closing is a cost center you absorb, and the callbacks come out of your margin.",
+  "Requests arrive by text, voicemail, and memory.",
+  "The sub says they called. The homeowner says nobody came. No record either way.",
+  "Insurance certificates expire quietly in an inbox.",
+  "The maintenance binder is paper. It’s lost by June.",
+  "Every callback comes out of your margin.",
 ];
 
 const withAfterkey = [
-  "Every request lands in one queue with a response clock and an assigned trade.",
-  "Each dispatch, arrival, and completion is timestamped on the home’s permanent record.",
-  "Compliance documents are tracked with expirations, and lapsed coverage warns you before dispatch.",
-  "Each home gets an AI-built maintenance schedule with a cited source on every line.",
-  "Memberships turn homes you already built into recurring revenue.",
+  "One queue, a response clock, an assigned trade.",
+  "Dispatch, arrival, completion — timestamped on the home’s record.",
+  "Lapsed coverage warns you before dispatch, not after a claim.",
+  "A maintenance schedule with a cited source on every line.",
+  "Memberships turn finished homes into recurring revenue.",
 ];
 
 const aiBinder = featureGroups.find((g) => g.id === "ai-binder")!;
@@ -130,9 +133,16 @@ export default function HomePage() {
             </div>
 
             <Reveal delay={160} className="relative">
-              <BuilderDashboard />
-              <div className="absolute -bottom-8 -right-2 hidden sm:block lg:-right-6">
+              {/* Mobile gets the phone — a phone looks right on a phone, and
+                  the dense dashboard mock doesn't. sm+ gets both. */}
+              <div className="flex justify-center sm:hidden">
                 <PhoneMockup />
+              </div>
+              <div className="hidden sm:block">
+                <BuilderDashboard />
+                <div className="absolute -bottom-8 -right-2 lg:-right-6">
+                  <PhoneMockup />
+                </div>
               </div>
             </Reveal>
           </div>
@@ -221,28 +231,78 @@ export default function HomePage() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {portals.map((portal, i) => (
               <Reveal key={portal.name} delay={i * 80}>
-                <Card interactive className="flex h-full flex-col p-6 sm:p-7">
-                  <div className="flex items-center justify-between">
-                    <IconBox icon={portal.icon} accent={portal.accent} />
-                    <Pill color={portal.accent}>{portal.audience}</Pill>
+                <Card
+                  interactive
+                  className="flex h-full flex-col overflow-hidden"
+                >
+                  {/* A sliver of each portal's actual chrome, so the three
+                      cards read as three products rather than three columns
+                      of text. */}
+                  {portal.name === "Builder portal" && (
+                    <div
+                      className="flex items-center gap-1.5 border-b border-slate-200 bg-slate-50 px-4 py-2.5"
+                      aria-hidden="true"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-slate-300" />
+                      <span className="h-2 w-2 rounded-full bg-slate-300" />
+                      <span className="h-2 w-2 rounded-full bg-slate-300" />
+                      <span className="ml-2 truncate rounded border border-slate-200 bg-white px-2 py-0.5 text-[10px] text-slate-400">
+                        app.getafterkey.com/dashboard
+                      </span>
+                    </div>
+                  )}
+                  {portal.name === "Homeowner portal" && (
+                    <div
+                      className="flex items-center gap-2 bg-slate-900 px-4 py-2.5"
+                      aria-hidden="true"
+                    >
+                      <span className="inline-flex h-4 w-4 items-center justify-center rounded bg-white/15 text-[8px] font-bold text-white">
+                        W
+                      </span>
+                      <span className="text-[10px] font-semibold tracking-wide text-white">
+                        WHITFIELD HOMES
+                      </span>
+                      <span className="ml-auto text-[9px] text-slate-400">
+                        your brand, not ours
+                      </span>
+                    </div>
+                  )}
+                  {portal.name === "Subcontractor portal" && (
+                    <div
+                      className="flex items-center justify-between border-b border-amber-100 bg-amber-50 px-4 py-2.5"
+                      aria-hidden="true"
+                    >
+                      <span className="text-[10px] font-semibold text-amber-800">
+                        Today&rsquo;s jobs
+                      </span>
+                      <span className="rounded-full border border-amber-200 bg-white px-1.5 py-0.5 text-[9px] font-semibold text-amber-700">
+                        3 assigned
+                      </span>
+                    </div>
+                  )}
+                  <div className="flex flex-1 flex-col p-6 sm:p-7">
+                    <div className="flex items-center justify-between">
+                      <IconBox icon={portal.icon} accent={portal.accent} />
+                      <Pill color={portal.accent}>{portal.audience}</Pill>
+                    </div>
+                    <h3 className="mt-5 text-lg font-semibold text-slate-900">
+                      {portal.name}
+                    </h3>
+                    <p className="mt-1.5 text-sm text-slate-600">
+                      {portal.description}
+                    </p>
+                    <ul className="mt-5 space-y-2.5 border-t border-slate-100 pt-5">
+                      {portal.points.slice(0, 3).map((p) => (
+                        <li key={p} className="flex gap-2.5">
+                          <CheckCircle2
+                            className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
+                            aria-hidden="true"
+                          />
+                          <span className="text-sm text-slate-600">{p}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="mt-5 text-lg font-semibold text-slate-900">
-                    {portal.name}
-                  </h3>
-                  <p className="mt-1.5 text-sm text-slate-600">
-                    {portal.description}
-                  </p>
-                  <ul className="mt-5 space-y-2.5 border-t border-slate-100 pt-5">
-                    {portal.points.map((p) => (
-                      <li key={p} className="flex gap-2.5">
-                        <CheckCircle2
-                          className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                          aria-hidden="true"
-                        />
-                        <span className="text-sm text-slate-600">{p}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </Card>
               </Reveal>
             ))}
@@ -262,12 +322,21 @@ export default function HomePage() {
               <p className="mt-5 text-base text-slate-600">
                 {aiBinder.summary}
               </p>
-              <p className="mt-4 text-base text-slate-600">
-                Most AI writes something plausible and hopes you don’t check.
-                Afterkey shows you where every interval came from — and when it
-                doesn’t have a manufacturer source, it says so instead of
-                guessing.
-              </p>
+              {/* The four selling points, titles only — the full versions
+                  live on /features; the mockup makes the argument here. */}
+              <ul className="mt-6 space-y-2.5">
+                {aiBinder.points.map((point) => (
+                  <li key={point.title} className="flex gap-2.5">
+                    <CheckCircle2
+                      className="mt-0.5 h-4 w-4 shrink-0 text-violet-600"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm text-slate-700">
+                      {point.title}
+                    </span>
+                  </li>
+                ))}
+              </ul>
               <div className="mt-8">
                 <Link
                   href="/use-cases/home-maintenance-reminders"
@@ -279,20 +348,9 @@ export default function HomePage() {
               </div>
             </Reveal>
 
-            <div className="grid gap-5 sm:grid-cols-2">
-              {aiBinder.points.map((point, i) => (
-                <Reveal key={point.title} delay={(i % 2) * 80}>
-                  <Card className="h-full p-5 sm:p-6">
-                    <h3 className="text-base font-semibold text-slate-900">
-                      {point.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm text-slate-600">
-                      {point.description}
-                    </p>
-                  </Card>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal delay={100}>
+              <BinderMockup />
+            </Reveal>
           </div>
 
           {/* The honesty claim, stated plainly enough to be quoted */}
@@ -369,26 +427,27 @@ export default function HomePage() {
             <p className="mt-5 text-base text-slate-600">{brand.whiteLabel}</p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {whiteLabelPoints.map((point, i) => (
-              <Reveal key={point.title} delay={(i % 4) * 70}>
-                <Card className="h-full p-6">
-                  <h3 className="text-base font-semibold text-slate-900">
-                    {point.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm text-slate-600">
-                    {point.description}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={160} className="mx-auto mt-10 max-w-3xl">
-            <p className="text-center text-sm text-slate-500">
-              You spent years building a name. The software running underneath
-              it shouldn’t be the one collecting the credit.
+          <Reveal delay={100} className="mx-auto mt-12 max-w-3xl">
+            <WhiteLabelSwap />
+            <p className="mt-4 text-center text-sm text-slate-500">
+              Two builders, one platform, and neither buyer has heard of us.
             </p>
+          </Reveal>
+
+          {/* The surfaces that carry the builder's brand — titles only; the
+              mockup above does the describing. */}
+          <Reveal delay={160} className="mx-auto mt-10 max-w-3xl">
+            <ul className="grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
+              {whiteLabelPoints.map((point) => (
+                <li key={point.title} className="flex gap-2.5">
+                  <CheckCircle2
+                    className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
+                    aria-hidden="true"
+                  />
+                  <span className="text-sm text-slate-700">{point.title}</span>
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </Container>
       </section>
@@ -436,25 +495,30 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step, i) => (
-              <Reveal key={step.title} delay={i * 70}>
-                <div className="h-full">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-sm font-semibold text-white">
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <Reveal>
+              <RequestFlow className="mx-auto max-w-md" />
+            </Reveal>
+
+            <div className="space-y-7">
+              {steps.map((step, i) => (
+                <Reveal key={step.title} delay={i * 70}>
+                  <div className="flex gap-4">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-sm font-semibold text-white">
                       {i + 1}
                     </span>
-                    <IconBox icon={step.icon} accent="slate" />
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-600">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="mt-4 text-base font-semibold text-slate-900">
-                    {step.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm text-slate-600">
-                    {step.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
@@ -512,18 +576,30 @@ export default function HomePage() {
                   in our favor.
                 </p>
               </div>
-              <div className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+              {/* Titles only here — every commitment is spelled out in full
+                  on the pricing page, one tap away. */}
+              <div className="mt-10 grid gap-x-8 gap-y-3.5 sm:grid-cols-2 lg:grid-cols-3">
                 {commitments.map((c) => (
-                  <div key={c.title}>
-                    <p className="text-base font-semibold text-white">
+                  <p key={c.title} className="flex gap-2.5">
+                    <CheckCircle2
+                      className="mt-0.5 h-4 w-4 shrink-0 text-brand-200"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm font-medium text-white">
                       {c.title}
-                    </p>
-                    <p className="mt-1.5 text-sm text-brand-100">
-                      {c.description}
-                    </p>
-                  </div>
+                    </span>
+                  </p>
                 ))}
               </div>
+              <p className="mt-8 text-center">
+                <Link
+                  href="/pricing#commitments"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-brand-100"
+                >
+                  Read all seven in plain language
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </p>
             </div>
           </Reveal>
         </Container>
