@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { ContactWidget } from "@/components/ContactWidget";
 import { JsonLd } from "@/components/JsonLd";
 import { siteUrl, absoluteUrl } from "@/lib/site";
 import { brand } from "@/lib/content";
@@ -74,6 +75,7 @@ export default function RootLayout({
         <Navigation />
         <main id="main">{children}</main>
         <Footer />
+        <ContactWidget />
       </body>
     </html>
   );
