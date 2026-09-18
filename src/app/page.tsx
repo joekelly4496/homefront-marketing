@@ -122,13 +122,20 @@ export default function HomePage() {
                 </div>
               </Reveal>
               <Reveal delay={240}>
+                {/* The full price, both numbers, right under the CTA —
+                    "base" alone reads as $149 all-in, and a builder who
+                    finds the per-home line later feels ambushed. Always
+                    paired with its framing (build it into the closing). */}
                 <p className="mt-6 text-sm text-slate-500">
-                  ${pricing.base}/month base · Unlimited users and subs · No
-                  contracts
+                  ${pricing.base}/month + ${pricing.perHome} per active home ·
+                  Unlimited users and subs · No contracts
                 </p>
               </Reveal>
               <Reveal delay={280}>
-                <p className="mt-2 text-sm text-slate-500">{guarantee.short}</p>
+                <p className="mt-2 text-sm text-slate-500">
+                  The per-home line is small enough to build into each
+                  home&rsquo;s cost at closing. {guarantee.short}
+                </p>
               </Reveal>
             </div>
 
