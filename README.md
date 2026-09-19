@@ -130,3 +130,26 @@ with no search value.
 
 The app itself (all three portals) lives at `https://app.getafterkey.com` —
 configured as `appBase` in `content.ts`.
+
+## Analytics: PostHog
+
+Product analytics, **Session Replay** and **Error Tracking** run through
+PostHog. Nothing is sent unless the project key is present.
+
+```bash
+# .env.local (git-ignored) — also set both in Vercel → Project → Environment Variables
+NEXT_PUBLIC_POSTHOG_KEY=phc_...            # PostHog → Settings → Project → Project API key
+NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+```
+
+Where it lives:
+
+- `src/instrumentation-client.ts` — browser init: pageviews on client
+  navigation, session recording (all form inputs masked), exception capture.
+- `src/instrumentation.ts` + `src/lib/posthog-server.ts` — server-side
+  `onRequestError` hook reporting render / API route errors to Error Tracking.
+- `next.config.ts` — `/ingest/*` reverse proxy to PostHog Cloud (US) so events
+  stay first-party and aren't dropped by ad blockers.
+- `.mcp.json` — PostHog MCP server for Claude Code. Needs
+  `POSTHOG_AUTH_HEADER="Bearer phx_..."` (a PostHog *personal* API key) in
+  your shell environment.
