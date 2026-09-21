@@ -64,6 +64,19 @@ creates legal, carrier, or credibility exposure:
   guarantee instead. Never write "free trial," "try it free," or "start free" —
   the FAQ answers the trial question directly with a no, which is deliberate:
   an answer engine should find an explicit denial, not silence.
+- **The guarantee covers subscription fees only.** The canonical wording is
+  `guarantee.body` in `content.ts`: the monthly base and every per-home fee are
+  refunded; the SMS add-on and SMS overage are not. Never write "every dollar
+  Afterkey charged," and never promise refunds of processing on homeowner
+  payments already collected.
+- **Processing rates are "our published rates."** Cards 3.5% + 30¢, ACH flat
+  1.25%, no platform fee (decision note dated Sept 2026 in `content.ts`). Never
+  "at cost," "we never mark it up," or "Stripe's rate." Allowed: "you pay only
+  processing." Not allowed: a bare "we take no cut" or "100% yours" without the
+  processing mention.
+- **Plan dues are paid by card or bank account.** Never describe billing as
+  ACH-only and never disparage cards. If a payment method on file is mentioned,
+  write "a payment method on file — card or bank account."
 - **The per-home fee never appears as a naked recurring charge.** Wherever
   `$10 per active home` shows up outside `/pricing`, pair it with
   `perHomeFraming` — it is small enough to price into the home at closing, so

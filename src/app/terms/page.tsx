@@ -39,7 +39,7 @@ const sections: LegalSection[] = [
   },
   {
     heading: "Price changes",
-    body: "Any change to published pricing will be communicated with at least 60 days’ notice and will take effect at the start of your next billing cycle following that notice period. Price changes are never applied mid-term and are never applied retroactively.",
+    body: "Your subscription rate is locked for 24 months from the date of your first paid charge. After that period, any change to published pricing will be communicated with at least 60 days’ notice and will take effect at the start of your next billing cycle following that notice period. Price changes are never applied mid-term and are never applied retroactively.",
   },
   {
     heading: "Cancellation",
