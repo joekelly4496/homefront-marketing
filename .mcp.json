@@ -1,5 +1,15 @@
 {
   "mcpServers": {
+    "posthog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.posthog.com/mcp",
+        "--header",
+        "Authorization:${POSTHOG_AUTH_HEADER}"
+      ]
+    },
     "higgsfield": {
       "type": "http",
       "url": "https://mcp.higgsfield.ai/mcp"
