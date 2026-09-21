@@ -19,12 +19,11 @@ import {
   notList,
   signupHref,
   guarantee,
-  useCases,
-} from "@/lib/content";
+  useCases, primaryCta } from "@/lib/content";
 
-const title = "Home Builder Warranty Management Software";
+const title = "Home Builder Warranty Software";
 const description =
-  "Afterkey manages warranty requests, subcontractor dispatch and compliance, homeowner portals, and AI-built maintenance schedules. See every feature.";
+  "Afterkey is home builder warranty software: callbacks, sub dispatch and compliance, a white-labeled homeowner portal, and AI-built maintenance schedules. See every feature.";
 
 export const metadata = pageMetadata({
   title,
@@ -270,8 +269,7 @@ export default function FeaturesPage() {
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">
                 See pricing

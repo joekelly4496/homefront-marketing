@@ -19,8 +19,6 @@ export function Container({
 
 export function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
-      {children}
-    </p>
+    <p className="text-sm font-medium text-tape">{children}</p>
   );
 }

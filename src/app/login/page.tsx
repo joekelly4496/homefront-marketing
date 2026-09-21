@@ -62,7 +62,7 @@ export default function LoginPage() {
               href={signupHref}
               className="font-semibold text-brand-600 hover:text-brand-700"
             >
-              Get started
+              Create an account
             </a>{" "}
             or{" "}
             <Link

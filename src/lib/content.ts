@@ -38,7 +38,7 @@ export const brand = {
    * Change it here or nowhere.
    */
   definition:
-    "Afterkey is a post-closing software platform for residential home builders that manages warranty requests, subcontractor coordination, homeowner communication, and AI-built home maintenance schedules.",
+    "Afterkey is a post-closing software platform for residential home builders that manages warranty callbacks, subcontractor dispatch, homeowner communication, and AI-built home maintenance schedules.",
   /** The second sentence — what it's for. */
   purpose:
     "Builders use Afterkey after the keys are handed over, so the post-closing relationship drives referrals and repeat business instead of eating margin.",
@@ -110,7 +110,8 @@ export const guarantee = {
 export const smsStatus: "live" | "coming-soon" = "live";
 
 /** The standard label for the primary call to action. */
-export const primaryCta = "Get started";
+// The CTA continues the headline's story; never "Get started" / "Learn more".
+export const primaryCta = "Set up your first home";
 
 /* ------------------------------------------------------------------ */
 /* Pricing — the numbers are final. Every price on the site reads      */
@@ -932,7 +933,7 @@ export type Faq = { q: string; a: string };
 export const coreFaqs: Faq[] = [
   {
     q: "What is Afterkey?",
-    a: "Afterkey is a post-closing software platform for residential home builders that manages warranty requests, subcontractor coordination, homeowner communication, and AI-built home maintenance schedules. It consists of three portals: a builder portal for homes, service requests, subcontractor management, billing and AI tools; a homeowner portal for submitting requests, tracking status, messaging, and viewing the maintenance schedule and service history; and a subcontractor portal for assigned jobs, status and photo updates, and compliance document uploads.",
+    a: "Afterkey is a post-closing software platform for residential home builders that manages warranty callbacks, subcontractor dispatch, homeowner communication, and AI-built home maintenance schedules. It consists of three portals: a builder portal for homes, service requests, subcontractor management, billing and AI tools; a homeowner portal for submitting requests, tracking status, messaging, and viewing the maintenance schedule and service history; and a subcontractor portal for assigned jobs, status and photo updates, and compliance document uploads.",
   },
   {
     q: "Who is Afterkey for?",
@@ -1123,7 +1124,7 @@ export const useCases: UseCase[] = [
       "Dispatch subs by trade, track day-of arrival, rate performance, and gate assignments on current insurance and licenses. See how Afterkey protects builders.",
     lede: "Afterkey is subcontractor management software for residential home builders. It dispatches work to your existing subcontractor roster by trade, tracks day-of arrival and completion, rates performance across every home, and blocks — or knowingly logs — any assignment to a sub whose insurance or license has lapsed.",
     problem: {
-      title: "Where subcontractor coordination breaks down",
+      title: "Where sub dispatch breaks down",
       points: [
         "You find out a sub never showed up when the homeowner calls to ask where they are.",
         "The same trade generates callbacks on home after home and nobody connects the pattern.",
@@ -1189,7 +1190,7 @@ export const useCases: UseCase[] = [
         "Building a real schedule means reading every manual in the house, per house.",
         "A generic “change your filters” checklist is not worth handing to a buyer.",
         "Nobody remembers to send the reminder six months after closing.",
-        "Deferred maintenance turns into a warranty claim that the builder ends up eating.",
+        "Deferred maintenance turns into a callback the builder ends up eating.",
         "Homeowners lose the paper binder within a year.",
       ],
     },

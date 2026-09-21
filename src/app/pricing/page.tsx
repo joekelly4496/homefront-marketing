@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  ArrowRight,
   CheckCircle2,
   MessageSquare,
   ShieldCheck,
@@ -29,6 +28,7 @@ import {
   guarantee,
   perHomeFraming,
   processingLine,
+  primaryCta,
   smsStatus,
 } from "@/lib/content";
 
@@ -142,8 +142,7 @@ export default function PricingPage() {
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <a
                 href="#included"
@@ -505,8 +504,7 @@ export default function PricingPage() {
             <p className="mt-3 text-sm text-slate-500">{guarantee.short}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/contact" size="lg" variant="secondary">
                 Ask a question

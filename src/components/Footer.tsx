@@ -27,7 +27,7 @@ const columns: { heading: string; links: { href: string; label: string }[] }[] =
         { href: loginUrls.builder, label: "Builder login" },
         { href: loginUrls.homeowner, label: "Homeowner login" },
         { href: loginUrls.sub, label: "Subcontractor login" },
-        { href: signupHref, label: "Get started" },
+        { href: signupHref, label: "Create an account" },
       ],
     },
     {
@@ -43,18 +43,18 @@ const columns: { heading: string; links: { href: string; label: string }[] }[] =
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="bg-ink text-paper">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
           <div className="col-span-2">
-            <Logo />
-            <p className="mt-4 max-w-xs text-sm text-slate-600">
+            <Logo tone="light" />
+            <p className="mt-4 max-w-xs text-sm text-slate-300">
               {brand.definition}
             </p>
-            <p className="mt-4 text-sm text-slate-600">
+            <p className="mt-4 text-sm text-slate-300">
               <a
                 href={`mailto:${brand.email}`}
-                className="font-medium text-brand-600 hover:text-brand-700"
+                className="font-medium text-brass hover:text-paper"
               >
                 {brand.email}
               </a>
@@ -63,7 +63,7 @@ export default function Footer() {
 
           {columns.map((col) => (
             <div key={col.heading}>
-              <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <h2 className="font-sans text-sm font-medium text-drywall">
                 {col.heading}
               </h2>
               <ul className="mt-4 space-y-3">
@@ -71,7 +71,7 @@ export default function Footer() {
                   <li key={link.href + link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                      className="text-sm text-slate-300 hover:text-paper transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -82,8 +82,8 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-slate-500">
+        <div className="mt-12 flex flex-col gap-4 border-t border-paper/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-slate-400">
             © {new Date().getFullYear()} {brand.legalName}. All rights reserved.
           </p>
           <p className="text-xs text-slate-400">

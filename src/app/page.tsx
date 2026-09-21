@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle2, XCircle, Quote } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -29,8 +30,7 @@ import {
   signupHref,
   guarantee,
   perHomeFraming,
-  useCases,
-} from "@/lib/content";
+  useCases, primaryCta } from "@/lib/content";
 
 const withoutAfterkey = [
   "Requests arrive by text, voicemail, and memory.",
@@ -64,7 +64,7 @@ const homeFaqs = coreFaqs.filter((f) =>
 export default function HomePage() {
   const pageGraph = graph([
     webPageSchema({
-      name: "Afterkey — Post-Closing Software for Home Builders",
+      name: "Warranty Callback Software for Home Builders | Afterkey",
       description: brand.definition,
       path: "/",
     }),
@@ -75,71 +75,85 @@ export default function HomePage() {
     <>
       <JsonLd data={pageGraph} />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-200 bg-white">
-        <Container size="7xl" className="py-16 sm:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-8">
-            <div>
-              <Reveal>
-                <Pill color="brand">For residential home builders</Pill>
-              </Reveal>
-              <Reveal delay={60}>
-                <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">
-                  Post-closing that earns referrals instead of eating margin.
-                </h1>
-              </Reveal>
-              <Reveal delay={120}>
-                {/*
-                  The definition paragraph, placed high on the page and written
-                  as two self-contained factual sentences an answer engine can
-                  quote without surrounding context.
-                */}
-                <p className="mt-5 max-w-xl text-lg text-slate-600">
-                  <strong className="font-semibold text-slate-900">
-                    {brand.definition}
-                  </strong>{" "}
-                  {brand.purpose}
-                </p>
-              </Reveal>
-              <Reveal delay={150}>
-                <p className="mt-3 max-w-xl text-lg text-slate-600">
-                  <strong className="font-semibold text-slate-900">
-                    And it’s white-labeled.
-                  </strong>{" "}
-                  Your buyers see your business on the portal they use — not
-                  ours.
-                </p>
-              </Reveal>
-              <Reveal delay={180}>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href={signupHref} size="lg">
-                    Get started
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Button>
-                  <Button href="/pricing" size="lg" variant="secondary">
-                    See pricing
-                  </Button>
-                </div>
-              </Reveal>
-              <Reveal delay={240}>
-                {/* The full price, both numbers, right under the CTA —
-                    "base" alone reads as $149 all-in, and a builder who
-                    finds the per-home line later feels ambushed. Always
-                    paired with its framing (build it into the closing). */}
-                <p className="mt-6 text-sm text-slate-500">
-                  ${pricing.base}/month + ${pricing.perHome} per active home ·
-                  Unlimited users and subs · No contracts
-                </p>
-              </Reveal>
-              <Reveal delay={280}>
-                <p className="mt-2 text-sm text-slate-500">
-                  The per-home line is small enough to build into each
-                  home&rsquo;s cost at closing. {guarantee.short}
-                </p>
-              </Reveal>
+      {/* Hero — photo first. One static, confident photograph; the headline
+          sits in Ink over the quiet left half of the frame. Product
+          screenshots are the very next section, one scroll down. */}
+      <section className="relative isolate overflow-hidden bg-drywall">
+        <div className="absolute inset-0 -z-10" aria-hidden="true">
+          <Image
+            src="/images/hero-keys-counter.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="photo object-cover object-[72%_center] sm:object-[65%_center]"
+          />
+          {/* Legibility scrim: Site paper fading out to the right, so the
+              headline never depends on the photo happening to be bright. */}
+          <div className="absolute inset-0 bg-linear-to-r from-paper/95 via-paper/75 to-paper/10 sm:via-paper/55 sm:to-paper/0" />
+        </div>
+        <Container size="7xl" className="py-24 sm:py-32 lg:py-40">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-tape">
+              For residential home builders
+            </p>
+            <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+              You’ve built hundreds of homes. They should still be paying you.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-700">
+              Afterkey runs under your brand — maintenance reminders, service
+              requests, your subs on the work — so every home keeps earning
+              long after closing.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href={signupHref} size="lg">
+                {primaryCta}
+              </Button>
+              <Button href="#how-it-works" size="lg" variant="secondary">
+                See a request handled
+              </Button>
             </div>
+            {/* The full price, both numbers, right under the CTA — "base"
+                alone reads as $149 all-in. Always paired with its framing. */}
+            <p className="mt-6 text-sm text-slate-600">
+              ${pricing.base}/month + ${pricing.perHome} per active home ·
+              Unlimited users and subs · No contracts
+            </p>
+            <p className="mt-1 text-sm text-slate-600">
+              The per-home line is small enough to build into each
+              home&rsquo;s cost at closing. {guarantee.headline}.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-            <Reveal delay={160} className="relative">
+      {/* The product — one scroll down from the photo, so a skeptical
+          builder sees the interface before deciding anything. */}
+      <section className="border-b border-drywall bg-paper py-16 sm:py-20">
+        <Container size="7xl">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-14">
+            <div>
+              <SectionLabel>What it is</SectionLabel>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink">
+                One record of every home you’ve handed over
+              </h2>
+              {/* The definition, written as two self-contained factual
+                  sentences an answer engine can quote without context. */}
+              <p className="mt-4 text-base leading-relaxed text-slate-700">
+                <strong className="font-semibold text-ink">
+                  {brand.definition}
+                </strong>{" "}
+                {brand.purpose}
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-slate-700">
+                <strong className="font-semibold text-ink">
+                  And it’s white-labeled.
+                </strong>{" "}
+                Your buyers see your business on the portal they use, not
+                ours.
+              </p>
+            </div>
+            <div className="relative">
               {/* Mobile gets the phone — a phone looks right on a phone, and
                   the dense dashboard mock doesn't. sm+ gets both. */}
               <div className="flex justify-center sm:hidden">
@@ -151,7 +165,7 @@ export default function HomePage() {
                   <PhoneMockup />
                 </div>
               </div>
-            </Reveal>
+            </div>
           </div>
         </Container>
       </section>
@@ -166,7 +180,7 @@ export default function HomePage() {
               it.
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Warranty obligations, subcontractor coordination, and homeowner
+              Warranty obligations, sub dispatch, and homeowner
               questions run for years after handoff — usually on nobody’s system
               at all. Here is what changes when they run on one.
             </p>
@@ -495,7 +509,10 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="border-y border-slate-200 bg-white py-20 sm:py-28">
+      <section
+        id="how-it-works"
+        className="scroll-mt-24 border-y border-slate-200 bg-white py-20 sm:py-28"
+      >
         <Container>
           <Reveal className="mx-auto max-w-2xl text-center">
             <SectionLabel>How it works</SectionLabel>
@@ -642,8 +659,7 @@ export default function HomePage() {
 
           <Reveal className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href={signupHref} size="lg">
-              Get started
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              {primaryCta}
             </Button>
             <Link
               href="/pricing"
@@ -700,8 +716,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">
                 See pricing

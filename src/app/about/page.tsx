@@ -1,4 +1,4 @@
-import { ArrowRight, ShieldCheck, Receipt, Sparkles } from "lucide-react";
+import { ShieldCheck, Receipt, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { IconBox } from "@/components/ui/IconBox";
@@ -8,7 +8,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
-import { brand, signupHref, guarantee } from "@/lib/content";
+import { brand, signupHref, guarantee, primaryCta } from "@/lib/content";
 
 const title = "About";
 const description =
@@ -145,8 +145,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/features" size="lg" variant="secondary">
                 Explore features

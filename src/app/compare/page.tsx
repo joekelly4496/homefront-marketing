@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, Minus, X } from "lucide-react";
+import { Check, Minus, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
@@ -14,8 +14,7 @@ import {
   comparisons,
   notList,
   signupHref,
-  guarantee,
-} from "@/lib/content";
+  guarantee, primaryCta } from "@/lib/content";
 
 const title = "Afterkey vs. a CRM, a Spreadsheet, or a Suite";
 const description =
@@ -187,8 +186,7 @@ export default function ComparePage() {
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/features" size="lg" variant="secondary">
                 See every feature

@@ -2,7 +2,7 @@ import { Pill, type PillColor } from "@/components/ui/Pill";
 import { statusLabels, type FeatureStatus } from "@/lib/content";
 
 const colors: Record<FeatureStatus, PillColor> = {
-  live: "emerald",
+  live: "brand",
   "coming-soon": "amber",
   roadmap: "slate",
 };

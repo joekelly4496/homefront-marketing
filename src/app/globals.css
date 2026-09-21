@@ -1,21 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-  /* Geist — loaded via next/font in layout.tsx */
-  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  /* Type — Bricolage Grotesque (display) + Hanken Grotesk (body), loaded via next/font in layout.tsx */
+  --font-sans: var(--font-body), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), var(--font-body), system-ui, sans-serif;
 
-  /* Brand — deep indigo (matches the in-app brand scale) */
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-200: #c7d2fe;
-  --color-brand-300: #a5b4fc;
-  --color-brand-400: #818cf8;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
-  --color-brand-800: #3730a3;
-  --color-brand-900: #312e81;
-  --color-brand-950: #1e1b4b;
+  /* The "punch list" palette — see .claude/skills/marketing-grade-web/references/brands/afterkey.md */
+  --color-ink: #1a2332;
+  --color-paper: #faf8f4;
+  --color-drywall: #e8e4dc;
+  --color-brass: #b08d42;
+  --color-brass-dark: #8f7134;
+  --color-tape: #3a5a80;
+  --color-tape-dark: #2f4a6a;
+
+  /* brand-* is the Tape blue scale, so existing brand-600 links and UI details land on Tape */
+  --color-brand-50: #f2f5f9;
+  --color-brand-100: #e3e9f1;
+  --color-brand-200: #c5d1e0;
+  --color-brand-300: #9db0c8;
+  --color-brand-400: #6f8aab;
+  --color-brand-500: #4d6e94;
+  --color-brand-600: #3a5a80;
+  --color-brand-700: #2f4a6a;
+  --color-brand-800: #263c56;
+  --color-brand-900: #1e3045;
+  --color-brand-950: #1a2332;
+
+  /* slate-* is re-tuned to warm greys between Site paper and Ink, so every
+     existing page reads in the palette instead of cool default grey */
+  --color-slate-50: #faf8f4;
+  --color-slate-100: #f1eee8;
+  --color-slate-200: #e8e4dc;
+  --color-slate-300: #d3cec4;
+  --color-slate-400: #9a958c;
+  --color-slate-500: #6e6a63;
+  --color-slate-600: #4f4c46;
+  --color-slate-700: #3a3934;
+  --color-slate-800: #262a33;
+  --color-slate-900: #1a2332;
+  --color-slate-950: #121821;
 }
 
 :root {
@@ -27,26 +51,21 @@ html {
 }
 
 body {
-  background-color: var(--color-slate-50);
-  color: var(--color-slate-900);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle fade-up on scroll — gentle, premium */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
 }
 
-.animate-fade-up {
-  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* One photographer, not twelve: a shared grade on all photography */
+.photo {
+  filter: saturate(0.92) contrast(1.03);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -54,7 +73,6 @@ body {
     scroll-behavior: auto;
   }
 
-  .animate-fade-up,
   *,
   *::before,
   *::after {
@@ -67,7 +85,7 @@ body {
 
 /* Visible, on-brand focus rings */
 :focus-visible {
-  outline: 2px solid var(--color-brand-600);
+  outline: 2px solid var(--color-tape);
   outline-offset: 2px;
   border-radius: 4px;
 }

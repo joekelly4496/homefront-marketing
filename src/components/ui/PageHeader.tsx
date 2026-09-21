@@ -12,13 +12,11 @@ export function PageHeader({
   subtitle?: ReactNode;
 }) {
   return (
-    <section className="border-b border-slate-200 bg-white">
+    <section className="border-b border-drywall bg-paper">
       <Container className="py-16 sm:py-20">
         <Reveal className="mx-auto max-w-2xl text-center">
           {eyebrow && (
-            <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
-              {eyebrow}
-            </p>
+            <p className="text-sm font-medium text-tape">{eyebrow}</p>
           )}
           <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
             {title}

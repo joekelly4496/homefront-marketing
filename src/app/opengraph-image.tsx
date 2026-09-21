@@ -14,7 +14,7 @@ export default function OpengraphImage() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: "#ffffff",
+        backgroundColor: "#faf8f4",
         padding: "80px",
         fontFamily: "sans-serif",
       }}
@@ -24,8 +24,8 @@ export default function OpengraphImage() {
           style={{
             width: "64px",
             height: "64px",
-            borderRadius: "16px",
-            backgroundColor: "#4f46e5",
+            borderRadius: "10px",
+            backgroundColor: "#b08d42",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -37,7 +37,7 @@ export default function OpengraphImage() {
             height="34"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#ffffff"
+            stroke="#1a2332"
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -46,7 +46,7 @@ export default function OpengraphImage() {
             <path d="M5 9.5V21h14V9.5" />
           </svg>
         </div>
-        <span style={{ fontSize: "40px", fontWeight: 600, color: "#0f172a" }}>
+        <span style={{ fontSize: "40px", fontWeight: 600, color: "#1a2332" }}>
           Afterkey
         </span>
       </div>
@@ -56,7 +56,7 @@ export default function OpengraphImage() {
           style={{
             fontSize: "68px",
             fontWeight: 600,
-            color: "#0f172a",
+            color: "#1a2332",
             letterSpacing: "-0.03em",
             lineHeight: 1.05,
             maxWidth: "950px",
@@ -64,10 +64,10 @@ export default function OpengraphImage() {
         >
           Everything that happens after the keys.
         </div>
-        <div style={{ fontSize: "30px", color: "#475569", maxWidth: "920px" }}>
+        <div style={{ fontSize: "30px", color: "#4f4c46", maxWidth: "920px" }}>
           Post-closing software for residential home builders — warranty
-          requests, subcontractor coordination, and AI-built maintenance
-          schedules for every home.
+          callbacks, sub dispatch, and AI-built maintenance schedules for
+          every home, under your brand.
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export default function OpengraphImage() {
         style={{
           display: "flex",
           fontSize: "26px",
-          color: "#4f46e5",
+          color: "#3a5a80",
           fontWeight: 600,
         }}
       >
