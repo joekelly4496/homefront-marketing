@@ -2,6 +2,12 @@
 
 Higgsfield's image models are the Soul family, built specifically to avoid the "AI plastic" look — outputs include camera-like imperfections (grain, flash, dust) and are tuned by art directors for realism. That's exactly the quality that makes a website feel photographed rather than generated. This file is how to write prompts that get there on the first or second try.
 
+## Two ways to run a shot list
+
+**Connector present (preferred).** If the Higgsfield MCP is connected in this session (tools for generating images/videos/characters are loaded), Claude generates each shot itself: run the prompt, get the 4 variations, show them to Joe with the shot name, and let Joe pick the winner. Save the chosen image straight into the project's image folder under the shot-list file name; Joe never downloads or renames anything. Generate one shot at a time and wait for his pick before the next so credits aren't spent on shots he'd reword. Generations through the connector always deduct plan credits — negligible for Soul images (a fraction of a credit each), so generate freely; for video, hand Joe the prompt to run on the website where his plan's unlimited allowance applies.
+
+**No connector.** Hand Joe the paste-ready shot list in the format from SKILL.md; he generates on higgsfield.ai, picks, and drops files into one folder.
+
 ## Which model to specify
 
 - **Soul 2.0** — the default for website work. Full creative control: text prompts, Moodboard, reference images, Soul ID. Cheapest per image. Use for 90% of shots.

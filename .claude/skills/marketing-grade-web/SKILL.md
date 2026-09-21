@@ -23,7 +23,7 @@ Each phase produces something Joe can react to before the next begins. Don't ski
 
 **5. Build the hero first**, screenshot it (read `references/visual-qa.md`), and get Joe's reaction before building anything else. Half the effort belongs to the hero. Then build section by section with intentional placeholders at the final aspect ratio, each labeled with its shot name — never Unsplash or random stock.
 
-**6. Shot list.** Read `references/higgsfield-workflow.md`. Hand Joe paste-ready Soul 2.0 prompts in the format below. 3–6 strong images per page.
+**6. Shot list.** Read `references/higgsfield-workflow.md`. If the Higgsfield connector is present, generate each shot directly, show Joe the four options, and save his pick under the shot-list file name. Otherwise hand him paste-ready Soul 2.0 prompts in the format below. 3–6 strong images per page either way.
 
 **7. Quiz and forms.** Read `references/quiz-funnel.md`. Build the diagnostic quiz and lead forms in Next.js writing to Supabase, with PostHog events on every step and a Resend result email. Single-field email gate after a partial result.
 
