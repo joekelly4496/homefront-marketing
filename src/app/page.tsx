@@ -309,16 +309,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* The sub showing up: a wide, quiet band under the mechanism. */}
-          <div className="relative mt-16 aspect-[16/9] overflow-hidden sm:aspect-[21/9]">
-            <Image
-              src="/images/section-truck-driveway.webp"
-              alt="A black pickup with a ladder rack turning into the driveway of a new white board-and-batten home at golden hour"
-              fill
-              sizes="(min-width: 1280px) 1280px, 100vw"
-              className="photo object-cover object-[center_38%]"
-            />
-          </div>
         </Container>
       </section>
 
