@@ -72,7 +72,7 @@ const objections = [
     ],
     image: {
       src: "/images/reserve-truck-black.webp",
-      alt: "A new black crew-cab pickup in the driveway of a finished custom home",
+      alt: "A pickup truck pulling into the driveway of a white colonial home at dusk",
     },
   },
   {
@@ -313,10 +313,10 @@ export default function HomePage() {
           <div className="relative mt-16 aspect-[16/9] overflow-hidden sm:aspect-[21/9]">
             <Image
               src="/images/section-truck-driveway.webp"
-              alt="A new black crew-cab pickup parked in the paver driveway of a finished custom home at golden hour"
+              alt="A black pickup with a ladder rack turning into the driveway of a new white board-and-batten home at golden hour"
               fill
               sizes="(min-width: 1280px) 1280px, 100vw"
-              className="photo object-cover object-[60%_center]"
+              className="photo object-cover object-[center_38%]"
             />
           </div>
         </Container>
