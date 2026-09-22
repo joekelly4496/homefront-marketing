@@ -115,32 +115,35 @@ export default function HomePage() {
     <>
       <JsonLd data={pageGraph} />
 
-      {/* Hero — photo first. One static, confident photograph; the headline
-          sits in Ink over the quiet left half of the frame. Product
-          screenshots are the very next section, one scroll down. */}
-      <section className="relative isolate overflow-hidden bg-drywall">
-        <div className="absolute inset-0 -z-10" aria-hidden="true">
+      {/* Hero — dark. Ink ground, the dusk photograph under a dark gradient
+          so the lit windows glow, paper headline, brass CTA, and the builder
+          dashboard breaking the bottom edge so the product is visible before
+          anyone scrolls. */}
+      <section className="relative z-10 flow-root bg-ink text-paper">
+        <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
           <Image
             src="/images/hero-colonial-dusk.webp"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="photo object-cover object-[72%_center] sm:object-[65%_center]"
+            className="photo object-cover object-[70%_center]"
           />
-          {/* Legibility scrim: Site paper fading out to the right, so the
-              headline never depends on the photo happening to be bright. */}
-          <div className="absolute inset-0 bg-linear-to-r from-paper/95 via-paper/85 to-paper/30 sm:via-paper/55 sm:to-paper/0" />
+          {/* Left-to-right: solid Ink behind the type, house visible right. */}
+          <div className="absolute inset-0 bg-linear-to-r from-ink/95 via-ink/75 to-ink/35 sm:via-ink/60 sm:to-ink/25" />
+          {/* Bottom fade to solid Ink so the mockup sits on a clean ground. */}
+          <div className="absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-ink to-ink/0" />
         </div>
-        <Container size="7xl" className="py-24 sm:py-32 lg:py-40">
+
+        <Container size="7xl" className="pt-20 sm:pt-28 lg:pt-32">
           <div className="max-w-2xl">
-            <p className="text-sm font-medium text-tape">
+            <p className="text-sm font-medium text-brass">
               For residential home builders
             </p>
-            <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+            <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-paper sm:text-5xl lg:text-[3.5rem]">
               You’ve built hundreds of homes. They should still be paying you.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-700">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
               Afterkey runs under your brand — maintenance reminders, service
               requests, your subs on the work — so every home keeps earning
               long after closing.
@@ -149,29 +152,53 @@ export default function HomePage() {
               <Button href={signupHref} size="lg">
                 {primaryCta}
               </Button>
-              <Button href="#how-it-works" size="lg" variant="secondary">
+              <Button
+                href="#how-it-works"
+                size="lg"
+                variant="secondary"
+                className="border-paper/40 text-paper hover:border-paper hover:bg-paper/10"
+              >
                 See a request handled
               </Button>
             </div>
             {/* The full price, both numbers, right under the CTA — "base"
                 alone reads as $149 all-in. Always paired with its framing. */}
-            <p className="mt-6 text-sm text-slate-600">
-              ${pricing.base}/month + ${pricing.perHome} per active home ·
-              Unlimited users and subs · No contracts
-            </p>
-            <p className="mt-1 text-sm text-slate-600">
+            <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-300">
+              <li className="tabular-nums">
+                <span className="font-semibold text-paper">
+                  ${pricing.base}/month
+                </span>{" "}
+                + ${pricing.perHome} per active home
+              </li>
+              <li className="border-l border-paper/25 pl-5">No contracts</li>
+              <li className="border-l border-paper/25 pl-5">
+                {guarantee.headline}
+              </li>
+            </ul>
+            <p className="mt-2 text-sm text-slate-400">
               The per-home line is small enough to build into each
-              home&rsquo;s cost at closing. {guarantee.headline}.
+              home&rsquo;s cost at closing.
             </p>
+          </div>
+
+          {/* The product, breaking the fold. Desktop gets the dashboard;
+              phones get the phone, which looks right on a phone. */}
+          <div className="relative z-10 mt-14 -mb-16 sm:mt-16 sm:-mb-24 lg:-mb-28">
+            <div className="flex justify-center sm:hidden">
+              <PhoneMockup />
+            </div>
+            <div className="mx-auto hidden max-w-5xl sm:block">
+              <BuilderDashboard />
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* The product — one scroll down from the photo, so a skeptical
-          builder sees the interface before deciding anything. */}
-      <section className="bg-paper py-16 sm:py-20">
+      {/* What it is — the definition, with room at the top for the mockup
+          overlapping in from the hero. */}
+      <section className="bg-paper pb-16 pt-28 sm:pb-20 sm:pt-36 lg:pt-40">
         <Container size="7xl">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-14">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-14">
             <div>
               <SectionLabel>What it is</SectionLabel>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink">
@@ -193,18 +220,8 @@ export default function HomePage() {
                 ours.
               </p>
             </div>
-            <div className="relative">
-              {/* Mobile gets the phone — a phone looks right on a phone, and
-                  the dense dashboard mock doesn't. sm+ gets both. */}
-              <div className="flex justify-center sm:hidden">
-                <PhoneMockup />
-              </div>
-              <div className="hidden sm:block">
-                <BuilderDashboard />
-                <div className="absolute -bottom-8 -right-2 lg:-right-6">
-                  <PhoneMockup />
-                </div>
-              </div>
+            <div className="hidden justify-center sm:flex">
+              <PhoneMockup />
             </div>
           </div>
         </Container>
