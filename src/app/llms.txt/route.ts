@@ -78,7 +78,7 @@ ${section(
 - AI add-on (optional): $${pricing.ai.price}/month per active home. Includes ${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all homes. Appliances already in the shared library are free and do not count against the pool. Overage is $${pricing.ai.overagePerAction.toFixed(2)} per action, with a live meter and a builder-set ceiling. Without the add-on, builders get ${pricing.ai.freeActionsWithoutAddOn} free AI actions per month.
 - SMS add-on (optional): $${pricing.sms.price}/month. Includes a dedicated business number and ${pricing.sms.includedSegments.toLocaleString()} segments. Overage is $${pricing.sms.overagePer1000} per 1,000 segments, with a live meter and a builder-set ceiling.
 - Platform fee on homeowner payments: none. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for card payments — all-in rates that include every payment processing and payout cost.
-- Onboarding: standard self-serve onboarding is free. Optional concierge onboarding is $${pricing.conciergeOnboarding} one-time.
+- Onboarding: self-serve and free.
 - Free trial: none. Afterkey uses a ${guarantee.days}-day money-back guarantee instead. ${guarantee.body} Onboarding is self-serve and no sales call is required.
 
 Example monthly totals (published rates multiplied out, not customer averages):
