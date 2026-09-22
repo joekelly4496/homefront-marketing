@@ -8,7 +8,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
-import { brand, signupHref, guarantee } from "@/lib/content";
+import { brand, signupHref, guarantee, primaryCta } from "@/lib/content";
 import { ContactForm } from "./ContactForm";
 
 const title = "Contact";
@@ -113,8 +113,7 @@ export default function ContactPage() {
 
           <Reveal delay={140} className="mt-12 text-center">
             <Button href={signupHref} size="lg">
-              Get started
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              {primaryCta}
             </Button>
           </Reveal>
         </Container>

@@ -9,7 +9,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
-import { useCases, signupHref } from "@/lib/content";
+import { useCases, signupHref, primaryCta } from "@/lib/content";
 
 const title = "Use Cases for Home Builders";
 const description =
@@ -81,8 +81,7 @@ export default function UseCasesPage() {
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/features" size="lg" variant="secondary">
                 See every feature

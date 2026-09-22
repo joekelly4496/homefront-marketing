@@ -11,11 +11,10 @@ export function Card({
 }) {
   return (
     <div
-      className={`bg-white rounded-2xl border border-slate-200 shadow-sm ${
-        interactive
-          ? "transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-          : ""
-      } ${className}`.trim()}
+      // `interactive` is accepted for compatibility; cards no longer lift on
+      // hover — quiet surfaces, one radius, no decoration for its own sake.
+      data-interactive={interactive || undefined}
+      className={`bg-white rounded-[6px] border border-drywall ${className}`.trim()}
     >
       {children}
     </div>

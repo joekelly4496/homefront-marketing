@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  ArrowRight,
   CheckCircle2,
   MessageSquare,
   ShieldCheck,
@@ -29,6 +28,7 @@ import {
   guarantee,
   perHomeFraming,
   processingLine,
+  primaryCta,
   smsStatus,
 } from "@/lib/content";
 
@@ -137,12 +137,12 @@ export default function PricingPage() {
               Afterkey costs ${pricing.base} per month plus ${pricing.perHome}{" "}
               per active home. Unlimited team members and unlimited
               subcontractors are included, there are no tiers, and there is no
-              per-user fee. Optional add-ons for AI and SMS are priced below.
+              per-user fee. Your rate is locked for 24 months. Optional add-ons
+              for AI and SMS are priced below.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <a
                 href="#included"
@@ -497,14 +497,14 @@ export default function PricingPage() {
               Try it on a real home
             </h2>
             <p className="mt-4 text-balance text-lg text-slate-600">
-              No contracts, no per-user fees, no termination fees, and no sales
-              call required — though we are happy to walk you through it.
+              No contracts, no per-user fees, no termination fees, a 24-month
+              rate lock, and no sales call required — though we are happy to
+              walk you through it.
             </p>
             <p className="mt-3 text-sm text-slate-500">{guarantee.short}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/contact" size="lg" variant="secondary">
                 Ask a question

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
+import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ContactWidget } from "@/components/ContactWidget";
@@ -14,7 +14,24 @@ import {
 } from "@/lib/schema";
 import "./globals.css";
 
-const defaultTitle = "Afterkey — Post-Closing Software for Home Builders";
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const body = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+// Title tag + meta chase the searched query. "Post-closing" is brand
+// vocabulary for body copy, never a target query.
+const defaultTitle = "Warranty Callback Software for Home Builders | Afterkey";
+const defaultDescription =
+  "Warranty callback software for home builders doing 5 to 50 homes a year. Callbacks, subs, and maintenance on one record, under your brand. $149/month.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -22,14 +39,12 @@ export const metadata: Metadata = {
     default: defaultTitle,
     template: `%s · ${brand.name}`,
   },
-  description:
-    "Post-closing software for residential home builders. Warranty requests, subcontractor coordination, homeowner portals, and AI-built maintenance schedules.",
+  description: defaultDescription,
   applicationName: brand.name,
   alternates: { canonical: absoluteUrl("/") },
   openGraph: {
     title: defaultTitle,
-    description:
-      "Post-closing software for residential home builders. Warranty requests, subcontractor coordination, homeowner portals, and AI-built maintenance schedules.",
+    description: defaultDescription,
     url: absoluteUrl("/"),
     siteName: brand.name,
     type: "website",
@@ -38,8 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: defaultTitle,
-    description:
-      "Post-closing software for residential home builders. Warranty, subcontractors, homeowner portals, and AI-built maintenance schedules.",
+    description: defaultDescription,
   },
   robots: {
     index: true,
@@ -63,11 +77,11 @@ export default function RootLayout({
   ]);
 
   return (
-    <html lang="en" className={GeistSans.variable}>
-      <body className="font-sans antialiased bg-slate-50 text-slate-900">
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <body className="font-sans antialiased bg-paper text-ink">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-[6px] focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-paper"
         >
           Skip to content
         </a>

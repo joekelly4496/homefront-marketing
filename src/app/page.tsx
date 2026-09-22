@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, XCircle, Quote } from "lucide-react";
+import Image from "next/image";
+import { CheckCircle2, Quote } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { IconBox } from "@/components/ui/IconBox";
-import { Pill } from "@/components/ui/Pill";
-import { Reveal } from "@/components/ui/Reveal";
 import { Container, SectionLabel } from "@/components/ui/Container";
 import { FaqList } from "@/components/ui/FaqList";
 import { JsonLd } from "@/components/JsonLd";
@@ -16,9 +14,6 @@ import { RequestFlow } from "@/components/mockups/RequestFlow";
 import { graph, faqPageSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
-  portals,
-  builderValue,
-  homeownerValue,
   steps,
   featureGroups,
   commitments,
@@ -29,23 +24,68 @@ import {
   signupHref,
   guarantee,
   perHomeFraming,
-  useCases,
+  primaryCta,
+  competitorAnchor,
 } from "@/lib/content";
 
-const withoutAfterkey = [
-  "Requests arrive by text, voicemail, and memory.",
-  "The sub says they called. The homeowner says nobody came. No record either way.",
-  "Insurance certificates expire quietly in an inbox.",
-  "The maintenance binder is paper. It’s lost by June.",
-  "Every callback comes out of your margin.",
+/**
+ * The problem, in the buyer's words. Three beats, not a symmetric list:
+ * a builder should recognise his own week here before he reads a feature.
+ */
+const problemBeats = [
+  {
+    title: "The 9pm text.",
+    body: "Three weeks after closing, the first “hey, quick question” lands on your cell. By August there are forty of them, and every one is a call, a drive, or a dig through old emails.",
+  },
+  {
+    title: "The sub who says he went.",
+    body: "The homeowner says nobody came. The sub says he called. There’s no record either way, so you eat the second trip.",
+  },
+  {
+    title: "The binder that dies by June.",
+    body: "Filter sizes, the water shutoff, the 11-month walkthrough. It lives on paper, or in a spreadsheet that leaves with your office manager.",
+  },
 ];
 
-const withAfterkey = [
-  "One queue, a response clock, an assigned trade.",
-  "Dispatch, arrival, completion — timestamped on the home’s record.",
-  "Lapsed coverage warns you before dispatch, not after a claim.",
-  "A maintenance schedule with a cited source on every line.",
-  "Memberships turn finished homes into recurring revenue.",
+/**
+ * Objection handling: each section is headed by the objection itself as a
+ * plain statement, answered in a few sentences with the mechanism. Prose
+ * with one photograph each, never cards.
+ */
+const objections = [
+  {
+    heading: "Your homeowners will still call you.",
+    body: [
+      "Some will, the first month. Then they try the portal once: a photo, two sentences, and a status they can watch move. That’s easier than texting your cell and wondering whether it landed, so it’s what they do the next time.",
+      "The calls you still get are the ones worth taking. Everything else lands on the home’s record instead of in your voicemail.",
+    ],
+    image: {
+      src: "/images/reserve-brick-colonial.webp",
+      alt: "A newly built brick-front colonial home at golden hour",
+    },
+  },
+  {
+    heading: "Your subs won’t use another app.",
+    body: [
+      "There’s nothing for them to learn. A sub signs in to one list: the jobs assigned to him, each with the address, the issue, the homeowner’s photos, and the home’s history. He taps a status and attaches a finished-work photo from the driveway.",
+      "Subs use it free, and unlimited subs are included in your base. Adding a trade never changes your bill.",
+    ],
+    image: {
+      src: "/images/reserve-truck-black.webp",
+      alt: "A new black crew-cab pickup in the driveway of a finished custom home",
+    },
+  },
+  {
+    heading: "What Afterkey replaces.",
+    body: [
+      `The spreadsheet, the group text, the paper binder in the closing folder, and the warranty module inside ${competitorAnchor.name}, which starts at $${competitorAnchor.monthlyFrom} a month.`,
+      "It doesn’t replace your CRM or your scheduling software. It starts the day those stop, at closing, and runs for the life of the house.",
+    ],
+    image: {
+      src: "/images/reserve-shingle-golden.webp",
+      alt: "A newly completed shingle-style home with white trim at golden hour",
+    },
+  },
 ];
 
 const aiBinder = featureGroups.find((g) => g.id === "ai-binder")!;
@@ -64,7 +104,7 @@ const homeFaqs = coreFaqs.filter((f) =>
 export default function HomePage() {
   const pageGraph = graph([
     webPageSchema({
-      name: "Afterkey — Post-Closing Software for Home Builders",
+      name: "Warranty Callback Software for Home Builders | Afterkey",
       description: brand.definition,
       path: "/",
     }),
@@ -75,71 +115,85 @@ export default function HomePage() {
     <>
       <JsonLd data={pageGraph} />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-200 bg-white">
-        <Container size="7xl" className="py-16 sm:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-8">
-            <div>
-              <Reveal>
-                <Pill color="brand">For residential home builders</Pill>
-              </Reveal>
-              <Reveal delay={60}>
-                <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">
-                  Post-closing that earns referrals instead of eating margin.
-                </h1>
-              </Reveal>
-              <Reveal delay={120}>
-                {/*
-                  The definition paragraph, placed high on the page and written
-                  as two self-contained factual sentences an answer engine can
-                  quote without surrounding context.
-                */}
-                <p className="mt-5 max-w-xl text-lg text-slate-600">
-                  <strong className="font-semibold text-slate-900">
-                    {brand.definition}
-                  </strong>{" "}
-                  {brand.purpose}
-                </p>
-              </Reveal>
-              <Reveal delay={150}>
-                <p className="mt-3 max-w-xl text-lg text-slate-600">
-                  <strong className="font-semibold text-slate-900">
-                    And it’s white-labeled.
-                  </strong>{" "}
-                  Your buyers see your business on the portal they use — not
-                  ours.
-                </p>
-              </Reveal>
-              <Reveal delay={180}>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href={signupHref} size="lg">
-                    Get started
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Button>
-                  <Button href="/pricing" size="lg" variant="secondary">
-                    See pricing
-                  </Button>
-                </div>
-              </Reveal>
-              <Reveal delay={240}>
-                {/* The full price, both numbers, right under the CTA —
-                    "base" alone reads as $149 all-in, and a builder who
-                    finds the per-home line later feels ambushed. Always
-                    paired with its framing (build it into the closing). */}
-                <p className="mt-6 text-sm text-slate-500">
-                  ${pricing.base}/month + ${pricing.perHome} per active home ·
-                  Unlimited users and subs · No contracts
-                </p>
-              </Reveal>
-              <Reveal delay={280}>
-                <p className="mt-2 text-sm text-slate-500">
-                  The per-home line is small enough to build into each
-                  home&rsquo;s cost at closing. {guarantee.short}
-                </p>
-              </Reveal>
+      {/* Hero — photo first. One static, confident photograph; the headline
+          sits in Ink over the quiet left half of the frame. Product
+          screenshots are the very next section, one scroll down. */}
+      <section className="relative isolate overflow-hidden bg-drywall">
+        <div className="absolute inset-0 -z-10" aria-hidden="true">
+          <Image
+            src="/images/hero-colonial-dusk.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="photo object-cover object-[72%_center] sm:object-[65%_center]"
+          />
+          {/* Legibility scrim: Site paper fading out to the right, so the
+              headline never depends on the photo happening to be bright. */}
+          <div className="absolute inset-0 bg-linear-to-r from-paper/95 via-paper/75 to-paper/10 sm:via-paper/55 sm:to-paper/0" />
+        </div>
+        <Container size="7xl" className="py-24 sm:py-32 lg:py-40">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-tape">
+              For residential home builders
+            </p>
+            <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+              You’ve built hundreds of homes. They should still be paying you.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-700">
+              Afterkey runs under your brand — maintenance reminders, service
+              requests, your subs on the work — so every home keeps earning
+              long after closing.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href={signupHref} size="lg">
+                {primaryCta}
+              </Button>
+              <Button href="#how-it-works" size="lg" variant="secondary">
+                See a request handled
+              </Button>
             </div>
+            {/* The full price, both numbers, right under the CTA — "base"
+                alone reads as $149 all-in. Always paired with its framing. */}
+            <p className="mt-6 text-sm text-slate-600">
+              ${pricing.base}/month + ${pricing.perHome} per active home ·
+              Unlimited users and subs · No contracts
+            </p>
+            <p className="mt-1 text-sm text-slate-600">
+              The per-home line is small enough to build into each
+              home&rsquo;s cost at closing. {guarantee.headline}.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-            <Reveal delay={160} className="relative">
+      {/* The product — one scroll down from the photo, so a skeptical
+          builder sees the interface before deciding anything. */}
+      <section className="bg-paper py-16 sm:py-20">
+        <Container size="7xl">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-14">
+            <div>
+              <SectionLabel>What it is</SectionLabel>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink">
+                One record of every home you’ve handed over
+              </h2>
+              {/* The definition, written as two self-contained factual
+                  sentences an answer engine can quote without context. */}
+              <p className="mt-4 text-base leading-relaxed text-slate-700">
+                <strong className="font-semibold text-ink">
+                  {brand.definition}
+                </strong>{" "}
+                {brand.purpose}
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-slate-700">
+                <strong className="font-semibold text-ink">
+                  And it’s white-labeled.
+                </strong>{" "}
+                Your buyers see your business on the portal they use, not
+                ours.
+              </p>
+            </div>
+            <div className="relative">
               {/* Mobile gets the phone — a phone looks right on a phone, and
                   the dense dashboard mock doesn't. sm+ gets both. */}
               <div className="flex justify-center sm:hidden">
@@ -151,182 +205,198 @@ export default function HomePage() {
                   <PhoneMockup />
                 </div>
               </div>
-            </Reveal>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* Problem and solution */}
-      <section className="py-20 sm:py-28">
-        <Container>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>The problem</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              The work doesn’t stop at closing. Most builders just stop tracking
-              it.
-            </h2>
-            <p className="mt-4 text-base text-slate-600">
-              Warranty obligations, subcontractor coordination, and homeowner
-              questions run for years after handoff — usually on nobody’s system
-              at all. Here is what changes when they run on one.
-            </p>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <Reveal>
-              <Card className="h-full p-6 sm:p-8">
-                <div className="flex items-center gap-2">
-                  <IconBox icon={XCircle} accent="red" />
-                  <h3 className="text-lg font-semibold text-slate-900">
-                    Post-closing without a system
-                  </h3>
-                </div>
-                <ul className="mt-6 space-y-4">
-                  {withoutAfterkey.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <XCircle
-                        className="mt-0.5 h-5 w-5 shrink-0 text-red-400"
-                        aria-hidden="true"
-                      />
-                      <span className="text-sm text-slate-600">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <Card className="h-full border-brand-200 bg-brand-50/40 p-6 sm:p-8">
-                <div className="flex items-center gap-2">
-                  <IconBox icon={CheckCircle2} accent="emerald" />
-                  <h3 className="text-lg font-semibold text-slate-900">
-                    Post-closing on {brand.name}
-                  </h3>
-                </div>
-                <ul className="mt-6 space-y-4">
-                  {withAfterkey.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <CheckCircle2
-                        className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600"
-                        aria-hidden="true"
-                      />
-                      <span className="text-sm text-slate-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
-
-      {/* Three portals */}
-      <section className="border-y border-slate-200 bg-white py-20 sm:py-28">
-        <Container>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>How it’s built</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Three portals, one record of the home
-            </h2>
-            <p className="mt-4 text-base text-slate-600">
-              Afterkey gives the builder, the homeowner, and the subcontractor
-              each their own view of the same home — so everyone works from the
-              same facts and nobody has to be the switchboard.
-            </p>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {portals.map((portal, i) => (
-              <Reveal key={portal.name} delay={i * 80}>
-                <Card
-                  interactive
-                  className="flex h-full flex-col overflow-hidden"
-                >
-                  {/* A sliver of each portal's actual chrome, so the three
-                      cards read as three products rather than three columns
-                      of text. */}
-                  {portal.name === "Builder portal" && (
-                    <div
-                      className="flex items-center gap-1.5 border-b border-slate-200 bg-slate-50 px-4 py-2.5"
-                      aria-hidden="true"
-                    >
-                      <span className="h-2 w-2 rounded-full bg-slate-300" />
-                      <span className="h-2 w-2 rounded-full bg-slate-300" />
-                      <span className="h-2 w-2 rounded-full bg-slate-300" />
-                      <span className="ml-2 truncate rounded border border-slate-200 bg-white px-2 py-0.5 text-[10px] text-slate-400">
-                        app.getafterkey.com/dashboard
-                      </span>
-                    </div>
-                  )}
-                  {portal.name === "Homeowner portal" && (
-                    <div
-                      className="flex items-center gap-2 bg-slate-900 px-4 py-2.5"
-                      aria-hidden="true"
-                    >
-                      <span className="inline-flex h-4 w-4 items-center justify-center rounded bg-white/15 text-[8px] font-bold text-white">
-                        W
-                      </span>
-                      <span className="text-[10px] font-semibold tracking-wide text-white">
-                        WHITFIELD HOMES
-                      </span>
-                      <span className="ml-auto text-[9px] text-slate-400">
-                        your brand, not ours
-                      </span>
-                    </div>
-                  )}
-                  {portal.name === "Subcontractor portal" && (
-                    <div
-                      className="flex items-center justify-between border-b border-amber-100 bg-amber-50 px-4 py-2.5"
-                      aria-hidden="true"
-                    >
-                      <span className="text-[10px] font-semibold text-amber-800">
-                        Today&rsquo;s jobs
-                      </span>
-                      <span className="rounded-full border border-amber-200 bg-white px-1.5 py-0.5 text-[9px] font-semibold text-amber-700">
-                        3 assigned
-                      </span>
-                    </div>
-                  )}
-                  <div className="flex flex-1 flex-col p-6 sm:p-7">
-                    <div className="flex items-center justify-between">
-                      <IconBox icon={portal.icon} accent={portal.accent} />
-                      <Pill color={portal.accent}>{portal.audience}</Pill>
-                    </div>
-                    <h3 className="mt-5 text-lg font-semibold text-slate-900">
-                      {portal.name}
+      {/* The problem, in the buyer's words */}
+      <section className="bg-drywall py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:items-center lg:gap-16">
+            <div className="relative aspect-[3/2] overflow-hidden">
+              <Image
+                src="/images/section-punch-list-tape.webp"
+                alt="Blue painter’s tape marking punch list spots on freshly painted white door casing"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="photo object-cover"
+              />
+            </div>
+            <div>
+              <SectionLabel>After closing</SectionLabel>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                What happens after closing when there’s no system
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-slate-700">
+                Warranty obligations, sub dispatch, and homeowner questions
+                run for years after the handoff. Usually on nobody’s system at
+                all.
+              </p>
+              <div className="mt-8 space-y-6">
+                {problemBeats.map((beat) => (
+                  <div key={beat.title}>
+                    <h3 className="text-lg font-semibold text-ink">
+                      {beat.title}
                     </h3>
-                    <p className="mt-1.5 text-sm text-slate-600">
-                      {portal.description}
+                    <p className="mt-1.5 text-base leading-relaxed text-slate-700">
+                      {beat.body}
                     </p>
-                    <ul className="mt-5 space-y-2.5 border-t border-slate-100 pt-5">
-                      {portal.points.slice(0, 3).map((p) => (
-                        <li key={p} className="flex gap-2.5">
-                          <CheckCircle2
-                            className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                            aria-hidden="true"
-                          />
-                          <span className="text-sm text-slate-600">{p}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                </Card>
-              </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* How it works — the real request flow. Numbering is fine here
+          because it IS a sequence. */}
+      <section
+        id="how-it-works"
+        className="scroll-mt-24 bg-paper py-20 sm:py-28"
+      >
+        <Container size="7xl">
+          <div className="max-w-2xl">
+            <SectionLabel>How it works</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              What happens when a homeowner reports a problem
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              A request goes from the homeowner’s phone to your sub’s list to
+              the home’s permanent record without anyone calling you for a
+              status.
+            </p>
+          </div>
+
+          <div className="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+            <RequestFlow className="mx-auto w-full max-w-md" />
+            <div>
+              <ol className="space-y-7">
+                {steps.map((step, i) => (
+                  <li key={step.title} className="flex gap-4">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[6px] bg-ink text-sm font-semibold text-paper">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-base font-semibold text-ink">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                        {step.description}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          {/* The sub showing up: a wide, quiet band under the mechanism. */}
+          <div className="relative mt-16 aspect-[16/9] overflow-hidden sm:aspect-[21/9]">
+            <Image
+              src="/images/section-truck-driveway.webp"
+              alt="A new black crew-cab pickup parked in the paver driveway of a finished custom home at golden hour"
+              fill
+              sizes="(min-width: 1280px) 1280px, 100vw"
+              className="photo object-cover object-[60%_center]"
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Objections — one section per objection, headed by the objection
+          itself. Prose and a photograph, photo side alternating. */}
+      <section className="bg-drywall py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="space-y-20 sm:space-y-28">
+            {objections.map((o, i) => (
+              <div
+                key={o.heading}
+                className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-16"
+              >
+                <div
+                  className={`relative aspect-[16/9] overflow-hidden lg:col-span-6 ${
+                    i % 2 === 1 ? "lg:order-2" : ""
+                  }`}
+                >
+                  <Image
+                    src={o.image.src}
+                    alt={o.image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="photo object-cover"
+                  />
+                </div>
+                <div
+                  className={`lg:col-span-5 ${
+                    i % 2 === 1 ? "lg:order-1 lg:col-start-1" : "lg:col-start-8"
+                  }`}
+                >
+                  <h2 className="text-3xl font-semibold tracking-tight text-ink">
+                    {o.heading}
+                  </h2>
+                  {o.body.map((para) => (
+                    <p
+                      key={para}
+                      className="mt-4 text-base leading-relaxed text-slate-700"
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </Container>
       </section>
 
+      {/* White label — the strongest reason a builder buys */}
+      <section className="bg-paper py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="max-w-3xl">
+            <SectionLabel>White label</SectionLabel>
+            <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              {brand.whiteLabelHeadline}
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-700">
+              {brand.whiteLabel}
+            </p>
+          </div>
+
+          <div className="mx-auto mt-12 max-w-3xl">
+            <WhiteLabelSwap />
+            <p className="mt-4 text-sm text-slate-600">
+              Two builders, one platform, and neither buyer has heard of us.
+            </p>
+          </div>
+
+          {/* The surfaces that carry the builder's brand — titles only; the
+              mockup above does the describing. */}
+          <ul className="mx-auto mt-10 grid max-w-3xl gap-x-8 gap-y-2.5 sm:grid-cols-2">
+            {whiteLabelPoints.map((point) => (
+              <li key={point.title} className="flex gap-2.5">
+                <CheckCircle2
+                  className="mt-0.5 h-4 w-4 shrink-0 text-tape"
+                  aria-hidden="true"
+                />
+                <span className="text-sm text-slate-700">{point.title}</span>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
       {/* AI Home Binder — the flagship */}
-      <section className="py-20 sm:py-28">
-        <Container>
+      <section className="bg-drywall py-20 sm:py-28">
+        <Container size="7xl">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-            <Reveal>
+            <div>
               <SectionLabel>{aiBinder.label}</SectionLabel>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
                 {aiBinder.title}
               </h2>
-              <p className="mt-5 text-base text-slate-600">
+              <p className="mt-5 text-base leading-relaxed text-slate-700">
                 {aiBinder.summary}
               </p>
               {/* The four selling points, titles only — the full versions
@@ -335,7 +405,7 @@ export default function HomePage() {
                 {aiBinder.points.map((point) => (
                   <li key={point.title} className="flex gap-2.5">
                     <CheckCircle2
-                      className="mt-0.5 h-4 w-4 shrink-0 text-violet-600"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-tape"
                       aria-hidden="true"
                     />
                     <span className="text-sm text-slate-700">
@@ -344,274 +414,87 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-8">
+              <p className="mt-8">
                 <Link
                   href="/use-cases/home-maintenance-reminders"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
+                  className="text-sm font-semibold text-tape underline decoration-brass decoration-2 underline-offset-4 hover:text-ink"
                 >
                   See how the maintenance schedule is built
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <BinderMockup />
-            </Reveal>
-          </div>
-
-          {/* The honesty claim, stated plainly enough to be quoted */}
-          <Reveal delay={120} className="mt-12">
-            <Card className="mx-auto max-w-3xl border-violet-200 bg-violet-50/50 p-6 sm:p-8">
-              <div className="flex gap-4">
-                <Quote
-                  className="h-6 w-6 shrink-0 text-violet-500"
-                  aria-hidden="true"
-                />
-                <p className="text-base font-medium leading-relaxed text-slate-800">
-                  Every AI suggestion in Afterkey carries a numbered footnote:
-                  the manufacturer’s published maintenance, the document you
-                  uploaded, or an honest “typical schedule — verify against the
-                  manual” label. The AI never invents an interval, and you
-                  review and confirm every line before a homeowner sees it.
-                </p>
-              </div>
-            </Card>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Builder value */}
-      <section className="border-y border-slate-200 bg-white py-20 sm:py-28">
-        <Container>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>What you get</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Fewer callbacks. Subs who show up. Homeowners who refer you.
-            </h2>
-            <p className="mt-4 text-base text-slate-600">
-              The easier and more professional the post-closing relationship,
-              the stickier your brand. That is the entire thesis.
-            </p>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {builderValue.map((item, i) => (
-              <Reveal key={item.title} delay={(i % 2) * 80}>
-                <Card interactive className="h-full p-6 sm:p-7">
-                  <IconBox icon={item.icon} accent={item.accent} />
-                  <h3 className="mt-4 text-lg font-semibold text-slate-900">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm text-slate-600">
-                    {item.description}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={160} className="mt-10 text-center">
-            <Link
-              href="/features"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
-            >
-              See every feature
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* White label — the strongest reason a builder buys */}
-      <section className="border-b border-slate-200 bg-white py-20 sm:py-28">
-        <Container>
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <SectionLabel>White label</SectionLabel>
-            <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              {brand.whiteLabelHeadline}
-            </h2>
-            <p className="mt-5 text-base text-slate-600">{brand.whiteLabel}</p>
-          </Reveal>
-
-          <Reveal delay={100} className="mx-auto mt-12 max-w-3xl">
-            <WhiteLabelSwap />
-            <p className="mt-4 text-center text-sm text-slate-500">
-              Two builders, one platform, and neither buyer has heard of us.
-            </p>
-          </Reveal>
-
-          {/* The surfaces that carry the builder's brand — titles only; the
-              mockup above does the describing. */}
-          <Reveal delay={160} className="mx-auto mt-10 max-w-3xl">
-            <ul className="grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
-              {whiteLabelPoints.map((point) => (
-                <li key={point.title} className="flex gap-2.5">
-                  <CheckCircle2
-                    className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                    aria-hidden="true"
-                  />
-                  <span className="text-sm text-slate-700">{point.title}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Homeowner value */}
-      <section className="py-20 sm:py-28">
-        <Container>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>What your buyers get</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              The handoff that keeps your name on the house
-            </h2>
-            <p className="mt-4 text-base text-slate-600">
-              A homeowner who can see what’s happening doesn’t call to ask. One
-              who’s handed a real maintenance schedule tells their neighbors who
-              built it.
-            </p>
-          </Reveal>
-
-          {/* Four items — a 2x2 grid, matching the builder-value section.
-              Never three columns here: 4 into 3 leaves an orphan card. */}
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {homeownerValue.map((item, i) => (
-              <Reveal key={item.title} delay={(i % 2) * 80}>
-                <Card interactive className="h-full p-6 sm:p-7">
-                  <IconBox icon={item.icon} accent={item.accent} />
-                  <h3 className="mt-4 text-lg font-semibold text-slate-900">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm text-slate-600">
-                    {item.description}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* How it works */}
-      <section className="border-y border-slate-200 bg-white py-20 sm:py-28">
-        <Container>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>How it works</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              What happens when a homeowner reports a problem
-            </h2>
-          </Reveal>
-
-          <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <Reveal>
-              <RequestFlow className="mx-auto max-w-md" />
-            </Reveal>
-
-            <div className="space-y-7">
-              {steps.map((step, i) => (
-                <Reveal key={step.title} delay={i * 70}>
-                  <div className="flex gap-4">
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-sm font-semibold text-white">
-                      {i + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-base font-semibold text-slate-900">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-slate-600">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Use case links — internal linking to the supporting pages */}
-      <section className="py-20 sm:py-28">
-        <Container>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>Built for the work you already do</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Where builders put Afterkey to work
-            </h2>
-          </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {useCases.map((useCase, i) => (
-              <Reveal key={useCase.slug} delay={(i % 2) * 70}>
-                <Link
-                  href={`/use-cases/${useCase.slug}`}
-                  className="group block h-full"
-                >
-                  <Card interactive className="h-full p-6 sm:p-7">
-                    <IconBox icon={useCase.icon} accent={useCase.accent} />
-                    <h3 className="mt-4 text-lg font-semibold text-slate-900">
-                      {useCase.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm text-slate-600">
-                      {useCase.lede}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 group-hover:text-brand-700">
-                      Read more
-                      <ArrowRight
-                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </Card>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Commitments band */}
-      <section className="pb-20 sm:pb-28">
-        <Container>
-          <Reveal>
-            <div className="rounded-3xl bg-brand-700 px-6 py-12 sm:px-12 sm:py-16">
-              <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                  Seven things we put in writing
-                </h2>
-                <p className="mt-3 text-base text-brand-100">
-                  Published prices, honest meters, and no clause that only works
-                  in our favor.
-                </p>
-              </div>
-              {/* Titles only here — every commitment is spelled out in full
-                  on the pricing page, one tap away. Centered wrap instead of
-                  a grid: seven items never fill a column count evenly. */}
-              <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3.5">
-                {commitments.map((c) => (
-                  <p key={c.title} className="flex items-center gap-2">
-                    <CheckCircle2
-                      className="h-4 w-4 shrink-0 text-brand-200"
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm font-medium text-white">
-                      {c.title}
-                    </span>
-                  </p>
-                ))}
-              </div>
-              <p className="mt-8 text-center">
-                <Link
-                  href="/pricing#commitments"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-brand-100"
-                >
-                  Read all seven in plain language
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </p>
             </div>
-          </Reveal>
+            <BinderMockup />
+          </div>
+
+          {/* The honesty claim, stated plainly enough to be quoted */}
+          <Card className="mx-auto mt-12 max-w-3xl p-6 sm:p-8">
+            <div className="flex gap-4">
+              <Quote
+                className="h-6 w-6 shrink-0 text-brass"
+                aria-hidden="true"
+              />
+              <p className="text-base font-medium leading-relaxed text-ink">
+                Every AI suggestion in Afterkey carries a numbered footnote:
+                the manufacturer’s published maintenance, the document you
+                uploaded, or an honest “typical schedule — verify against the
+                manual” label. The AI never invents an interval, and you
+                review and confirm every line before a homeowner sees it.
+              </p>
+            </div>
+          </Card>
+        </Container>
+      </section>
+
+      {/* Proof — only what's real: who built it, and what's in writing */}
+      <section className="bg-paper py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <SectionLabel>Who built it</SectionLabel>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                Built by a builder. Priced in writing.
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-slate-700">
+                <strong className="font-semibold text-ink">
+                  {brand.founder}
+                </strong>{" "}
+                It was shaped by someone who has handed over keys and then
+                taken the call three weeks later, which is why the product
+                starts with the 9pm text and not with a dashboard.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-slate-700">
+                We don’t have customer logos to show you yet, and we’re not
+                going to invent any. What we can put in writing is the price,
+                the meters, and the guarantee.
+              </p>
+            </div>
+            <div className="lg:col-span-7">
+              <Card className="p-6 sm:p-8">
+                <h3 className="text-lg font-semibold text-ink">
+                  Seven things we put in writing
+                </h3>
+                <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                  {commitments.map((c) => (
+                    <li key={c.title} className="flex gap-2.5">
+                      <CheckCircle2
+                        className="mt-0.5 h-4 w-4 shrink-0 text-tape"
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm text-slate-700">{c.title}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-6">
+                  <Link
+                    href="/pricing#commitments"
+                    className="text-sm font-semibold text-tape underline decoration-brass decoration-2 underline-offset-4 hover:text-ink"
+                  >
+                    Read all seven in plain language
+                  </Link>
+                </p>
+              </Card>
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -619,95 +502,103 @@ export default function HomePage() {
         TESTIMONIAL / CUSTOMER LOGO SECTION — intentionally not rendered.
         Afterkey has no customers to quote yet, and inventing social proof is
         both dishonest and a liability. When real quotes and logos exist, add
-        the section back here (between the commitments band and pricing) rather
-        than shipping placeholder names that read as real customers.
+        the section back here (between proof and pricing) rather than
+        shipping placeholder names that read as real customers.
       */}
 
       {/* Pricing preview */}
-      <section className="border-y border-slate-200 bg-white py-20 sm:py-28">
-        <Container size="6xl">
-          <Reveal className="mx-auto max-w-2xl text-center">
+      <section className="bg-drywall py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="max-w-2xl">
             <SectionLabel>Pricing</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
               One plan. Published price. No sales call.
             </h2>
-            <p className="mt-4 text-base text-slate-600">{pricingLine}</p>
-            <p className="mt-3 text-base text-slate-600">{perHomeFraming}</p>
-            <p className="mt-3 text-sm text-slate-500">
-              Optional add-ons: AI at ${pricing.ai.price}/month per active home,
-              SMS at ${pricing.sms.price}/month. Every metered feature has a
-              live meter and a ceiling you set.
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              {pricingLine}
             </p>
-          </Reveal>
-
-          <Reveal className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href={signupHref} size="lg">
-              Get started
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
-            >
-              See the full breakdown
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </Reveal>
+            <p className="mt-3 text-base leading-relaxed text-slate-700">
+              {perHomeFraming}
+            </p>
+            <p className="mt-3 text-sm text-slate-600">
+              Optional add-ons: AI at ${pricing.ai.price}/month per active
+              home, SMS at ${pricing.sms.price}/month. Every metered feature
+              has a live meter and a ceiling you set.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button href={signupHref} size="lg">
+                {primaryCta}
+              </Button>
+              <Link
+                href="/pricing"
+                className="text-sm font-semibold text-tape underline decoration-brass decoration-2 underline-offset-4 hover:text-ink sm:ml-4"
+              >
+                See the full breakdown
+              </Link>
+            </div>
+          </div>
         </Container>
       </section>
 
       {/* FAQ */}
-      <section className="py-20 sm:py-28">
-        <Container size="6xl">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <SectionLabel>Questions</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-              Straight answers
-            </h2>
-          </Reveal>
-          <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
-            <FaqList faqs={homeFaqs} />
-            <p className="mt-6 text-center text-sm text-slate-600">
-              <Link
-                href="/faq"
-                className="font-semibold text-brand-600 hover:text-brand-700"
-              >
-                Read all {coreFaqs.length} questions
-              </Link>{" "}
-              or{" "}
-              <Link
-                href="/compare"
-                className="font-semibold text-brand-600 hover:text-brand-700"
-              >
-                see how Afterkey compares
-              </Link>
-              .
-            </p>
-          </Reveal>
+      <section className="bg-paper py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <SectionLabel>Questions</SectionLabel>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink">
+                Questions builders ask first
+              </h2>
+              <p className="mt-4 text-sm text-slate-600">
+                <Link
+                  href="/faq"
+                  className="font-semibold text-tape underline decoration-brass decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  Read all {coreFaqs.length} questions
+                </Link>{" "}
+                or{" "}
+                <Link
+                  href="/compare"
+                  className="font-semibold text-tape underline decoration-brass decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  see how Afterkey compares
+                </Link>
+                .
+              </p>
+            </div>
+            <div className="lg:col-span-8">
+              <FaqList faqs={homeFaqs} />
+            </div>
+          </div>
         </Container>
       </section>
 
       {/* Final CTA */}
-      <section className="border-t border-slate-200 bg-white py-20 sm:py-28">
-        <Container size="6xl">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+      <section className="bg-ink py-20 text-paper sm:py-28">
+        <Container size="7xl">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-paper sm:text-4xl">
               Run your next closing on Afterkey
             </h2>
-            <p className="mt-4 text-base text-slate-600">
+            <p className="mt-4 text-base leading-relaxed text-slate-300">
               Set up your first home, add your subs, and log a real request
-              today. Self-serve setup, no sales call required. {guarantee.short}
+              today. Self-serve setup, no sales call required.{" "}
+              {guarantee.short}
             </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
-              <Button href="/pricing" size="lg" variant="secondary">
-                See pricing
+              <Button
+                href="/contact"
+                size="lg"
+                variant="secondary"
+                className="border-paper/40 text-paper hover:border-paper hover:bg-paper/10"
+              >
+                Ask a question
               </Button>
             </div>
-          </Reveal>
+          </div>
         </Container>
       </section>
     </>

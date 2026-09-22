@@ -20,8 +20,7 @@ import {
   findUseCase,
   pricing,
   signupHref,
-  guarantee,
-} from "@/lib/content";
+  guarantee, primaryCta } from "@/lib/content";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -93,8 +92,7 @@ export default async function UseCasePage({ params }: Params) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/pricing" size="lg" variant="secondary">
                 See pricing
@@ -224,8 +222,7 @@ export default async function UseCasePage({ params }: Params) {
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
-                Get started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {primaryCta}
               </Button>
               <Button href="/features" size="lg" variant="secondary">
                 See every feature

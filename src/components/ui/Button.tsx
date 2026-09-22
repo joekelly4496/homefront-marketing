@@ -1,17 +1,20 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "ink" | "secondary" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 disabled:opacity-60 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 rounded-[6px] font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tape disabled:opacity-60 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-brand-600 text-white hover:bg-brand-700",
+  // Brass is the accent the brand is named for — spent on the primary CTA only.
+  primary: "bg-brass text-ink hover:bg-brass-dark hover:text-paper",
+  // Ink is the everyday solid button (nav, forms) so brass stays rare.
+  ink: "bg-ink text-paper hover:bg-tape",
   secondary:
-    "bg-white text-slate-900 border border-slate-300 hover:bg-slate-50 hover:border-slate-400",
-  ghost: "text-slate-700 hover:text-slate-900 hover:bg-slate-100",
+    "bg-transparent text-ink border border-ink/30 hover:border-ink hover:bg-drywall/60",
+  ghost: "text-ink hover:bg-drywall/60",
 };
 
 const sizes: Record<Size, string> = {

@@ -25,7 +25,7 @@ export default function Navigation() {
   }, [isOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-drywall bg-paper/85 backdrop-blur-md">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6" aria-label="Main">
         <div className="flex h-16 items-center justify-between">
           <Logo />
@@ -51,7 +51,10 @@ export default function Navigation() {
             >
               Sign in
             </Link>
-            <Link href={signupHref} className={buttonVariants({ size: "sm" })}>
+            <Link
+              href={signupHref}
+              className={buttonVariants({ variant: "ink", size: "sm" })}
+            >
               {primaryCta}
             </Link>
           </div>
@@ -75,7 +78,7 @@ export default function Navigation() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white">
+        <div className="md:hidden border-t border-drywall bg-paper">
           <div className="px-4 py-4 space-y-1">
             {navLinks.map((link) => (
               <Link

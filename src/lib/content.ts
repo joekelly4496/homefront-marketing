@@ -38,7 +38,7 @@ export const brand = {
    * Change it here or nowhere.
    */
   definition:
-    "Afterkey is a post-closing software platform for residential home builders that manages warranty requests, subcontractor coordination, homeowner communication, and AI-built home maintenance schedules.",
+    "Afterkey is a post-closing software platform for residential home builders that manages warranty callbacks, subcontractor dispatch, homeowner communication, and AI-built home maintenance schedules.",
   /** The second sentence — what it's for. */
   purpose:
     "Builders use Afterkey after the keys are handed over, so the post-closing relationship drives referrals and repeat business instead of eating margin.",
@@ -75,7 +75,11 @@ export const signupHref = `${appBase}/builder/login?signup=1`;
 
 /**
  * The 30-day money-back guarantee — the risk reversal that replaced the free
- * trial. Builders pay from day one and can get every dollar back.
+ * trial. Builders pay from day one and can get their subscription fees back.
+ *
+ * SCOPE: the guarantee covers subscription fees (base + per-home). Never
+ * write "every dollar Afterkey charged", and never promise refunds of
+ * processing on homeowner payments already collected.
  *
  * `headline` and `body` are the approved wording. Use them verbatim rather
  * than paraphrasing: this promise also appears in the Terms of Service, and
@@ -86,10 +90,10 @@ export const guarantee = {
   days: 30,
   headline: "30-day money-back guarantee",
   /** The full promise. Featured on /pricing and echoed in /terms. */
-  body: "If it’s not working for you, we refund every dollar Afterkey charged. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
+  body: "If it’s not working for you in the first 30 days, we refund your subscription in full — the monthly base and every per-home fee. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
   /** One-line version for microcopy under a CTA. */
   short:
-    "30-day money-back guarantee — if it’s not working, we refund every dollar Afterkey charged.",
+    "30-day money-back guarantee — if it’s not working in the first 30 days, we refund your subscription in full.",
 } as const;
 
 /**
@@ -106,11 +110,20 @@ export const guarantee = {
 export const smsStatus: "live" | "coming-soon" = "live";
 
 /** The standard label for the primary call to action. */
-export const primaryCta = "Get started";
+// The CTA continues the headline's story; never "Get started" / "Learn more".
+export const primaryCta = "Set up your first home";
 
 /* ------------------------------------------------------------------ */
 /* Pricing — the numbers are final. Every price on the site reads      */
 /* from this object so /pricing, /faq, schema and llms.txt agree.      */
+/*                                                                     */
+/* DECISION NOTE (Sept 2026): processing rates are cards 3.5% + 30¢    */
+/* and ACH flat 1.25%, raised from at-cost / 1% to absorb Stripe       */
+/* Connect costs (payouts, connected-account fees). There is no        */
+/* platform fee on homeowner payments. Recurring plan dues are paid by */
+/* card OR bank account — never ACH-only, never disparage cards. The   */
+/* guarantee covers subscription fees only. This supersedes any older  */
+/* numbers; do not revert them.                                        */
 /* ------------------------------------------------------------------ */
 
 export const pricing = {
@@ -130,8 +143,11 @@ export const pricing = {
   /**
    * Payment processing on homeowner payments. There is NO platform fee —
    * these are Afterkey's published flat all-in rates, which include every
-   * payment processing and payout cost. FRAMING RULES: never describe the
-   * rate as the payment processor's own fee, and never as "at cost."
+   * payment processing and payout cost. FRAMING RULES: these are "our
+   * published rates" — never "at cost", never "we never mark it up", never
+   * the payment processor's own rate. Allowed: "you pay only processing."
+   * Not allowed: a bare "we take no cut" or "100% yours" without the
+   * processing mention.
    */
   processing: {
     bankPercent: 1.25,
@@ -147,7 +163,18 @@ export const pricing = {
  * fee" — the rates include every processing and payout cost, and that is the
  * honest way to say it.
  */
-export const processingLine = `There’s no platform fee on homeowner payments. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for cards — all-in rates that include every processing and payout cost.`;
+export const processingLine = `There’s no platform fee on homeowner payments — you pay only processing, at our published flat rates: ${pricing.processing.bankPercent}% for bank (ACH) payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for cards. Those are all-in rates that include every processing and payout cost.`;
+
+/**
+ * The one competitive comparison allowed on the site: Buildertrend's
+ * monthly price for its warranty features. Never a per-transaction rate
+ * comparison against anyone. Re-check the figure before each launch.
+ */
+export const competitorAnchor = {
+  name: "Buildertrend",
+  monthlyFrom: 829,
+  what: "warranty features",
+} as const;
 
 /** The only approved one-line price summary for use outside /pricing. */
 export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.perHome} per active home. No per-user fees, no contracts, no quote calls.`;
@@ -180,9 +207,9 @@ export const commitments: Commitment[] = [
   },
   {
     icon: ShieldCheck,
-    title: "Rate locks",
+    title: "24-month rate lock",
     description:
-      "Any price increase comes with 60 days’ notice and applies at your next billing cycle. Never mid-term, never retroactive.",
+      "Your rate is locked for 24 months from signup. After that, any increase comes with 60 days’ notice and applies at your next billing cycle. Never mid-term, never retroactive.",
   },
   {
     icon: Users,
@@ -212,7 +239,7 @@ export const commitments: Commitment[] = [
     icon: BadgeCheck,
     title: "30-day money-back guarantee",
     description:
-      "If it’s not working for you in the first 30 days, we refund every dollar Afterkey charged. The only exceptions: the SMS add-on for the number you used, and SMS usage over your allotment.",
+      "If it’s not working for you in the first 30 days, we refund your subscription in full — the monthly base and every per-home fee. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
   },
 ];
 
@@ -917,7 +944,7 @@ export type Faq = { q: string; a: string };
 export const coreFaqs: Faq[] = [
   {
     q: "What is Afterkey?",
-    a: "Afterkey is a post-closing software platform for residential home builders that manages warranty requests, subcontractor coordination, homeowner communication, and AI-built home maintenance schedules. It consists of three portals: a builder portal for homes, service requests, subcontractor management, billing and AI tools; a homeowner portal for submitting requests, tracking status, messaging, and viewing the maintenance schedule and service history; and a subcontractor portal for assigned jobs, status and photo updates, and compliance document uploads.",
+    a: "Afterkey is a post-closing software platform for residential home builders that manages warranty callbacks, subcontractor dispatch, homeowner communication, and AI-built home maintenance schedules. It consists of three portals: a builder portal for homes, service requests, subcontractor management, billing and AI tools; a homeowner portal for submitting requests, tracking status, messaging, and viewing the maintenance schedule and service history; and a subcontractor portal for assigned jobs, status and photo updates, and compliance document uploads.",
   },
   {
     q: "Who is Afterkey for?",
@@ -969,7 +996,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Can I cancel Afterkey at any time?",
-    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, every dollar Afterkey charged is refunded — the only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Published prices are rate-locked in the sense that any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, your subscription is refunded in full — the monthly base and every per-home fee. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Your rate is locked for 24 months from signup; after that, any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
   },
 ];
 
@@ -993,7 +1020,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Does Afterkey take a cut of homeowner payments?",
-    a: "No — there is no platform fee on homeowner payments. When homeowners pay through Afterkey, whether for a membership or a repair invoice, the only cost is payment processing at published flat rates: 1.25% for bank payments and 3.5% plus 30¢ for cards. Those are all-in rates that include every processing and payout cost, and bank is listed first everywhere because it is the cheaper rail. You choose whether homeowner pricing includes processing or your margin absorbs it. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
+    a: "No — there is no platform fee on homeowner payments. When homeowners pay through Afterkey, whether for a membership or a repair invoice, you pay only processing, at our published flat rates: 1.25% for bank (ACH) payments and 3.5% plus 30¢ for cards. Those are all-in rates that include every processing and payout cost, and bank is listed first everywhere because it is the cheaper rail. You choose whether homeowner pricing includes processing or your margin absorbs it. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
   },
   {
     q: "Is there a contract?",
@@ -1001,11 +1028,11 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Can prices go up after I sign up?",
-    a: "Only with 60 days’ notice, and only at your next billing cycle. Increases are never applied mid-term and never retroactively. Prices are published on this page rather than quoted, so you can always see exactly what the plan costs.",
+    a: "Not for the first 24 months: your rate is locked from the day you sign up. After that, any increase comes with 60 days’ notice and applies only at your next billing cycle. Increases are never applied mid-term and never retroactively. Prices are published on this page rather than quoted, so you can always see exactly what the plan costs.",
   },
   {
     q: "Is there a free trial?",
-    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you within 30 days, we refund every dollar Afterkey charged. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment — carrier costs for messages already sent cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
+    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you within 30 days, we refund your subscription in full — the monthly base and every per-home fee. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment — carrier costs for messages already sent cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
   },
   {
     q: "What is concierge onboarding?",
@@ -1108,7 +1135,7 @@ export const useCases: UseCase[] = [
       "Dispatch subs by trade, track day-of arrival, rate performance, and gate assignments on current insurance and licenses. See how Afterkey protects builders.",
     lede: "Afterkey is subcontractor management software for residential home builders. It dispatches work to your existing subcontractor roster by trade, tracks day-of arrival and completion, rates performance across every home, and blocks — or knowingly logs — any assignment to a sub whose insurance or license has lapsed.",
     problem: {
-      title: "Where subcontractor coordination breaks down",
+      title: "Where sub dispatch breaks down",
       points: [
         "You find out a sub never showed up when the homeowner calls to ask where they are.",
         "The same trade generates callbacks on home after home and nobody connects the pattern.",
@@ -1174,7 +1201,7 @@ export const useCases: UseCase[] = [
         "Building a real schedule means reading every manual in the house, per house.",
         "A generic “change your filters” checklist is not worth handing to a buyer.",
         "Nobody remembers to send the reminder six months after closing.",
-        "Deferred maintenance turns into a warranty claim that the builder ends up eating.",
+        "Deferred maintenance turns into a callback the builder ends up eating.",
         "Homeowners lose the paper binder within a year.",
       ],
     },
