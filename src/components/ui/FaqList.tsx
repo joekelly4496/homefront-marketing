@@ -24,7 +24,7 @@ export function FaqList({
   const Heading = headingLevel;
 
   return (
-    <div className="divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+    <div className="divide-y divide-drywall overflow-hidden rounded-[6px] border border-drywall bg-white">
       {faqs.map((faq) => (
         <details key={faq.q} className="group p-6" open={defaultOpen}>
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4">

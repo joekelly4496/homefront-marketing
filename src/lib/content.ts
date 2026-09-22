@@ -165,6 +165,17 @@ export const pricing = {
  */
 export const processingLine = `There’s no platform fee on homeowner payments — you pay only processing, at our published flat rates: ${pricing.processing.bankPercent}% for bank (ACH) payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for cards. Those are all-in rates that include every processing and payout cost.`;
 
+/**
+ * The one competitive comparison allowed on the site: Buildertrend's
+ * monthly price for its warranty features. Never a per-transaction rate
+ * comparison against anyone. Re-check the figure before each launch.
+ */
+export const competitorAnchor = {
+  name: "Buildertrend",
+  monthlyFrom: 829,
+  what: "warranty features",
+} as const;
+
 /** The only approved one-line price summary for use outside /pricing. */
 export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.perHome} per active home. No per-user fees, no contracts, no quote calls.`;
 
