@@ -130,7 +130,7 @@ export default function HomePage() {
           />
           {/* Legibility scrim: Site paper fading out to the right, so the
               headline never depends on the photo happening to be bright. */}
-          <div className="absolute inset-0 bg-linear-to-r from-paper/95 via-paper/75 to-paper/10 sm:via-paper/55 sm:to-paper/0" />
+          <div className="absolute inset-0 bg-linear-to-r from-paper/95 via-paper/85 to-paper/30 sm:via-paper/55 sm:to-paper/0" />
         </div>
         <Container size="7xl" className="py-24 sm:py-32 lg:py-40">
           <div className="max-w-2xl">
