@@ -10,7 +10,6 @@ import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
-  pricing,
   comparisons,
   notList,
   signupHref,
@@ -145,10 +144,8 @@ export default function ComparePage() {
                 Afterkey runs alongside whatever you already use to build. Keep
                 your estimating software, your scheduling tool, and your
                 accounting system — Afterkey picks up at closing, which is
-                usually where those tools stop caring. Standard onboarding is
-                self-serve and free; if you would rather have your existing home
-                roster loaded for you, concierge onboarding is a one-time $
-                {pricing.conciergeOnboarding}.
+                usually where those tools stop caring. Onboarding is
+                self-serve and free.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
                 Still deciding?{" "}

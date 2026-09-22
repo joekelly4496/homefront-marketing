@@ -196,10 +196,7 @@ export default function PricingPage() {
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-5 max-w-3xl">
             <p className="text-center text-sm leading-relaxed text-slate-500">
-              {processingLine} Optional concierge onboarding — we build
-              the digital binder for your entire existing home roster from your
-              documents — is ${pricing.conciergeOnboarding} one-time. Standard
-              self-serve onboarding is free.
+              {processingLine} Onboarding is self-serve and free.
             </p>
           </Reveal>
         </Container>

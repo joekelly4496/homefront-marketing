@@ -154,7 +154,6 @@ export const pricing = {
     cardPercent: 3.5,
     cardFixedCents: 30,
   },
-  conciergeOnboarding: 499,
 } as const;
 
 /**
@@ -886,7 +885,7 @@ export const comparisons: Comparison[] = [
         "Post-closing is the entire product",
         "Every feature is in the one plan — there is no upsell tier",
         "Runs alongside whatever you already use to build",
-        "Self-serve onboarding is free; concierge setup is optional",
+        "Onboarding is self-serve and free",
       ],
     },
   },
@@ -952,7 +951,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). There is no platform fee on homeowner payments; payment processing runs at published flat rates of 1.25% for bank payments and 3.5% plus 30¢ for cards — all-in rates that include every processing and payout cost. Concierge onboarding is an optional $499 one-time fee; standard self-serve onboarding is free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). There is no platform fee on homeowner payments; payment processing runs at published flat rates of 1.25% for bank payments and 3.5% plus 30¢ for cards — all-in rates that include every processing and payout cost. Onboarding is self-serve and free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "What does the AI in Afterkey actually do?",
@@ -992,7 +991,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Standard onboarding is self-serve and free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial and no sales call — instead, every new account is covered by a 30-day money-back guarantee, so you evaluate Afterkey on your real homes rather than in a sandbox. Builders who want their existing home roster loaded for them can buy optional concierge onboarding for a one-time $499, where Afterkey builds the digital binder for every home from the documents you provide.",
+    a: "Standard onboarding is self-serve and free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial and no sales call — instead, every new account is covered by a 30-day money-back guarantee, so you evaluate Afterkey on your real homes rather than in a sandbox. Your existing homes come in through the AI import tools: upload each home’s documents and Afterkey proposes its binder and maintenance schedule for you to confirm.",
   },
   {
     q: "Can I cancel Afterkey at any time?",
@@ -1033,10 +1032,6 @@ export const pricingFaqs: Faq[] = [
   {
     q: "Is there a free trial?",
     a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you within 30 days, we refund your subscription in full — the monthly base and every per-home fee. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment — carrier costs for messages already sent cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
-  },
-  {
-    q: "What is concierge onboarding?",
-    a: "For a one-time $499, Afterkey builds the digital binder for your entire existing home roster from the documents you provide. Standard onboarding — doing it yourself with the AI import tools — is free.",
   },
 ];
 
