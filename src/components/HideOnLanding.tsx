@@ -6,7 +6,8 @@ import { adLanding } from "@/lib/content";
 
 /** Routes that are ad destinations: no site navigation, no footer, no exits. */
 export function isLandingPath(pathname: string | null): boolean {
-  return pathname === adLanding.path;
+  if (!pathname) return false;
+  return pathname === adLanding.path || pathname.startsWith(`${adLanding.path}/`);
 }
 
 /** Renders its children everywhere except on ad landing routes. */

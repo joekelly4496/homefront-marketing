@@ -1,13 +1,12 @@
-import Link from "next/link";
 import { buttonVariants } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { AdVideo } from "@/components/AdVideo";
 import { TrackedCta } from "@/components/TrackedCta";
 import { RequestFlow } from "@/components/mockups/RequestFlow";
+import { LandingFooter } from "@/components/LandingFooter";
 import { pageMetadata } from "@/lib/seo";
 import {
   adLanding,
-  brand,
   guarantee,
   pricing,
   primaryCta,
@@ -31,17 +30,18 @@ export const metadata = pageMetadata({
 const videoTitle = "What happens after closing";
 
 export default function AdLandingPage() {
-  const hasCall = adLanding.bookCallUrl.length > 0;
-
-  // With a booking link, the call is the primary ask for cold traffic and
-  // signup is the shortcut. Without one, signup leads and a person is the
-  // fallback.
-  const primary = hasCall
-    ? { href: adLanding.bookCallUrl, label: "Book a 15-minute call", cta: "book_call" }
-    : { href: signupHref, label: primaryCta, cta: "signup" };
-  const secondary = hasCall
-    ? { href: signupHref, label: `Or ${primaryCta.toLowerCase()} now`, cta: "signup" }
-    : { href: "/contact", label: "Or talk to a person first", cta: "contact" };
+  // Every call goes through the qualifier first; signup is the shortcut for
+  // builders who already know they want it.
+  const primary = {
+    href: `${adLanding.path}/book`,
+    label: "Book a 15-minute call",
+    cta: "book_call",
+  };
+  const secondary = {
+    href: signupHref,
+    label: `Or ${primaryCta.toLowerCase()} now`,
+    cta: "signup",
+  };
 
   return (
     <>
@@ -129,26 +129,7 @@ export default function AdLandingPage() {
         </Container>
       </section>
 
-      {/* Minimal footer: ad platforms require the privacy policy to be
-          reachable; nothing else competes with the decision above. */}
-      <footer className="bg-ink">
-        <Container size="6xl" className="border-t border-paper/10 py-6">
-          <p className="text-center text-xs text-slate-400">
-            © {new Date().getFullYear()} {brand.legalName} ·{" "}
-            <Link href="/privacy" className="hover:text-paper">
-              Privacy
-            </Link>{" "}
-            ·{" "}
-            <Link href="/terms" className="hover:text-paper">
-              Terms
-            </Link>{" "}
-            ·{" "}
-            <a href={`mailto:${brand.email}`} className="hover:text-paper">
-              {brand.email}
-            </a>
-          </p>
-        </Container>
-      </footer>
+      <LandingFooter />
     </>
   );
 }

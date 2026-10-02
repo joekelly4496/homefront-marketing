@@ -147,11 +147,25 @@ Everything campaign-specific lives in `adLanding` in `src/lib/content.ts`:
 | --- | --- |
 | `videoUrl` | YouTube, Vimeo or Loom share link, or `/videos/<file>.mp4`. Empty shows the request-flow walkthrough instead. |
 | `videoDuration` | Shown on the play button, e.g. `1:05`. |
-| `bookCallUrl` | Calendly / Cal.com link. When set, "Book a 15-minute call" becomes the main button and signup becomes the secondary link. Empty falls back to signup first and "talk to a person" second. |
+| `bookCallUrl` | Calendly / Cal.com link, shown only after a lead passes the qualifier. Calendly embeds inline; other tools open in a new tab. Empty: qualified leads are told you'll email them to set a time. |
 
-Both buttons carry the ad's `utm_*`, `gclid` and `fbclid` parameters through
-to their destination, and PostHog records `ad_lp_cta_click` (with `cta`) and
-`ad_video_play`. The video script is in `docs/ad-landing-video-script.md`.
+"Book a 15-minute call" goes to **`/start/book`**, a three-question qualifier
+(homes per year, what kind of business, biggest time sink). The rules live in
+`src/lib/qualifier.ts`:
+
+| Answers | Where they go |
+| --- | --- |
+| New-home builder, 5+ homes a year | Name, company, email, optional phone, then the calendar. The lead is emailed to `CONTACT_EMAIL` through `/api/qualify` (same `RESEND_API_KEY` as the contact form). |
+| Sub or trade | The subs page. Subs use Afterkey free. |
+| Builder under 5 homes a year | Self-serve signup, no call. |
+| Remodeler or something else | Self-serve signup, no call. |
+
+Every button carries the ad's `utm_*`, `gclid` and `fbclid` parameters through
+to its destination, and the lead email includes them. PostHog events:
+`ad_lp_cta_click`, `ad_video_play`, `qualifier_started`,
+`qualifier_step_completed`, `qualifier_result`, `qualifier_lead_submitted`,
+`qualifier_booking_opened`. The video script is in
+`docs/ad-landing-video-script.md`.
 
 ## Environment
 

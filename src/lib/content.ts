@@ -80,9 +80,10 @@ export const signupHref = `${appBase}/builder/login?signup=1`;
  * - videoUrl: a YouTube, Vimeo or Loom share link, or a self-hosted file
  *   path like "/videos/afterkey-ad.mp4". Empty = the page shows the
  *   request-flow walkthrough in the video's place.
- * - bookCallUrl: a Calendly / Cal.com / similar link. Empty = the call
- *   button falls back to "Talk to us" and the contact page, and the signup
- *   button becomes primary.
+ * - bookCallUrl: a Calendly / Cal.com / similar link, shown only to leads
+ *   who pass the qualifier at /start/book (Calendly embeds inline; other
+ *   tools open in a new tab). Empty = qualified leads are told you'll email
+ *   them to set a time. Their answers reach your inbox either way.
  * - videoDuration: shown on the play button, e.g. "1:05". Leave empty
  *   rather than guess.
  */
