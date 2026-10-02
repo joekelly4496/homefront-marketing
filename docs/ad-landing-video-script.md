@@ -1,50 +1,61 @@
-# Ad landing video — script (about 65 seconds)
+# Ad landing video — script (about 66 seconds)
 
-For the video on `/start`. Joe on camera for the open and close; screen
-recordings of the real app in the middle. Spoken cadence, one idea per beat.
+For the video on `/start`. Narrated, second person, one idea per beat. The
+visuals are the site's own photography and product mockups (the "Whitfield
+Homes" demo builder), with the spoken line captioned on screen so it works
+muted in a feed.
 
-**Rules for the shoot**
-- Real screens only, from a demo workspace with a made-up builder name
-  (the mockups use "Whitfield Homes"). Never a real builder's workspace.
-- Clear the notification badge before recording.
-- Say "I build homes on Long Island." Don't say Afterkey runs on your homes
-  or anyone else's.
+The current cut uses an AI voice as a placeholder. A founder-read version
+in Joe's voice is better for trust: record the seven lines below (one file
+per line, 44.1 or 48 kHz, no music), drop them in `vo/1.wav … vo/7.wav`,
+and re-run `video/build.mjs` — the timings follow the audio lengths.
+
+**Rules**
+- Real product screens only, from a demo workspace with a made-up builder
+  name. Never a real builder's workspace.
 - No "AI handles it." The software organizes and reminds; people close requests.
+- Pricing and guarantee wording comes from `src/lib/content.ts`; don't improvise.
 
 ---
 
-**0:00 — On camera (truck, jobsite or driveway)**
-"I build homes on Long Island. Three weeks after closing, you get the text.
-'Hey, quick question.' By August you've had forty of them."
+**1 — Photo: colonial at dusk**
+"Three weeks after closing, the first text lands. 'Hey, quick question.'
+By August, there are forty of them."
 
-**0:10 — On camera**
+**2 — Photo: punch-list tape on a new wall**
 "Filter sizes. The water shutoff. The sub who says he went. None of it on a
 system. All of it on your cell."
 
-**0:18 — Screen: homeowner portal on a phone, under the demo builder's logo**
+**3 — Screen: homeowner portal on a phone, under the builder's own name**
 "Afterkey gives every homeowner a portal with your name on it. They send a
-photo and two sentences instead of a text."
+photo and two sentences, instead of a text."
 
-**0:28 — Screen: the request lands in the builder's list; assign a sub**
+**4 — Screen: the builder's request list**
 "It lands in one list. You assign the sub in one step. If his insurance
 lapsed, you find out now, not after a claim."
 
-**0:38 — Screen: sub's job list, status update with a photo**
+**5 — Screen: one request, submission to close**
 "The sub updates from the driveway. The homeowner watches it move. Nobody
 calls you for a status."
 
-**0:47 — Screen: a home record with its maintenance schedule and sources**
+**6 — Screen: the home's maintenance schedule with sources**
 "Every home gets a maintenance schedule built from its own manuals, with a
-source on every line, so the reminders come from you for years."
+source on every line. So the reminders come from you, for years."
 
-**0:56 — On camera**
-"It's a hundred forty-nine a month, plus ten dollars a home that you build
-into the price at closing. If it's not working in thirty days, you get your
-subscription back. Book a call below, or set up your first home today."
+**7 — Photo: truck arriving at dusk, then the end card**
+"A hundred forty-nine a month, plus ten dollars a home that you build into
+the price at closing. Not working in thirty days? You get your subscription
+back. Book a call, or set up your first home today."
 
 ---
 
-**Hosting.** Upload to YouTube (unlisted is fine), Vimeo, or Loom and paste
-the share link into `adLanding.videoUrl` in `src/lib/content.ts`, with its
-length in `videoDuration`. A self-hosted MP4 also works: put it in
-`public/videos/` and use `/videos/<file>.mp4`.
+**Building it.** `video/timeline.json` maps each line to its visuals and
+captions. `video/render-frames.mjs` paints the product-screen frames and
+caption overlays off the running dev site (so they use the real fonts and
+mockups); `video/build.mjs` assembles everything with ffmpeg. See the
+README's `/start` section for the commands.
+
+**Hosting.** Put the MP4 at `public/videos/afterkey-explainer.mp4` and set
+`adLanding.videoUrl` to `/videos/afterkey-explainer.mp4` (with its length in
+`videoDuration`), or upload to YouTube (unlisted is fine), Vimeo or Loom and
+paste the share link instead.

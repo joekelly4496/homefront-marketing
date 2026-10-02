@@ -167,6 +167,20 @@ to its destination, and the lead email includes them. PostHog events:
 `qualifier_booking_opened`. The video script is in
 `docs/ad-landing-video-script.md`.
 
+**Rebuilding the video.** The explainer is assembled from the site's own
+photography and mockups, so it stays honest and can be re-cut without a
+shoot. `video/timeline.json` maps each narrated line to its visual and
+captions. With the dev server running:
+
+```bash
+node video/render-frames.mjs        # product-screen frames + caption PNGs → video/frames/
+node video/build.mjs --root . --ffmpeg ffmpeg --ffprobe ffprobe --out out   # needs ffmpeg with libx264
+```
+
+Narration goes in `vo/1.wav … vo/7.wav` (one file per line; timings follow
+the audio lengths). Copy the result to `public/videos/afterkey-explainer.mp4`
+and `public/videos/afterkey-explainer-poster.jpg`.
+
 ## Environment
 
 | Variable | Purpose |
