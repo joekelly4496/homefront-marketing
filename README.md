@@ -147,7 +147,7 @@ Everything campaign-specific lives in `adLanding` in `src/lib/content.ts`:
 | --- | --- |
 | `videoUrl` | YouTube, Vimeo or Loom share link, or `/videos/<file>.mp4`. Empty shows the request-flow walkthrough instead. |
 | `videoDuration` | Shown on the play button, e.g. `1:05`. |
-| `bookCallUrl` | Calendly / Cal.com link, shown only after a lead passes the qualifier. Calendly embeds inline; other tools open in a new tab. Empty: qualified leads are told you'll email them to set a time. |
+| `bookCallUrl` | Cal.com / Calendly link, shown only after a lead passes the qualifier. Both embed inline with name and email prefilled; other tools open in a new tab. Empty: qualified leads are told you'll email them to set a time. |
 
 "Book a 15-minute call" goes to **`/start/book`**, a three-question qualifier
 (homes per year, what kind of business, biggest time sink). The rules live in

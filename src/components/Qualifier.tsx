@@ -220,17 +220,26 @@ export function Qualifier() {
 
     if (url) {
       const isCalendly = url.hostname.endsWith("calendly.com");
+      const isCalcom = url.hostname === "cal.com" || url.hostname.endsWith(".cal.com");
+      const embeds = isCalendly || isCalcom;
+      // The plain link, for the "open in a new tab" fallback.
+      const plain = url.toString();
       if (isCalendly) {
         url.searchParams.set("embed_type", "Inline");
         url.searchParams.set("embed_domain", window.location.hostname);
         url.searchParams.set("hide_gdpr_banner", "1");
+      }
+      if (isCalcom) {
+        url.searchParams.set("embed", "true");
+        url.searchParams.set("theme", "light");
+        url.searchParams.set("layout", "month_view");
       }
       return (
         <div className={card}>
           <h2 className="text-2xl font-semibold tracking-tight text-paper sm:text-3xl">
             Pick a time, {firstName}.
           </h2>
-          {isCalendly ? (
+          {embeds ? (
             <iframe
               src={url.toString()}
               title="Book a 15-minute call"
@@ -238,11 +247,11 @@ export function Qualifier() {
               className="mt-6 h-[720px] w-full rounded-[6px] bg-paper"
             />
           ) : null}
-          {isCalendly ? (
+          {embeds ? (
             <p className="mt-4 text-sm text-slate-400">
               Calendar not loading?{" "}
               <a
-                href={url.toString().replace(/[?&]embed_type=Inline/, "")}
+                href={plain}
                 target="_blank"
                 rel="noopener"
                 onClick={() => track("qualifier_booking_opened", { mode: "fallback_link" })}
