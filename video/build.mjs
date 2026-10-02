@@ -7,7 +7,7 @@
 // Narration takes live where timeline.json "vo" points (video/vo/). To re-dub,
 // replace those files and re-run; timings follow the audio lengths.
 import { execFileSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const arg = (k, d) => { const i = process.argv.indexOf(`--${k}`); return i > -1 ? process.argv[i + 1] : d; };
@@ -18,6 +18,10 @@ const OUT = arg("out", join(ROOT, "out"));
 mkdirSync(OUT, { recursive: true });
 
 const T = JSON.parse(readFileSync(join(ROOT, "video/timeline.json"), "utf8"));
+// Word-timed captions (video/captions.json, from make-captions.mjs) win over
+// the script captions in timeline.json, which are only spaced by length.
+const TIMED = existsSync(join(ROOT, "video/captions.json"))
+  ? JSON.parse(readFileSync(join(ROOT, "video/captions.json"), "utf8")) : null;
 const { fps, width: W, height: H, gap, tail } = T;
 const run = (bin, args) => execFileSync(bin, args, { stdio: ["ignore", "pipe", "inherit"], maxBuffer: 1 << 26 }).toString();
 const probe = (f) => parseFloat(run(FFPROBE, ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f]));
@@ -33,6 +37,15 @@ for (const line of T.lines) {
     "areverse,silenceremove=start_periods=1:start_threshold=-40dB:start_silence=0.3,areverse," +
     "aresample=48000,aformat=channel_layouts=stereo", cleaned]);
   line.clean = cleaned;
+  if (TIMED?.[line.id]?.length) {
+    const segs = TIMED[line.id];
+    const from = Math.max(0, segs[0].start - 0.25);
+    const to = segs[segs.length - 1].end + 0.2;
+    const cut = join(OUT, `vo-${line.id}-cut.wav`);
+    run(FFMPEG, ["-y", "-loglevel", "error", "-i", cleaned, "-af", `atrim=${from}:${to},asetpts=PTS-STARTPTS`, cut]);
+    line.clean = cut;
+    line.offset = from;
+  }
 }
 
 // 1. Timing. Each line runs for its narration plus a gap; the last gets a tail.
@@ -52,26 +65,36 @@ for (const [li, line] of T.lines.entries()) {
     left -= d;
   }
 
-  const total = line.captions.reduce((n, c) => n + c.length, 0);
-  let acc = 0;
-  for (const [ci, text] of line.captions.entries()) {
-    const start = cursor + (vo * acc) / total;
-    acc += text.length;
-    const end = ci === line.captions.length - 1 ? cursor + vo + Math.min(gap, 0.4) : cursor + (vo * acc) / total;
-    captions.push({ png: join(ROOT, `video/frames/cap-${line.id}-${ci + 1}.png`), start: r3(start), end: r3(end), text });
+  if (TIMED?.[line.id]) {
+    for (const [ci, seg] of TIMED[line.id].entries()) {
+      const off = line.offset ?? 0;
+      captions.push({ png: join(ROOT, `video/frames/cap-${line.id}-${ci + 1}.png`),
+        start: r3(cursor + seg.start - off), end: r3(Math.min(cursor + seg.end - off, cursor + lineDur)), text: seg.text });
+    }
+  } else {
+    const total = line.captions.reduce((n, c) => n + c.length, 0);
+    let acc = 0;
+    for (const [ci, text] of line.captions.entries()) {
+      const start = cursor + (vo * acc) / total;
+      acc += text.length;
+      const end = ci === line.captions.length - 1 ? cursor + vo + Math.min(gap, 0.4) : cursor + (vo * acc) / total;
+      captions.push({ png: join(ROOT, `video/frames/cap-${line.id}-${ci + 1}.png`), start: r3(start), end: r3(end), text });
+    }
   }
   cursor += lineDur;
 }
 const TOTAL = r3(cursor);
 console.log(`total ${TOTAL}s, ${scenes.length} scenes, ${captions.length} captions`);
 
-// 2. One clip per scene. zoompan runs on an oversized frame so the move is smooth.
+// 2. One clip per scene. zoompan rounds its crop window to whole source
+// pixels, which reads as shake on a slow move unless the source is heavily
+// oversampled — hence the 5x intermediate frame.
 const motion = (m, N) => {
   const c = `x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`;
   switch (m) {
-    case "zoom-in": return `z='1+0.10*on/${N}':${c}`;
-    case "zoom-in-soft": return `z='1+0.035*on/${N}':${c}`;
-    case "pan-right": return `z='1.12':x='(iw-iw/zoom)*on/${N}':y='ih/2-(ih/zoom/2)'`;
+    case "zoom-in": return `z='1+0.06*on/${N}':${c}`;
+    case "zoom-in-soft": return `z='1+0.025*on/${N}':${c}`;
+    case "pan-right": return `z='1.08':x='(iw-iw/zoom)*on/${N}':y='ih/2-(ih/zoom/2)'`;
     default: return `z='1':${c}`;
   }
 };
@@ -79,7 +102,7 @@ const clips = [];
 for (const sc of scenes) {
   const N = Math.round(sc.dur * fps);
   const out = join(OUT, `${sc.name}.mp4`);
-  const vf = `scale=${W * 2}:${H * 2}:force_original_aspect_ratio=increase,crop=${W * 2}:${H * 2},` +
+  const vf = `scale=${W * 5}:${H * 5}:force_original_aspect_ratio=increase:flags=lanczos,crop=${W * 5}:${H * 5},` +
     `zoompan=${motion(sc.motion, N)}:d=${N}:s=${W}x${H}:fps=${fps},format=yuv420p`;
   run(FFMPEG, ["-y", "-loglevel", "error", "-i", join(ROOT, sc.image), "-vf", vf, "-frames:v", String(N),
     "-r", String(fps), "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-g", String(fps * 2), out]);

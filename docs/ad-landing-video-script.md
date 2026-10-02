@@ -19,8 +19,8 @@ and re-run `video/build.mjs` — the timings follow the audio lengths.
 ---
 
 **1 — Photo: colonial at dusk**
-"Three weeks after closing, the first text lands. 'Hey, quick question.'
-By August, there are forty of them."
+"I build homes on Long Island. Three weeks after closing, you get the text.
+'Hey, quick question.' By August, you've had forty of them."
 
 **2 — Photo: punch-list tape on a new wall**
 "Filter sizes. The water shutoff. The sub who says he went. None of it on a

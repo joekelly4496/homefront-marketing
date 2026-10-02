@@ -8,13 +8,19 @@
     {
       "id": 1,
       "vo": "video/vo/1.m4a",
-      "text": "Three weeks after closing, the first text lands. Hey, quick question. By August, there are forty of them.",
+      "text": "I build homes on Long Island. Three weeks after closing, you get the text. Hey, quick question. By August, you've had forty of them.",
       "captions": [
-        "Three weeks after closing, the first text lands.",
-        "“Hey, quick question.”",
-        "By August, there are forty of them."
+        "I build homes on Long Island.",
+        "Three weeks after closing, you get the text.",
+        "\u201cHey, quick question.\u201d",
+        "By August, you\u2019ve had forty of them."
       ],
-      "scenes": [{ "image": "public/images/hero-colonial-dusk.webp", "motion": "zoom-in" }]
+      "scenes": [
+        {
+          "image": "public/images/hero-colonial-dusk.webp",
+          "motion": "zoom-in"
+        }
+      ]
     },
     {
       "id": 2,
@@ -24,7 +30,12 @@
         "Filter sizes. The water shutoff. The sub who says he went.",
         "None of it on a system. All of it on your cell."
       ],
-      "scenes": [{ "image": "public/images/section-punch-list-tape.webp", "motion": "pan-right" }]
+      "scenes": [
+        {
+          "image": "public/images/section-punch-list-tape.webp",
+          "motion": "pan-right"
+        }
+      ]
     },
     {
       "id": 3,
@@ -34,7 +45,12 @@
         "Afterkey gives every homeowner a portal with your name on it.",
         "They send a photo and two sentences, instead of a text."
       ],
-      "scenes": [{ "image": "video/frames/scene-phone.png", "motion": "zoom-in-soft" }]
+      "scenes": [
+        {
+          "image": "video/frames/scene-phone.png",
+          "motion": "zoom-in-soft"
+        }
+      ]
     },
     {
       "id": 4,
@@ -42,9 +58,14 @@
       "text": "It lands in one list. You assign the sub in one step. If his insurance lapsed, you find out now, not after a claim.",
       "captions": [
         "It lands in one list. You assign the sub in one step.",
-        "If his insurance lapsed, you find out now — not after a claim."
+        "If his insurance lapsed, you find out now \u2014 not after a claim."
       ],
-      "scenes": [{ "image": "video/frames/scene-dashboard.png", "motion": "zoom-in-soft" }]
+      "scenes": [
+        {
+          "image": "video/frames/scene-dashboard.png",
+          "motion": "zoom-in-soft"
+        }
+      ]
     },
     {
       "id": 5,
@@ -54,7 +75,12 @@
         "The sub updates from the driveway. The homeowner watches it move.",
         "Nobody calls you for a status."
       ],
-      "scenes": [{ "image": "video/frames/scene-request.png", "motion": "zoom-in-soft" }]
+      "scenes": [
+        {
+          "image": "video/frames/scene-request.png",
+          "motion": "zoom-in-soft"
+        }
+      ]
     },
     {
       "id": 6,
@@ -65,7 +91,12 @@
         "with a source on every line.",
         "So the reminders come from you, for years."
       ],
-      "scenes": [{ "image": "video/frames/scene-binder.png", "motion": "zoom-in-soft" }]
+      "scenes": [
+        {
+          "image": "video/frames/scene-binder.png",
+          "motion": "zoom-in-soft"
+        }
+      ]
     },
     {
       "id": 7,
@@ -77,8 +108,15 @@
         "Book a call, or set up your first home today."
       ],
       "scenes": [
-        { "image": "public/images/usecase-subs-truck-dusk.webp", "motion": "zoom-in", "seconds": 5.4 },
-        { "image": "video/frames/scene-end.png", "motion": "none" }
+        {
+          "image": "public/images/usecase-subs-truck-dusk.webp",
+          "motion": "zoom-in",
+          "seconds": 5.4
+        },
+        {
+          "image": "video/frames/scene-end.png",
+          "motion": "none"
+        }
       ]
     }
   ]

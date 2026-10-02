@@ -2,7 +2,7 @@
 // Needs the dev server on :3000 (for the product mockups) and Chromium.
 //   node video/render-frames.mjs
 import { chromium } from "playwright-core";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync } from "node:fs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 const OUT = `${ROOT}video/frames`;
@@ -127,8 +127,11 @@ const CAP_CSS = `${BASE_CSS(fam)}
   body{width:1280px;height:200px;background:transparent!important;display:flex;align-items:flex-end;justify-content:center;padding-bottom:34px!important}
   .cap{display:inline-block;max-width:1100px;padding:14px 26px;border-radius:8px;background:rgba(26,35,50,.88);color:#FAF8F4;font-size:34px;font-weight:600;line-height:1.3;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35)}
 `;
+const timed = existsSync(`${ROOT}video/captions.json`)
+  ? JSON.parse(readFileSync(`${ROOT}video/captions.json`, "utf8")) : null;
 for (const line of timeline.lines) {
-  for (const [i, text] of line.captions.entries()) {
+  const texts = timed?.[line.id] ? timed[line.id].map((c) => c.text) : line.captions;
+  for (const [i, text] of texts.entries()) {
     await paint({ width: 1280, height: 200, css: CAP_CSS, html: `<div class="cap">${text}</div>`, out: `${OUT}/cap-${line.id}-${i + 1}.png`, transparent: true });
   }
 }
