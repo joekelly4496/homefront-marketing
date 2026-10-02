@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { isLandingPath } from "@/components/HideOnLanding";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { buttonVariants } from "@/components/ui/Button";
@@ -16,6 +18,7 @@ const navLinks = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -23,6 +26,20 @@ export default function Navigation() {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  // Ad landing pages: the logo and nothing else. Every extra link is an
+  // exit from the one decision the page asks for.
+  if (isLandingPath(pathname)) {
+    return (
+      <header className="border-b border-paper/10 bg-ink">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6" aria-label="Main">
+          <div className="flex h-16 items-center">
+            <Logo tone="light" />
+          </div>
+        </nav>
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-drywall bg-paper/85 backdrop-blur-md">

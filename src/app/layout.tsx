@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ContactWidget } from "@/components/ContactWidget";
+import { HideOnLanding } from "@/components/HideOnLanding";
 import { JsonLd } from "@/components/JsonLd";
 import { siteUrl, absoluteUrl } from "@/lib/site";
 import { brand } from "@/lib/content";
@@ -88,8 +89,12 @@ export default function RootLayout({
         <JsonLd data={siteGraph} />
         <Navigation />
         <main id="main">{children}</main>
-        <Footer />
-        <ContactWidget />
+        {/* Ad landing pages carry their own minimal footer and no
+            floating widget: one page, one decision. */}
+        <HideOnLanding>
+          <Footer />
+          <ContactWidget />
+        </HideOnLanding>
       </body>
     </html>
   );

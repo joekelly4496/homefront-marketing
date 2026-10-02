@@ -135,6 +135,24 @@ creates legal, carrier, or credibility exposure:
 `/login` is `noindex` and excluded from the sitemap — it is a sign-in doorway
 with no search value.
 
+## Ad landing page: `/start`
+
+The destination for paid ads. Promise, video, one decision. It is `noindex`,
+absent from the sitemap, and renders without the site navigation, footer, or
+contact widget so there's nothing to click away to.
+
+Everything campaign-specific lives in `adLanding` in `src/lib/content.ts`:
+
+| Field | What it does |
+| --- | --- |
+| `videoUrl` | YouTube, Vimeo or Loom share link, or `/videos/<file>.mp4`. Empty shows the request-flow walkthrough instead. |
+| `videoDuration` | Shown on the play button, e.g. `1:05`. |
+| `bookCallUrl` | Calendly / Cal.com link. When set, "Book a 15-minute call" becomes the main button and signup becomes the secondary link. Empty falls back to signup first and "talk to a person" second. |
+
+Both buttons carry the ad's `utm_*`, `gclid` and `fbclid` parameters through
+to their destination, and PostHog records `ad_lp_cta_click` (with `cta`) and
+`ad_video_play`. The video script is in `docs/ad-landing-video-script.md`.
+
 ## Environment
 
 | Variable | Purpose |
