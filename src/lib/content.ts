@@ -74,6 +74,28 @@ export const loginUrls = {
 export const signupHref = `${appBase}/builder/login?signup=1`;
 
 /**
+ * The ad landing page at /start. Everything that changes between campaigns
+ * lives here, so swapping the video or the booking link is a one-line edit.
+ *
+ * - videoUrl: a YouTube, Vimeo or Loom share link, or a self-hosted file
+ *   path like "/videos/afterkey-ad.mp4". Empty = the page shows the
+ *   request-flow walkthrough in the video's place.
+ * - bookCallUrl: a Calendly / Cal.com / similar link, shown only to leads
+ *   who pass the qualifier at /start/book (Calendly embeds inline; other
+ *   tools open in a new tab). Empty = qualified leads are told you'll email
+ *   them to set a time. Their answers reach your inbox either way.
+ * - videoDuration: shown on the play button, e.g. "1:05". Leave empty
+ *   rather than guess.
+ */
+export const adLanding = {
+  path: "/start",
+  videoUrl: "",
+  videoDuration: "",
+  videoPoster: "/images/hero-colonial-dusk.webp",
+  bookCallUrl: "",
+} as const;
+
+/**
  * The 30-day money-back guarantee — the risk reversal that replaced the free
  * trial. Builders pay from day one and can get their subscription fees back.
  *
