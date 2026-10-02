@@ -1,28 +1,34 @@
-# Ad landing video — script (about 66 seconds)
+# Ad landing video — script (about 65 seconds)
 
-For the video on `/start`. Narrated, second person, one idea per beat. The
-visuals are the site's own photography and product mockups (the "Whitfield
-Homes" demo builder), with the spoken line captioned on screen so it works
-muted in a feed.
+For the video on `/start` and for Instagram. Joe on camera at a job site,
+phone video, saying the seven beats below to the lens. The stills-and-captions
+cut built from site photos was rejected and is not used anywhere; the
+`video/` scripts remain only for the edit (word-timed captions, end card).
 
-The current cut uses an AI voice as a placeholder. A founder-read version
-in Joe's voice is better for trust: record the seven lines below (one file
-per line, 44.1 or 48 kHz, no music), drop them in `video/vo/1.m4a … 7.m4a` (any audio format works),
-and re-run `video/build.mjs` — the timings follow the audio lengths.
+**Shooting it**
+- Phone, vertical, eye level, a step back so the site is behind you. The mess
+  is the point — not a finished house.
+- Outdoors, sun behind the camera or overcast. Not noon sun on your face.
+- Audio decides it: a clip-on lav mic, or stand within three feet in a quiet
+  moment. No wind.
+- One take per beat, two or three tries each. Say it to another builder, don't
+  read it.
+- A few 10-second cutaways: walking the site, hand on a door frame, looking at
+  your phone, the truck.
+- Beats 3–6 cut to real screen recordings of the app from the demo workspace
+  ("Whitfield Homes"). Never a real builder's workspace.
 
 **Rules**
-- Real product screens only, from a demo workspace with a made-up builder
-  name. Never a real builder's workspace.
 - No "AI handles it." The software organizes and reminds; people close requests.
 - Pricing and guarantee wording comes from `src/lib/content.ts`; don't improvise.
 
 ---
 
-**1 — Photo: colonial at dusk**
+**1 — On camera**
 "I build homes on Long Island. Three weeks after closing, you get the text.
 'Hey, quick question.' By August, you've had forty of them."
 
-**2 — Photo: punch-list tape on a new wall**
+**2 — On camera**
 "Filter sizes. The water shutoff. The sub who says he went. None of it on a
 system. All of it on your cell."
 
@@ -42,18 +48,18 @@ calls you for a status."
 "Every home gets a maintenance schedule built from its own manuals, with a
 source on every line. So the reminders come from you, for years."
 
-**7 — Photo: truck arriving at dusk, then the end card**
+**7 — On camera, then the pricing end card**
 "A hundred forty-nine a month, plus ten dollars a home that you build into
 the price at closing. Not working in thirty days? You get your subscription
 back. Book a call, or set up your first home today."
 
 ---
 
-**Building it.** `video/timeline.json` maps each line to its visuals and
-captions. `video/render-frames.mjs` paints the product-screen frames and
-caption overlays off the running dev site (so they use the real fonts and
-mockups); `video/build.mjs` assembles everything with ffmpeg. See the
-README's `/start` section for the commands.
+**Editing it.** Takes go in `video/vo/` (audio is pulled from the video
+files); `video/make-captions.mjs` turns a word-level transcript into
+`video/captions.json`, `video/render-frames.mjs` paints the caption overlays
+and end card, and `video/build.mjs` assembles with ffmpeg. See the README's
+`/start` section.
 
 **Hosting.** Put the MP4 at `public/videos/afterkey-explainer.mp4` and set
 `adLanding.videoUrl` to `/videos/afterkey-explainer.mp4` (with its length in
