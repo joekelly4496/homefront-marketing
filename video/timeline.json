@@ -7,7 +7,7 @@
   "lines": [
     {
       "id": 1,
-      "vo": "vo/1.wav",
+      "vo": "video/vo/1.m4a",
       "text": "Three weeks after closing, the first text lands. Hey, quick question. By August, there are forty of them.",
       "captions": [
         "Three weeks after closing, the first text lands.",
@@ -18,7 +18,7 @@
     },
     {
       "id": 2,
-      "vo": "vo/2.mp3",
+      "vo": "video/vo/2.m4a",
       "text": "Filter sizes. The water shutoff. The sub who says he went. None of it on a system. All of it on your cell.",
       "captions": [
         "Filter sizes. The water shutoff. The sub who says he went.",
@@ -28,7 +28,7 @@
     },
     {
       "id": 3,
-      "vo": "vo/3.mp3",
+      "vo": "video/vo/3.m4a",
       "text": "Afterkey gives every homeowner a portal with your name on it. They send a photo and two sentences, instead of a text.",
       "captions": [
         "Afterkey gives every homeowner a portal with your name on it.",
@@ -38,7 +38,7 @@
     },
     {
       "id": 4,
-      "vo": "vo/4.mp3",
+      "vo": "video/vo/4.m4a",
       "text": "It lands in one list. You assign the sub in one step. If his insurance lapsed, you find out now, not after a claim.",
       "captions": [
         "It lands in one list. You assign the sub in one step.",
@@ -48,7 +48,7 @@
     },
     {
       "id": 5,
-      "vo": "vo/5.mp3",
+      "vo": "video/vo/5.m4a",
       "text": "The sub updates from the driveway. The homeowner watches it move. Nobody calls you for a status.",
       "captions": [
         "The sub updates from the driveway. The homeowner watches it move.",
@@ -58,7 +58,7 @@
     },
     {
       "id": 6,
-      "vo": "vo/6.mp3",
+      "vo": "video/vo/6.m4a",
       "text": "Every home gets a maintenance schedule built from its own manuals, with a source on every line. So the reminders come from you, for years.",
       "captions": [
         "Every home gets a maintenance schedule built from its own manuals,",
@@ -69,7 +69,7 @@
     },
     {
       "id": 7,
-      "vo": "vo/7.mp3",
+      "vo": "video/vo/7.m4a",
       "text": "A hundred forty-nine a month, plus ten dollars a home that you build into the price at closing. Not working in thirty days? You get your subscription back. Book a call, or set up your first home today.",
       "captions": [
         "$149 a month, plus $10 a home you build into the price at closing.",

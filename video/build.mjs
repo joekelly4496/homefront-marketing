@@ -4,9 +4,8 @@
 //   node video/build.mjs --root <dir with video/, public/, vo/> \
 //     --ffmpeg <ffmpeg> --ffprobe <ffprobe> --out <dir>
 //
-// Narration files live in <root>/vo/ (see timeline.json "vo"). To re-dub with
-// a human voice, drop replacement files there and re-run; timings follow the
-// audio lengths automatically.
+// Narration takes live where timeline.json "vo" points (video/vo/). To re-dub,
+// replace those files and re-run; timings follow the audio lengths.
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -24,12 +23,24 @@ const run = (bin, args) => execFileSync(bin, args, { stdio: ["ignore", "pipe", "
 const probe = (f) => parseFloat(run(FFPROBE, ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f]));
 const r3 = (n) => Math.round(n * 1000) / 1000;
 
+// 0. Clean each narration take: trim leading/trailing silence so the gaps
+// between lines are consistent, roll off room rumble, and land on 48 kHz
+// stereo WAV so phone recordings and studio files mix the same way.
+for (const line of T.lines) {
+  const cleaned = join(OUT, `vo-${line.id}.wav`);
+  run(FFMPEG, ["-y", "-loglevel", "error", "-i", join(ROOT, line.vo), "-af",
+    "highpass=f=80,silenceremove=start_periods=1:start_threshold=-40dB:start_silence=0.2," +
+    "areverse,silenceremove=start_periods=1:start_threshold=-40dB:start_silence=0.3,areverse," +
+    "aresample=48000,aformat=channel_layouts=stereo", cleaned]);
+  line.clean = cleaned;
+}
+
 // 1. Timing. Each line runs for its narration plus a gap; the last gets a tail.
 let cursor = 0;
 const scenes = [];
 const captions = [];
 for (const [li, line] of T.lines.entries()) {
-  const vo = probe(join(ROOT, line.vo));
+  const vo = probe(line.clean);
   const lineDur = vo + gap + (li === T.lines.length - 1 ? tail : 0);
   line.start = cursor; line.vo_dur = vo; line.dur = lineDur;
 
@@ -84,7 +95,7 @@ run(FFMPEG, ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lis
 const inputs = ["-i", silent];
 let fc = "";
 captions.forEach((c, i) => { inputs.push("-i", c.png); });
-T.lines.forEach((l) => { inputs.push("-i", join(ROOT, l.vo)); });
+T.lines.forEach((l) => { inputs.push("-i", l.clean); });
 let v = "[0:v]";
 captions.forEach((c, i) => {
   const o = i === captions.length - 1 ? "[vout]" : `[v${i}]`;
@@ -92,7 +103,7 @@ captions.forEach((c, i) => {
   v = o;
 });
 const a0 = captions.length + 1;
-T.lines.forEach((l, i) => { fc += `[${a0 + i}:a]aresample=48000,aformat=channel_layouts=stereo,apad=pad_dur=${gap}[a${i}];`; });
+T.lines.forEach((l, i) => { fc += `[${a0 + i}:a]apad=pad_dur=${gap}[a${i}];`; });
 fc += T.lines.map((_, i) => `[a${i}]`).join("") + `concat=n=${T.lines.length}:v=0:a=1,apad=whole_dur=${TOTAL},loudnorm=I=-16:TP=-1.5:LRA=11[aout]`;
 const final = join(OUT, "afterkey-explainer.mp4");
 run(FFMPEG, ["-y", "-loglevel", "error", ...inputs, "-filter_complex", fc, "-map", "[vout]", "-map", "[aout]",

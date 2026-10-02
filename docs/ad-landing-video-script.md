@@ -7,7 +7,7 @@ muted in a feed.
 
 The current cut uses an AI voice as a placeholder. A founder-read version
 in Joe's voice is better for trust: record the seven lines below (one file
-per line, 44.1 or 48 kHz, no music), drop them in `vo/1.wav … vo/7.wav`,
+per line, 44.1 or 48 kHz, no music), drop them in `video/vo/1.m4a … 7.m4a` (any audio format works),
 and re-run `video/build.mjs` — the timings follow the audio lengths.
 
 **Rules**

@@ -177,7 +177,7 @@ node video/render-frames.mjs        # product-screen frames + caption PNGs → v
 node video/build.mjs --root . --ffmpeg ffmpeg --ffprobe ffprobe --out out   # needs ffmpeg with libx264
 ```
 
-Narration goes in `vo/1.wav … vo/7.wav` (one file per line; timings follow
+Narration goes in `video/vo/1.m4a … 7.m4a` (any format ffmpeg reads) (one file per line; timings follow
 the audio lengths). Copy the result to `public/videos/afterkey-explainer.mp4`
 and `public/videos/afterkey-explainer-poster.jpg`.
 
