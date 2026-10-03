@@ -215,7 +215,12 @@ Copy rules that follow from it:
   quarter at 15% markup) is labeled an example everywhere. Never a customer
   result.
 - The $10 per-home fee is framed as small next to what the same home can
-  carry. Never tell the builder how to account for or pass it through.
+  carry, and "small enough to build into the home's cost at closing, if
+  that's how you want to run it" — always the builder's call, never an
+  instruction.
+- Onboarding is concierge (`onboarding` in content.ts): we set up the
+  builder's brand, subs, and first homes with them; first home live inside
+  two weeks. Never "self-serve."
 
 ## Environment
 

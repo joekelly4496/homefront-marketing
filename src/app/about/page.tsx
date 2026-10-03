@@ -8,7 +8,13 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
-import { brand, signupHref, guarantee, primaryCta } from "@/lib/content";
+import {
+  brand,
+  signupHref,
+  guarantee,
+  primaryCta,
+  onboarding,
+} from "@/lib/content";
 
 const title = "About";
 const description =
@@ -116,7 +122,8 @@ export default function AboutPage() {
                 We are early. There is no customer logo wall on this site
                 because we have not earned one yet, and we would rather show you
                 the product than borrow someone else’s credibility. The pricing
-                is published, setup is self-serve, and a 30-day money-back
+                is published, onboarding is concierge — {onboarding.body}{" "}
+                — and a 30-day money-back
                 guarantee means you can find out whether it fits your operation
                 without talking to anybody first.
               </p>

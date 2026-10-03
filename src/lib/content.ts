@@ -206,7 +206,18 @@ export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.per
  * in. Never tell the builder how to account for or pass through the fee —
  * that is his business. Pair it with `pricingLine` anywhere outside /pricing.
  */
-export const perHomeFraming = `At $${pricing.perHome} per active home, the fee is small next to what the same home can carry: a maintenance membership you price yourself — $20 a month, $40, $60, whatever your market will pay.`;
+export const perHomeFraming = `At $${pricing.perHome} per active home, the fee is small next to what the same home can carry — a maintenance plan you price yourself — and small enough to build into the home’s cost at closing, if that’s how you want to run it.`;
+
+/**
+ * Concierge onboarding — the canonical wording. We set the builder up; the
+ * first home is live inside two weeks. Say it plainly wherever onboarding
+ * comes up, and never describe setup as self-serve.
+ */
+export const onboarding = {
+  headline: "Concierge onboarding",
+  body: "We set up your brand, your subs, and your first homes with you. Your first home is live inside two weeks.",
+  short: "Concierge onboarding: we set up your brand, your subs, and your first homes with you — first home live inside two weeks.",
+} as const;
 
 /* ------------------------------------------------------------------ */
 /* The frame — every home a builder has closed is a customer he isn't   */
@@ -1176,7 +1187,7 @@ export const comparisons: Comparison[] = [
         "Post-closing is the entire product, including the revenue in it: memberships and paid repairs",
         "Every feature is in the one plan — there is no upsell tier",
         "Runs alongside whatever you already use to build",
-        "Onboarding is self-serve and free",
+        "Concierge onboarding: we set you up with you, first home live inside two weeks",
       ],
     },
   },
@@ -1252,7 +1263,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is self-serve and free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is concierge: Afterkey sets up the builder’s brand, subs, and first homes with them, and the first home is live inside two weeks. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "Do homeowners have to pay for a membership to get warranty work?",
@@ -1320,7 +1331,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Standard onboarding is self-serve and free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial and no sales call — instead, every new account is covered by a 30-day money-back guarantee, so you evaluate Afterkey on your real homes rather than in a sandbox. Your existing homes come in through the AI import tools: upload each home’s documents and Afterkey proposes its binder and maintenance schedule for you to confirm.",
+    a: "Onboarding is concierge: we set up your brand, your subs, and your first homes with you, and your first home is live inside two weeks. There is no free trial — every new account is covered by a 30-day money-back guarantee instead, so you evaluate Afterkey on your real homes rather than in a sandbox. Your existing homes come in through the AI import tools: upload each home’s documents and Afterkey proposes its binder and maintenance schedule for you to confirm.",
   },
   {
     q: "Can I cancel Afterkey at any time?",

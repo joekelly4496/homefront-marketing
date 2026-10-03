@@ -23,6 +23,7 @@ import {
   useCases,
   primaryCta,
   membershipDistinctionShort,
+  onboarding,
 } from "@/lib/content";
 
 const title = "Home Builder Warranty Software";
@@ -278,8 +279,8 @@ export default function FeaturesPage() {
               Run it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Add your first home and log a real request today. Self-serve
-              setup, no demo required. {guarantee.short}
+              Add your first home and log a real request today.{" "}
+              {onboarding.short} {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

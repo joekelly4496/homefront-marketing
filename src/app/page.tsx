@@ -31,6 +31,7 @@ import {
   newHomeMaintenance,
   classification,
   membershipLadder,
+  onboarding,
 } from "@/lib/content";
 
 const money = (n: number) => `$${n.toLocaleString("en-US")}`;
@@ -572,7 +573,7 @@ export default function HomePage() {
             <p className="mt-4 text-base leading-relaxed text-slate-300">
               A builder with a phone full of homeowner texts has a job. Set up
               your first home, add your subs, and put a plan in front of a
-              homeowner this week. Self-serve setup, no sales call.{" "}
+              homeowner this week. {onboarding.short}{" "}
               {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

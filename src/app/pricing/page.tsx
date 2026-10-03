@@ -31,6 +31,7 @@ import {
   primaryCta,
   smsStatus,
   workedExample,
+  onboarding,
 } from "@/lib/content";
 
 const money = (n: number) => `$${n.toLocaleString("en-US")}`;
@@ -202,8 +203,13 @@ export default function PricingPage() {
             <p className="text-center text-sm leading-relaxed text-slate-500">
               {processingLine} Bank (ACH) is the method to steer homeowners
               toward: roughly a third of the card rate, and the homeowner
-              never sees a processing line either way. Onboarding is
-              self-serve and free.
+              never sees a processing line either way.
+            </p>
+            <p className="mt-3 text-center text-sm leading-relaxed text-slate-600">
+              <strong className="font-semibold text-slate-900">
+                {onboarding.headline}.
+              </strong>{" "}
+              {onboarding.body}
             </p>
           </Reveal>
         </Container>
