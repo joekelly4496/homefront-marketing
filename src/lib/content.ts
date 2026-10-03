@@ -266,8 +266,10 @@ export const warrantyVsMaintenance = {
       "Dryer vent cleaned",
       "Water heater flushed",
       "Appliances maintained on the manufacturer’s schedule",
+      "Plumbing checked before it leaks",
+      "Septic pumped, gutters cleaned, lawn and grounds kept up",
     ],
-    foot: "What the maintenance plan covers.",
+    foot: "What a maintenance plan covers — up to the whole house.",
   },
 } as const;
 
@@ -294,6 +296,7 @@ export const newHomeMaintenance = {
     "Dryer vent cleaned",
     "Water heater flushed",
     "Appliances maintained on the manufacturer’s schedule",
+    "Septic pumped, gutters cleaned, lawn and grounds kept up",
   ],
   close:
     "Warranty covers what the builder got wrong. Maintenance covers what every house needs. The membership sells the second one, starting at closing, and is never a paywall in front of the first.",
@@ -306,6 +309,38 @@ export type RevenuePoint = {
   body: string;
 };
 
+/**
+ * The membership ladder. The $40 plan is the floor, not the product: the
+ * ceiling is the builder running the whole house — lawn, HVAC, appliances,
+ * plumbing, septic, everything — with his subs on the work and the
+ * homeowner paying one number a month. Prices are what a builder CAN
+ * charge, labeled as examples; Afterkey never sets or caps them.
+ */
+export const membershipLadder = {
+  heading: "From reminders to the whole house",
+  lede:
+    "A maintenance plan is whatever you decide to sell. Most builders start at the bottom rung and move homeowners up it.",
+  tiers: [
+    {
+      name: "The schedule and the reminders",
+      price: "$20–40 a month",
+      body: "The maintenance schedule built from the home’s own manuals, the reminders by email or text, the portal under your name, and a direct line to your subs when something comes up.",
+    },
+    {
+      name: "Scheduled service",
+      price: "$100–250 a month",
+      body: "Your subs come on the schedule, no call needed: HVAC twice a year, the boiler annually, the dryer vent, the water heater flush, the appliances on the manufacturer’s interval. The homeowner watches it happen and never books a thing.",
+    },
+    {
+      name: "The whole house",
+      price: "$500 a month and up",
+      body: "Everything that goes into a house: lawn and grounds, gutters, HVAC, appliances, plumbing, septic, snow. The trades who built it keep it running, you bill one number a month, and the homeowner has one company to call for the life of the home.",
+    },
+  ],
+  foot:
+    "Example tiers and prices. You set every number, your market decides what it carries, and Afterkey never sets or caps it. Whatever the tier, the plan covers maintenance; warranty work stays free.",
+} as const;
+
 /** The five points, in order of weight. */
 export const revenuePoints: RevenuePoint[] = [
   {
@@ -313,7 +348,7 @@ export const revenuePoints: RevenuePoint[] = [
     icon: Wallet,
     title: "A membership you price, billed to your account",
     body:
-      "Sell your homeowners a maintenance membership at whatever your market carries — $20 a month, $40, $60. Afterkey never sets or caps it. The homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account.",
+      "Sell your homeowners a maintenance plan at whatever your market carries — $40 a month for the schedule and the reminders, $500 for a full-service plan where your subs handle the lawn, the HVAC, the appliances, the plumbing, the septic, everything that goes into a house. Afterkey never sets or caps it. The homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account.",
   },
   {
     id: "repairs",
@@ -352,6 +387,8 @@ export const revenuePoints: RevenuePoint[] = [
 export const workedExample = (() => {
   const homes = 60;
   const planPrice = 40;
+  const fullServicePrice = 500;
+  const fullServiceHomes = 10;
   const repairJob = 400;
   const markupPercent = 15;
   const repairsPerHomePerYear = 4;
@@ -360,9 +397,14 @@ export const workedExample = (() => {
   const membershipYearly = membershipMonthly * 12;
   const repairMarkupYearly = homes * repairsPerHomePerYear * markupPerJob;
   const afterkeyMonthly = pricing.base + homes * pricing.perHome;
+  const fullServiceMonthly = fullServiceHomes * fullServicePrice;
   return {
     homes,
     planPrice,
+    fullServicePrice,
+    fullServiceHomes,
+    fullServiceMonthly,
+    fullServiceYearly: fullServiceMonthly * 12,
     repairJob,
     markupPercent,
     repairsPerHomePerYear,
@@ -722,7 +764,12 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Your price, never ours",
         description:
-          "$20 a month, $40, $60 — whatever your market carries. Afterkey never sets or caps it. Offer one plan or several tiers, priced per home. The revenue line is sized to your market, not to ours.",
+          "$40 a month for the schedule and reminders, $500 for the whole house — whatever your market carries. Afterkey never sets or caps it. Offer one plan or several tiers, priced per home. The revenue line is sized to your market, not to ours.",
+      },
+      {
+        title: "From reminders to the whole house",
+        description:
+          "The bottom tier is the schedule and the reminders. The top tier is your subs handling lawn care, HVAC, appliances, plumbing, septic — everything that goes into a house — on the schedule, billed as one number a month. The homeowner has one company to call for the life of the home, and it’s you.",
       },
       {
         title: "Card or bank on file, billed monthly",
@@ -1182,7 +1229,11 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "What should I charge homeowners for a maintenance membership?",
-    a: "Whatever your market carries — $20 a month, $40, $60. Afterkey never sets or caps the price. You define the plan and its tiers, the homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account. There is no platform fee on homeowner payments; you pay only processing, at Afterkey’s published flat rates.",
+    a: "Whatever your market carries. Builders typically think in tiers: $20 to $40 a month for the maintenance schedule and the reminders; $100 to $250 for scheduled service, where your subs come on the schedule for HVAC, the boiler, the dryer vent, the water heater, and the appliances; and $500 a month or more for a full-service plan that covers everything that goes into a house — lawn and grounds, gutters, plumbing, septic, snow. Afterkey never sets or caps the price. You define the plan and its tiers, the homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account. There is no platform fee on homeowner payments; you pay only processing, at Afterkey’s published flat rates.",
+  },
+  {
+    q: "Can the membership cover more than reminders — lawn care, septic, the whole house?",
+    a: "Yes. A maintenance plan is whatever you decide to sell. At the top of the ladder it is a full-service plan: your subs handle lawn care, HVAC maintenance, appliance maintenance, plumbing, septic, gutters, snow — everything that goes into a house — on a schedule, and the homeowner pays one number a month to you. Afterkey holds the schedule, routes each visit to the right sub, sends the reminders, bills the plan to your account, and keeps the record. The trades who built the house keep it running, and the homeowner has one company to call for the life of the home. Whatever the tier, the plan covers maintenance; warranty work stays free.",
   },
   {
     q: "How does paid repair work get billed and paid?",

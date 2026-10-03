@@ -8,6 +8,7 @@ import { FaqList } from "@/components/ui/FaqList";
 import { JsonLd } from "@/components/JsonLd";
 import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
 import { RepairPaySteps } from "@/components/RepairPaySteps";
+import { MembershipLadder } from "@/components/MembershipLadder";
 import { pageMetadata } from "@/lib/seo";
 import {
   graph,
@@ -28,6 +29,7 @@ import {
   membershipDistinction,
   newHomeMaintenance,
   classification,
+  membershipLadder,
 } from "@/lib/content";
 
 const title = "Maintenance Memberships for Home Builders";
@@ -46,6 +48,7 @@ const pageFaqs = [
   ...coreFaqs.filter((f) =>
     [
       "What should I charge homeowners for a maintenance membership?",
+      "Can the membership cover more than reminders — lawn care, septic, the whole house?",
       "Do homeowners have to pay for a membership to get warranty work?",
       "My homes are new. What is there to maintain?",
       "How does paid repair work get billed and paid?",
@@ -79,9 +82,10 @@ export default function MembershipsPage() {
                 Every home you’ve built is a customer
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-700">
-                {thesis.short} The builder sells a maintenance membership at a
-                price he sets, gets paid on the repairs he used to coordinate
-                for free, and stays the first call for the next job.
+                {thesis.short} The builder sells a maintenance plan at a price
+                he sets — from the reminders to the whole house — gets paid on
+                the repairs he used to coordinate for free, and stays the
+                first call for the next job.
               </p>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700">
                 {membershipDistinction}
@@ -141,10 +145,29 @@ export default function MembershipsPage() {
         </Container>
       </section>
 
+      {/* The ladder — the $40 plan is the floor, the whole house is the ceiling */}
+      <section className="bg-drywall py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="max-w-2xl">
+            <SectionLabel>What a plan can be</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              {membershipLadder.heading}
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              {membershipLadder.lede} At the top, the trades who built the
+              house keep it running — lawn, HVAC, appliances, plumbing, septic,
+              everything — and the homeowner has one company to call for the
+              life of the home.
+            </p>
+          </div>
+          <MembershipLadder className="mt-10" />
+        </Container>
+      </section>
+
       {/* The worked example — a full table this time */}
       <section
         id="example"
-        className="scroll-mt-24 bg-drywall py-20 sm:py-28"
+        className="scroll-mt-24 bg-paper py-20 sm:py-28"
       >
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
@@ -216,6 +239,22 @@ export default function MembershipsPage() {
                         scope="row"
                         className="px-5 py-4 text-left font-medium text-ink"
                       >
+                        {ex.fullServiceHomes} of the {ex.homes} take a $
+                        {ex.fullServicePrice}/month whole-house plan instead
+                        <span className="block text-xs font-normal text-slate-600">
+                          {ex.fullServiceHomes} × ${ex.fullServicePrice} × 12 ·
+                          gross, before you pay your subs for the work
+                        </span>
+                      </th>
+                      <td className="px-5 py-4 text-right text-lg font-semibold tabular-nums text-ink">
+                        {money(ex.fullServiceYearly)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th
+                        scope="row"
+                        className="px-5 py-4 text-left font-medium text-ink"
+                      >
                         Your markup on one priced repair a quarter
                         <span className="block text-xs font-normal text-slate-600">
                           {ex.homes} homes × {ex.repairsPerHomePerYear} jobs ×
@@ -263,7 +302,7 @@ export default function MembershipsPage() {
 
       {/* A new house still needs maintenance — what's warranty, what's
           maintenance, as the homeowner sees it under the builder's brand */}
-      <section className="bg-paper py-20 sm:py-28">
+      <section className="bg-drywall py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-16">
             <div className="lg:col-span-5">
@@ -298,7 +337,7 @@ export default function MembershipsPage() {
       </section>
 
       {/* How the money moves */}
-      <section className="bg-drywall py-20 sm:py-28">
+      <section className="bg-paper py-20 sm:py-28">
         <Container size="7xl">
           <div className="max-w-2xl">
             <SectionLabel>How the money moves</SectionLabel>
@@ -344,7 +383,7 @@ export default function MembershipsPage() {
       </section>
 
       {/* Warranty vs. billable, both sides */}
-      <section className="bg-paper py-20 sm:py-28">
+      <section className="bg-drywall py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-6">
@@ -397,7 +436,7 @@ export default function MembershipsPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-drywall py-20 sm:py-28">
+      <section className="bg-paper py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">

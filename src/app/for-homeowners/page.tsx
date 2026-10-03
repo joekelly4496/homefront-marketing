@@ -78,9 +78,10 @@ export default function ForHomeownersPage() {
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-700">
                 A new house needs maintenance from the day you get the keys.
                 If your builder runs on {brand.name}, you get a maintenance
-                plan under their name: the reminders, the scheduled service,
-                and the trades who built the house, all in one place that
-                isn’t a text thread.
+                plan under their name — from the reminders up to a
+                full-service plan where the trades who built the house handle
+                the lawn, the HVAC, the appliances, the plumbing, the septic,
+                all of it — in one place that isn’t a text thread.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button href={loginUrls.homeowner} external size="lg">
@@ -154,7 +155,8 @@ export default function ForHomeownersPage() {
               <p className="mt-2 text-base leading-relaxed text-slate-700">
                 Built from the manuals for the equipment in your home, with the
                 source on every line. The reminders come from your builder, by
-                email or text, when something is due.
+                email or text, when something is due — and on a full-service
+                plan, the visit is already booked.
               </p>
             </Card>
             <Card className="p-6">

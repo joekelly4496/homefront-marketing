@@ -56,7 +56,7 @@ const priceLines = [
     price: `+ $${pricing.perHome}`,
     unit: "/month per active home",
     title: "Per active home",
-    description: `Flat at any age, for homes you’re actively serving. Next to it: one home on a $${workedExample.planPrice}-a-month maintenance plan brings in $${workedExample.planPrice * 12} a year, at a price you set. Prospect homes are free while you pitch them, and archived homes are free, read-only, and keep their full history.`,
+    description: `Flat at any age, for homes you’re actively serving. Next to it: one home on a $${workedExample.planPrice}-a-month maintenance plan brings in $${(workedExample.planPrice * 12).toLocaleString("en-US")} a year; on a $${workedExample.fullServicePrice} whole-house plan, $${(workedExample.fullServicePrice * 12).toLocaleString("en-US")} — at prices you set. Prospect homes are free while you pitch them, and archived homes are free, read-only, and keep their full history.`,
   },
   {
     price: `+ $${pricing.ai.price}`,
@@ -292,7 +292,11 @@ export default function PricingPage() {
                 job at {workedExample.markupPercent}% markup is $
                 {workedExample.markupPerJob} to you each time — and that is
                 another {money(workedExample.repairMarkupYearly)} a year on work
-                you were coordinating for free. Your Afterkey bill at{" "}
+                you were coordinating for free. If {workedExample.fullServiceHomes}{" "}
+                of those homes take a ${workedExample.fullServicePrice}/month
+                whole-house plan instead, that line alone is{" "}
+                {money(workedExample.fullServiceYearly)} a year, gross, before
+                you pay your subs for the work. Your Afterkey bill at{" "}
                 {workedExample.homes} active homes is{" "}
                 {money(workedExample.afterkeyMonthly)}/month.
               </p>

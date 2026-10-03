@@ -11,6 +11,7 @@ import { PhoneMockup } from "@/components/mockups/PhoneMockup";
 import { BinderMockup } from "@/components/mockups/BinderMockup";
 import { WhiteLabelSwap } from "@/components/mockups/WhiteLabelSwap";
 import { RequestFlow } from "@/components/mockups/RequestFlow";
+import { MembershipLadder } from "@/components/MembershipLadder";
 import { graph, faqPageSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
@@ -33,6 +34,7 @@ import {
   newHomeMaintenance,
   classification,
   membershipDistinctionShort,
+  membershipLadder,
 } from "@/lib/content";
 
 const money = (n: number) => `$${n.toLocaleString("en-US")}`;
@@ -177,9 +179,10 @@ export default function HomePage() {
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
               Afterkey turns the homes you’ve already closed into a service
-              business: a maintenance membership you price, repair work paid
-              through your branded portal with your markup on it, and your
-              subs on the work. {thesis.supporting}
+              business: a maintenance plan you price — from reminders to the
+              whole house — repair work paid through your branded portal with
+              your markup on it, and your subs on the work.{" "}
+              {thesis.supporting}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
@@ -210,9 +213,9 @@ export default function HomePage() {
             </ul>
             <p className="mt-2 text-sm text-slate-400">
               ${pricing.perHome} a home is small next to a ${ex.planPrice}
-              -a-month maintenance plan on the same home. What you charge your
-              homeowners is yours; Afterkey never sets or caps it.{" "}
-              {membershipDistinctionShort}
+              -a-month plan — or a ${ex.fullServicePrice} full-service one — on
+              the same home. What you charge your homeowners is yours; Afterkey
+              never sets or caps it. {membershipDistinctionShort}
             </p>
           </div>
 
@@ -342,6 +345,21 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-baseline justify-between gap-4 py-3">
                     <dt className="text-sm text-slate-700">
+                      {ex.fullServiceHomes} of them take a ${ex.fullServicePrice}
+                      /month whole-house plan instead — gross, before you pay
+                      your subs for the work
+                    </dt>
+                    <dd className="text-right tabular-nums">
+                      <span className="text-lg font-semibold text-ink">
+                        {money(ex.fullServiceYearly)}
+                      </span>
+                      <span className="block text-xs text-slate-600">
+                        {money(ex.fullServiceMonthly)} a month
+                      </span>
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-4 py-3">
+                    <dt className="text-sm text-slate-700">
                       One priced repair a quarter per home — a $
                       {ex.repairJob} job at {ex.markupPercent}% markup, $
                       {ex.markupPerJob} to you each
@@ -379,6 +397,17 @@ export default function HomePage() {
                 </p>
               </Card>
             </div>
+          </div>
+
+          {/* The ladder: the $40 plan is the floor, the whole house is the ceiling */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-semibold tracking-tight text-ink">
+              {membershipLadder.heading}
+            </h3>
+            <p className="mt-2 max-w-2xl text-base leading-relaxed text-slate-700">
+              {membershipLadder.lede}
+            </p>
+            <MembershipLadder className="mt-6" />
           </div>
         </Container>
       </section>

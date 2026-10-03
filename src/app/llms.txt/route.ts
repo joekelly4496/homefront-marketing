@@ -15,6 +15,7 @@ import {
   membershipDistinction,
   newHomeMaintenance,
   classification,
+  membershipLadder,
 } from "@/lib/content";
 
 /**
@@ -71,6 +72,8 @@ ${section(
 ${revenuePoints.map((p) => `- ${p.title}: ${p.body}`).join("\n")}
 
 ${membershipDistinction} A new house still needs maintenance from day one, whoever built it: ${newHomeMaintenance.items.join("; ").toLowerCase()}.
+
+${membershipLadder.heading}: ${membershipLadder.tiers.map((t) => `${t.name} (${t.price}) — ${t.body}`).join(" ")} ${membershipLadder.foot}
 
 Warranty vs. billable: ${classification.how.join(" ")} For the homeowner: ${classification.homeowner} For the builder: ${classification.builder}`,
 )}

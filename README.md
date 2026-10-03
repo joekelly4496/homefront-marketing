@@ -199,8 +199,11 @@ Copy rules that follow from it:
 - Say the "my homes are new" objection out loud and answer it with
   `newHomeMaintenance` (HVAC twice a year, boiler annually, dryer vent, water
   heater, appliances on the manufacturer's schedule).
-- The builder sets the membership price ($20, $40, $60 — whatever his market
-  carries); Afterkey never sets or caps it. Plans bill monthly to the
+- The builder sets the membership price; Afterkey never sets or caps it. The
+  $40 plan is the floor, not the product: `membershipLadder` runs from "the
+  schedule and the reminders" up to "the whole house" ($500+/month — lawn,
+  HVAC, appliances, plumbing, septic, with the builder's subs on the work).
+  Whole-house revenue is always labeled gross, before the subs are paid. Plans bill monthly to the
   builder's own account from a card or bank account on file.
 - Paid repairs: the builder prices the job, the homeowner approves before any
   charge, the platform adds the builder's markup, deducts processing, and

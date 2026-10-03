@@ -80,9 +80,11 @@ export default function AboutPage() {
               </p>
               <p>
                 {brand.name} turns those homes into a service business. The
-                builder sells a maintenance membership at whatever price his
-                market carries, and it bills monthly to his own account from a
-                portal that carries his name. Repairs get priced, approved by
+                builder sells a maintenance plan at whatever price his market
+                carries — $40 a month for the schedule and the reminders, $500
+                for the whole house, lawn to septic, with his subs on the work
+                — and it bills monthly to his own account from a portal that
+                carries his name. Repairs get priced, approved by
                 the homeowner before anyone is charged, and paid out with the
                 builder’s markup on them, the sub and the builder paid
                 separately. Warranty work stays warranty and stays free; the
