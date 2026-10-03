@@ -6,6 +6,7 @@ import { Container, SectionLabel } from "@/components/ui/Container";
 import { FaqList } from "@/components/ui/FaqList";
 import { PhoneMockup } from "@/components/mockups/PhoneMockup";
 import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
+import { MembershipLadder } from "@/components/MembershipLadder";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import {
@@ -37,6 +38,10 @@ export const metadata = pageMetadata({
  * watching too — this page is the homeowner side of the membership pitch.
  */
 const homeownerFaqs: Faq[] = [
+  {
+    q: "What do I actually get for the monthly price?",
+    a: "Whatever your builder put in the plan — the portal shows the list before you join. A basic plan runs the calendar: a maintenance schedule built from your house’s own manuals, a reminder when something is due, the portal to submit a request and talk to the sub, and your documents and service history in one place; service visits are booked from the reminder and quoted before anyone comes out. A scheduled-service plan includes the visits and the labor — HVAC tune-ups, the boiler, the dryer vent, the water heater, the appliances. A whole-house plan adds lawn, gutters, septic, and snow for one number a month. At every tier, a repair outside the plan is priced and approved by you before it is charged.",
+  },
   {
     q: "Do I have to join the maintenance plan to get warranty repairs?",
     a: "No. Warranty repairs are your builder’s obligation and are free whether or not you join a plan, and joining never changes how quickly warranty work is handled. The maintenance plan covers upkeep — the service every house needs from day one, regardless of who built it.",
@@ -138,8 +143,27 @@ export default function ForHomeownersPage() {
         </Container>
       </section>
 
+      {/* What's in the plan — what physically happens for the money */}
+      <section id="plans" className="scroll-mt-24 bg-drywall py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="max-w-2xl">
+            <SectionLabel>What you get for the money</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              What’s in the plan, exactly
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              Your builder decides what each plan includes and what it costs,
+              and the portal shows you the list before you join. These are
+              examples of how builders set them up — the names and prices on
+              your builder’s portal are theirs.
+            </p>
+          </div>
+          <MembershipLadder className="mt-10" />
+        </Container>
+      </section>
+
       {/* What the plan does for you */}
-      <section className="bg-drywall py-20 sm:py-28">
+      <section className="bg-paper py-20 sm:py-28">
         <Container size="7xl">
           <div className="max-w-2xl">
             <SectionLabel>What you get</SectionLabel>
@@ -187,7 +211,7 @@ export default function ForHomeownersPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-paper py-20 sm:py-28">
+      <section className="bg-drywall py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">

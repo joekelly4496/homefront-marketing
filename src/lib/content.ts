@@ -319,26 +319,56 @@ export type RevenuePoint = {
 export const membershipLadder = {
   heading: "From reminders to the whole house",
   lede:
-    "A maintenance plan is whatever you decide to sell. Most builders start at the bottom rung and move homeowners up it.",
+    "A maintenance plan is whatever you decide to sell. You pick what each tier includes and what it costs; the portal shows the homeowner the list before they join.",
   tiers: [
     {
       name: "The schedule and the reminders",
       price: "$20–40 a month",
-      body: "The maintenance schedule built from the home’s own manuals, the reminders by email or text, the portal under your name, and a direct line to your subs when something comes up.",
+      summary: "The plan runs the calendar. The visits are extra, priced before you approve them.",
+      includes: [
+        "A maintenance schedule for your actual house, built from its manuals",
+        "A reminder by email or text when something is due",
+        "Your builder’s portal: submit a request, see the status, talk to the sub",
+        "Your documents, warranties, and service history in one place",
+      ],
+      visits:
+        "Service visits are not included. Book one from the reminder and the sub quotes it; you approve the price before anyone comes out.",
     },
     {
       name: "Scheduled service",
       price: "$100–250 a month",
-      body: "Your subs come on the schedule, no call needed: HVAC twice a year, the boiler annually, the dryer vent, the water heater flush, the appliances on the manufacturer’s interval. The homeowner watches it happen and never books a thing.",
+      summary: "The visits are in. Your builder’s subs come on the schedule, labor included, and you never book a thing.",
+      includes: [
+        "Everything in the schedule-and-reminders plan",
+        "Two HVAC tune-ups a year",
+        "Annual boiler or furnace service",
+        "Dryer vent cleaning",
+        "Water heater flush",
+        "Appliance maintenance on the manufacturer’s interval",
+      ],
+      visits:
+        "Labor for the scheduled visits is included. Parts, and any repair the sub finds while there, are priced and approved before they’re charged.",
     },
     {
       name: "The whole house",
       price: "$500 a month and up",
-      body: "Everything that goes into a house: lawn and grounds, gutters, HVAC, appliances, plumbing, septic, snow. The trades who built it keep it running, you bill one number a month, and the homeowner has one company to call for the life of the home.",
+      summary: "One number a month, one company to call. The trades who built the house keep it running.",
+      includes: [
+        "Everything in scheduled service",
+        "Lawn and grounds",
+        "Gutters cleaned",
+        "Septic pumped on schedule",
+        "Snow removal",
+        "Plumbing and electrical check-ups",
+      ],
+      visits:
+        "All scheduled work and labor is included. Repairs outside the plan are still priced and approved first — no surprise bills at any tier.",
     },
   ],
+  builder:
+    "You decide what each tier includes and what it costs. Afterkey shows the homeowner the list, bills the plan to your account, routes each visit to your sub, sends the reminders, and keeps the record.",
   foot:
-    "Example tiers and prices. You set every number, your market decides what it carries, and Afterkey never sets or caps it. Whatever the tier, the plan covers maintenance; warranty work stays free.",
+    "Example tiers and prices. You set every number and every line item; your market decides what it carries, and Afterkey never sets or caps it. Whatever the tier, the plan covers maintenance; warranty work stays free.",
 } as const;
 
 /** The five points, in order of weight. */
@@ -769,7 +799,12 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "From reminders to the whole house",
         description:
-          "The bottom tier is the schedule and the reminders. The top tier is your subs handling lawn care, HVAC, appliances, plumbing, septic — everything that goes into a house — on the schedule, billed as one number a month. The homeowner has one company to call for the life of the home, and it’s you.",
+          "The bottom tier is the schedule and the reminders, with visits priced per job. The top tier is your subs handling lawn care, HVAC, appliances, plumbing, septic — labor included, on the schedule, billed as one number a month. The homeowner has one company to call for the life of the home, and it’s you.",
+      },
+      {
+        title: "You decide what’s in each tier",
+        description:
+          "Every plan is a list you wrote: which visits are included, which are priced per job, what it costs. The homeowner sees that list before they join, so what $40 or $500 a month buys is never a mystery, and the “what am I paying for” call never comes.",
       },
       {
         title: "Card or bank on file, billed monthly",
@@ -1230,6 +1265,10 @@ export const coreFaqs: Faq[] = [
   {
     q: "What should I charge homeowners for a maintenance membership?",
     a: "Whatever your market carries. Builders typically think in tiers: $20 to $40 a month for the maintenance schedule and the reminders; $100 to $250 for scheduled service, where your subs come on the schedule for HVAC, the boiler, the dryer vent, the water heater, and the appliances; and $500 a month or more for a full-service plan that covers everything that goes into a house — lawn and grounds, gutters, plumbing, septic, snow. Afterkey never sets or caps the price. You define the plan and its tiers, the homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account. There is no platform fee on homeowner payments; you pay only processing, at Afterkey’s published flat rates.",
+  },
+  {
+    q: "What does a homeowner actually get for $40 a month?",
+    a: "Whatever you put in the plan — you define each tier and the portal shows the homeowner the list before they join. In the example bottom tier, $40 a month buys the calendar: a maintenance schedule built from that house’s own manuals, a reminder by email or text when something is due, your branded portal to submit a request and talk to the sub, and the home’s documents and service history in one place. The service visits are not included at that tier; the homeowner books one from the reminder, the sub quotes it, and they approve the price before anyone comes out. Move up a tier and the visits and labor are in: two HVAC tune-ups a year, the annual boiler service, the dryer vent, the water heater flush, appliances on the manufacturer’s interval. At the top, the whole house — lawn, gutters, septic, snow — for one number a month.",
   },
   {
     q: "Can the membership cover more than reminders — lawn care, septic, the whole house?",

@@ -47,6 +47,7 @@ const money = (n: number) => `$${n.toLocaleString("en-US")}`;
 const pageFaqs = [
   ...coreFaqs.filter((f) =>
     [
+      "What does a homeowner actually get for $40 a month?",
       "What should I charge homeowners for a maintenance membership?",
       "Can the membership cover more than reminders — lawn care, septic, the whole house?",
       "Do homeowners have to pay for a membership to get warranty work?",
