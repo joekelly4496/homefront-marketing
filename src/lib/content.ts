@@ -11,7 +11,6 @@ import {
   BadgeCheck,
   Sparkles,
   FileCheck2,
-  Gavel,
   Wallet,
   Camera,
   Home,
@@ -234,6 +233,53 @@ export const thesis = {
  */
 export const membershipDistinction =
   "Warranty covers what the builder got wrong and stays free; the membership covers maintenance, which every house needs from day one, whoever built it.";
+
+/** The same rule for tight spots: hero fine print, button captions. */
+export const membershipDistinctionShort =
+  "The plan covers maintenance; warranty work stays free.";
+
+/**
+ * What's warranty, what's maintenance — the homeowner-facing comparison,
+ * shown under the builder's brand. It educates the homeowner so the plan
+ * makes sense, and shows the builder how the two stay separate so the
+ * "why am I paying for this" call never comes.
+ */
+export const warrantyVsMaintenance = {
+  warranty: {
+    title: "Warranty",
+    lede: "What your builder is responsible for fixing. Free, always.",
+    items: [
+      "A window that leaks at the seal",
+      "Drywall cracks beyond normal settling",
+      "A door that won’t latch after the house settles",
+      "Grout, caulk, and finish defects in year one",
+      "Plumbing and electrical that was installed wrong",
+    ],
+    foot: "Covered by your builder’s warranty, member or not.",
+  },
+  maintenance: {
+    title: "Maintenance",
+    lede: "What every house needs on a schedule, from day one, whoever built it.",
+    items: [
+      "HVAC serviced twice a year",
+      "Boiler or furnace serviced annually",
+      "Dryer vent cleaned",
+      "Water heater flushed",
+      "Appliances maintained on the manufacturer’s schedule",
+    ],
+    foot: "What the maintenance plan covers.",
+  },
+} as const;
+
+/** How a repair gets paid — one line per step, no jargon. */
+export const repairPaySteps = [
+  "The homeowner submits the request in your branded portal.",
+  "It’s classified warranty or billable — by you before dispatch, or by the sub before heading out or on site.",
+  "If it’s billable, you price it, and you and the homeowner both approve before anything is charged.",
+  "The sub does the work and posts completion photos.",
+  "The homeowner pays in the portal — card or bank account on file.",
+  "Your markup is added, processing is deducted, and the sub and you are paid out separately.",
+] as const;
 
 /**
  * The objection to say out loud: "my homes are new, nothing needs service."
@@ -487,7 +533,7 @@ export const whiteLabelPoints: { title: string; description: string }[] = [
   {
     title: "Your logo",
     description:
-      "Upload your logo file in settings and it appears across the homeowner experience. No ticket to support, no professional-services fee.",
+      "Upload your logo file in settings and it appears across the homeowner experience. No ticket to support, no professional-services fee. The buyer credits you for the software.",
   },
   {
     title: "Your colors",
@@ -497,12 +543,12 @@ export const whiteLabelPoints: { title: string; description: string }[] = [
   {
     title: "Your name on everything",
     description:
-      "The portal, every email notification, payment receipts, and the handoff binder all carry your business name. Yours is the brand the homeowner associates with the experience.",
+      "The portal, every email notification, payment receipts, and the handoff binder all carry your business name. Yours is the brand the homeowner associates with the experience — and the name they give the neighbor.",
   },
   {
     title: "Your phone number",
     description:
-      "With the SMS add-on, homeowners text a dedicated business number that reaches your operation — not a generic shortcode, and not your personal cell.",
+      "With the SMS add-on, homeowners text a dedicated business number that reaches your operation — not a generic shortcode, and not your personal cell. The 9pm text goes to a business line.",
   },
 ];
 
@@ -537,22 +583,22 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "SLA tracking on every request",
         description:
-          "Each request carries a response target. You can see what’s on time, what’s slipping, and what needs you today.",
+          "Each request carries a response target. You see what’s on time and what’s slipping before the homeowner does, so the thing that would have become a review becomes a sub on the way.",
       },
       {
         title: "Automated email reminders",
         description:
-          "Reminders go out on their own — to the sub who hasn’t responded and to you when something is about to breach. Email is included free, forever.",
+          "Reminders go out on their own — to the sub who hasn’t responded and to you when something is about to breach. Email is included free, forever. You stop being the relay, and the job still gets closed and billed.",
       },
       {
         title: "Photo documentation",
         description:
-          "Photos attach to the request from submission through completion, so the record shows the condition before and after the work.",
+          "Photos attach to the request from submission through completion, so the record shows the condition before and after the work. You never eat a second trip over a “nobody came.”",
       },
       {
         title: "A complete service history",
         description:
-          "Every request, dispatch, and completion is timestamped on the home’s record — the documentation you want when a dispute shows up two years later.",
+          "Every request, dispatch, and completion is timestamped on the home’s record — the documentation that ends a dispute two years later in one screenshot.",
       },
     ],
   },
@@ -575,27 +621,27 @@ export const featureGroups: FeatureGroup[] = [
     label: "AI Home Binder",
     title: "Maintenance intelligence that cites its sources",
     summary:
-      "Upload a home’s documents and Afterkey proposes the maintenance schedule for you — with a footnote on every line showing where the recommendation came from.",
+      "Upload a home’s documents and Afterkey proposes the maintenance schedule for you — with a footnote on every line showing where it came from. The schedule is the reason a homeowner keeps paying dues: real upkeep they watch happen, with your name on every reminder.",
     points: [
       {
         title: "Documents in, schedule out",
         description:
-          "Owner’s manuals, spec sheets, and invoices become a living maintenance schedule the AI proposes automatically. You review and confirm every line before it goes to a homeowner.",
+          "Owner’s manuals, spec sheets, and invoices become a living maintenance schedule the AI proposes automatically. You review and confirm every line before it goes to a homeowner. Fewer “where’s the shutoff” calls, and the homeowner has a reason to open the app.",
       },
       {
         title: "Every suggestion carries a footnote",
         description:
-          "For a known make and model, Afterkey looks up the manufacturer’s published maintenance and cites it — a numbered link to the manufacturer, to the document you uploaded, or an honest “typical schedule — verify against the manual” label. It never invents an interval.",
+          "For a known make and model, Afterkey looks up the manufacturer’s published maintenance and cites it — a numbered link to the manufacturer, to the document you uploaded, or an honest “typical schedule — verify against the manual” label. It never invents an interval, so the schedule you put your name on holds up.",
       },
       {
         title: "A shared appliance library",
         description:
-          "Once any builder on Afterkey researches a model, every future home with that model reuses the schedule instantly and free. The system gets smarter and cheaper the more it’s used.",
+          "Once any builder on Afterkey researches a model, every future home with that model reuses the schedule instantly and free. Your thirtieth home costs less to set up than your first.",
       },
       {
         title: "Cost preview before any AI spend",
         description:
-          "Before it runs, Afterkey shows you which appliances are already in the library (free) and which are new, with a dollar estimate and a “do it yourself to save” option. No surprise charges.",
+          "Before it runs, Afterkey shows you which appliances are already in the library (free) and which are new, with a dollar estimate and a “do it yourself to save” option. The AI line on your bill is one you chose.",
       },
     ],
   },
@@ -612,22 +658,22 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Per-trade assignment",
         description:
-          "Route a request to the right trade and the right sub in one step, with the home’s history attached so they arrive knowing the job.",
+          "Route a request to the right trade and the right sub in one step, with the home’s history attached so they arrive knowing the job. You stop being the relay and still bill the job when it’s billable.",
       },
       {
         title: "Day-of arrival tracking",
         description:
-          "See whether a sub is on the way, on site, or hasn’t moved — before the homeowner calls you to ask.",
+          "See whether a sub is on the way, on site, or hasn’t moved — before the homeowner calls you to ask. The status question gets answered without you.",
       },
       {
         title: "Ratings across every home",
         description:
-          "Rate performance job by job and watch the pattern build. The sub who generates callbacks on one home is usually generating them on ten.",
+          "Rate performance job by job and watch the pattern build. The sub who generates callbacks on one home is usually generating them on ten — you find out while it’s still one.",
       },
       {
         title: "Cost intelligence",
         description:
-          "What each trade costs you per job, per home, and over time — the numbers you need before you renegotiate a rate.",
+          "What each trade costs you per job, per home, and over time — the numbers you need before you renegotiate a rate, and before you set a markup that holds.",
       },
     ],
   },
@@ -644,22 +690,22 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "You define what’s required",
         description:
-          "General liability, workers’ comp, auto, trade license, W-9 — required across the board or set per trade, however you run it.",
+          "General liability, workers’ comp, auto, trade license, W-9 — required across the board or set per trade, however you run it. Written down once instead of remembered per job.",
       },
       {
         title: "Subs upload, you approve",
         description:
-          "Subcontractors upload their own documents in their portal. You approve each one and record its expiration date.",
+          "Subcontractors upload their own documents in their portal. You approve each one and record its expiration date. Chasing certificates stops being your job.",
       },
       {
         title: "Expiration tracking and reminders",
         description:
-          "Afterkey watches every expiration date and reminds the sub before coverage lapses, so chasing certificates stops being your job.",
+          "Afterkey watches every expiration date and reminds the sub before coverage lapses, so a stale certificate never stalls a dispatch.",
       },
       {
         title: "Compliance gates dispatch",
         description:
-          "If a sub’s coverage has lapsed, Afterkey warns you before you assign the work. You can still override for an emergency — the override is logged, so the record shows you knew.",
+          "If a sub’s coverage has lapsed, Afterkey warns you before you assign the work. You can still override for an emergency — the override is logged, so the record shows you knew. Liability you can prove you managed.",
       },
     ],
   },
@@ -676,22 +722,22 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Your price, never ours",
         description:
-          "$20 a month, $40, $60 — whatever your market carries. Afterkey never sets or caps it. Offer one plan or several tiers, priced per home.",
+          "$20 a month, $40, $60 — whatever your market carries. Afterkey never sets or caps it. Offer one plan or several tiers, priced per home. The revenue line is sized to your market, not to ours.",
       },
       {
         title: "Card or bank on file, billed monthly",
         description:
-          "The homeowner puts a card or bank account on file in your branded portal and the plan bills every month to your own account. There’s no platform fee on homeowner payments — you pay only processing, at our published flat rates (1.25% bank, 3.5% + 30¢ card), all-in.",
+          "The homeowner puts a card or bank account on file in your branded portal and the plan bills every month to your own account. There’s no platform fee on homeowner payments — you pay only processing, at our published rates. Recurring revenue without an invoice ever leaving your office.",
       },
       {
         title: "Maintenance, never warranty",
         description:
-          "Warranty covers what the builder got wrong and stays free; the membership covers maintenance, which every house needs from day one. It is never a paywall in front of warranty work.",
+          "Warranty covers what the builder got wrong and stays free; the membership covers maintenance, which every house needs from day one. It is never a paywall in front of warranty work, so you never get the “why am I paying for this” call.",
       },
       {
         title: "What the plan actually delivers",
         description:
-          "The maintenance schedule built from the home’s own manuals, the reminders, the filter change, the furnace tune-up — real upkeep the homeowner watches happen, not a line item on a statement.",
+          "The maintenance schedule built from the home’s own manuals, the reminders, the filter change, the furnace tune-up — real upkeep the homeowner watches happen, not a line item on a statement. That is why the dues keep coming.",
       },
     ],
   },
@@ -703,22 +749,22 @@ export const featureGroups: FeatureGroup[] = [
     label: "Win-back",
     title: "Win back the homes you’ve already built",
     summary:
-      "Every home you’ve ever delivered is a membership prospect. Add past builds free, send the pitch, and pay only when they say yes.",
+      "Every home you’ve ever delivered is a maintenance-plan prospect. Add past builds free, send the pitch, and pay only when they say yes. The plan covers maintenance; warranty work stays free.",
     points: [
       {
         title: "Prospect homes are free",
         description:
-          "Add a past build as a prospect and it costs nothing while you court it. Billing starts only when the homeowner joins a plan or you activate the home to start working it.",
+          "Add a past build as a prospect and it costs nothing while you court it. Billing starts only when the homeowner joins a plan or you activate the home to start working it. Your back catalog costs nothing to court.",
       },
       {
         title: "One-click claim invites",
         description:
-          "Send the homeowner a personalized membership pitch by email. One click and they’re inside their own portal — signed in, home already set up, your offer in front of them. No password gauntlet.",
+          "Send the homeowner a personalized membership pitch by email. One click and they’re inside their own portal — signed in, home already set up, your offer in front of them. No password gauntlet, so the pitch gets read instead of abandoned at a login screen.",
       },
       {
         title: "Your pitch, your tiers",
         description:
-          "Offer one plan or several, at prices you set per home. The homeowner picks a tier and subscribes right in the portal.",
+          "Offer one plan or several, at prices you set per home. The homeowner picks a tier and subscribes right in the portal, and the dues bill to your account from that month.",
       },
       {
         title: "Quotes that expire",
@@ -740,27 +786,27 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Warranty or billable, decided up front",
         description:
-          "You classify a request before the sub is dispatched. The sub can set or change it before heading out, or on site once they see what it actually is. Any time a request becomes billable, you and the homeowner both approve before anything is charged.",
+          "You classify a request before the sub is dispatched. The sub can set or change it before heading out, or on site once they see what it actually is. Any time a request becomes billable, you and the homeowner both approve before anything is charged. Nobody argues about which is which after the fact.",
       },
       {
         title: "The homeowner approves the price first",
         description:
-          "You price the job, the homeowner approves it in their portal, and only then does the work get scheduled. Approval secures a payment method, and the charge can never exceed the number they approved.",
+          "You price the job, the homeowner approves it in their portal, and only then does the work get scheduled. Approval secures a payment method, and the charge can never exceed the number they approved. No surprise bills, so no 9pm call about an invoice.",
       },
       {
         title: "Split payout: the sub’s number and your markup",
         description:
-          "When the work is done, the platform charges the homeowner, adds your markup, deducts processing, and pays the sub and you separately. You never invoice, chase a payment, or split a check by hand.",
+          "When the work is done, the platform charges the homeowner, adds your markup, deducts processing, and pays the sub and you separately. You never invoice, chase a payment, or split a check by hand. The favor becomes a revenue line.",
       },
       {
         title: "Photos before money moves",
         description:
-          "Subs attach completion photos, so the record shows the finished work before the homeowner is charged.",
+          "Subs attach completion photos, so the record shows the finished work before the homeowner is charged. The “did he actually do it” call never comes.",
       },
       {
         title: "Handyman and odd jobs too",
         description:
-          "Hang the TV, fix the fence gate, service the boiler — any paid work beyond warranty runs through the same estimate, approval, and payout path.",
+          "Hang the TV, fix the fence gate, service the boiler — any paid work beyond warranty runs through the same estimate, approval, and payout path. Every one carries your markup.",
       },
     ],
   },
@@ -777,54 +823,27 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Your own dedicated number",
         description:
-          "Each builder gets a dedicated local business number. Messages currently send under Afterkey Inc.’s carrier registration; per-builder branded sender identity is the planned upgrade.",
+          "Each builder gets a dedicated local business number. Messages currently send under Afterkey Inc.’s carrier registration; per-builder branded sender identity is the planned upgrade. The number on the record is the business, not your cell.",
       },
       {
         title: "Automated maintenance reminders",
         description:
-          "The maintenance schedule sends itself — homeowners get the reminder by text instead of you remembering to send it.",
+          "The maintenance schedule sends itself by text. The reminder is the reason the homeowner keeps paying dues, and you never had to remember to send it.",
       },
       {
         title: "Day-of coordination",
         description:
-          "Arrival windows and status updates by text on the day of the job, where homeowners and subs actually read them.",
+          "Arrival windows and status updates by text on the day of the job, where homeowners and subs actually read them. The arrival-window call doesn’t come to you.",
       },
       {
         title: "Inbound calls forwarded to you",
         description:
-          "When a homeowner calls the number, it forwards to you — so the business line is the number on the record, not your personal cell.",
+          "When a homeowner calls the number, it forwards to you — so the business line is the number on the record, not your personal cell. When you step back, the number stays with the business.",
       },
       {
         title: "Real two-way texting",
         description:
-          "Homeowners and subs can simply text back. Replies land in your Afterkey inbox matched to the right request, right next to the portal messages — one conversation, whichever channel they used.",
-      },
-    ],
-  },
-  {
-    id: "quotes",
-    icon: Gavel,
-    accent: "slate",
-    status: "live",
-    label: "Procurement",
-    title: "Competitive maintenance quotes",
-    summary:
-      "Put planned maintenance out to bid among the subcontractors you already use, compare what comes back, and pick the winner.",
-    points: [
-      {
-        title: "Your roster only",
-        description:
-          "Quotes go to the subcontractors already on your roster — the ones you’ve vetted and worked with. Afterkey does not find you new subs.",
-      },
-      {
-        title: "Fair pricing on planned work",
-        description:
-          "Comparing three of your own subs on the same scope is how you find out what planned maintenance should actually cost.",
-      },
-      {
-        title: "A back-office tool, not a storefront",
-        description:
-          "This is private to your business. Homeowners never see it, and no bid is ever exposed outside your company.",
+          "Homeowners and subs can simply text back. Replies land in your Afterkey inbox matched to the right request, right next to the portal messages — one conversation, whichever channel they used. Nothing lives only in your phone.",
       },
     ],
   },
@@ -863,7 +882,6 @@ const featureOrder = [
   "ai-binder",
   "win-back",
   "sms",
-  "quotes",
   "homeowner-assistant",
 ];
 featureGroups.sort(
@@ -1152,7 +1170,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional add-ons are SMS at $29 per month (dedicated business number, 1,000 segments included, $25 per additional 1,000) and AI at $5 per month per active home (8 AI actions per home per month, pooled across all homes, $1.50 per additional action). There is no platform fee on homeowner payments; payment processing runs at published flat rates of 1.25% for bank payments and 3.5% plus 30¢ for cards — all-in rates that include every processing and payout cost. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is self-serve and free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is self-serve and free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "Do homeowners have to pay for a membership to get warranty work?",
@@ -1200,7 +1218,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Does Afterkey find new subcontractors for me?",
-    a: "No. Afterkey is not a marketplace, a network, or a contractor directory, and it does not send you leads for new trades. It works only with the subcontractors you have already vetted and added to your own roster. The competitive quoting tool puts planned maintenance out to bid among those subcontractors so you can compare pricing — it is a private, back-office tool, and homeowners never see it.",
+    a: "No. Afterkey is not a marketplace, a network, or a contractor directory, and it does not send you leads for new trades. It works only with the subcontractors you have already vetted and added to your own roster — the trades who built the house are the ones who keep it running.",
   },
   {
     q: "What is an “active home”?",
@@ -1375,7 +1393,7 @@ export const useCases: UseCase[] = [
         {
           title: "Assign by trade, with the history attached",
           description:
-            "Route a request to the right trade and the right sub in one step. They arrive knowing the home, the issue, and what has been tried before.",
+            "Route a request to the right trade and the right sub in one step. They arrive knowing the home, the issue, and what has been tried before. You stop being the relay and still bill the job when it’s billable.",
         },
         {
           title: "Day-of arrival tracking",
@@ -1451,7 +1469,7 @@ export const useCases: UseCase[] = [
         {
           title: "Reminders go out on their own",
           description:
-            "Once confirmed, the schedule sends its own reminders by email, and by text for builders on the SMS add-on. Homeowners stay ahead of the maintenance that would otherwise become your callback.",
+            "Once confirmed, the schedule sends its own reminders by email, and by text for builders on the SMS add-on. The reminder is the reason the homeowner keeps paying dues, and the maintenance that would have become your callback gets done.",
         },
         {
           title: "It gets cheaper the more it is used",
@@ -1537,7 +1555,7 @@ export const useCases: UseCase[] = [
       },
       {
         q: "Can homeowners see my subcontractor pricing?",
-        a: "No. Homeowners see their own requests, status, messages, maintenance schedule, and service history. Subcontractor costs, ratings, cost intelligence, and competitive quoting are private to the builder and are never exposed to homeowners.",
+        a: "No. Homeowners see their own requests, status, messages, maintenance schedule, and service history. Subcontractor costs, ratings, and cost intelligence are private to the builder and are never exposed to homeowners.",
       },
     ],
   },

@@ -32,6 +32,7 @@ import {
   membershipDistinction,
   newHomeMaintenance,
   classification,
+  membershipDistinctionShort,
 } from "@/lib/content";
 
 const money = (n: number) => `$${n.toLocaleString("en-US")}`;
@@ -209,8 +210,9 @@ export default function HomePage() {
             </ul>
             <p className="mt-2 text-sm text-slate-400">
               ${pricing.perHome} a home is small next to a ${ex.planPrice}
-              -a-month membership on the same home. What you charge your
-              homeowners is yours; Afterkey never sets or caps it.
+              -a-month maintenance plan on the same home. What you charge your
+              homeowners is yours; Afterkey never sets or caps it.{" "}
+              {membershipDistinctionShort}
             </p>
           </div>
 
@@ -590,7 +592,8 @@ export default function HomePage() {
           <div className="mx-auto mt-12 max-w-3xl">
             <WhiteLabelSwap />
             <p className="mt-4 text-sm text-slate-600">
-              Two builders, one platform, and neither buyer has heard of us.
+              Two builders, one platform, and each buyer sees their own
+              builder’s name on the portal they pay in.
             </p>
           </div>
 
@@ -752,9 +755,9 @@ export default function HomePage() {
               published rates.
             </p>
             <p className="mt-3 text-sm text-slate-600">
-              Optional add-ons: AI at ${pricing.ai.price}/month per active
-              home, SMS at ${pricing.sms.price}/month. Every metered feature
-              has a live meter and a ceiling you set.
+              Optional AI and SMS add-ons, processing rates, and the rate lock
+              are all on the pricing page. Every metered feature has a live
+              meter and a ceiling you set.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button href={signupHref} size="lg">
@@ -813,9 +816,10 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-300">
               A builder with a phone full of homeowner texts has a job. Set up
-              your first home, add your subs, and put a plan in front of a
-              homeowner this week. Self-serve setup, no sales call required.{" "}
-              {guarantee.short}
+              your first home, add your subs, and put a maintenance plan in
+              front of a homeowner this week — the plan covers maintenance;
+              warranty work stays free. Self-serve setup, no sales call
+              required. {guarantee.short}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container, SectionLabel } from "@/components/ui/Container";
 import { FaqList } from "@/components/ui/FaqList";
 import { PhoneMockup } from "@/components/mockups/PhoneMockup";
+import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import {
@@ -101,44 +101,37 @@ export default function ForHomeownersPage() {
         </Container>
       </section>
 
-      {/* A new house still needs maintenance */}
+      {/* What's warranty, what's maintenance — under the builder's brand */}
       <section id="maintenance" className="scroll-mt-24 bg-paper py-20 sm:py-28">
         <Container size="7xl">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
-            <div className="lg:col-span-6">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-16">
+            <div className="lg:col-span-5">
               <SectionLabel>From day one</SectionLabel>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-                {newHomeMaintenance.heading}
+                What’s warranty, what’s maintenance
               </h2>
               <p className="mt-4 text-base leading-relaxed text-slate-700">
-                New doesn’t mean maintenance-free. Whoever built your house,
-                it needs this on a schedule:
+                New doesn’t mean maintenance-free. {newHomeMaintenance.heading}
+                , whoever built it — and that is a different list from what
+                your builder is on the hook to fix.
               </p>
-              <ul className="mt-4 space-y-1.5">
-                {newHomeMaintenance.items.map((item) => (
-                  <li key={item} className="flex gap-2.5">
-                    <CheckCircle2
-                      className="mt-1 h-4 w-4 shrink-0 text-tape"
-                      aria-hidden="true"
-                    />
-                    <span className="text-base text-slate-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
               <p className="mt-4 text-base font-medium leading-relaxed text-ink">
                 Warranty covers what the builder got wrong, and it stays free.
                 The maintenance plan covers what every house needs. One never
                 stands in front of the other.
               </p>
+              <div className="relative mt-8 hidden aspect-[3/2] overflow-hidden lg:block">
+                <Image
+                  src="/images/page-about-modern-ranch.webp"
+                  alt="A newly built modern ranch home with a covered entry in soft afternoon light"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="photo object-cover"
+                />
+              </div>
             </div>
-            <div className="relative aspect-[3/2] overflow-hidden lg:col-span-6">
-              <Image
-                src="/images/page-about-modern-ranch.webp"
-                alt="A newly built modern ranch home with a covered entry in soft afternoon light"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="photo object-cover"
-              />
+            <div className="lg:col-span-7">
+              <WarrantyVsMaintenance />
             </div>
           </div>
         </Container>

@@ -6,6 +6,8 @@ import { Card } from "@/components/ui/Card";
 import { Container, SectionLabel } from "@/components/ui/Container";
 import { FaqList } from "@/components/ui/FaqList";
 import { JsonLd } from "@/components/JsonLd";
+import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
+import { RepairPaySteps } from "@/components/RepairPaySteps";
 import { pageMetadata } from "@/lib/seo";
 import {
   graph,
@@ -17,11 +19,9 @@ import {
   brand,
   pricing,
   coreFaqs,
-  pricingFaqs,
   signupHref,
   guarantee,
   primaryCta,
-  processingLine,
   thesis,
   revenuePoints,
   workedExample,
@@ -52,9 +52,6 @@ const pageFaqs = [
       "Who decides whether a request is warranty or billable?",
       "Can Afterkey help me win back homes I built years ago?",
     ].includes(f.q),
-  ),
-  ...pricingFaqs.filter((f) =>
-    ["Does Afterkey take a cut of homeowner payments?"].includes(f.q),
   ),
 ];
 
@@ -248,49 +245,53 @@ export default function MembershipsPage() {
                 </table>
               </Card>
               <p className="mt-4 text-xs leading-relaxed text-slate-600">
-                {processingLine} Membership dues and repair payments bill to
-                your own account; there is no platform fee on either.
+                Per year. Membership dues and repair payments bill to your own
+                account, and there is no platform fee on either — you pay only
+                processing, at the published rates on{" "}
+                <Link
+                  href="/pricing"
+                  className="font-semibold text-tape underline decoration-brass decoration-2 underline-offset-2 hover:text-ink"
+                >
+                  the pricing page
+                </Link>
+                .
               </p>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* A new house still needs maintenance */}
+      {/* A new house still needs maintenance — what's warranty, what's
+          maintenance, as the homeowner sees it under the builder's brand */}
       <section className="bg-paper py-20 sm:py-28">
         <Container size="7xl">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
-            <div className="relative aspect-[3/2] overflow-hidden lg:col-span-6">
-              <Image
-                src="/images/page-use-cases-modern-colonial.webp"
-                alt="A newly completed modern colonial home with dark trim on a clear afternoon"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="photo object-cover"
-              />
-            </div>
-            <div className="lg:col-span-6">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-16">
+            <div className="lg:col-span-5">
               <SectionLabel>The objection, answered</SectionLabel>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
                 {newHomeMaintenance.heading}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-slate-700">
-                {newHomeMaintenance.lede}
+                {newHomeMaintenance.lede.replace(/:$/, ".")} Your homeowner
+                sees the two lists side by side in your portal, so the plan
+                makes sense to them and you never get the “why am I paying
+                for this” call.
               </p>
-              <ul className="mt-4 space-y-1.5">
-                {newHomeMaintenance.items.map((item) => (
-                  <li key={item} className="flex gap-2.5">
-                    <CheckCircle2
-                      className="mt-1 h-4 w-4 shrink-0 text-tape"
-                      aria-hidden="true"
-                    />
-                    <span className="text-base text-slate-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
               <p className="mt-4 text-base font-medium leading-relaxed text-ink">
                 {newHomeMaintenance.close}
               </p>
+              <div className="relative mt-8 hidden aspect-[3/2] overflow-hidden lg:block">
+                <Image
+                  src="/images/page-use-cases-modern-colonial.webp"
+                  alt="A newly completed modern colonial home with dark trim on a clear afternoon"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="photo object-cover"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-7">
+              <WarrantyVsMaintenance />
             </div>
           </div>
         </Container>
@@ -329,26 +330,13 @@ export default function MembershipsPage() {
               </p>
             </Card>
             <Card className="p-6 sm:p-8">
-              <h3 className="text-xl font-semibold text-ink">A paid repair</h3>
-              <ol className="mt-4 space-y-3 text-base leading-relaxed text-slate-700">
-                <li>
-                  1. The request is classified billable — by you before
-                  dispatch, or by the sub on site. You and the homeowner both
-                  approve before anything is charged.
-                </li>
-                <li>
-                  2. You price the job. The homeowner approves it in the
-                  portal, which secures a payment method. The charge can never
-                  exceed what they approved.
-                </li>
-                <li>
-                  3. The sub posts completion photos. The platform charges the
-                  homeowner, adds your markup, deducts processing, and pays the
-                  sub and you separately.
-                </li>
-              </ol>
+              <h3 className="text-xl font-semibold text-ink">
+                How a repair gets paid
+              </h3>
+              <RepairPaySteps className="mt-4" />
               <p className="mt-4 text-sm leading-relaxed text-slate-600">
                 You never invoice, chase a payment, or split a check by hand.
+                The charge can never exceed what the homeowner approved.
               </p>
             </Card>
           </div>

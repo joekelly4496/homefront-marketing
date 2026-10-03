@@ -56,8 +56,7 @@ const priceLines = [
     price: `+ $${pricing.perHome}`,
     unit: "/month per active home",
     title: "Per active home",
-    description:
-      "Flat at any age, for homes you’re actively serving. Win-back prospect homes are free while you pitch them, and archived homes are free, read-only, and keep their full history.",
+    description: `Flat at any age, for homes you’re actively serving. Next to it: one home on a $${workedExample.planPrice}-a-month maintenance plan brings in $${workedExample.planPrice * 12} a year, at a price you set. Prospect homes are free while you pitch them, and archived homes are free, read-only, and keep their full history.`,
   },
   {
     price: `+ $${pricing.ai.price}`,
@@ -113,7 +112,6 @@ const included = [
   "AI Home Binder with cited maintenance schedules",
   "Shared appliance library — reused models are always free",
   "Maintenance memberships at your price, billed monthly to your account",
-  "Competitive maintenance quotes across your own roster",
   "Photo documentation on every request",
   "Unlimited homes, team members, and subcontractors",
 ];
@@ -202,7 +200,10 @@ export default function PricingPage() {
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-5 max-w-3xl">
             <p className="text-center text-sm leading-relaxed text-slate-500">
-              {processingLine} Onboarding is self-serve and free.
+              {processingLine} Bank (ACH) is the method to steer homeowners
+              toward: roughly a third of the card rate, and the homeowner
+              never sees a processing line either way. Onboarding is
+              self-serve and free.
             </p>
           </Reveal>
         </Container>
@@ -425,6 +426,12 @@ export default function PricingPage() {
                   <p className="mt-3 text-base leading-relaxed text-slate-700">
                     {guarantee.body}
                   </p>
+                  <p className="mt-4 text-base leading-relaxed text-slate-700">
+                    Your rate is locked for 24 months from signup. After that,
+                    any increase comes with 60 days’ notice and applies at
+                    your next billing cycle — never mid-term, never
+                    retroactive.
+                  </p>
                   <p className="mt-4 text-sm leading-relaxed text-slate-600">
                     There is no free trial, on purpose. The parts of Afterkey
                     worth judging — which trade keeps generating callbacks, what
@@ -476,7 +483,10 @@ export default function PricingPage() {
       </section>
 
       {/* 8 — FAQ */}
-      <section className="border-t border-slate-200 bg-white py-20 sm:py-24">
+      <section
+        id="faq"
+        className="scroll-mt-24 border-t border-slate-200 bg-white py-20 sm:py-24"
+      >
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900">

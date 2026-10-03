@@ -56,9 +56,10 @@ export default function AdLandingPage() {
               You’ve built hundreds of homes. They should still be paying you.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-balance text-lg leading-relaxed text-slate-300">
-              A maintenance membership you price, repairs paid through your
-              portal with your markup on them, and your subs on the work.
-              Here’s how the homes you’ve already closed start paying you.
+              A maintenance plan you price (maintenance, never warranty —
+              that stays free), repairs paid through your portal with your
+              markup on them, and your subs on the work. Here’s how the homes
+              you’ve already closed start paying you.
             </p>
           </div>
 
