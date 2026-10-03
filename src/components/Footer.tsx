@@ -7,11 +7,13 @@ const columns: { heading: string; links: { href: string; label: string }[] }[] =
     {
       heading: "Product",
       links: [
+        { href: "/memberships", label: "Memberships" },
         { href: "/features", label: "Features" },
         { href: "/pricing", label: "Pricing" },
         { href: "/compare", label: "Compare" },
         { href: "/faq", label: "FAQ" },
         { href: "/for-subcontractors", label: "For Subcontractors" },
+        { href: "/for-homeowners", label: "For Homeowners" },
       ],
     },
     {

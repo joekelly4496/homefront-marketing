@@ -30,7 +30,10 @@ import {
   processingLine,
   primaryCta,
   smsStatus,
+  workedExample,
 } from "@/lib/content";
+
+const money = (n: number) => `$${n.toLocaleString("en-US")}`;
 
 const title = `Pricing: $${pricing.base}/month + $${pricing.perHome} Per Active Home`;
 const description = `One plan, published. $${pricing.base}/month plus $${pricing.perHome} per active home, unlimited users and subcontractors. Optional AI and SMS add-ons. No contracts, no quote calls.`;
@@ -103,12 +106,13 @@ const included = [
   "Homeowner portal — requests, status, messaging, history",
   "Win-back prospect homes with one-click claim invites",
   "Membership pitches with your tiers and quote expirations",
-  "Repair estimates with homeowner approval and billing",
+  "Warranty vs. billable classification, approved by you and the homeowner",
+  "Paid repairs with your markup — sub and builder paid out separately",
   "Two-way messaging with homeowners and subs, ticket or general",
   "Subcontractor portal — jobs, photo updates, documents",
   "AI Home Binder with cited maintenance schedules",
   "Shared appliance library — reused models are always free",
-  "Homeowner memberships and service plans with recurring billing",
+  "Maintenance memberships at your price, billed monthly to your account",
   "Competitive maintenance quotes across your own roster",
   "Photo documentation on every request",
   "Unlimited homes, team members, and subcontractors",
@@ -137,8 +141,10 @@ export default function PricingPage() {
               Afterkey costs ${pricing.base} per month plus ${pricing.perHome}{" "}
               per active home. Unlimited team members and unlimited
               subcontractors are included, there are no tiers, and there is no
-              per-user fee. Your rate is locked for 24 months. Optional add-ons
-              for AI and SMS are priced below.
+              per-user fee. Your rate is locked for 24 months. What you charge
+              your homeowners for a membership or a repair is yours — Afterkey
+              never sets or caps it, and there is no platform fee on their
+              payments.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href={signupHref} size="lg">
@@ -267,30 +273,37 @@ export default function PricingPage() {
           <Reveal delay={120} className="mx-auto mt-10 max-w-3xl">
             <Card className="border-emerald-200 bg-emerald-50/50 p-6 sm:p-8">
               <h3 className="text-lg font-semibold text-slate-900">
-                Illustrative: what memberships could offset
+                {workedExample.label}: what the homes themselves bring in
               </h3>
               <p className="mt-2 text-sm font-medium text-emerald-800">
-                Worked example, not a benchmark. Afterkey is early and has no
-                customer averages to publish. Substitute your own plan price and
-                your own attach rate.
+                Arithmetic, not a benchmark. Afterkey is early and has no
+                customer averages to publish. Substitute your own plan price,
+                your own markup, and your own attach rate.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                Say you have <strong>50 active homes</strong> and you sell a{" "}
-                <strong>$45/month</strong> maintenance membership to{" "}
-                <strong>40% of them</strong>. That is 20 memberships, or{" "}
-                <strong>$900/month</strong> in gross homeowner billing. Afterkey
-                takes no platform fee on those payments — the only cost is
-                payment processing at the published flat rates (
-                {pricing.processing.bankPercent}% bank,{" "}
-                {pricing.processing.cardPercent}% +{" "}
-                {pricing.processing.cardFixedCents}¢ card), and you choose
-                whether the homeowner’s price includes it or you absorb it.
-                Your Afterkey bill at 50 homes with the AI add-on is $899.
+                Say you have <strong>{workedExample.homes} closed homes</strong>{" "}
+                and sell a <strong>${workedExample.planPrice}/month</strong>{" "}
+                maintenance membership. If every home joins, that is{" "}
+                <strong>{money(workedExample.membershipMonthly)}/month</strong>,
+                or {money(workedExample.membershipYearly)} a year; if half
+                join, {money(workedExample.membershipYearlyAtHalf)}. Add one
+                priced repair a quarter per home — a ${workedExample.repairJob}{" "}
+                job at {workedExample.markupPercent}% markup is $
+                {workedExample.markupPerJob} to you each time — and that is
+                another {money(workedExample.repairMarkupYearly)} a year on work
+                you were coordinating for free. Your Afterkey bill at{" "}
+                {workedExample.homes} active homes is{" "}
+                {money(workedExample.afterkeyMonthly)}/month.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                Whether that math works depends entirely on your plan price and
-                how many buyers say yes — both of which you control, and neither
-                of which we are going to pretend to predict for you.
+                There is no platform fee on those homeowner payments — you pay
+                only processing at the published flat rates (
+                {pricing.processing.bankPercent}% bank,{" "}
+                {pricing.processing.cardPercent}% +{" "}
+                {pricing.processing.cardFixedCents}¢ card). Whether the math
+                works depends on your plan price, your markup, and how many
+                buyers say yes — all of which you control, and none of which we
+                are going to pretend to predict for you.
               </p>
             </Card>
           </Reveal>

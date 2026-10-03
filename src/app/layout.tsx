@@ -32,7 +32,7 @@ const body = Hanken_Grotesk({
 // vocabulary for body copy, never a target query.
 const defaultTitle = "Warranty Callback Software for Home Builders | Afterkey";
 const defaultDescription =
-  "Warranty callback software for home builders doing 5 to 50 homes a year. Callbacks, subs, and maintenance on one record, under your brand. $149/month.";
+  "Warranty callback software for home builders doing 5 to 50 homes a year. Turn the homes you’ve already closed into membership and repair revenue, under your brand. $149/month.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

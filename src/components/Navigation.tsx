@@ -10,6 +10,7 @@ import { buttonVariants } from "@/components/ui/Button";
 import { signupHref, primaryCta } from "@/lib/content";
 
 const navLinks = [
+  { href: "/memberships", label: "Memberships" },
   { href: "/features", label: "Features" },
   { href: "/use-cases", label: "Use cases" },
   { href: "/pricing", label: "Pricing" },

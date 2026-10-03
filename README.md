@@ -181,6 +181,39 @@ Narration goes in `video/vo/1.m4a … 7.m4a` (any format ffmpeg reads) (one file
 the audio lengths). Copy the result to `public/videos/afterkey-explainer.mp4`
 and `public/videos/afterkey-explainer-poster.jpg`.
 
+## Positioning (Oct 2026)
+
+The site sells revenue, not relief. Every home a builder has closed is a
+customer he isn't earning on; Afterkey turns those homes into a service
+business. "Easier" is the side effect. The five points, in order of weight,
+live in `revenuePoints` in `src/lib/content.ts`: the membership the builder
+prices, the repair revenue he was giving away, being out of the middle, a
+business he can sell, and first call for the next job.
+
+Copy rules that follow from it:
+
+- Every mention of the membership carries `membershipDistinction`: warranty
+  covers what the builder got wrong and stays free; the membership covers
+  maintenance, which every house needs from day one. Never imply a homeowner
+  pays monthly for warranty service or that non-members wait longer.
+- Say the "my homes are new" objection out loud and answer it with
+  `newHomeMaintenance` (HVAC twice a year, boiler annually, dryer vent, water
+  heater, appliances on the manufacturer's schedule).
+- The builder sets the membership price ($20, $40, $60 — whatever his market
+  carries); Afterkey never sets or caps it. Plans bill monthly to the
+  builder's own account from a card or bank account on file.
+- Paid repairs: the builder prices the job, the homeowner approves before any
+  charge, the platform adds the builder's markup, deducts processing, and
+  pays the sub and the builder separately. Describe it plainly as a feature.
+- Warranty vs. billable (`classification`) is a feature sold to both sides:
+  no surprise bills for the homeowner; no after-the-fact argument for the
+  builder. Any billable classification needs both approvals before a charge.
+- The worked example (`workedExample`: 60 homes, $40 plan, one $400 repair a
+  quarter at 15% markup) is labeled an example everywhere. Never a customer
+  result.
+- The $10 per-home fee is framed as small next to what the same home can
+  carry. Never tell the builder how to account for or pass it through.
+
 ## Environment
 
 | Variable | Purpose |

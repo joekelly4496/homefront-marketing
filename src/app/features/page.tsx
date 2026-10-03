@@ -47,14 +47,15 @@ export default function FeaturesPage() {
           <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>Features</SectionLabel>
             <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Everything post-closing, in one platform
+              Everything after closing, and the revenue in it
             </h1>
             <p className="mt-5 text-lg text-slate-600">
-              Afterkey is home builder warranty management software that covers
-              the full post-closing workload: service requests with SLA
-              tracking, subcontractor dispatch and compliance, homeowner
-              memberships, and AI-built maintenance schedules that cite their
-              sources.
+              Afterkey is home builder warranty software built around the
+              money a closed home can earn: a maintenance membership you
+              price, paid repairs with your markup paid out automatically,
+              warranty callbacks routed to your subs, and a homeowner portal
+              under your brand. Then the work underneath it — compliance, the
+              AI-built maintenance schedule, the record.
             </p>
             <p className="mt-4 text-sm text-slate-500">
               Every feature below is marked with its real availability. Nothing

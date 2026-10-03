@@ -56,9 +56,9 @@ export default function AdLandingPage() {
               You’ve built hundreds of homes. They should still be paying you.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-balance text-lg leading-relaxed text-slate-300">
-              The calls, the texts, the sub who says he went. Here’s how
-              Afterkey turns all of it into one list your subs close, with your
-              name on everything the homeowner sees.
+              A maintenance membership you price, repairs paid through your
+              portal with your markup on them, and your subs on the work.
+              Here’s how the homes you’ve already closed start paying you.
             </p>
           </div>
 

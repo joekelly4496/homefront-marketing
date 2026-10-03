@@ -10,6 +10,11 @@ import {
   useCases,
   guarantee,
   statusLabels,
+  thesis,
+  revenuePoints,
+  membershipDistinction,
+  newHomeMaintenance,
+  classification,
 } from "@/lib/content";
 
 /**
@@ -58,6 +63,16 @@ Afterkey is used after a home closes, not during construction. It is organized a
 
 What Afterkey is not:
 ${notList.map((n) => `- ${n}`).join("\n")}`,
+)}
+${section(
+  "The business model for builders",
+  `${thesis.short}
+
+${revenuePoints.map((p) => `- ${p.title}: ${p.body}`).join("\n")}
+
+${membershipDistinction} A new house still needs maintenance from day one, whoever built it: ${newHomeMaintenance.items.join("; ").toLowerCase()}.
+
+Warranty vs. billable: ${classification.how.join(" ")} For the homeowner: ${classification.homeowner} For the builder: ${classification.builder}`,
 )}
 ${section(
   "The three portals",
