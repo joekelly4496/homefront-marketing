@@ -20,7 +20,7 @@ import {
   loginUrls,
   newHomeMaintenance,
   classification,
-  type Faq,
+  homeownerFaqs,
 } from "@/lib/content";
 
 const title = "Maintenance Plans for New Homes, From Your Builder";
@@ -33,32 +33,7 @@ export const metadata = pageMetadata({
   path: "/for-homeowners",
 });
 
-/**
- * Written for the buyer of a new home, not the builder. The builder is
- * watching too — this page is the homeowner side of the membership pitch.
- */
-const homeownerFaqs: Faq[] = [
-  {
-    q: "What do I actually get for the monthly price?",
-    a: "Whatever your builder put in the plan — the portal shows the list before you join. A basic plan runs the calendar: a maintenance schedule built from your house’s own manuals, a reminder when something is due, the portal to submit a request and talk to the sub, and your documents and service history in one place; service visits are booked from the reminder and quoted before anyone comes out. A scheduled-service plan includes the visits and the labor — HVAC tune-ups, the boiler, the dryer vent, the water heater, the appliances. A whole-house plan adds lawn, gutters, septic, and snow for one number a month. At every tier, a repair outside the plan is priced and approved by you before it is charged.",
-  },
-  {
-    q: "Do I have to join the maintenance plan to get warranty repairs?",
-    a: "No. Warranty repairs are your builder’s obligation and are free whether or not you join a plan, and joining never changes how quickly warranty work is handled. The maintenance plan covers upkeep — the service every house needs from day one, regardless of who built it.",
-  },
-  {
-    q: "Can I be charged for a repair without agreeing to it?",
-    a: "No. Every request is classified as warranty or billable before any work is charged. If a request is billable, you see what it is and what it costs and approve the price in your portal first. The amount charged can never exceed what you approved, and your builder approves it too.",
-  },
-  {
-    q: "Who shows up to do the work?",
-    a: "The same trades your builder uses — the plumber, electrician, or HVAC company who already know the house. Once a request is assigned, you and the sub talk directly in the portal to schedule it, and they post status and photos as they go.",
-  },
-  {
-    q: "Do I need an app?",
-    a: "No. The portal runs in a web browser on any phone, tablet, or computer. Your builder sends you a link; you sign in and everything about your home is there.",
-  },
-];
+
 
 export default function ForHomeownersPage() {
   const pageGraph = graph([

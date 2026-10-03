@@ -222,6 +222,16 @@ Copy rules that follow from it:
   builder's brand, subs, and first homes with them; first home live inside
   two weeks. Never "self-serve."
 
+## /welcome — the page a builder sends a homeowner
+
+`/welcome?builder=Whitfield+Homes` greets the homeowner in the builder's
+name (sanitized, 60 chars, falls back to "your builder"): what the portal
+is, why to use it instead of texting, a five-step walkthrough, warranty vs.
+maintenance, the plan ladder in homeowner voice, FAQ. No site nav or
+footer, noindex, not in the sitemap. `WelcomeLink` on /memberships builds
+the link for the builder to copy. `/for-homeowners` stays the indexable
+page for a homeowner who arrives on their own.
+
 ## Environment
 
 | Variable | Purpose |

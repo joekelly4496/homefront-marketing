@@ -130,6 +130,18 @@ export const guarantee = {
  */
 export const smsStatus: "live" | "coming-soon" = "live";
 
+/**
+ * /welcome — the page a builder sends a homeowner after closing. The link
+ * carries the builder's name (?builder=Whitfield+Homes) so the page reads
+ * as the builder's, with Afterkey in the background.
+ */
+export const welcomePath = "/welcome";
+export function builderNameFrom(raw: unknown): string | null {
+  if (typeof raw !== "string") return null;
+  const name = raw.replace(/[<>\u0000-\u001f]/g, "").trim().slice(0, 60);
+  return name.length >= 2 ? name : null;
+}
+
 /** The standard label for the primary call to action. */
 // The CTA continues the headline's story; never "Get started" / "Learn more".
 export const primaryCta = "Set up your first home";
@@ -1336,6 +1348,33 @@ export const coreFaqs: Faq[] = [
   {
     q: "Can I cancel Afterkey at any time?",
     a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, your subscription is refunded in full — the monthly base and every per-home fee. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Your rate is locked for 24 months from signup; after that, any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+  },
+];
+
+/**
+ * Written for the buyer of a new home, not the builder. The builder is
+ * watching too — this page is the homeowner side of the membership pitch.
+ */
+export const homeownerFaqs: Faq[] = [
+  {
+    q: "What do I actually get for the monthly price?",
+    a: "Whatever your builder put in the plan — the portal shows the list before you join. A basic plan runs the calendar: a maintenance schedule built from your house’s own manuals, a reminder when something is due, the portal to submit a request and talk to the sub, and your documents and service history in one place; service visits are booked from the reminder and quoted before anyone comes out. A scheduled-service plan includes the visits and the labor — HVAC tune-ups, the boiler, the dryer vent, the water heater, the appliances. A whole-house plan adds lawn, gutters, septic, and snow for one number a month. At every tier, a repair outside the plan is priced and approved by you before it is charged.",
+  },
+  {
+    q: "Do I have to join the maintenance plan to get warranty repairs?",
+    a: "No. Warranty repairs are your builder’s obligation and are free whether or not you join a plan, and joining never changes how quickly warranty work is handled. The maintenance plan covers upkeep — the service every house needs from day one, regardless of who built it.",
+  },
+  {
+    q: "Can I be charged for a repair without agreeing to it?",
+    a: "No. Every request is classified as warranty or billable before any work is charged. If a request is billable, you see what it is and what it costs and approve the price in your portal first. The amount charged can never exceed what you approved, and your builder approves it too.",
+  },
+  {
+    q: "Who shows up to do the work?",
+    a: "The same trades your builder uses — the plumber, electrician, or HVAC company who already know the house. Once a request is assigned, you and the sub talk directly in the portal to schedule it, and they post status and photos as they go.",
+  },
+  {
+    q: "Do I need an app?",
+    a: "No. The portal runs in a web browser on any phone, tablet, or computer. Your builder sends you a link; you sign in and everything about your home is there.",
   },
 ];
 

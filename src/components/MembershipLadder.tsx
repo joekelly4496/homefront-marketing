@@ -11,9 +11,12 @@ import { membershipLadder } from "@/lib/content";
 export function MembershipLadder({
   className = "",
   compact = false,
+  foot,
 }: {
   className?: string;
   compact?: boolean;
+  /** Replaces the builder-voiced footer on homeowner-facing pages. */
+  foot?: string;
 }) {
   const last = membershipLadder.tiers.length - 1;
   return (
@@ -62,7 +65,7 @@ export function MembershipLadder({
         })}
       </ol>
       <p className="mt-4 text-xs leading-relaxed text-slate-600">
-        {membershipLadder.foot}
+        {foot ?? membershipLadder.foot}
       </p>
     </div>
   );

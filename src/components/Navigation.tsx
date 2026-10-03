@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { isLandingPath } from "@/components/HideOnLanding";
+import { isLandingPath, isWelcomePath } from "@/components/HideOnLanding";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { buttonVariants } from "@/components/ui/Button";
-import { signupHref, primaryCta } from "@/lib/content";
+import { signupHref, primaryCta, loginUrls } from "@/lib/content";
 
 const navLinks = [
   { href: "/memberships", label: "Memberships" },
@@ -36,6 +36,25 @@ export default function Navigation() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6" aria-label="Main">
           <div className="flex h-16 items-center">
             <Logo tone="light" />
+          </div>
+        </nav>
+      </header>
+    );
+  }
+
+  // The homeowner welcome page: the logo, and the one thing to do.
+  if (isWelcomePath(pathname)) {
+    return (
+      <header className="border-b border-drywall bg-paper">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6" aria-label="Main">
+          <div className="flex h-16 items-center justify-between">
+            <Logo />
+            <a
+              href={loginUrls.homeowner}
+              className={buttonVariants({ variant: "ink", size: "sm" })}
+            >
+              Open your portal
+            </a>
           </div>
         </nav>
       </header>

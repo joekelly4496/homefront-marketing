@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
 import { RepairPaySteps } from "@/components/RepairPaySteps";
 import { MembershipLadder } from "@/components/MembershipLadder";
+import { WelcomeLink } from "@/components/WelcomeLink";
 import { pageMetadata } from "@/lib/seo";
 import {
   graph,
@@ -421,16 +422,24 @@ export default function MembershipsPage() {
                   {classification.builder}
                 </p>
               </Card>
-              <p className="text-sm text-slate-600">
-                Your homeowners can read their side of this at{" "}
-                <Link
-                  href="/for-homeowners"
-                  className="font-semibold text-tape underline decoration-brass decoration-2 underline-offset-4 hover:text-ink"
-                >
-                  the homeowner page
-                </Link>
-                .
-              </p>
+              <Card className="p-6">
+                <p className="text-sm font-medium text-tape">
+                  The page you send your homeowners
+                </p>
+                <p className="mt-2 text-base leading-relaxed text-slate-700">
+                  A welcome page in your name: what the portal is, why to use
+                  it instead of texting you, a five-step walkthrough, and the
+                  plan if you offer one.{" "}
+                  <Link
+                    href="/welcome?builder=Whitfield+Homes"
+                    className="font-semibold text-tape underline decoration-brass decoration-2 underline-offset-4 hover:text-ink"
+                  >
+                    See it as a homeowner would
+                  </Link>
+                  .
+                </p>
+                <WelcomeLink className="mt-4" />
+              </Card>
             </div>
           </div>
         </Container>
