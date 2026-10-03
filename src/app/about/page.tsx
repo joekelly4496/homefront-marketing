@@ -53,7 +53,7 @@ export default function AboutPage() {
 
       <PageHeader
         eyebrow="About"
-        title="The part of homebuilding nobody built software for"
+        title="The customers every builder already has"
         subtitle={`${brand.definition}`}
       />
 
@@ -69,29 +69,34 @@ export default function AboutPage() {
                 runs on a phone, a truck-seat notepad, and whoever remembers.
               </p>
               <p>
-                That gap is expensive in a way that is hard to see on a P&amp;L.
-                Callbacks get handled late because nobody was tracking them. A
-                subcontractor’s coverage lapses and nobody notices until there
-                is a claim. Deferred maintenance turns into a warranty repair
-                the builder eats. And the buyer who felt ignored writes the
-                review that quietly costs the next three referrals.
+                That is the weaker half of the story, and it is the half most
+                software tells: make the builder’s life easier. The stronger
+                half is that every home a builder has already closed is a
+                customer he isn’t earning on. The homeowner needs the HVAC
+                serviced twice a year, the water heater flushed, the dryer vent
+                cleaned, the dishwasher looked at — from day one, whoever built
+                the house — and today they find someone else to do it, or they
+                call the builder, who sends a sub over for free.
               </p>
               <p>
-                {brand.name} exists to close that gap. It gives the builder one
-                place to run warranty and service requests, dispatch and manage
-                subcontractors, track compliance documents, and hand every
-                homeowner a maintenance schedule built from their own home’s
-                documents. It gives the homeowner somewhere to go besides the
-                builder’s cell phone, and it gives the subcontractor a clear job
-                list and a place to keep their paperwork current.
+                {brand.name} turns those homes into a service business. The
+                builder sells a maintenance membership at whatever price his
+                market carries, and it bills monthly to his own account from a
+                portal that carries his name. Repairs get priced, approved by
+                the homeowner before anyone is charged, and paid out with the
+                builder’s markup on them, the sub and the builder paid
+                separately. Warranty work stays warranty and stays free; the
+                membership is never a paywall in front of it.
               </p>
               <p>
-                The premise is simple: the easier and more professional the
-                post-closing relationship, the stickier the builder’s brand.
-                Referrals and repeat business come from how a builder behaves
-                after the sale, not during it. {brand.name} is built to make
-                that part effortless — and, through homeowner memberships, to
-                make it pay for itself instead of eating margin.
+                Easier is the side effect. The homeowner and the sub talk to
+                each other in the portal, the builder sees everything and
+                touches nothing he doesn’t want to, and the reminders keep him
+                in the homeowner’s life every month — which is why he gets the
+                call for the basement, the addition, and the neighbor. A
+                builder with 200 homes on a membership has recurring revenue,
+                an asset he can sell or step back from. A builder with a phone
+                full of homeowner texts has a job.
               </p>
               <p>
                 {brand.founder} That is why it starts at closing instead of at

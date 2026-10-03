@@ -1,0 +1,48 @@
+{
+  "1": [
+    { "text": "I build homes on Long Island.", "start": 1.38, "end": 3.22 },
+    { "text": "Three weeks after closing, you get the text.", "start": 3.22, "end": 5.64 },
+    { "text": "“Hey, quick question.”", "start": 5.64, "end": 6.86 },
+    { "text": "By August, you’ve had forty of them.", "start": 6.86, "end": 9.6 }
+  ],
+  "2": [
+    { "text": "Filter sizes. The water shutoff.", "start": 0.0, "end": 2.34 },
+    { "text": "The sub who says he went.", "start": 2.34, "end": 4.08 },
+    { "text": "None of it on a system.", "start": 4.08, "end": 5.66 },
+    { "text": "All of it on your cell.", "start": 5.66, "end": 7.4 }
+  ],
+  "3": [
+    { "text": "Afterkey gives every homeowner a portal", "start": 0.0, "end": 2.42 },
+    { "text": "with your name on it.", "start": 2.42, "end": 3.58 },
+    { "text": "They send a photo and two sentences,", "start": 3.58, "end": 5.6 },
+    { "text": "instead of a text.", "start": 5.6, "end": 7.0 }
+  ],
+  "4": [
+    { "text": "It lands on one list.", "start": 0.0, "end": 2.08 },
+    { "text": "You assign the sub in one step.", "start": 2.08, "end": 3.98 },
+    { "text": "If his insurance lapsed,", "start": 3.98, "end": 5.38 },
+    { "text": "you find out now —", "start": 5.38, "end": 6.74 },
+    { "text": "not after a claim.", "start": 6.74, "end": 7.9 }
+  ],
+  "5": [
+    { "text": "The sub updates from the driveway.", "start": 0.0, "end": 2.36 },
+    { "text": "The homeowner watches it move.", "start": 2.36, "end": 4.18 },
+    { "text": "Nobody calls you for a status.", "start": 4.18, "end": 5.75 }
+  ],
+  "6": [
+    { "text": "Every home gets a maintenance schedule", "start": 0.0, "end": 1.82 },
+    { "text": "built from its own manuals,", "start": 1.82, "end": 3.52 },
+    { "text": "with the source on every line,", "start": 3.52, "end": 5.2 },
+    { "text": "so the reminders come from you", "start": 5.2, "end": 6.86 },
+    { "text": "for years.", "start": 6.86, "end": 7.75 }
+  ],
+  "7": [
+    { "text": "It’s $149 a month,", "start": 1.08, "end": 2.8 },
+    { "text": "plus $10 a home that you build", "start": 2.8, "end": 4.84 },
+    { "text": "into the price at closing.", "start": 4.84, "end": 6.74 },
+    { "text": "If it’s not working in 30 days,", "start": 6.74, "end": 8.56 },
+    { "text": "you get your subscription back.", "start": 8.56, "end": 10.6 },
+    { "text": "Book a call below,", "start": 10.6, "end": 11.32 },
+    { "text": "or set up your first home today.", "start": 11.32, "end": 13.3 }
+  ]
+}

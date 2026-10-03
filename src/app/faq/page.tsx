@@ -31,8 +31,12 @@ export const metadata = pageMetadata({
   path: "/faq",
 });
 
-/** Pricing FAQs live on /pricing too; both pages render the same source text. */
-const allFaqs = [...coreFaqs, ...pricingFaqs];
+/**
+ * Pricing questions — processing rates, add-on prices — render on /pricing
+ * and nowhere else. This page links to them instead of repeating them.
+ */
+const allFaqs = coreFaqs;
+const pricingQuestionCount = pricingFaqs.length;
 
 export default function FaqPage() {
   const pageGraph = graph([
@@ -95,17 +99,21 @@ export default function FaqPage() {
             </h2>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-8 max-w-3xl">
-            <FaqList faqs={pricingFaqs} />
-            <p className="mt-6 text-sm text-slate-600">
-              The full breakdown, including add-ons and worked examples, is on
-              the{" "}
+            <p className="text-base leading-relaxed text-slate-700">
+              Afterkey is ${pricing.base} a month plus ${pricing.perHome} per
+              active home, with no contract and a 24-month rate lock. The{" "}
+              {pricingQuestionCount} billing questions — what counts as an
+              active home, how the add-ons meter, processing on homeowner
+              payments, the guarantee — live on the pricing page, with the
+              full breakdown and the worked example.
+            </p>
+            <p className="mt-4">
               <Link
-                href="/pricing"
+                href="/pricing#faq"
                 className="font-semibold text-brand-600 hover:text-brand-700"
               >
-                pricing page
+                Read the billing questions on the pricing page
               </Link>
-              .
             </p>
           </Reveal>
         </Container>

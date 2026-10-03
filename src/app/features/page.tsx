@@ -9,6 +9,7 @@ import { StatusPill } from "@/components/ui/StatusPill";
 import { JsonLd } from "@/components/JsonLd";
 import { BinderMockup } from "@/components/mockups/BinderMockup";
 import { RequestFlow } from "@/components/mockups/RequestFlow";
+import { RepairPaySteps } from "@/components/RepairPaySteps";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import {
@@ -19,7 +20,10 @@ import {
   notList,
   signupHref,
   guarantee,
-  useCases, primaryCta } from "@/lib/content";
+  useCases,
+  primaryCta,
+  membershipDistinctionShort,
+} from "@/lib/content";
 
 const title = "Home Builder Warranty Software";
 const description =
@@ -47,14 +51,16 @@ export default function FeaturesPage() {
           <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>Features</SectionLabel>
             <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Everything post-closing, in one platform
+              Everything after closing, and the revenue in it
             </h1>
             <p className="mt-5 text-lg text-slate-600">
-              Afterkey is home builder warranty management software that covers
-              the full post-closing workload: service requests with SLA
-              tracking, subcontractor dispatch and compliance, homeowner
-              memberships, and AI-built maintenance schedules that cite their
-              sources.
+              Afterkey is home builder warranty software built around the
+              money a closed home can earn: a maintenance membership you
+              price, paid repairs with your markup paid out automatically,
+              warranty callbacks routed to your subs, and a homeowner portal
+              under your brand. Then the work underneath it — compliance, the
+              AI-built maintenance schedule, the record.{" "}
+              {membershipDistinctionShort}
             </p>
             <p className="mt-4 text-sm text-slate-500">
               Every feature below is marked with its real availability. Nothing
@@ -92,8 +98,16 @@ export default function FeaturesPage() {
                     {group.id === "ai-binder" && (
                       <BinderMockup className="mt-6" />
                     )}
+                    {group.id === "repair-billing" && (
+                      <div className="mt-6 rounded-[6px] border border-drywall bg-white p-5">
+                        <h3 className="text-base font-semibold text-ink">
+                          How a repair gets paid
+                        </h3>
+                        <RepairPaySteps className="mt-3" />
+                      </div>
+                    )}
                   </div>
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-5 self-start sm:grid-cols-2">
                     {group.points.map((point) => (
                       <Card key={point.title} className="h-full p-5">
                         <h3 className="text-base font-semibold text-slate-900">

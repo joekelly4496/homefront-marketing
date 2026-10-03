@@ -12,6 +12,7 @@ const routes: {
   changeFrequency: "weekly" | "monthly" | "yearly";
 }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
+  { path: "/memberships", priority: 0.9, changeFrequency: "monthly" },
   { path: "/features", priority: 0.9, changeFrequency: "monthly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },
   { path: "/use-cases", priority: 0.8, changeFrequency: "monthly" },
@@ -23,6 +24,7 @@ const routes: {
   { path: "/faq", priority: 0.8, changeFrequency: "monthly" },
   { path: "/compare", priority: 0.7, changeFrequency: "monthly" },
   { path: "/for-subcontractors", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/for-homeowners", priority: 0.6, changeFrequency: "monthly" },
   { path: "/about", priority: 0.5, changeFrequency: "yearly" },
   { path: "/contact", priority: 0.5, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.2, changeFrequency: "yearly" },

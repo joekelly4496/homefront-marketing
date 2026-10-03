@@ -147,7 +147,7 @@ Everything campaign-specific lives in `adLanding` in `src/lib/content.ts`:
 | --- | --- |
 | `videoUrl` | YouTube, Vimeo or Loom share link, or `/videos/<file>.mp4`. Empty shows the request-flow walkthrough instead. |
 | `videoDuration` | Shown on the play button, e.g. `1:05`. |
-| `bookCallUrl` | Calendly / Cal.com link, shown only after a lead passes the qualifier. Calendly embeds inline; other tools open in a new tab. Empty: qualified leads are told you'll email them to set a time. |
+| `bookCallUrl` | Cal.com / Calendly link, shown only after a lead passes the qualifier. Both embed inline with name and email prefilled; other tools open in a new tab. Empty: qualified leads are told you'll email them to set a time. |
 
 "Book a 15-minute call" goes to **`/start/book`**, a three-question qualifier
 (homes per year, what kind of business, biggest time sink). The rules live in
@@ -166,6 +166,53 @@ to its destination, and the lead email includes them. PostHog events:
 `qualifier_step_completed`, `qualifier_result`, `qualifier_lead_submitted`,
 `qualifier_booking_opened`. The video script is in
 `docs/ad-landing-video-script.md`.
+
+**Rebuilding the video.** The explainer is assembled from the site's own
+photography and mockups, so it stays honest and can be re-cut without a
+shoot. `video/timeline.json` maps each narrated line to its visual and
+captions. With the dev server running:
+
+```bash
+node video/render-frames.mjs        # product-screen frames + caption PNGs → video/frames/
+node video/build.mjs --root . --ffmpeg ffmpeg --ffprobe ffprobe --out out   # needs ffmpeg with libx264
+```
+
+Narration goes in `video/vo/1.m4a … 7.m4a` (any format ffmpeg reads) (one file per line; timings follow
+the audio lengths). Copy the result to `public/videos/afterkey-explainer.mp4`
+and `public/videos/afterkey-explainer-poster.jpg`.
+
+## Positioning (Oct 2026)
+
+The site sells revenue, not relief. Every home a builder has closed is a
+customer he isn't earning on; Afterkey turns those homes into a service
+business. "Easier" is the side effect. The five points, in order of weight,
+live in `revenuePoints` in `src/lib/content.ts`: the membership the builder
+prices, the repair revenue he was giving away, being out of the middle, a
+business he can sell, and first call for the next job.
+
+Copy rules that follow from it:
+
+- Every mention of the membership carries `membershipDistinction`: warranty
+  covers what the builder got wrong and stays free; the membership covers
+  maintenance, which every house needs from day one. Never imply a homeowner
+  pays monthly for warranty service or that non-members wait longer.
+- Say the "my homes are new" objection out loud and answer it with
+  `newHomeMaintenance` (HVAC twice a year, boiler annually, dryer vent, water
+  heater, appliances on the manufacturer's schedule).
+- The builder sets the membership price ($20, $40, $60 — whatever his market
+  carries); Afterkey never sets or caps it. Plans bill monthly to the
+  builder's own account from a card or bank account on file.
+- Paid repairs: the builder prices the job, the homeowner approves before any
+  charge, the platform adds the builder's markup, deducts processing, and
+  pays the sub and the builder separately. Describe it plainly as a feature.
+- Warranty vs. billable (`classification`) is a feature sold to both sides:
+  no surprise bills for the homeowner; no after-the-fact argument for the
+  builder. Any billable classification needs both approvals before a charge.
+- The worked example (`workedExample`: 60 homes, $40 plan, one $400 repair a
+  quarter at 15% markup) is labeled an example everywhere. Never a customer
+  result.
+- The $10 per-home fee is framed as small next to what the same home can
+  carry. Never tell the builder how to account for or pass it through.
 
 ## Environment
 

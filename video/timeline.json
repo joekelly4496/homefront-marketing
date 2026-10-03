@@ -1,0 +1,123 @@
+{
+  "fps": 30,
+  "width": 1280,
+  "height": 720,
+  "gap": 0.6,
+  "tail": 1.2,
+  "lines": [
+    {
+      "id": 1,
+      "vo": "video/vo/1.m4a",
+      "text": "I build homes on Long Island. Three weeks after closing, you get the text. Hey, quick question. By August, you've had forty of them.",
+      "captions": [
+        "I build homes on Long Island.",
+        "Three weeks after closing, you get the text.",
+        "\u201cHey, quick question.\u201d",
+        "By August, you\u2019ve had forty of them."
+      ],
+      "scenes": [
+        {
+          "image": "public/images/hero-colonial-dusk.webp",
+          "motion": "zoom-in"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "vo": "video/vo/2.m4a",
+      "text": "Filter sizes. The water shutoff. The sub who says he went. None of it on a system. All of it on your cell.",
+      "captions": [
+        "Filter sizes. The water shutoff. The sub who says he went.",
+        "None of it on a system. All of it on your cell."
+      ],
+      "scenes": [
+        {
+          "image": "public/images/section-punch-list-tape.webp",
+          "motion": "pan-right"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "vo": "video/vo/3.m4a",
+      "text": "Afterkey gives every homeowner a portal with your name on it. They send a photo and two sentences, instead of a text.",
+      "captions": [
+        "Afterkey gives every homeowner a portal with your name on it.",
+        "They send a photo and two sentences, instead of a text."
+      ],
+      "scenes": [
+        {
+          "image": "video/frames/scene-phone.png",
+          "motion": "zoom-in-soft"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "vo": "video/vo/4.m4a",
+      "text": "It lands in one list. You assign the sub in one step. If his insurance lapsed, you find out now, not after a claim.",
+      "captions": [
+        "It lands in one list. You assign the sub in one step.",
+        "If his insurance lapsed, you find out now \u2014 not after a claim."
+      ],
+      "scenes": [
+        {
+          "image": "video/frames/scene-dashboard.png",
+          "motion": "zoom-in-soft"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "vo": "video/vo/5.m4a",
+      "text": "The sub updates from the driveway. The homeowner watches it move. Nobody calls you for a status.",
+      "captions": [
+        "The sub updates from the driveway. The homeowner watches it move.",
+        "Nobody calls you for a status."
+      ],
+      "scenes": [
+        {
+          "image": "video/frames/scene-request.png",
+          "motion": "zoom-in-soft"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "vo": "video/vo/6.m4a",
+      "text": "Every home gets a maintenance schedule built from its own manuals, with a source on every line. So the reminders come from you, for years.",
+      "captions": [
+        "Every home gets a maintenance schedule built from its own manuals,",
+        "with a source on every line.",
+        "So the reminders come from you, for years."
+      ],
+      "scenes": [
+        {
+          "image": "video/frames/scene-binder.png",
+          "motion": "zoom-in-soft"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "vo": "video/vo/7.m4a",
+      "text": "A hundred forty-nine a month, plus ten dollars a home that you build into the price at closing. Not working in thirty days? You get your subscription back. Book a call, or set up your first home today.",
+      "captions": [
+        "$149 a month, plus $10 a home you build into the price at closing.",
+        "Not working in thirty days? You get your subscription back.",
+        "Book a call, or set up your first home today."
+      ],
+      "scenes": [
+        {
+          "image": "public/images/usecase-subs-truck-dusk.webp",
+          "motion": "zoom-in",
+          "seconds": 5.4
+        },
+        {
+          "image": "video/frames/scene-end.png",
+          "motion": "none"
+        }
+      ]
+    }
+  ]
+}
