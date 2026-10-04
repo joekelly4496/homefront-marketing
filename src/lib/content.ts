@@ -217,15 +217,15 @@ export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.per
 export const perHomeFraming = `At $${pricing.perHome} per active home, the fee is small next to what the same home can carry — a maintenance plan you price yourself — and small enough to build into the home’s cost at closing, if that’s how you want to run it.`;
 
 /**
- * Onboarding — per the product CLAUDE.md: standard onboarding is free;
- * concierge onboarding is a $499 one-time option where we build the binder
- * from the builder's documents. Say both plainly; never promise a timeline.
+ * Onboarding is free and self-run: add homes and subs and start the same
+ * day. Concierge onboarding is NOT offered on the site (owner decision,
+ * Oct 2026) — there is no way to buy it in the product yet. Never promise
+ * a setup timeline.
  */
 export const onboarding = {
   headline: "Onboarding",
-  conciergePrice: 499,
-  body: "Standard onboarding is free: add your homes and subs and start the same day. Optional concierge onboarding is a one-time $499 — we build the binder for your homes from your documents.",
-  short: "Standard onboarding is free; concierge onboarding, where we build your binders from your documents, is an optional one-time $499.",
+  body: "Onboarding is free: add your homes and your subs and start logging requests the same day.",
+  short: "Onboarding is free — add a home, add your subs, and start the same day.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -1201,7 +1201,7 @@ export const comparisons: Comparison[] = [
         "Post-closing is the entire product, including the revenue in it: memberships and paid repairs",
         "Every feature is in the one plan — there is no upsell tier",
         "Runs alongside whatever you already use to build",
-        "Standard onboarding is free; concierge onboarding is an optional one-time $499",
+        "Onboarding is free",
       ],
     },
   },
