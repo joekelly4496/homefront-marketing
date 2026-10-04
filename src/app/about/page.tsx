@@ -8,7 +8,13 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
-import { brand, signupHref, guarantee, primaryCta } from "@/lib/content";
+import {
+  brand,
+  signupHref,
+  guarantee,
+  primaryCta,
+  onboarding,
+} from "@/lib/content";
 
 const title = "About";
 const description =
@@ -80,9 +86,11 @@ export default function AboutPage() {
               </p>
               <p>
                 {brand.name} turns those homes into a service business. The
-                builder sells a maintenance membership at whatever price his
-                market carries, and it bills monthly to his own account from a
-                portal that carries his name. Repairs get priced, approved by
+                builder sells a maintenance plan at whatever price his market
+                carries — $40 a month for the schedule and the reminders, $500
+                for the whole house, lawn to septic, with his subs on the work
+                — and it bills monthly to his own account from a portal that
+                carries his name. Repairs get priced, approved by
                 the homeowner before anyone is charged, and paid out with the
                 builder’s markup on them, the sub and the builder paid
                 separately. Warranty work stays warranty and stays free; the
@@ -114,7 +122,8 @@ export default function AboutPage() {
                 We are early. There is no customer logo wall on this site
                 because we have not earned one yet, and we would rather show you
                 the product than borrow someone else’s credibility. The pricing
-                is published, setup is self-serve, and a 30-day money-back
+                is published, onboarding is concierge — {onboarding.body}{" "}
+                — and a 30-day money-back
                 guarantee means you can find out whether it fits your operation
                 without talking to anybody first.
               </p>

@@ -130,6 +130,18 @@ export const guarantee = {
  */
 export const smsStatus: "live" | "coming-soon" = "live";
 
+/**
+ * /welcome — the page a builder sends a homeowner after closing. The link
+ * carries the builder's name (?builder=Whitfield+Homes) so the page reads
+ * as the builder's, with Afterkey in the background.
+ */
+export const welcomePath = "/welcome";
+export function builderNameFrom(raw: unknown): string | null {
+  if (typeof raw !== "string") return null;
+  const name = raw.replace(/[<>\u0000-\u001f]/g, "").trim().slice(0, 60);
+  return name.length >= 2 ? name : null;
+}
+
 /** The standard label for the primary call to action. */
 // The CTA continues the headline's story; never "Get started" / "Learn more".
 export const primaryCta = "Set up your first home";
@@ -206,7 +218,18 @@ export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.per
  * in. Never tell the builder how to account for or pass through the fee —
  * that is his business. Pair it with `pricingLine` anywhere outside /pricing.
  */
-export const perHomeFraming = `At $${pricing.perHome} per active home, the fee is small next to what the same home can carry: a maintenance membership you price yourself — $20 a month, $40, $60, whatever your market will pay.`;
+export const perHomeFraming = `At $${pricing.perHome} per active home, the fee is small next to what the same home can carry — a maintenance plan you price yourself — and small enough to build into the home’s cost at closing, if that’s how you want to run it.`;
+
+/**
+ * Concierge onboarding — the canonical wording. We set the builder up; the
+ * first home is live inside two weeks. Say it plainly wherever onboarding
+ * comes up, and never describe setup as self-serve.
+ */
+export const onboarding = {
+  headline: "Concierge onboarding",
+  body: "We set up your brand, your subs, and your first homes with you. Your first home is live inside two weeks.",
+  short: "Concierge onboarding: we set up your brand, your subs, and your first homes with you — first home live inside two weeks.",
+} as const;
 
 /* ------------------------------------------------------------------ */
 /* The frame — every home a builder has closed is a customer he isn't   */
@@ -266,8 +289,10 @@ export const warrantyVsMaintenance = {
       "Dryer vent cleaned",
       "Water heater flushed",
       "Appliances maintained on the manufacturer’s schedule",
+      "Plumbing checked before it leaks",
+      "Septic pumped, gutters cleaned, lawn and grounds kept up",
     ],
-    foot: "What the maintenance plan covers.",
+    foot: "What a maintenance plan covers — up to the whole house.",
   },
 } as const;
 
@@ -294,6 +319,7 @@ export const newHomeMaintenance = {
     "Dryer vent cleaned",
     "Water heater flushed",
     "Appliances maintained on the manufacturer’s schedule",
+    "Septic pumped, gutters cleaned, lawn and grounds kept up",
   ],
   close:
     "Warranty covers what the builder got wrong. Maintenance covers what every house needs. The membership sells the second one, starting at closing, and is never a paywall in front of the first.",
@@ -306,6 +332,68 @@ export type RevenuePoint = {
   body: string;
 };
 
+/**
+ * The membership ladder. The $40 plan is the floor, not the product: the
+ * ceiling is the builder running the whole house — lawn, HVAC, appliances,
+ * plumbing, septic, everything — with his subs on the work and the
+ * homeowner paying one number a month. Prices are what a builder CAN
+ * charge, labeled as examples; Afterkey never sets or caps them.
+ */
+export const membershipLadder = {
+  heading: "From reminders to the whole house",
+  lede:
+    "A maintenance plan is whatever you decide to sell. You pick what each tier includes and what it costs; the portal shows the homeowner the list before they join.",
+  tiers: [
+    {
+      name: "The schedule and the reminders",
+      price: "$20–40 a month",
+      summary: "The plan runs the calendar. The visits are extra, priced before you approve them.",
+      includes: [
+        "A maintenance schedule for your actual house, built from its manuals",
+        "A reminder by email or text when something is due",
+        "Your builder’s portal: submit a request, see the status, talk to the sub",
+        "Your documents, warranties, and service history in one place",
+      ],
+      visits:
+        "Service visits are not included. Book one from the reminder and the sub quotes it; you approve the price before anyone comes out.",
+    },
+    {
+      name: "Scheduled service",
+      price: "$100–250 a month",
+      summary: "The visits are in. Your builder’s subs come on the schedule, labor included, and you never book a thing.",
+      includes: [
+        "Everything in the schedule-and-reminders plan",
+        "Two HVAC tune-ups a year",
+        "Annual boiler or furnace service",
+        "Dryer vent cleaning",
+        "Water heater flush",
+        "Appliance maintenance on the manufacturer’s interval",
+      ],
+      visits:
+        "Labor for the scheduled visits is included. Parts, and any repair the sub finds while there, are priced and approved before they’re charged.",
+    },
+    {
+      name: "The whole house",
+      price: "$500 a month and up",
+      summary: "One number a month, one company to call. The trades who built the house keep it running.",
+      includes: [
+        "Everything in scheduled service",
+        "Lawn and grounds",
+        "Gutters cleaned",
+        "Septic pumped on schedule",
+        "Snow removal",
+        "Plumbing and electrical check-ups",
+      ],
+      visits:
+        "All scheduled work and labor is included. Repairs outside the plan are still priced and approved first — no surprise bills at any tier.",
+    },
+  ],
+  builder:
+    "You decide what each tier includes and what it costs. Afterkey shows the homeowner the list, bills the plan to your account, routes each visit to your sub, sends the reminders, and keeps the record.",
+  foot:
+    "Example tiers and prices. You set every number and every line item; your market decides what it carries, and Afterkey never sets or caps it. Whatever the tier, the plan covers maintenance; warranty work stays free.",
+} as const;
+
 /** The five points, in order of weight. */
 export const revenuePoints: RevenuePoint[] = [
   {
@@ -313,7 +401,7 @@ export const revenuePoints: RevenuePoint[] = [
     icon: Wallet,
     title: "A membership you price, billed to your account",
     body:
-      "Sell your homeowners a maintenance membership at whatever your market carries — $20 a month, $40, $60. Afterkey never sets or caps it. The homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account.",
+      "Sell your homeowners a maintenance plan at whatever your market carries — $40 a month for the schedule and the reminders, $500 for a full-service plan where your subs handle the lawn, the HVAC, the appliances, the plumbing, the septic, everything that goes into a house. Afterkey never sets or caps it. The homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account.",
   },
   {
     id: "repairs",
@@ -352,6 +440,8 @@ export const revenuePoints: RevenuePoint[] = [
 export const workedExample = (() => {
   const homes = 60;
   const planPrice = 40;
+  const fullServicePrice = 500;
+  const fullServiceHomes = 10;
   const repairJob = 400;
   const markupPercent = 15;
   const repairsPerHomePerYear = 4;
@@ -360,9 +450,14 @@ export const workedExample = (() => {
   const membershipYearly = membershipMonthly * 12;
   const repairMarkupYearly = homes * repairsPerHomePerYear * markupPerJob;
   const afterkeyMonthly = pricing.base + homes * pricing.perHome;
+  const fullServiceMonthly = fullServiceHomes * fullServicePrice;
   return {
     homes,
     planPrice,
+    fullServicePrice,
+    fullServiceHomes,
+    fullServiceMonthly,
+    fullServiceYearly: fullServiceMonthly * 12,
     repairJob,
     markupPercent,
     repairsPerHomePerYear,
@@ -722,7 +817,17 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Your price, never ours",
         description:
-          "$20 a month, $40, $60 — whatever your market carries. Afterkey never sets or caps it. Offer one plan or several tiers, priced per home. The revenue line is sized to your market, not to ours.",
+          "$40 a month for the schedule and reminders, $500 for the whole house — whatever your market carries. Afterkey never sets or caps it. Offer one plan or several tiers, priced per home. The revenue line is sized to your market, not to ours.",
+      },
+      {
+        title: "From reminders to the whole house",
+        description:
+          "The bottom tier is the schedule and the reminders, with visits priced per job. The top tier is your subs handling lawn care, HVAC, appliances, plumbing, septic — labor included, on the schedule, billed as one number a month. The homeowner has one company to call for the life of the home, and it’s you.",
+      },
+      {
+        title: "You decide what’s in each tier",
+        description:
+          "Every plan is a list you wrote: which visits are included, which are priced per job, what it costs. The homeowner sees that list before they join, so what $40 or $500 a month buys is never a mystery, and the “what am I paying for” call never comes.",
       },
       {
         title: "Card or bank on file, billed monthly",
@@ -1094,7 +1199,7 @@ export const comparisons: Comparison[] = [
         "Post-closing is the entire product, including the revenue in it: memberships and paid repairs",
         "Every feature is in the one plan — there is no upsell tier",
         "Runs alongside whatever you already use to build",
-        "Onboarding is self-serve and free",
+        "Concierge onboarding: we set you up with you, first home live inside two weeks",
       ],
     },
   },
@@ -1170,7 +1275,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is self-serve and free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is concierge: Afterkey sets up the builder’s brand, subs, and first homes with them, and the first home is live inside two weeks. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "Do homeowners have to pay for a membership to get warranty work?",
@@ -1182,7 +1287,15 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "What should I charge homeowners for a maintenance membership?",
-    a: "Whatever your market carries — $20 a month, $40, $60. Afterkey never sets or caps the price. You define the plan and its tiers, the homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account. There is no platform fee on homeowner payments; you pay only processing, at Afterkey’s published flat rates.",
+    a: "Whatever your market carries. Builders typically think in tiers: $20 to $40 a month for the maintenance schedule and the reminders; $100 to $250 for scheduled service, where your subs come on the schedule for HVAC, the boiler, the dryer vent, the water heater, and the appliances; and $500 a month or more for a full-service plan that covers everything that goes into a house — lawn and grounds, gutters, plumbing, septic, snow. Afterkey never sets or caps the price. You define the plan and its tiers, the homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account. There is no platform fee on homeowner payments; you pay only processing, at Afterkey’s published flat rates.",
+  },
+  {
+    q: "What does a homeowner actually get for $40 a month?",
+    a: "Whatever you put in the plan — you define each tier and the portal shows the homeowner the list before they join. In the example bottom tier, $40 a month buys the calendar: a maintenance schedule built from that house’s own manuals, a reminder by email or text when something is due, your branded portal to submit a request and talk to the sub, and the home’s documents and service history in one place. The service visits are not included at that tier; the homeowner books one from the reminder, the sub quotes it, and they approve the price before anyone comes out. Move up a tier and the visits and labor are in: two HVAC tune-ups a year, the annual boiler service, the dryer vent, the water heater flush, appliances on the manufacturer’s interval. At the top, the whole house — lawn, gutters, septic, snow — for one number a month.",
+  },
+  {
+    q: "Can the membership cover more than reminders — lawn care, septic, the whole house?",
+    a: "Yes. A maintenance plan is whatever you decide to sell. At the top of the ladder it is a full-service plan: your subs handle lawn care, HVAC maintenance, appliance maintenance, plumbing, septic, gutters, snow — everything that goes into a house — on a schedule, and the homeowner pays one number a month to you. Afterkey holds the schedule, routes each visit to the right sub, sends the reminders, bills the plan to your account, and keeps the record. The trades who built the house keep it running, and the homeowner has one company to call for the life of the home. Whatever the tier, the plan covers maintenance; warranty work stays free.",
   },
   {
     q: "How does paid repair work get billed and paid?",
@@ -1230,11 +1343,38 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Standard onboarding is self-serve and free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial and no sales call — instead, every new account is covered by a 30-day money-back guarantee, so you evaluate Afterkey on your real homes rather than in a sandbox. Your existing homes come in through the AI import tools: upload each home’s documents and Afterkey proposes its binder and maintenance schedule for you to confirm.",
+    a: "Onboarding is concierge: we set up your brand, your subs, and your first homes with you, and your first home is live inside two weeks. There is no free trial — every new account is covered by a 30-day money-back guarantee instead, so you evaluate Afterkey on your real homes rather than in a sandbox. Your existing homes come in through the AI import tools: upload each home’s documents and Afterkey proposes its binder and maintenance schedule for you to confirm.",
   },
   {
     q: "Can I cancel Afterkey at any time?",
     a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, your subscription is refunded in full — the monthly base and every per-home fee. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Your rate is locked for 24 months from signup; after that, any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+  },
+];
+
+/**
+ * Written for the buyer of a new home, not the builder. The builder is
+ * watching too — this page is the homeowner side of the membership pitch.
+ */
+export const homeownerFaqs: Faq[] = [
+  {
+    q: "What do I actually get for the monthly price?",
+    a: "Whatever your builder put in the plan — the portal shows the list before you join. A basic plan runs the calendar: a maintenance schedule built from your house’s own manuals, a reminder when something is due, the portal to submit a request and talk to the sub, and your documents and service history in one place; service visits are booked from the reminder and quoted before anyone comes out. A scheduled-service plan includes the visits and the labor — HVAC tune-ups, the boiler, the dryer vent, the water heater, the appliances. A whole-house plan adds lawn, gutters, septic, and snow for one number a month. At every tier, a repair outside the plan is priced and approved by you before it is charged.",
+  },
+  {
+    q: "Do I have to join the maintenance plan to get warranty repairs?",
+    a: "No. Warranty repairs are your builder’s obligation and are free whether or not you join a plan, and joining never changes how quickly warranty work is handled. The maintenance plan covers upkeep — the service every house needs from day one, regardless of who built it.",
+  },
+  {
+    q: "Can I be charged for a repair without agreeing to it?",
+    a: "No. Every request is classified as warranty or billable before any work is charged. If a request is billable, you see what it is and what it costs and approve the price in your portal first. The amount charged can never exceed what you approved, and your builder approves it too.",
+  },
+  {
+    q: "Who shows up to do the work?",
+    a: "The same trades your builder uses — the plumber, electrician, or HVAC company who already know the house. Once a request is assigned, you and the sub talk directly in the portal to schedule it, and they post status and photos as they go.",
+  },
+  {
+    q: "Do I need an app?",
+    a: "No. The portal runs in a web browser on any phone, tablet, or computer. Your builder sends you a link; you sign in and everything about your home is there.",
   },
 ];
 

@@ -199,8 +199,11 @@ Copy rules that follow from it:
 - Say the "my homes are new" objection out loud and answer it with
   `newHomeMaintenance` (HVAC twice a year, boiler annually, dryer vent, water
   heater, appliances on the manufacturer's schedule).
-- The builder sets the membership price ($20, $40, $60 — whatever his market
-  carries); Afterkey never sets or caps it. Plans bill monthly to the
+- The builder sets the membership price; Afterkey never sets or caps it. The
+  $40 plan is the floor, not the product: `membershipLadder` runs from "the
+  schedule and the reminders" up to "the whole house" ($500+/month — lawn,
+  HVAC, appliances, plumbing, septic, with the builder's subs on the work).
+  Whole-house revenue is always labeled gross, before the subs are paid. Plans bill monthly to the
   builder's own account from a card or bank account on file.
 - Paid repairs: the builder prices the job, the homeowner approves before any
   charge, the platform adds the builder's markup, deducts processing, and
@@ -212,7 +215,22 @@ Copy rules that follow from it:
   quarter at 15% markup) is labeled an example everywhere. Never a customer
   result.
 - The $10 per-home fee is framed as small next to what the same home can
-  carry. Never tell the builder how to account for or pass it through.
+  carry, and "small enough to build into the home's cost at closing, if
+  that's how you want to run it" — always the builder's call, never an
+  instruction.
+- Onboarding is concierge (`onboarding` in content.ts): we set up the
+  builder's brand, subs, and first homes with them; first home live inside
+  two weeks. Never "self-serve."
+
+## /welcome — the page a builder sends a homeowner
+
+`/welcome?builder=Whitfield+Homes` greets the homeowner in the builder's
+name (sanitized, 60 chars, falls back to "your builder"): what the portal
+is, why to use it instead of texting, a five-step walkthrough, warranty vs.
+maintenance, the plan ladder in homeowner voice, FAQ. No site nav or
+footer, noindex, not in the sitemap. `WelcomeLink` on /memberships builds
+the link for the builder to copy. `/for-homeowners` stays the indexable
+page for a homeowner who arrives on their own.
 
 ## Environment
 

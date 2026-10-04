@@ -6,6 +6,7 @@ import { Container, SectionLabel } from "@/components/ui/Container";
 import { FaqList } from "@/components/ui/FaqList";
 import { PhoneMockup } from "@/components/mockups/PhoneMockup";
 import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
+import { MembershipLadder } from "@/components/MembershipLadder";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import {
@@ -19,7 +20,7 @@ import {
   loginUrls,
   newHomeMaintenance,
   classification,
-  type Faq,
+  homeownerFaqs,
 } from "@/lib/content";
 
 const title = "Maintenance Plans for New Homes, From Your Builder";
@@ -32,28 +33,7 @@ export const metadata = pageMetadata({
   path: "/for-homeowners",
 });
 
-/**
- * Written for the buyer of a new home, not the builder. The builder is
- * watching too — this page is the homeowner side of the membership pitch.
- */
-const homeownerFaqs: Faq[] = [
-  {
-    q: "Do I have to join the maintenance plan to get warranty repairs?",
-    a: "No. Warranty repairs are your builder’s obligation and are free whether or not you join a plan, and joining never changes how quickly warranty work is handled. The maintenance plan covers upkeep — the service every house needs from day one, regardless of who built it.",
-  },
-  {
-    q: "Can I be charged for a repair without agreeing to it?",
-    a: "No. Every request is classified as warranty or billable before any work is charged. If a request is billable, you see what it is and what it costs and approve the price in your portal first. The amount charged can never exceed what you approved, and your builder approves it too.",
-  },
-  {
-    q: "Who shows up to do the work?",
-    a: "The same trades your builder uses — the plumber, electrician, or HVAC company who already know the house. Once a request is assigned, you and the sub talk directly in the portal to schedule it, and they post status and photos as they go.",
-  },
-  {
-    q: "Do I need an app?",
-    a: "No. The portal runs in a web browser on any phone, tablet, or computer. Your builder sends you a link; you sign in and everything about your home is there.",
-  },
-];
+
 
 export default function ForHomeownersPage() {
   const pageGraph = graph([
@@ -78,9 +58,10 @@ export default function ForHomeownersPage() {
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-700">
                 A new house needs maintenance from the day you get the keys.
                 If your builder runs on {brand.name}, you get a maintenance
-                plan under their name: the reminders, the scheduled service,
-                and the trades who built the house, all in one place that
-                isn’t a text thread.
+                plan under their name — from the reminders up to a
+                full-service plan where the trades who built the house handle
+                the lawn, the HVAC, the appliances, the plumbing, the septic,
+                all of it — in one place that isn’t a text thread.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button href={loginUrls.homeowner} external size="lg">
@@ -137,8 +118,27 @@ export default function ForHomeownersPage() {
         </Container>
       </section>
 
+      {/* What's in the plan — what physically happens for the money */}
+      <section id="plans" className="scroll-mt-24 bg-drywall py-20 sm:py-28">
+        <Container size="7xl">
+          <div className="max-w-2xl">
+            <SectionLabel>What you get for the money</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              What’s in the plan, exactly
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              Your builder decides what each plan includes and what it costs,
+              and the portal shows you the list before you join. These are
+              examples of how builders set them up — the names and prices on
+              your builder’s portal are theirs.
+            </p>
+          </div>
+          <MembershipLadder className="mt-10" />
+        </Container>
+      </section>
+
       {/* What the plan does for you */}
-      <section className="bg-drywall py-20 sm:py-28">
+      <section className="bg-paper py-20 sm:py-28">
         <Container size="7xl">
           <div className="max-w-2xl">
             <SectionLabel>What you get</SectionLabel>
@@ -154,7 +154,8 @@ export default function ForHomeownersPage() {
               <p className="mt-2 text-base leading-relaxed text-slate-700">
                 Built from the manuals for the equipment in your home, with the
                 source on every line. The reminders come from your builder, by
-                email or text, when something is due.
+                email or text, when something is due — and on a full-service
+                plan, the visit is already booked.
               </p>
             </Card>
             <Card className="p-6">
@@ -185,7 +186,7 @@ export default function ForHomeownersPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-paper py-20 sm:py-28">
+      <section className="bg-drywall py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
