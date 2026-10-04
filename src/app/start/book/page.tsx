@@ -11,7 +11,7 @@ import { adLanding } from "@/lib/content";
 export const metadata = pageMetadata({
   title: "Book a 15-minute call",
   description:
-    "Three quick questions, then pick a time. Fifteen minutes on how Afterkey handles callbacks, subs, and maintenance under your brand.",
+    "Three quick questions, then pick a time. Fifteen minutes on how Afterkey runs callbacks, subs, and maintenance under your brand.",
   path: `${adLanding.path}/book`,
   noIndex: true,
 });

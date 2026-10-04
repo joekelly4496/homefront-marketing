@@ -355,15 +355,17 @@ export default function MembershipsPage() {
               <ol className="mt-4 space-y-3 text-base leading-relaxed text-slate-700">
                 <li>
                   1. You build the plan and set the price — one tier or
-                  several, priced per home. Afterkey never sets or caps it.
+                  several, priced per home. Afterkey never sets your price.
                 </li>
                 <li>
-                  2. The homeowner joins in your branded portal and puts a card
-                  or bank account on file.
+                  2. The homeowner picks a tier in your branded portal, you
+                  enroll the home, and they put a card or bank account on file.
                 </li>
                 <li>
-                  3. It bills every month to your own account. Reminders, the
-                  schedule, and the service history carry your name.
+                  3. It bills every month to your own account — from closing,
+                  or free until the warranty ends if that’s how you sell it.
+                  Reminders, the schedule, and the service history carry your
+                  name.
                 </li>
               </ol>
               <p className="mt-4 text-sm leading-relaxed text-slate-600">
@@ -376,8 +378,12 @@ export default function MembershipsPage() {
               </h3>
               <RepairPaySteps className="mt-4" />
               <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                You never invoice, chase a payment, or split a check by hand.
-                The charge can never exceed what the homeowner approved.
+                You never invoice or chase a payment, and the charge can never
+                exceed what the homeowner approved. Paid by check or cash
+                instead? Mark it paid and the homeowner gets an emailed
+                receipt. Paying your sub through the platform is on the
+                roadmap; today you pay him as you do now, and Afterkey keeps
+                his invoice on the record.
               </p>
             </Card>
           </div>

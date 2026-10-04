@@ -113,7 +113,7 @@ ${section(
 )}
 ${section(
   "How the AI works",
-  `Afterkey's AI Home Binder converts a home's documents into a proposed maintenance schedule. For appliances with a known make and model, it looks up the manufacturer's published maintenance and cites the source. Every AI suggestion carries a numbered footnote that is one of: a link to the manufacturer's published schedule, a reference to the document the builder uploaded, or an explicit "typical schedule — verify against the manual" label. The AI does not invent maintenance intervals, and the builder reviews and confirms every line before it is published to a homeowner.
+  `Afterkey's AI Home Binder converts a home's documents into a proposed maintenance schedule. For appliances with a known make and model, it looks up the manufacturer's published maintenance and cites the source. Every AI suggestion carries its source: a link to the manufacturer's published schedule when one was found, a reference to the document the builder uploaded, or an explicit "typical schedule — verify against the manual" label when the interval comes from general knowledge. A general interval is never presented as the manufacturer's, and intervals extracted from a document are never invented. The builder reviews the proposed list, removes or edits lines, and saves it before it is visible to a homeowner. The AI does not answer homeowner questions, close requests, or decide anything about a repair.
 
 Afterkey maintains a platform-wide shared library of appliance maintenance schedules. Once any builder researches a model, every future home with that model reuses the schedule instantly and at no cost. The library holds equipment maintenance information only; homeowner and home-identifying data is not placed into it.
 
@@ -121,9 +121,9 @@ Before any AI spend, Afterkey shows a cost preview listing which appliances are 
 )}
 ${section(
   "Status of features",
-  `Available now: core warranty and service request management, homeowner memberships and service plans, win-back prospect homes with one-click claim invites and expiring membership offers, paid repair work with homeowner-approved estimates and billing, the AI Home Binder with cited maintenance intelligence, subcontractor compliance with dispatch gating, competitive maintenance quotes, and the SMS and voice business line with two-way texting.
+  `Available now: warranty and service request management with automatic dispatch to the assigned subcontractor, homeowner maintenance plans and proposals, win-back prospect homes with claim invites and expiring offers, paid repair work with homeowner-approved estimates charged on completion and settled to the builder's account, the AI Home Binder with sourced maintenance schedules, and subcontractor compliance tracking with expiration alerts and a stop-and-acknowledge gate on builder-created dispatch.
 
-Note on SMS: each builder receives their own dedicated business number. Messages currently send under ${brand.legalName}'s carrier registration; per-builder branded sender identity is planned but not yet available.
+Coming soon: the SMS and voice business line (a dedicated number per builder, two-way texting matched to requests, inbound calls forwarded to the builder). Not yet available: subcontractor payouts through the platform (today the builder pays the sub directly and Afterkey records the sub's invoice), and the homeowner AI assistant.
 
 On the roadmap and NOT available today: a homeowner-facing AI assistant that answers questions grounded only in that home's binder, resellable by the builder.`,
 )}

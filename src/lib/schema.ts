@@ -70,7 +70,7 @@ export function softwareApplicationSchema() {
     },
     featureList: [
       "Homeowner maintenance memberships priced by the builder, billed monthly to the builder's account",
-      "Paid repair billing with the builder's markup, sub and builder paid out separately",
+      "Paid repair billing with the builder's markup, settled to the builder's account",
       "Warranty vs. billable request classification with builder and homeowner approval",
       "Warranty and service request management with SLA tracking",
       "Subcontractor dispatch, ratings, and cost intelligence",

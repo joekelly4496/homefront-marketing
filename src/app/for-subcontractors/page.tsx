@@ -52,7 +52,7 @@ const benefits = [
     icon: Camera,
     title: "Photos that protect you",
     description:
-      "Upload before and after photos on every job. When a question comes up six months later, the proof that you did the work right is on the record.",
+      "Completion photos are part of finishing every job. When a question comes up six months later, the homeowner’s photos of the problem and yours of the fix are both on the record.",
   },
   {
     icon: FileCheck2,
@@ -71,7 +71,7 @@ const benefits = [
 const subIncludes = [
   "A clear job list from every builder you work with",
   "One-tap status updates from the jobsite",
-  "Before and after photo uploads on every job",
+  "Completion photo uploads on every job",
   "Compliance document uploads with expiration reminders",
   "Instant notification the moment you’re assigned work",
 ];
@@ -91,7 +91,7 @@ const subFaqs: Faq[] = [
   },
   {
     q: "What happens if my insurance expires?",
-    a: "Afterkey reminds you ahead of the expiration date so you can upload a renewed certificate. If coverage does lapse, the builder is warned before assigning you new work. They can still override that warning in an emergency, but keeping documents current is the reliable way to keep getting dispatched.",
+    a: "Afterkey reminds you at 30, 14, 7, 3, 1, and 0 days before a document expires, and again if it lapses, so you can upload a renewed certificate. Once it lapses, every builder who requires it sees an “Action needed” flag next to your name, and when a builder dispatches you himself he has to acknowledge the gap first. Keeping documents current is the reliable way to keep getting work.",
   },
 ];
 
