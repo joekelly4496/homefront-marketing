@@ -224,8 +224,8 @@ Copy rules that follow from it:
   "coming-soon" until it flips. AI: sources on every line, never "never
   invents"; the AI overage ceiling is $25 and not builder-set.
 - Pricing/policy canon is the product repo's CLAUDE.md (joekelly4496/
-  builder-service-platform): guarantee wording verbatim, standard onboarding
-  free + $499 optional concierge, processing "includes every Stripe
+  builder-service-platform): guarantee wording verbatim, onboarding free
+  (concierge is not offered on the site), processing "includes every Stripe
   processing and payout fee," no trial, no annual prepay.
 - The worked example (`workedExample`: 60 homes, $40 plan, one $400 repair a
   quarter at 15% markup) is labeled an example everywhere. Never a customer
@@ -234,9 +234,9 @@ Copy rules that follow from it:
   carry, and "small enough to build into the home's cost at closing, if
   that's how you want to run it" — always the builder's call, never an
   instruction.
-- Onboarding is concierge (`onboarding` in content.ts): we set up the
-  builder's brand, subs, and first homes with them; first home live inside
-  two weeks. Never "self-serve."
+- Onboarding is free (`onboarding` in content.ts). Concierge onboarding is
+  not offered on the site until the product can sell it. Never promise a
+  setup timeline.
 
 ## /welcome — the page a builder sends a homeowner
 

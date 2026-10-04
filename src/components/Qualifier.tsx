@@ -309,7 +309,7 @@ export function Qualifier() {
     },
     small: {
       title: "At your size, skip the call.",
-      body: `Standard onboarding is free: add a home, add your subs, and log a real request today. ${guarantee.short}`,
+      body: `Onboarding is free: add a home, add your subs, and log a real request today. ${guarantee.short}`,
       href: signupHref,
       label: primaryCta,
       cta: "qualifier_signup",
