@@ -96,25 +96,21 @@ export const adLanding = {
 
 /**
  * The 30-day money-back guarantee — the risk reversal that replaced the free
- * trial. Builders pay from day one and can get their subscription fees back.
- *
- * SCOPE: the guarantee covers subscription fees (base + per-home). Never
- * write "every dollar Afterkey charged", and never promise refunds of
- * processing on homeowner payments already collected.
- *
- * `headline` and `body` are the approved wording. Use them verbatim rather
- * than paraphrasing: this promise also appears in the Terms of Service, and
- * a marketing page that describes it differently from the contract is a real
- * problem, not a style inconsistency.
+ * trial. CANONICAL WORDING from the product repo's CLAUDE.md (Pricing Model
+ * v2); use `body` verbatim. "Every dollar Afterkey charged" means the base,
+ * the per-home line, and the AI add-on for the period; the carve-out is
+ * exactly the $29 SMS number charge and SMS overage. Processing on homeowner
+ * payments is not something Afterkey charged the builder, so it is outside
+ * the promise by construction — don't add language about it either way.
  */
 export const guarantee = {
   days: 30,
   headline: "30-day money-back guarantee",
   /** The full promise. Featured on /pricing and echoed in /terms. */
-  body: "If it’s not working for you in the first 30 days, we refund your subscription in full — the monthly base and every per-home fee. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
+  body: "30-day money-back guarantee. If it’s not working for you, we refund every dollar Afterkey charged. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
   /** One-line version for microcopy under a CTA. */
   short:
-    "30-day money-back guarantee — if it’s not working in the first 30 days, we refund your subscription in full.",
+    "30-day money-back guarantee — if it’s not working for you, we refund every dollar Afterkey charged.",
 } as const;
 
 /**
@@ -128,7 +124,7 @@ export const guarantee = {
  * Flip to 'coming-soon' and every mention across /pricing, /features, /faq
  * and llms.txt switches to waitlist language. Nothing else needs editing.
  */
-export const smsStatus: "live" | "coming-soon" = "live";
+export const smsStatus = "coming-soon" as "live" | "coming-soon";
 
 /**
  * /welcome — the page a builder sends a homeowner after closing. The link
@@ -175,10 +171,10 @@ export const pricing = {
   },
   /**
    * Payment processing on homeowner payments. There is NO platform fee —
-   * these are Afterkey's published flat all-in rates, which include every
-   * payment processing and payout cost. FRAMING RULES: these are "our
-   * published rates" — never "at cost", never "we never mark it up", never
-   * the payment processor's own rate. Allowed: "you pay only processing."
+   * these are Afterkey's published flat all-in rates. FRAMING RULES (product
+   * CLAUDE.md): describe them as Afterkey's all-in rates that "include every
+   * Stripe processing and payout fee" — never as Stripe's own fee, and never
+   * "at cost" or "we never mark it up". Allowed: "you pay only processing."
    * Not allowed: a bare "we take no cut" or "100% yours" without the
    * processing mention.
    */
@@ -195,7 +191,7 @@ export const pricing = {
  * fee" — the rates include every processing and payout cost, and that is the
  * honest way to say it.
  */
-export const processingLine = `There’s no platform fee on homeowner payments — you pay only processing, at our published flat rates: ${pricing.processing.bankPercent}% for bank (ACH) payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for cards. Those are all-in rates that include every processing and payout cost.`;
+export const processingLine = `There’s no platform fee on homeowner payments — you pay only processing, at our published flat rates: ${pricing.processing.bankPercent}% for bank (ACH) payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for cards. Those are Afterkey’s all-in rates and include every Stripe processing and payout fee.`;
 
 /**
  * The one competitive comparison allowed on the site: Buildertrend's
@@ -221,14 +217,15 @@ export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.per
 export const perHomeFraming = `At $${pricing.perHome} per active home, the fee is small next to what the same home can carry — a maintenance plan you price yourself — and small enough to build into the home’s cost at closing, if that’s how you want to run it.`;
 
 /**
- * Concierge onboarding — the canonical wording. We set the builder up; the
- * first home is live inside two weeks. Say it plainly wherever onboarding
- * comes up, and never describe setup as self-serve.
+ * Onboarding — per the product CLAUDE.md: standard onboarding is free;
+ * concierge onboarding is a $499 one-time option where we build the binder
+ * from the builder's documents. Say both plainly; never promise a timeline.
  */
 export const onboarding = {
-  headline: "Concierge onboarding",
-  body: "We set up your brand, your subs, and your first homes with you. Your first home is live inside two weeks.",
-  short: "Concierge onboarding: we set up your brand, your subs, and your first homes with you — first home live inside two weeks.",
+  headline: "Onboarding",
+  conciergePrice: 499,
+  body: "Standard onboarding is free: add your homes and subs and start the same day. Optional concierge onboarding is a one-time $499 — we build the binder for your homes from your documents.",
+  short: "Standard onboarding is free; concierge onboarding, where we build your binders from your documents, is an optional one-time $499.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -542,7 +539,7 @@ export const commitments: Commitment[] = [
     icon: BadgeCheck,
     title: "30-day money-back guarantee",
     description:
-      "If it’s not working for you in the first 30 days, we refund your subscription in full — the monthly base and every per-home fee. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
+      "If it’s not working for you, we refund every dollar Afterkey charged. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
   },
 ];
 
@@ -1199,7 +1196,7 @@ export const comparisons: Comparison[] = [
         "Post-closing is the entire product, including the revenue in it: memberships and paid repairs",
         "Every feature is in the one plan — there is no upsell tier",
         "Runs alongside whatever you already use to build",
-        "Concierge onboarding: we set you up with you, first home live inside two weeks",
+        "Standard onboarding is free; concierge onboarding is an optional one-time $499",
       ],
     },
   },
@@ -1275,7 +1272,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is concierge: Afterkey sets up the builder’s brand, subs, and first homes with them, and the first home is live inside two weeks. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Standard onboarding is free; concierge onboarding, where Afterkey builds the binders from the builder’s documents, is an optional one-time $499. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
   },
   {
     q: "Do homeowners have to pay for a membership to get warranty work?",
@@ -1343,11 +1340,11 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Onboarding is concierge: we set up your brand, your subs, and your first homes with you, and your first home is live inside two weeks. There is no free trial — every new account is covered by a 30-day money-back guarantee instead, so you evaluate Afterkey on your real homes rather than in a sandbox. Your existing homes come in through the AI import tools: upload each home’s documents and Afterkey proposes its binder and maintenance schedule for you to confirm.",
+    a: "Standard onboarding is free: you subscribe, add your homes and subcontractors, and start logging requests the same day. If you would rather we build the binders for your homes from your documents, concierge onboarding is an optional one-time $499. There is no free trial — every new account is covered by a 30-day money-back guarantee instead, so you evaluate Afterkey on your real homes rather than in a sandbox. Your existing homes come in through the AI import tools: upload each home’s documents and Afterkey proposes its binder and maintenance schedule for you to confirm.",
   },
   {
     q: "Can I cancel Afterkey at any time?",
-    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if Afterkey is not working for you within the first 30 days, your subscription is refunded in full — the monthly base and every per-home fee. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Your rate is locked for 24 months from signup; after that, any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if it is not working for you, we refund every dollar Afterkey charged. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Your rate is locked for 24 months from signup; after that, any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
   },
 ];
 
@@ -1398,7 +1395,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Does Afterkey take a cut of homeowner payments?",
-    a: "No — there is no platform fee on homeowner payments. When homeowners pay through Afterkey, whether for a membership or a repair invoice, you pay only processing, at our published flat rates: 1.25% for bank (ACH) payments and 3.5% plus 30¢ for cards. Those are all-in rates that include every processing and payout cost, and bank is listed first everywhere because it is the cheaper rail. You choose whether homeowner pricing includes processing or your margin absorbs it. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
+    a: "No — there is no platform fee on homeowner payments. When homeowners pay through Afterkey, whether for a membership or a repair invoice, you pay only processing, at our published flat rates: 1.25% for bank (ACH) payments and 3.5% plus 30¢ for cards. Those are Afterkey’s all-in rates and include every Stripe processing and payout fee; bank is listed first everywhere because it is the cheaper rail. You choose whether homeowner pricing includes processing or your margin absorbs it. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
   },
   {
     q: "Does Afterkey set or cap what I charge homeowners?",
@@ -1414,7 +1411,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Is there a free trial?",
-    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you within 30 days, we refund your subscription in full — the monthly base and every per-home fee. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment — carrier costs for messages already sent cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
+    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you, we refund every dollar Afterkey charged. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment — carrier costs for messages already sent cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
   },
 ];
 
