@@ -205,12 +205,28 @@ Copy rules that follow from it:
   HVAC, appliances, plumbing, septic, with the builder's subs on the work).
   Whole-house revenue is always labeled gross, before the subs are paid. Plans bill monthly to the
   builder's own account from a card or bank account on file.
-- Paid repairs: the builder prices the job, the homeowner approves before any
-  charge, the platform adds the builder's markup, deducts processing, and
-  pays the sub and the builder separately. Describe it plainly as a feature.
-- Warranty vs. billable (`classification`) is a feature sold to both sides:
-  no surprise bills for the homeowner; no after-the-fact argument for the
-  builder. Any billable classification needs both approvals before a charge.
+- Paid repairs, as the product works today: the sub quotes, the builder's
+  markup is added automatically, the homeowner approves the price (nothing is
+  charged yet), completion photos are required, and the charge fires when the
+  homeowner approves the finished job or the review window (24h default)
+  passes. Money settles to the builder's account; the builder pays the sub
+  as today. Sub payouts through the platform are built but dormant behind
+  `PAYOUTS_ENABLED` — never describe them as live.
+- Warranty vs. billable (`classification`): classified automatically at
+  submit from the home's warranty dates and plan. The sub can only FLAG a
+  job; the builder decides and the homeowner is told. The builder never
+  approves prices; the homeowner does. Never write "both approve."
+- Dispatch: homeowner requests go straight to the assigned sub; the builder
+  is notified, not asked. Compliance is "tracked and flagged" (alerts at
+  30/14/7/3/1/0 days, Action-needed flag); the only gate is
+  stop-and-acknowledge on builder-created requests. Never "every job checked."
+- SMS is parked behind `SMS_ENABLED`; `smsStatus` in content.ts is
+  "coming-soon" until it flips. AI: sources on every line, never "never
+  invents"; the AI overage ceiling is $25 and not builder-set.
+- Pricing/policy canon is the product repo's CLAUDE.md (joekelly4496/
+  builder-service-platform): guarantee wording verbatim, onboarding free
+  (concierge is not offered on the site), processing "includes every Stripe
+  processing and payout fee," no trial, no annual prepay.
 - The worked example (`workedExample`: 60 homes, $40 plan, one $400 repair a
   quarter at 15% markup) is labeled an example everywhere. Never a customer
   result.
@@ -218,9 +234,9 @@ Copy rules that follow from it:
   carry, and "small enough to build into the home's cost at closing, if
   that's how you want to run it" — always the builder's call, never an
   instruction.
-- Onboarding is concierge (`onboarding` in content.ts): we set up the
-  builder's brand, subs, and first homes with them; first home live inside
-  two weeks. Never "self-serve."
+- Onboarding is free (`onboarding` in content.ts). Concierge onboarding is
+  not offered on the site until the product can sell it. Never promise a
+  setup timeline.
 
 ## /welcome — the page a builder sends a homeowner
 

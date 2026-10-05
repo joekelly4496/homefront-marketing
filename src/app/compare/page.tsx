@@ -145,8 +145,7 @@ export default function ComparePage() {
                 your estimating software, your scheduling tool, and your
                 accounting system — Afterkey picks up at closing, which is
                 usually where those tools stop caring. Onboarding is
-                concierge — we set you up with you, and your first home is
-                live inside two weeks.
+                free — add a home and start the same day.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
                 Still deciding?{" "}

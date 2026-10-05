@@ -63,7 +63,7 @@ const priceLines = [
     price: `+ $${pricing.ai.price}`,
     unit: "/month per active home (optional)",
     title: "AI add-on",
-    description: `${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all your homes. Appliances already in the shared library are free and don’t count. Beyond the pool, $${pricing.ai.overagePerAction.toFixed(2)} per action with a live meter and a ceiling you set.`,
+    description: `${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all your homes. Appliances already in the shared library are free and don’t count. Beyond the pool, $${pricing.ai.overagePerAction.toFixed(2)} per action, with alerts at 80% and 100% and a $25 overage ceiling that pauses AI you start.`,
   },
   {
     price: `+ $${pricing.sms.price}`,
@@ -104,10 +104,10 @@ const included = [
   "Compliance gating on dispatch, with logged overrides",
   "White-labeled homeowner experience — your logo, colors, and name",
   "Homeowner portal — requests, status, messaging, history",
-  "Win-back prospect homes with one-click claim invites",
-  "Membership pitches with your tiers and quote expirations",
+  "Win-back prospect homes with claim invites that carry your proposal",
+  "Maintenance plan proposals by email, with your tiers and offer expirations",
   "Warranty vs. billable classification, approved by you and the homeowner",
-  "Paid repairs with your markup — sub and builder paid out separately",
+  "Paid repairs with your markup, settled to your account; mark check or cash payments paid with an emailed receipt",
   "Two-way messaging with homeowners and subs, ticket or general",
   "Subcontractor portal — jobs, photo updates, documents",
   "AI Home Binder with cited maintenance schedules",
@@ -142,7 +142,7 @@ export default function PricingPage() {
               subcontractors are included, there are no tiers, and there is no
               per-user fee. Your rate is locked for 24 months. What you charge
               your homeowners for a membership or a repair is yours — Afterkey
-              never sets or caps it, and there is no platform fee on their
+              never sets it, and there is no platform fee on their
               payments.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -376,7 +376,8 @@ export default function PricingPage() {
                   which appliances are free, which are new, the dollar estimate,
                   and a do-it-yourself option if you would rather save the
                   money. Overage is ${pricing.ai.overagePerAction.toFixed(2)}{" "}
-                  per action against a ceiling you set. Without the add-on you
+                  per action, with alerts at 80% and 100% and a $25 ceiling
+                  that pauses AI you start. Without the add-on you
                   still get {pricing.ai.freeActionsWithoutAddOn} free actions a
                   month to try it.
                 </p>

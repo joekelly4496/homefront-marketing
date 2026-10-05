@@ -239,12 +239,8 @@ export default function HomePage() {
               A request handled without you in the middle
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-700">
-              It goes from the homeowner’s phone to your sub’s list and back
-              without anyone calling you for a status. Every request is
-              classified warranty or billable — by you before dispatch, or by
-              the sub on site when the “leak” turns out to be a hose bib left
-              open — and anything billable needs you and the homeowner to
-              approve before a dollar moves.
+              Homeowner’s phone to your sub’s list and back, without you in
+              the middle. You’re notified, not asked.
             </p>
           </div>
 
@@ -514,7 +510,7 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-700">
               {pricingLine} What you charge your homeowners is yours; Afterkey
-              never sets or caps it, and takes no platform fee on it.
+              never sets it, and takes no platform fee on it.
             </p>
             <p className="mt-3 text-base leading-relaxed text-slate-700">
               It replaces the spreadsheet, the group text, the free

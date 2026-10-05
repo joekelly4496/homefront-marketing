@@ -13,7 +13,6 @@ import {
   signupHref,
   guarantee,
   primaryCta,
-  onboarding,
 } from "@/lib/content";
 
 const title = "About";
@@ -122,8 +121,7 @@ export default function AboutPage() {
                 We are early. There is no customer logo wall on this site
                 because we have not earned one yet, and we would rather show you
                 the product than borrow someone else’s credibility. The pricing
-                is published, onboarding is concierge — {onboarding.body}{" "}
-                — and a 30-day money-back
+                is published, onboarding is free, and a 30-day money-back
                 guarantee means you can find out whether it fits your operation
                 without talking to anybody first.
               </p>

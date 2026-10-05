@@ -61,7 +61,7 @@ export default async function WelcomePage({ searchParams }: Props) {
   const steps = [
     {
       title: "Accept the invite",
-      body: `The email from ${Name} has one button. Tap it and you’re in, with your home already set up. No password to create first, no app to install — bookmark it on your phone.`,
+      body: `The email from ${Name} has one link. Open it, set a password, and you’re in with your home already set up. No app to install — bookmark it on your phone.`,
       visual: null,
     },
     {
@@ -71,7 +71,7 @@ export default async function WelcomePage({ searchParams }: Props) {
     },
     {
       title: "Something’s wrong? Submit a request",
-      body: "A photo and two sentences: what, and where. It’s marked warranty or maintenance and routed to the trade who knows your house.",
+      body: "A photo and two sentences: what, and where. It’s marked warranty or billable from your home’s warranty dates and plan, and goes straight to the trade who knows your house.",
       visual: null,
     },
     {
@@ -81,7 +81,7 @@ export default async function WelcomePage({ searchParams }: Props) {
     },
     {
       title: "Nothing is charged without your OK",
-      body: "Warranty work is free, always. If something is billable, you see what it is and what it costs in the portal and approve it before anyone comes out. If you’re on a maintenance plan, it bills monthly to the card or bank account you put on file.",
+      body: "Warranty work is free, always. If something is billable, you see the price in the portal and approve it before any work is charged; after the job you get a completion notice and can approve it or report a problem before the charge goes through. If you’re on a maintenance plan, it bills monthly to the card or bank account you put on file.",
       visual: null,
     },
   ];
@@ -113,7 +113,8 @@ export default async function WelcomePage({ searchParams }: Props) {
                 </Button>
               </div>
               <p className="mt-6 text-sm text-slate-600">
-                Look for the invite email from {Name}. One tap signs you in.
+                Look for the invite email from {Name}. Open it, set a password,
+                and you’re in.
               </p>
             </div>
             <div className="flex justify-center lg:col-span-5 lg:justify-end">
@@ -238,7 +239,7 @@ export default async function WelcomePage({ searchParams }: Props) {
           <ul className="mt-8 grid gap-x-8 gap-y-2 sm:grid-cols-2">
             {[
               "You see the full list of what’s included before you join",
-              "It bills monthly to a card or bank account you put on file",
+              "Pick a plan in the portal; your builder enrolls your home and you put a card or bank account on file",
               "Anything outside the plan is priced and approved by you first",
               "Warranty repairs are free whether you join or not",
             ].map((line) => (

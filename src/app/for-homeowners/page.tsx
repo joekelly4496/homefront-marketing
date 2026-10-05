@@ -174,7 +174,7 @@ export default function ForHomeownersPage() {
               </h3>
               <p className="mt-2 text-base leading-relaxed text-slate-700">
                 {classification.homeowner} Warranty work is never charged, and
-                anything billable needs your approval of the price first.
+                nothing billable is charged until you’ve approved the price.
               </p>
             </Card>
           </div>

@@ -25,7 +25,7 @@ const options = [
   {
     icon: UserPlus,
     title: "Get started",
-    description: `Create your account and we set up your brand, your subs, and your first homes with you — first home live inside two weeks. No demo required, and a ${guarantee.days}-day money-back guarantee.`,
+    description: `Create your account and set up your first home today. Onboarding is free, no demo required, and a ${guarantee.days}-day money-back guarantee.`,
     cta: { label: "Get started", href: signupHref },
   },
   {
@@ -64,7 +64,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Talk to us — or skip us entirely"
-        subtitle="Pricing is published and onboarding is concierge, so you never have to sit through a sales call to find out what Afterkey costs. But if you want to talk to somebody, we are glad to."
+        subtitle="Pricing is published and onboarding is free, so you never have to sit through a sales call to find out what Afterkey costs. But if you want to talk to somebody, we are glad to."
       />
 
       <section className="py-20 sm:py-24">
