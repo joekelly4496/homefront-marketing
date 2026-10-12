@@ -5,6 +5,7 @@ import {
   CheckCircle2,
   Bell,
   ListChecks,
+  Landmark,
   FileCheck2,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -61,6 +62,12 @@ const benefits = [
       "Upload your general liability, workers’ comp, auto, trade license, and W-9 once. Afterkey tracks the expiration dates and reminds you before anything lapses — so a stale certificate never costs you a dispatch.",
   },
   {
+    icon: Landmark,
+    title: "Paid straight to your bank",
+    description:
+      "Link your bank once. When the homeowner pays for a job, your share is sent to you automatically, and plan work pays every month. No invoice to chase, no waiting on a check from the builder.",
+  },
+  {
     icon: Bell,
     title: "Never miss an assignment",
     description:
@@ -74,12 +81,17 @@ const subIncludes = [
   "Completion photo uploads on every job",
   "Compliance document uploads with expiration reminders",
   "Instant notification the moment you’re assigned work",
+  "Your share of paid work sent straight to your bank",
 ];
 
 const subFaqs: Faq[] = [
   {
     q: "Do subcontractors pay to use Afterkey?",
     a: "No. Afterkey is free for subcontractors. The builder pays for the platform, and their subscription includes unlimited subcontractors, so there is never a charge to you and never a reason for a builder to limit how many trades they add.",
+  },
+  {
+    q: "How do I get paid?",
+    a: "Link your bank in your portal, once. After that, when a homeowner pays for a job, your share is sent to your bank automatically, and work on a builder’s maintenance plan pays every month. Until your bank is linked, the builder pays you the way he does today.",
   },
   {
     q: "Do I need to install an app?",

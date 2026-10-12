@@ -16,6 +16,7 @@ import {
   Home,
   Users,
   HardHat,
+  Upload,
   type LucideIcon,
 } from "lucide-react";
 import type { Accent } from "@/components/ui/IconBox";
@@ -124,7 +125,7 @@ export const guarantee = {
  * Flip to 'coming-soon' and every mention across /pricing, /features, /faq
  * and llms.txt switches to waitlist language. Nothing else needs editing.
  */
-export const smsStatus = "coming-soon" as "live" | "coming-soon";
+export const smsStatus = "live" as "live" | "coming-soon";
 
 /**
  * /welcome — the page a builder sends a homeowner after closing. The link
@@ -300,7 +301,7 @@ export const repairPaySteps = [
   "If it’s billable, the sub quotes it, your markup goes on top, and the homeowner approves the price. Their card or bank account goes on file. Nothing is charged yet.",
   "The sub does the work, confirms on site that the quote still covers it, and posts completion photos — required before anything can bill.",
   "The homeowner approves the finished job, or the review window passes (24 hours by default), and the saved card or bank account is charged — never more than they approved.",
-  "The money settles to your account the moment it’s paid, at our published processing rates and no platform fee. You pay your sub the way you do today; Afterkey keeps the sub’s invoice on the record.",
+  "The money splits the moment it’s paid: the sub’s share goes straight to his bank, and the rest — your markup included — to yours, at our published processing rates and no platform fee. A sub who hasn’t linked a bank yet, you pay as you do today, and Afterkey keeps his invoice on the record.",
 ] as const;
 
 /**
@@ -582,7 +583,8 @@ export const portals: Portal[] = [
       "Your brand, not ours. Where your homeowner joins the maintenance plan, submits a request, approves a repair price before anyone is charged, and talks to the sub directly.",
     points: [
       "White-labeled under your business",
-      "Choose a maintenance plan — you enroll the home, they put a card or bank account on file",
+      "Join a maintenance plan and pay in one step, card or bank account on file",
+      "Cancel the plan online any time",
       "Submit a request and talk to the sub",
       "Approve repair prices — no surprise bills",
       "Maintenance schedule, and a service history that shows what they paid",
@@ -601,6 +603,7 @@ export const portals: Portal[] = [
       "Status updates from the jobsite",
       "Completion photo uploads, required on every job",
       "Compliance document uploads",
+      "Paid straight to their bank once it’s linked",
     ],
     href: loginUrls.sub,
   },
@@ -814,7 +817,7 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Your price, never ours",
         description:
-          "$40 a month for the schedule and reminders, $500 for the whole house — whatever your market carries. Afterkey never sets your price. Offer one plan or several tiers, priced per home, and start billing at closing or keep the plan free until the warranty ends — your call. The revenue line is sized to your market, not to ours.",
+          "$40 a month for the schedule and reminders, $500 for the whole house — whatever your market carries. Afterkey never sets your price. Offer one plan or several tiers, priced per home. Billing starts the day the homeowner joins, or on a later date you pick when you enroll them yourself. The revenue line is sized to your market, not to ours.",
       },
       {
         title: "From reminders to the whole house",
@@ -825,6 +828,21 @@ export const featureGroups: FeatureGroup[] = [
         title: "You decide what’s in each tier",
         description:
           "Every plan is a list you wrote: which visits are included, which are priced per job, what it costs. The homeowner sees that list before they join, so what $40 or $500 a month buys is never a mystery, and the “what am I paying for” call never comes.",
+      },
+      {
+        title: "They join and pay in one step",
+        description:
+          "Send the plan and the homeowner joins from your branded portal: pick the tier, put a card or bank account on file, done. The renewal terms sit right next to the button, a confirmation email follows, and they can cancel online any time, which is how a monthly plan should work.",
+      },
+      {
+        title: "The visits schedule themselves",
+        description:
+          "Every visit a plan includes is laid out across the membership year and sent to the right sub about two weeks before it’s due. You see what’s been used and what’s left on every home; the homeowner sees their visits for the year in the portal. Nobody books anything.",
+      },
+      {
+        title: "Your subs paid every month, without you",
+        description:
+          "When a monthly payment comes in, each sub on the plan gets his share straight to his bank and the rest lands in your account. No checks to cut, no month-end math. A sub who hasn’t linked a bank yet stays with you to pay the way you do today.",
       },
       {
         title: "Card or bank on file, billed monthly",
@@ -866,7 +884,7 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Your pitch, your tiers",
         description:
-          "Offer one plan or several, at prices you set per home — Afterkey suggests a number from the home’s real sub rates, and you type the price. The homeowner picks a tier in the portal and the dues bill to your account.",
+          "Offer one plan or several, at prices you set per home — Afterkey suggests a number from the home’s real costs and your markup, and the price is always yours. The homeowner joins and pays in one step from the email, and the dues bill to your account. Plans you send get a polite follow-up on day 3 and day 7 if they haven’t joined.",
       },
       {
         title: "Quotes that expire",
@@ -898,7 +916,7 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Paid the moment the job is approved",
         description:
-          "When the homeowner approves the finished job (or the review window passes), their saved card or bank account is charged and the money settles to your account — your markup included, no platform fee. You never invoice or chase a payment. The favor becomes a revenue line.",
+          "When the homeowner approves the finished job (or the review window passes), their saved card or bank account is charged and the money splits on its own: the sub’s share to his bank, the rest — your markup included — to yours, with no platform fee. You never invoice, chase a payment, or cut a check to a sub. The favor becomes a revenue line.",
       },
       {
         title: "Photos before money moves",
@@ -955,6 +973,38 @@ export const featureGroups: FeatureGroup[] = [
     ],
   },
   {
+    id: "setup-and-data",
+    icon: Upload,
+    accent: "slate",
+    status: "live",
+    label: "Setup and your data",
+    title: "Every home in at once, every record out any time",
+    summary:
+      "Bring your whole book of closed homes in from a spreadsheet, invite them when you’re ready, and take everything with you whenever you want.",
+    points: [
+      {
+        title: "Import every home from a spreadsheet",
+        description:
+          "Upload up to 1,000 homes at a time. Mark each one current or win-back: current homes are active, win-back homes are free prospects until they join a plan. Nothing is sent to a homeowner on import.",
+      },
+      {
+        title: "Invite them when you’re ready",
+        description:
+          "Tick the homes and invite them in one go. Each homeowner gets one email with a link that opens their portal already set up. Past customers get a version about their home’s records and your plans, not a warranty promise.",
+      },
+      {
+        title: "Export everything, any time, free",
+        description:
+          "One download with every record as a spreadsheet plus every photo and document, sorted by home. It’s yours whether you stay or go, and closing your account is self-serve.",
+      },
+      {
+        title: "Help on every page",
+        description:
+          "A help button in the corner of every screen, for you, your subs and your homeowners: tips for that page, answers you can search, the walkthrough, and a way to reach a person. Your homeowners are pointed to you, not to us.",
+      },
+    ],
+  },
+  {
     id: "homeowner-assistant",
     icon: MessageSquare,
     accent: "slate",
@@ -989,6 +1039,7 @@ const featureOrder = [
   "ai-binder",
   "win-back",
   "sms",
+  "setup-and-data",
   "homeowner-assistant",
 ];
 featureGroups.sort(
@@ -1301,7 +1352,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How does paid repair work get billed and paid?",
-    a: "The sub quotes the job and your markup is added on top. The homeowner approves the estimate in their portal, which also puts a card or bank account on file; nothing is charged yet. When the work is done — the sub confirms on site that the quote still covers it, and completion photos are required — the homeowner approves the finished job, or the review window passes (24 hours by default), and the saved payment method is charged. The money settles to your account at Afterkey’s published processing rates with no platform fee; you pay your sub the way you do today, and Afterkey keeps the sub’s invoice on the record. The charge can never exceed the amount the homeowner approved.",
+    a: "The sub quotes the job and your markup is added on top. The homeowner approves the estimate in their portal, which also puts a card or bank account on file; nothing is charged yet. When the work is done — the sub confirms on site that the quote still covers it, and completion photos are required — the homeowner approves the finished job, or the review window passes (24 hours by default), and the saved payment method is charged. The payment splits as it lands: the sub’s share goes straight to the sub’s bank and the rest, your markup included, to your account, at Afterkey’s published processing rates with no platform fee. If a sub hasn’t linked a bank yet, you pay him as you do today and Afterkey keeps his invoice on the record. The charge can never exceed the amount the homeowner approved.",
   },
   {
     q: "Who decides whether a request is warranty or billable?",
@@ -1325,11 +1376,11 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How do homeowners use Afterkey?",
-    a: "Homeowners get access to a browser-based portal, white-labeled under the builder's business — there is no app to download. They submit warranty and service requests with photos, talk directly with the sub assigned to the job, approve the price of any billable repair before they are charged, view the maintenance schedule built for their specific home and appliances, and see the full service history of the house. If the builder offers a maintenance plan, the homeowner picks a tier in the portal, the builder enrolls the home, and the homeowner puts a card or bank account on file there. Warranty work is never behind the plan.",
+    a: "Homeowners get access to a browser-based portal, white-labeled under the builder's business — there is no app to download. They submit warranty and service requests with photos, talk directly with the sub assigned to the job, approve the price of any billable repair before they are charged, view the maintenance schedule built for their specific home and appliances, and see the full service history of the house. If the builder offers a maintenance plan priced for their home, the homeowner joins and pays in one step in the portal, with a card or bank account on file, and can cancel online any time. Warranty work is never behind the plan.",
   },
   {
     q: "Do subcontractors have to pay for Afterkey?",
-    a: "No. Subcontractors use Afterkey free. They open each job from a link — no app, no login — update status from the jobsite, upload the completion photos every job requires, and keep compliance documents such as general liability, workers’ compensation, auto insurance, trade licenses, and W-9s current. The builder’s $149 monthly base includes unlimited subcontractors, so adding trades never increases the bill.",
+    a: "No. Subcontractors use Afterkey free. They open each job from a link — no app, no login — update status from the jobsite, upload the completion photos every job requires, and keep compliance documents such as general liability, workers’ compensation, auto insurance, trade licenses, and W-9s current. Once they link a bank, their share of paid work is sent to them automatically. The builder’s $149 monthly base includes unlimited subcontractors, so adding trades never increases the bill.",
   },
   {
     q: "Does Afterkey find new subcontractors for me?",
@@ -1345,7 +1396,19 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Onboarding is free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial — every new account is covered by a 30-day money-back guarantee instead, so you evaluate Afterkey on your real homes rather than in a sandbox. Existing homes come in one at a time: add the home, upload its documents, and Afterkey extracts the appliances and proposes the maintenance schedule for you to review and save.",
+    a: "Onboarding is free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial — every new account is covered by a 30-day money-back guarantee instead, so you evaluate Afterkey on your real homes rather than in a sandbox. Existing homes come in all at once from a spreadsheet (up to 1,000 at a time), or one at a time; upload a home’s documents and Afterkey extracts the appliances and proposes the maintenance schedule for you to review and save.",
+  },
+  {
+    q: "When does a homeowner’s membership start billing?",
+    a: "The day the homeowner joins. A membership is a maintenance plan, so it bills from day one whether or not the home is still under warranty; warranty repairs stay free either way. When you enroll a homeowner yourself, you can choose a later start date. The renewal terms are shown next to the button before they join, they get a confirmation email, and they can cancel online any time.",
+  },
+  {
+    q: "Does Afterkey pay my subcontractors?",
+    a: "Yes, once a sub links a bank. When a homeowner pays for a repair, the sub’s share goes straight to the sub’s bank and the rest, your markup included, to yours. On a membership, each sub on the plan gets his share of every monthly payment as it comes in. A sub who hasn’t linked a bank yet stays with you to pay the way you do today, and Afterkey keeps his invoice on the record.",
+  },
+  {
+    q: "Can I export my data?",
+    a: "Yes, any time and free. One download holds every record as a spreadsheet plus every photo and document, organized by home. Closing an account is self-serve, and a closed account can be reopened within 90 days.",
   },
   {
     q: "Can I cancel Afterkey at any time?",
@@ -1373,6 +1436,10 @@ export const homeownerFaqs: Faq[] = [
   {
     q: "Who shows up to do the work?",
     a: "The same trades your builder uses — the plumber, electrician, or HVAC company who already know the house. Your request goes to them the moment you submit it; you and the sub talk directly in the portal to schedule it, and they post status and photos as they go. Your builder sees every step.",
+  },
+  {
+    q: "How do I cancel the plan?",
+    a: "Online, any time, from Billing in your portal. The plan renews monthly until you cancel; when you do, you keep your benefits through the month you’ve already paid for, and nothing more is charged.",
   },
   {
     q: "Do I need an app?",
@@ -1611,7 +1678,7 @@ export const useCases: UseCase[] = [
         {
           title: "Reminders go out on their own",
           description:
-            "Once confirmed, the schedule sends its own reminders by email (and by text once the SMS add-on is live). Flag a reminder as schedulable and it arrives as a one-tap offer — “Want us to handle this?” — that books your assigned sub with no login. The reminder is the reason the homeowner keeps paying dues, and the maintenance that would have become your callback gets done.",
+            "Once confirmed, the schedule sends its own reminders by email, and by text with the SMS add-on. Flag a reminder as schedulable and it arrives as a one-tap offer — “Want us to handle this?” — that books your assigned sub with no login. The reminder is the reason the homeowner keeps paying dues, and the maintenance that would have become your callback gets done.",
         },
         {
           title: "It gets cheaper the more it is used",

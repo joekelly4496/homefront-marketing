@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ContactWidget } from "@/components/ContactWidget";
+import { ReplayConsent } from "@/components/ReplayConsent";
 import { HideOnLanding } from "@/components/HideOnLanding";
 import { JsonLd } from "@/components/JsonLd";
 import { siteUrl, absoluteUrl } from "@/lib/site";
@@ -95,6 +96,7 @@ export default function RootLayout({
           <Footer />
           <ContactWidget />
         </HideOnLanding>
+        <ReplayConsent />
       </body>
     </html>
   );

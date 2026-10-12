@@ -46,7 +46,11 @@ const sections: LegalSection[] = [
   },
   {
     heading: "Cookies",
-    body: "We may use cookies and similar technologies to keep you signed in, remember preferences, and analyze how the service is used.",
+    body: "This website uses first-party analytics (PostHog) to count visits and see which pages people use, and to report errors. We record a visit (session replay) only if you choose Allow when we ask; anything typed into a form is hidden from the recording either way, and you can say no without losing anything. Fonts are served from our own servers. We do not use advertising or cross-site tracking cookies. The Afterkey app itself uses only the cookies needed to sign you in.",
+  },
+  {
+    heading: "Children",
+    body: "This website and the Afterkey service are for adults and are not directed at children. We do not knowingly collect personal information from anyone under 13. If you believe a child has given us information, contact us and we will delete it.",
   },
   {
     heading: "Contact",
@@ -58,7 +62,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      updated="August 2026"
+      updated="October 2026"
       intro="Your privacy matters. This policy explains what we collect and how we use it."
       sections={sections}
       disclaimer="This is a placeholder Privacy Policy. Please consult a legal professional to create a comprehensive policy appropriate for your business and jurisdiction."
