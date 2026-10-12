@@ -12,6 +12,9 @@ npm run build   # production build
 npm run lint
 ```
 
+> Start with `CLAUDE.md` in this repo: the mission, everything the product
+> does, the pricing, and every claim rule, in one place.
+
 ## Single source of truth: `src/lib/content.ts`
 
 **Every fact on this site — the product definition, every price, every feature,
@@ -209,9 +212,10 @@ Copy rules that follow from it:
   markup is added automatically, the homeowner approves the price (nothing is
   charged yet), completion photos are required, and the charge fires when the
   homeowner approves the finished job or the review window (24h default)
-  passes. Money settles to the builder's account; the builder pays the sub
-  as today. Sub payouts through the platform are built but dormant behind
-  `PAYOUTS_ENABLED` — never describe them as live.
+  passes. The payment splits automatically: the sub's share to the sub's
+  bank (once linked), the rest, markup included, to the builder. Sub payouts
+  are LIVE (product `PAYOUTS_ENABLED`, Oct 2026); a sub without a linked
+  bank is paid by the builder as before.
 - Warranty vs. billable (`classification`): classified automatically at
   submit from the home's warranty dates and plan. The sub can only FLAG a
   job; the builder decides and the homeowner is told. The builder never
@@ -220,8 +224,9 @@ Copy rules that follow from it:
   is notified, not asked. Compliance is "tracked and flagged" (alerts at
   30/14/7/3/1/0 days, Action-needed flag); the only gate is
   stop-and-acknowledge on builder-created requests. Never "every job checked."
-- SMS is parked behind `SMS_ENABLED`; `smsStatus` in content.ts is
-  "coming-soon" until it flips. AI: sources on every line, never "never
+- SMS is LIVE (Oct 2026); `smsStatus` in content.ts is "live". Messages
+  still send under Afterkey Inc.'s carrier registration, so never promise a
+  branded sender. AI: sources on every line, never "never
   invents"; the AI overage ceiling is $25 and not builder-set.
 - Pricing/policy canon is the product repo's CLAUDE.md (joekelly4496/
   builder-service-platform): guarantee wording verbatim, onboarding free
@@ -260,7 +265,10 @@ configured as `appBase` in `content.ts`.
 ## Analytics: PostHog
 
 Product analytics, **Session Replay** and **Error Tracking** run through
-PostHog. Nothing is sent unless the project key is present.
+PostHog. Nothing is sent unless the project key is present. Session Replay
+starts ONLY after the visitor clicks "Allow" in `ReplayConsent`
+(`src/components/ReplayConsent.tsx`, key in `src/lib/consent.ts`) - never
+turn recording on by default (California wiretap exposure).
 
 ```bash
 # .env.local (git-ignored) — also set both in Vercel → Project → Environment Variables
@@ -271,7 +279,8 @@ NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
 Where it lives:
 
 - `src/instrumentation-client.ts` — browser init: pageviews on client
-  navigation, session recording (all form inputs masked), exception capture.
+  navigation, consent-gated session recording (all form inputs masked),
+  exception capture.
 - `src/instrumentation.ts` + `src/lib/posthog-server.ts` — server-side
   `onRequestError` hook reporting render / API route errors to Error Tracking.
 - `next.config.ts` — `/ingest/*` reverse proxy to PostHog Cloud (US) so events

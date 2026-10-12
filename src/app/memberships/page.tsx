@@ -358,12 +358,14 @@ export default function MembershipsPage() {
                   several, priced per home. Afterkey never sets your price.
                 </li>
                 <li>
-                  2. The homeowner picks a tier in your branded portal, you
-                  enroll the home, and they put a card or bank account on file.
+                  2. The homeowner joins in your branded portal and pays in one
+                  step, with a card or bank account on file. The renewal terms
+                  sit next to the button, and they can cancel online.
                 </li>
                 <li>
-                  3. It bills every month to your own account — from closing,
-                  or free until the warranty ends if that’s how you sell it.
+                  3. It bills every month from the day they join. Each sub on
+                  the plan gets his share straight to his bank, the rest lands
+                  in your account, and the visits schedule themselves.
                   Reminders, the schedule, and the service history carry your
                   name.
                 </li>
@@ -381,9 +383,9 @@ export default function MembershipsPage() {
                 You never invoice or chase a payment, and the charge can never
                 exceed what the homeowner approved. Paid by check or cash
                 instead? Mark it paid and the homeowner gets an emailed
-                receipt. Paying your sub through the platform is on the
-                roadmap; today you pay him as you do now, and Afterkey keeps
-                his invoice on the record.
+                receipt. Subs who have linked a bank are paid automatically;
+                for anyone who hasn’t, you pay him as you do now and Afterkey
+                keeps his invoice on the record.
               </p>
             </Card>
           </div>

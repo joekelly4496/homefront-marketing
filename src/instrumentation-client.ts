@@ -9,6 +9,7 @@
 // Traffic is sent through the same-origin `/ingest` reverse proxy declared in
 // next.config.ts, so ad blockers don't drop events and cookies stay first-party.
 import posthog from "posthog-js";
+import { REPLAY_CONSENT_KEY } from "@/lib/consent";
 
 const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
 
@@ -26,9 +27,11 @@ if (key) {
     // $exception events in PostHog → Error tracking.
     capture_exceptions: true,
 
-    // Session Replay: recording is on; visitor-typed text (contact form,
-    // email addresses) is masked before it ever leaves the browser.
-    disable_session_recording: false,
+    // Session Replay is OFF until the visitor says yes (California
+    // wiretapping law treats recording a visit without consent as a
+    // wiretap). ReplayConsent asks once; "Allow" starts recording and the
+    // choice is remembered. Typed text stays masked either way.
+    disable_session_recording: true,
     session_recording: {
       maskAllInputs: true,
       maskTextSelector: "[data-ph-mask]",
@@ -40,4 +43,9 @@ if (key) {
 
     debug: process.env.NODE_ENV === "development",
   });
+  try {
+    if (localStorage.getItem(REPLAY_CONSENT_KEY) === "granted") posthog.startSessionRecording();
+  } catch {
+    // Storage blocked: no consent on record, so no recording.
+  }
 }
