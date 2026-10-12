@@ -238,8 +238,9 @@ voice, imagery and page craft; run the humanizer pass on every visible word.
   README), JSON-LD from `src/lib/schema.ts`.
 - `/start` is the ad landing page (noindex); `/welcome` is the page builders
   send homeowners (noindex). Details in README.
-- Work on a branch, open a PR, merge to `main`; Vercel deploys
-  `homefront-marketing` from `main`.
+- Work on a branch, open a PR into the repo's default branch
+  **`claude/build-homefront-marketing-site-ybRhh`** (there is no `main`);
+  Vercel deploys `homefront-marketing` to production from that branch.
 
 ## Keeping the site true
 
