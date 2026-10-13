@@ -1,4 +1,10 @@
 import { ImageResponse } from "next/og";
+import {
+  LOCKUP_MARK_TRANSFORM,
+  LOCKUP_VIEWBOX,
+  LOCKUP_WORD_TRANSFORM,
+  WORDMARK_PATH,
+} from "@/components/ui/logo-geometry";
 
 export const alt =
   "Afterkey — post-closing software for residential home builders";
@@ -19,36 +25,20 @@ export default function OpengraphImage() {
         fontFamily: "sans-serif",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-        <div
-          style={{
-            width: "64px",
-            height: "64px",
-            borderRadius: "10px",
-            backgroundColor: "#b08d42",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {/* The Afterkey house mark — same glyph as the favicon and nav logo */}
-          <svg
-            width="34"
-            height="34"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#1a2332"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 9.5 12 3l9 6.5" />
-            <path d="M5 9.5V21h14V9.5" />
-          </svg>
-        </div>
-        <span style={{ fontSize: "40px", fontWeight: 600, color: "#1a2332" }}>
-          Afterkey
-        </span>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        {/* The Afterkey lockup: house-key mark + outlined wordmark */}
+        <svg width="400" height="65" viewBox={LOCKUP_VIEWBOX}>
+          <g transform={LOCKUP_MARK_TRANSFORM}>
+            <circle cx="44" cy="62" r="26" fill="none" stroke="#b08d42" strokeWidth="16" />
+            <path d="M70 54H214L222 62L214 70H70Z" fill="#b08d42" />
+            <path
+              d="M150 54V32L172 14L194 32V54ZM166 54V40H178V54Z"
+              fill="#b08d42"
+              fillRule="evenodd"
+            />
+          </g>
+          <path transform={LOCKUP_WORD_TRANSFORM} d={WORDMARK_PATH} fill="#1a2332" />
+        </svg>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
