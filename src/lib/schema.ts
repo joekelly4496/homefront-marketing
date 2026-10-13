@@ -25,7 +25,7 @@ export function organizationSchema() {
     email: brand.email,
     logo: {
       "@type": "ImageObject",
-      url: absoluteUrl("/opengraph-image"),
+      url: absoluteUrl("/afterkey-logo.png"),
     },
     contactPoint: {
       "@type": "ContactPoint",
