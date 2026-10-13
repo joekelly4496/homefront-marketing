@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { brand } from "@/lib/content";
+import { forwardToCrm } from "@/lib/crm";
 
 export const dynamic = "force-dynamic";
 
@@ -67,6 +68,20 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+
+    // Into Afterkey Sales first. When it saves the lead, the CRM alerts Joe
+    // (text + email), so this route's own email is only the fallback.
+    const savedInCrm = await forwardToCrm({
+      kind: body.source === "widget" ? "widget" : "contact",
+      name,
+      company,
+      email,
+      phone,
+      homes,
+      message,
+    });
+
+    if (savedInCrm) return NextResponse.json({ success: true });
 
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {

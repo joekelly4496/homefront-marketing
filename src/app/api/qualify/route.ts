@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { brand } from "@/lib/content";
+import { forwardToCrm } from "@/lib/crm";
 import {
   answerLabel,
   assessFit,
@@ -69,6 +70,24 @@ export async function POST(request: Request) {
       // The page never sends unqualified leads here; if something does, drop it quietly.
       return NextResponse.json({ success: true, fit });
     }
+
+    // Into Afterkey Sales first. When it saves the lead, the CRM alerts Joe
+    // (text + email), so this route's own email is only the fallback.
+    const savedInCrm = await forwardToCrm({
+      kind: "qualify",
+      name,
+      company,
+      email,
+      phone,
+      homes: answerLabel("homes", answers.homes),
+      answers: {
+        "Describes them": answerLabel("role", answers.role),
+        "Biggest time sink": answerLabel("pain", answers.pain),
+      },
+      utm: Object.fromEntries(utm),
+    });
+
+    if (savedInCrm) return NextResponse.json({ success: true, fit });
 
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
