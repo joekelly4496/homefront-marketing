@@ -59,7 +59,7 @@ export function Logo({
       aria-label={`${brand.name} home`}
       className={`inline-flex items-center ${text} ${className}`.trim()}
     >
-      <AfterkeyLockup className="h-[26px] w-auto" />
+      <AfterkeyLockup className="h-7 w-auto" />
     </Link>
   );
 }
