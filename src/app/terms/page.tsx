@@ -4,7 +4,7 @@ import { brand, pricing, guarantee } from "@/lib/content";
 
 export const metadata = pageMetadata({
   title: "Terms of Service",
-  description: `The terms that govern your use of ${brand.name}, the post-closing platform for residential home builders.`,
+  description: `The terms that govern your use of ${brand.name}, the post-closing platform for residential home builders and remodelers.`,
   path: "/terms",
 });
 
@@ -15,7 +15,7 @@ const sections: LegalSection[] = [
   },
   {
     heading: "Description of service",
-    body: `${brand.name} provides a post-closing software platform for residential home builders. The service includes builder, homeowner, and subcontractor portals; warranty and service request management with SLA tracking and automated reminders; subcontractor dispatch, ratings, and cost intelligence; subcontractor compliance document tracking; AI-assisted home maintenance schedules; homeowner membership and service plan billing; photo documentation; and related features as described on our website.`,
+    body: `${brand.name} provides a post-closing software platform for residential home builders and remodelers. The service includes builder, homeowner, and subcontractor portals; warranty and service request management with SLA tracking and automated reminders; subcontractor dispatch, ratings, and cost intelligence; subcontractor compliance document tracking; AI-assisted home maintenance schedules; homeowner membership and service plan billing; photo documentation; and related features as described on our website.`,
   },
   {
     heading: "AI-generated content",

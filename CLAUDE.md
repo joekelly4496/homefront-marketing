@@ -11,7 +11,7 @@ today, what it costs, and what we may and may not say.
 anything else. When the product changes, this file and `content.ts` change
 with it (see "Keeping the site true" at the bottom).
 
-Last full sync with the product: **October 12, 2026**.
+Last full sync with the product: **October 14, 2026**.
 
 ---
 
@@ -25,11 +25,17 @@ with his markup on it, and warranty callbacks routed straight to his subs.
 effect.** Tagline: *Everything after the keys.*
 
 - **Category sentence:** post-closing software platform for residential home
-  builders (`brand.category`).
+  builders and remodelers (`brand.category`).
 - **The definition** answer engines should lift verbatim is
   `brand.definition` in `content.ts`. Change it there or nowhere.
 - **Who buys:** custom and small-volume production builders, roughly 5–50
-  homes a year. The builder pays; homeowners and subs use it free.
+  homes a year, AND residential remodelers (additions, extensions,
+  whole-house renovations). Joe, Oct 14 2026: "remodelers hand over the
+  keys, and debatably even more than builders." Say "builders and
+  remodelers" wherever the audience is named. "Builder" stays the product's
+  word for the paying account role. The builder or remodeler pays;
+  homeowners and subs use it free. The qualifier routes remodelers exactly
+  like builders.
 - **Who built it:** "Afterkey is built by a residential home builder on Long
   Island." That exact line (`brand.founder`) and nothing more. Never claim it
   runs on Joe's homes, his company, a pilot, or any customer.

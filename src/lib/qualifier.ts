@@ -16,7 +16,7 @@ export type Question = {
 export const questions: Question[] = [
   {
     id: "homes",
-    prompt: "How many homes do you close a year?",
+    prompt: "How many homes do you finish and hand over a year?",
     options: [
       { value: "under-5", label: "Fewer than 5" },
       { value: "5-15", label: "5 to 15" },
@@ -50,16 +50,16 @@ export const questions: Question[] = [
 export type Answers = Partial<Record<QuestionId, string>>;
 
 /**
- * qualified: a new-home builder closing 5+ a year → contact step, then the calendar.
+ * qualified: a builder or remodeler handing over 5+ homes a year → contact step, then the calendar.
  * sub: trades use Afterkey free through their builder → the subs page.
- * small: a builder under 5 a year → self-serve signup, no call.
- * other: not a new-home builder → self-serve signup, no call.
+ * small: a builder or remodeler under 5 a year → self-serve signup, no call.
+ * other: neither a builder nor a remodeler → self-serve signup, no call.
  */
 export type Fit = "qualified" | "sub" | "small" | "other";
 
 export function assessFit(answers: Answers): Fit {
   if (answers.role === "sub") return "sub";
-  if (answers.role !== "builder") return "other";
+  if (answers.role !== "builder" && answers.role !== "remodeler") return "other";
   if (answers.homes === "under-5") return "small";
   return "qualified";
 }

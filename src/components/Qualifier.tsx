@@ -315,7 +315,7 @@ export function Qualifier() {
       cta: "qualifier_signup",
     },
     other: {
-      title: "Afterkey is built for new-home builders.",
+      title: "Afterkey is built for home builders and remodelers.",
       body: "It runs on homes you’ve built and handed over, with warranty dates and a homeowner on the other end. If that’s your work, you can set up your first home yourself today.",
       href: signupHref,
       label: primaryCta,

@@ -66,7 +66,7 @@ export function softwareApplicationSchema() {
     publisher: { "@id": organizationId },
     audience: {
       "@type": "Audience",
-      audienceType: "Residential home builders",
+      audienceType: "Residential home builders and remodelers",
     },
     featureList: [
       "Homeowner maintenance memberships priced by the builder, billed monthly to the builder's account",
