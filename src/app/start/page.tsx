@@ -50,7 +50,7 @@ export default function AdLandingPage() {
           {/* The promise */}
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-medium text-brass">
-              For builders doing 5 to 50 homes a year
+              For home builders and remodelers
             </p>
             <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-paper sm:text-5xl lg:text-[3.5rem]">
               You’ve built hundreds of homes. They should still be paying you.

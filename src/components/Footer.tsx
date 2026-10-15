@@ -89,7 +89,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {brand.legalName}. All rights reserved.
           </p>
           <p className="text-xs text-slate-400">
-            Post-closing software for residential home builders.
+            Post-closing software for residential home builders and remodelers.
           </p>
         </div>
       </div>

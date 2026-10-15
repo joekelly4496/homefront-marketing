@@ -94,7 +94,7 @@ export default function HomePage() {
         <Container size="7xl" className="pt-20 sm:pt-28 lg:pt-32">
           <div className="max-w-2xl">
             <p className="text-sm font-medium text-brass">
-              For residential home builders
+              For home builders and remodelers
             </p>
             <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-paper sm:text-5xl lg:text-[3.5rem]">
               {thesis.headline}

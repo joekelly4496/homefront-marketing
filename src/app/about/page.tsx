@@ -17,7 +17,7 @@ import {
 
 const title = "About";
 const description =
-  "Afterkey is post-closing software for residential home builders — built so warranty work, subcontractors, and homeowner relationships run on one system.";
+  "Afterkey is post-closing software for home builders and remodelers — built so warranty work, subcontractors, and homeowner relationships run on one system.";
 
 export const metadata = pageMetadata({
   title,

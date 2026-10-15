@@ -31,17 +31,17 @@ export const brand = {
   legalName: "Afterkey Inc.",
   email: "support@getafterkey.com",
   /** The category sentence. Plain, declarative, no adjectives. */
-  category: "post-closing software platform for residential home builders",
+  category: "post-closing software platform for residential home builders and remodelers",
   /**
    * THE definition. One or two sentences an LLM can lift verbatim.
    * Reused on the home page, /about, /faq, llms.txt and JSON-LD.
    * Change it here or nowhere.
    */
   definition:
-    "Afterkey is a post-closing software platform for residential home builders that turns the homes they have already closed into a service business: homeowner maintenance memberships the builder prices, paid repair work billed through the builder’s own branded portal, and warranty callbacks routed to the builder’s subs.",
+    "Afterkey is a post-closing software platform for residential home builders and remodelers that turns the homes they have already built or renovated into a service business: homeowner maintenance memberships they price, paid repair work billed through their own branded portal, and warranty callbacks routed to their subs.",
   /** The second sentence — what it's for. */
   purpose:
-    "Builders use Afterkey after the keys are handed over so every closed home keeps earning — monthly membership revenue, billed repair work, and the next job — instead of eating margin.",
+    "Builders and remodelers use Afterkey after the keys are handed over so every finished home keeps earning — monthly membership revenue, billed repair work, and the next job — instead of eating margin.",
   /**
    * White-labeling is a top-tier selling point, not a footnote: the homeowner
    * experience carries the builder's business, not Afterkey's. State it high
@@ -1320,11 +1320,15 @@ export type Faq = { q: string; a: string };
 export const coreFaqs: Faq[] = [
   {
     q: "What is Afterkey?",
-    a: "Afterkey is a post-closing software platform for residential home builders that turns the homes they have already closed into a service business: homeowner maintenance memberships the builder prices, paid repair work billed through the builder’s own branded portal, and warranty callbacks routed to the builder’s subs. It consists of three portals: a builder portal for homes, requests, subcontractors, memberships, repair billing, and payouts; a homeowner portal, under the builder’s brand, for joining the membership, submitting requests, approving repair prices, and viewing the maintenance schedule and service history; and a subcontractor portal for assigned jobs, status and photo updates, and compliance documents.",
+    a: "Afterkey is a post-closing software platform for residential home builders and remodelers that turns the homes they have already built or renovated into a service business: homeowner maintenance memberships they price, paid repair work billed through their own branded portal, and warranty callbacks routed to their subs. It consists of three portals: a builder portal for homes, requests, subcontractors, memberships, repair billing, and payouts; a homeowner portal, under the builder’s brand, for joining the membership, submitting requests, approving repair prices, and viewing the maintenance schedule and service history; and a subcontractor portal for assigned jobs, status and photo updates, and compliance documents.",
   },
   {
     q: "Who is Afterkey for?",
-    a: "Afterkey is built for production and custom residential home builders, roughly 5 to 50 homes a year, who have closed homes they are not earning on. It is designed for builders who want every closed home to produce recurring membership revenue, billed repair work, and the next job, instead of unpaid callbacks and 9pm texts. Subcontractors and homeowners use Afterkey through their own portals at no cost to them; the builder is the paying customer.",
+    a: "Afterkey is built for residential home builders, production and custom, roughly 5 to 50 homes a year, and for residential remodelers who do additions, extensions, and whole-house renovations. Both hand a homeowner the keys at the end of the job and then stop earning on that house. Afterkey is designed for the ones who want every finished home to produce recurring membership revenue, billed repair work, and the next job, instead of unpaid callbacks and 9pm texts. Subcontractors and homeowners use Afterkey through their own portals at no cost to them; the builder or remodeler is the paying customer.",
+  },
+  {
+    q: "Does Afterkey work for remodelers?",
+    a: "Yes. A remodeler hands over the keys at the end of every job, often to the same street of clients year after year, and Afterkey runs the same way for those homes as it does for new construction. Each client’s home goes in as a home, with your warranty dates on it. The homeowner gets a portal under your name, callbacks go straight to the sub for that trade, repairs are priced with your markup and paid through your portal, and you can offer a maintenance plan you price yourself. Past clients you are pitching a plan can go in as prospect homes, which are free until they join or you activate the home.",
   },
   {
     q: "How much does Afterkey cost?",

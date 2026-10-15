@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/logo-geometry";
 
 export const alt =
-  "Afterkey — post-closing software for residential home builders";
+  "Afterkey — post-closing software for residential home builders and remodelers";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -55,7 +55,7 @@ export default function OpengraphImage() {
           Everything that happens after the keys.
         </div>
         <div style={{ fontSize: "30px", color: "#4f4c46", maxWidth: "920px" }}>
-          Post-closing software for residential home builders — warranty
+          Post-closing software for home builders and remodelers — warranty
           callbacks, sub dispatch, and AI-built maintenance schedules for
           every home, under your brand.
         </div>

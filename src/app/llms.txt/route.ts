@@ -54,7 +54,7 @@ ${brand.purpose}
 Website: ${absoluteUrl("/")}
 Contact: ${brand.email}
 Category: ${brand.category}
-Audience: Production and custom residential home builders in the United States.
+Audience: Production and custom residential home builders, and residential remodelers (additions, extensions, whole-house renovations), in the United States.
 
 ${section(
   "What Afterkey is",
