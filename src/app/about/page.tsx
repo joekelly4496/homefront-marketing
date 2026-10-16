@@ -36,7 +36,7 @@ const values = [
     icon: Sparkles,
     title: "AI that shows its work",
     description:
-      "Software that guesses about someone’s furnace is worse than software that admits it doesn’t know. Every AI suggestion in Afterkey cites its source or says plainly that it’s a typical schedule to verify. The builder confirms every line.",
+      "Software that guesses about someone’s furnace is worse than software that admits it doesn’t know. Every maintenance line in Afterkey cites its source, and an appliance without one says so plainly. The builder confirms every line.",
   },
   {
     icon: Receipt,

@@ -1,4 +1,4 @@
-import { FileText, Globe, Sparkles, CheckCircle2 } from "lucide-react";
+import { FileText, Library, Sparkles, CheckCircle2, CircleHelp } from "lucide-react";
 
 const rows = [
   {
@@ -19,20 +19,27 @@ const rows = [
     note: 3,
     state: "review" as const,
   },
+  {
+    item: "Garbage disposal",
+    interval: "Needs source — upload its manual",
+    note: null,
+    state: "needs" as const,
+  },
 ];
 
 /**
  * The AI Home Binder as the builder sees it: a proposed maintenance
- * schedule where every line carries a numbered source footnote, and the
- * newest AI suggestion sits in a review state until the builder confirms
- * it. The footnotes are the honesty claim, drawn instead of described.
+ * schedule where every line carries a numbered source footnote (the
+ * uploaded document or a verified library entry), the newest suggestion
+ * sits in review until the builder confirms it, and an appliance with no
+ * source says so instead of getting an interval.
  */
 export function BinderMockup({ className = "" }: { className?: string }) {
   return (
     <div
       className={`overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/5 ${className}`.trim()}
       role="img"
-      aria-label="The Afterkey AI Home Binder showing a proposed maintenance schedule for a home: three appliance maintenance lines, each citing a numbered source — the manufacturer's manual, the manufacturer's website, or an honest 'typical schedule' label — with one AI suggestion awaiting the builder's review."
+      aria-label="The Afterkey AI Home Binder showing a proposed maintenance schedule for a home: maintenance lines each citing a numbered source — the owner's manual the builder uploaded or a verified entry in the shared appliance library — one suggestion awaiting the builder's review, and one appliance marked 'needs source' instead of being given an interval."
     >
       <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-3">
         <div>
@@ -41,7 +48,7 @@ export function BinderMockup({ className = "" }: { className?: string }) {
         </div>
         <span className="inline-flex items-center gap-1 rounded-full border border-violet-200 bg-violet-50 px-2 py-0.5 text-[10px] font-semibold text-violet-700">
           <Sparkles className="h-3 w-3" aria-hidden="true" />
-          3 suggestions
+          4 appliances
         </span>
       </div>
 
@@ -57,9 +64,11 @@ export function BinderMockup({ className = "" }: { className?: string }) {
               <div className="min-w-0">
                 <p className="truncate text-xs font-medium text-slate-900">
                   {r.item}
-                  <sup className="ml-0.5 font-semibold text-violet-600">
-                    {r.note}
-                  </sup>
+                  {r.note !== null && (
+                    <sup className="ml-0.5 font-semibold text-violet-600">
+                      {r.note}
+                    </sup>
+                  )}
                 </p>
                 <p className="text-[11px] text-slate-500">{r.interval}</p>
               </div>
@@ -67,6 +76,11 @@ export function BinderMockup({ className = "" }: { className?: string }) {
                 <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
                   <CheckCircle2 className="h-3 w-3" aria-hidden="true" />
                   Confirmed
+                </span>
+              ) : r.state === "needs" ? (
+                <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
+                  <CircleHelp className="h-3 w-3" aria-hidden="true" />
+                  Needs source
                 </span>
               ) : (
                 <span className="shrink-0 rounded-full border border-violet-200 bg-white px-2 py-0.5 text-[10px] font-semibold text-violet-700">
@@ -90,18 +104,18 @@ export function BinderMockup({ className = "" }: { className?: string }) {
             1. Carrier owner&rsquo;s manual, p.12 — your upload
           </p>
           <p className="flex items-center gap-1.5 text-[10px] text-slate-600">
-            <Globe
+            <Library
               className="h-3 w-3 shrink-0 text-slate-400"
               aria-hidden="true"
             />
-            2. Rheem published maintenance schedule
+            2. Appliance library — verified Rheem entry
           </p>
           <p className="flex items-center gap-1.5 text-[10px] text-slate-600">
             <FileText
               className="h-3 w-3 shrink-0 text-slate-400"
               aria-hidden="true"
             />
-            3. Typical schedule — verify against the manual
+            3. Bosch use and care guide, p.31 — your upload
           </p>
         </div>
       </div>

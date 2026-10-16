@@ -716,7 +716,7 @@ export const featureGroups: FeatureGroup[] = [
     label: "AI Home Binder",
     title: "Maintenance intelligence that shows its sources",
     summary:
-      "Upload a home’s documents and Afterkey proposes the maintenance schedule for you — with the source on every line: the manufacturer, the document you uploaded, or an honest “typical — verify against the manual” label. The schedule is the reason a homeowner keeps paying dues: real upkeep they watch happen, with your name on every reminder.",
+      "Upload a home’s documents and Afterkey proposes the maintenance schedule for you — with the source on every line: the document you uploaded, or a verified entry in Afterkey’s shared appliance library. A line without one is marked “needs source.” The schedule is the reason a homeowner keeps paying dues: real upkeep they watch happen, with your name on every reminder.",
     points: [
       {
         title: "Documents in, schedule out",
@@ -726,17 +726,17 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Every suggestion shows its source",
         description:
-          "For a known make and model, Afterkey looks for the manufacturer’s published maintenance and links it. Where it can’t find one, the line says so — “typical schedule — verify against the manual” — instead of dressing a general interval up as the manufacturer’s. Intervals pulled from a document you uploaded cite that document. The schedule you put your name on shows where every line came from.",
+          "Intervals read from a manual you uploaded cite that document. Appliances matched to Afterkey’s shared library cite the verified entry. Anything without a source is marked “needs source” instead of getting a made-up interval — upload its manual and the schedule is read from it. The schedule you put your name on shows where every line came from.",
       },
       {
         title: "A shared appliance library",
         description:
-          "Once any home on Afterkey has researched a model — or a supplier has entered it — every future home with that model reuses the schedule instantly and free, with no AI action spent. Your thirtieth home costs less to set up than your first.",
+          "Afterkey keeps a shared library of appliance maintenance schedules, verified by the Afterkey team or entered by the supplier. When a home’s appliance has a verified entry, its schedule is added instantly and free, with no AI action spent. Your thirtieth home costs less to set up than your first.",
       },
       {
-        title: "Cost preview before a research pass",
+        title: "No surprise AI bills",
         description:
-          "Before a binder-research pass runs, Afterkey shows which appliances are already in the library (free) and which are new, with a dollar estimate and a “do it yourself to save” option. Document extractions cost one action each on upload. Alerts at 80% and 100% of your allotment, and a $25 overage ceiling that pauses AI you start.",
+          "Matching a home’s binder to the shared library is always free and shows which appliances still need a source. Reading a document costs one action on upload. Alerts at 80% and 100% of your allotment, and a $25 overage ceiling that pauses AI you start.",
       },
     ],
   },
@@ -1119,7 +1119,7 @@ export const homeownerValue: Highlight[] = [
     accent: "emerald",
     title: "A maintenance schedule built for their home",
     description:
-      "Not a generic checklist — the actual appliances in their house, with intervals drawn from the manufacturer’s published maintenance and a source on every line.",
+      "Not a generic checklist — the actual appliances in their house, with intervals read from that home’s own manuals or Afterkey’s verified appliance library, and a source on every line.",
   },
   {
     icon: FolderArchive,
@@ -1291,12 +1291,12 @@ export const differentiators: Differentiator[] = [
   {
     title: "AI that shows its work",
     description:
-      "Every maintenance suggestion carries its source — the manufacturer’s published schedule when one was found, the document you uploaded, or an honest “typical schedule, verify against the manual” label when neither exists. You review and save the list before a homeowner sees it.",
+      "Every maintenance suggestion carries its source — the document you uploaded, or a verified entry in the shared appliance library. When neither exists, the appliance is marked “needs source” until you upload its manual. You review and save the list before a homeowner sees it.",
   },
   {
     title: "It gets cheaper as it gets used",
     description:
-      "The appliance library is shared across every builder on Afterkey. Once a model has been researched, every future home with that model reuses the schedule instantly and free.",
+      "The appliance library is shared across every builder on Afterkey. Entries are verified by the Afterkey team or entered by the supplier, and once a model has a verified entry, every home with that model gets the schedule instantly and free.",
   },
   {
     title: "Compliance that’s tracked and flagged, not filed",
@@ -1364,7 +1364,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "What does the AI in Afterkey actually do?",
-    a: "Afterkey’s AI does four things: it extracts appliances (brand, model, serial, warranty) from uploaded invoices, spec sheets, and photos; it extracts the maintenance tasks a manual prescribes; it researches a known make and model for the manufacturer’s published maintenance and links the source; and it reads a sub’s paper invoice. Every suggested schedule line carries its source — the manufacturer when one was found, the uploaded document, or an honest “typical schedule — verify against the manual” label when the AI is working from general knowledge. The builder reviews the proposed list, removes or edits lines, and saves it; nothing reaches a homeowner before that. Before a research pass spends anything, Afterkey shows which appliances are already in the shared library (free) and which are new, with a dollar estimate. It does not answer homeowner questions, close requests, or decide anything about a repair.",
+    a: "Afterkey’s AI does three things: it extracts appliances (brand, model, serial, warranty) from uploaded invoices, spec sheets, and photos; it extracts the maintenance tasks a manual prescribes, citing the document; and it reads a sub’s paper invoice. Appliances already in Afterkey’s verified appliance library get their schedule from the library, cited by entry, at no charge. A maintenance interval always comes from one of those two sources; an appliance with neither is marked “needs source.” The builder reviews the proposed list, removes or edits lines, and saves it; nothing reaches a homeowner before that. It does not answer homeowner questions, close requests, or decide anything about a repair.",
   },
   {
     q: "Is my data safe with Afterkey?",
@@ -1467,7 +1467,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "How does AI billing work?",
-    a: "The AI add-on is $5 per month per active home and includes 8 AI actions per home per month, pooled across all your homes — so a home that needs 20 actions can borrow from homes that need none. An action is one document extraction or one appliance researched from scratch; appliances already in the shared library are free and do not count against the pool. Beyond the pool, actions are $1.50 each, with alerts at 80% and 100% and a $25 overage ceiling that pauses any AI you start. Without the add-on you get 5 free actions per month to try it, and a binder-research pass always shows a cost preview before spending anything.",
+    a: "The AI add-on is $5 per month per active home and includes 8 AI actions per home per month, pooled across all your homes — so a home that needs 20 actions can borrow from homes that need none. An action is one document extraction; matching a home’s appliances to the verified library is free and does not count against the pool. Beyond the pool, actions are $1.50 each, with alerts at 80% and 100% and a $25 overage ceiling that pauses any AI you start. Without the add-on you get 5 free actions per month to try it.",
   },
   {
     q: "Does Afterkey take a cut of homeowner payments?",
@@ -1672,7 +1672,7 @@ export const useCases: UseCase[] = [
         {
           title: "Every line shows where it came from",
           description:
-            "For a known make and model, Afterkey looks for the manufacturer’s published maintenance and links it. Otherwise the line cites the document you uploaded or carries an honest “typical schedule — verify against the manual” label — a general interval is never dressed up as the manufacturer’s.",
+            "Every line cites the document you uploaded or the verified library entry it came from. An appliance with neither is marked “needs source” until you upload its manual.",
         },
         {
           title: "You review before a homeowner sees it",
@@ -1687,18 +1687,18 @@ export const useCases: UseCase[] = [
         {
           title: "It gets cheaper the more it is used",
           description:
-            "The appliance library is shared across every builder on Afterkey. Once a model has been researched, every future home with that model reuses the schedule instantly and free — and a research pass shows you a cost preview before spending anything.",
+            "The appliance library is shared across every builder on Afterkey and verified by the Afterkey team or the supplier. Once a model has a verified entry, every home with that model gets the schedule instantly and free.",
         },
       ],
     },
     faqs: [
       {
         q: "Does the AI make up maintenance intervals?",
-        a: "It never passes one off as the manufacturer’s. Every suggestion carries its source: the manufacturer’s published maintenance when Afterkey actually found it, the document uploaded for that home, or an explicit “typical schedule — verify against the manual” label when the interval comes from general knowledge rather than a source. Intervals extracted from a manual are never invented — the AI is told to leave out anything the document does not state. The builder reviews the proposed list and saves what belongs before it reaches a homeowner.",
+        a: "It marks the appliance “needs source” instead of filling in an interval. Every maintenance line comes from a document uploaded for that home or a verified entry in Afterkey’s appliance library, and cites it. The AI is told to leave out anything the document does not state. The builder reviews the proposed list and saves what belongs before it reaches a homeowner.",
       },
       {
         q: "What does an AI action cost?",
-        a: "The AI add-on is $5 per month per active home and includes 8 AI actions per home per month, pooled across all of your homes — an action is one document extraction or one appliance researched from scratch. Appliances already in the shared library are free and do not count against the pool. Additional actions are $1.50 each, with alerts at 80% and 100% and a $25 overage ceiling that pauses AI you start. Without the add-on, you get 5 free actions per month to try it.",
+        a: "The AI add-on is $5 per month per active home and includes 8 AI actions per home per month, pooled across all of your homes — an action is one document extraction. Matching appliances to the verified library is free and does not count against the pool. Additional actions are $1.50 each, with alerts at 80% and 100% and a $25 overage ceiling that pauses AI you start. Without the add-on, you get 5 free actions per month to try it.",
       },
       {
         q: "Can homeowners see the maintenance schedule themselves?",

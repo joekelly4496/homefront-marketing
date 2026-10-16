@@ -135,12 +135,14 @@ effect.** Tagline: *Everything after the keys.*
 
 ### AI Home Binder
 - Documents in (manuals, spec sheets, invoices), proposed schedule out, a
-  **source on every line** (manufacturer link, uploaded document, or an honest
-  "typical — verify against the manual"). The builder reviews and saves before
-  any homeowner sees it.
-- Shared appliance library: once any home researches a model, every future
-  home reuses it free.
-- Cost preview before any research pass. Never "AI-powered" as a benefit,
+  **source on every line**: the uploaded document, or a VERIFIED entry in the
+  shared appliance library. No source = "needs source" (the app no longer
+  makes "typical" schedules or looks intervals up on the web, Oct 2026). The
+  builder reviews and saves before any homeowner sees it.
+- Shared appliance library: verified by the Afterkey team or entered by the
+  supplier; a verified entry is reused free on every home with that model.
+- An AI action = one document extraction; library matching is free. Never
+  "AI-powered" as a benefit,
   never "never invents", never "AI resolves/closes requests."
 - Roadmap only: a homeowner AI assistant grounded in one home's binder.
 
