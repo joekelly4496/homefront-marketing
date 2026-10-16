@@ -117,7 +117,7 @@ ${section(
 
 Afterkey maintains a platform-wide shared library of appliance maintenance schedules. Entries are verified by the Afterkey team or entered by the supplier; once a model has a verified entry, every home with that model gets the schedule instantly and at no cost. The library holds equipment maintenance information only; homeowner and home-identifying data is not placed into it.
 
-Before any AI spend, Afterkey shows a cost preview listing which appliances are already in the library (free) and which are new, with a dollar estimate and an option for the builder to enter the schedule manually instead.`,
+Matching a home's appliances to verified library entries uses no AI and is free. Before suggesting anything, Afterkey lists which appliances have a verified schedule and which need a source; reading an uploaded manual or spec sheet is one AI action, and the builder can always enter a schedule by hand instead.`,
 )}
 ${section(
   "Status of features",
