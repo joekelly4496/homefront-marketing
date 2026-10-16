@@ -1368,7 +1368,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Is my data safe with Afterkey?",
-    a: "Builder, homeowner, and subcontractor data is separated by role, so each party sees only what applies to them: homeowners see their own home, and subcontractors see only the jobs assigned to them. Afterkey does not sell or trade customer data. Homeowner payments are processed by a PCI-compliant payment processor, and Afterkey does not store card numbers. Documents uploaded to a home’s binder belong to the builder and the homeowner, and are used to build that home’s maintenance record.",
+    a: "Builder, homeowner, and subcontractor data is separated by role, so each party sees only what applies to them: homeowners see their own home, and subcontractors see only the jobs assigned to them. Uploaded photos and documents are kept in private storage with no public links: each file opens only for the people that home or job belongs to, and links sent by email or text expire. Afterkey does not sell or trade customer data. Homeowner payments are processed by a PCI-compliant payment processor, and Afterkey does not store card numbers. Documents uploaded to a home’s binder belong to the builder and the homeowner, and are used to build that home’s maintenance record.",
   },
   {
     q: "How is Afterkey different from a general CRM?",
