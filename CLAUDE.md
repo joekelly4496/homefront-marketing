@@ -246,6 +246,16 @@ voice, imagery and page craft; run the humanizer pass on every visible word.
   README), JSON-LD from `src/lib/schema.ts`.
 - `/start` is the ad landing page (noindex); `/welcome` is the page builders
   send homeowners (noindex). Details in README.
+- `/scorecard` is the After-the-Keys Scorecard quiz (Oct 17 2026, Joe
+  approved the copy): 9 questions, then first name, company, email and phone
+  (required), then a score out of 100 (time after the keys /60, money after
+  the keys /40), a result type, a pain line and a plan calculator. Questions,
+  scoring and copy live in `src/lib/scorecard.ts`; `/api/scorecard`
+  recomputes everything server-side and forwards the lead to Afterkey Sales
+  (kind `scorecard`), which emails the scorecard and the follow-ups. No site
+  chrome (HideOnLanding). The score is never compared to other builders, and
+  calculator numbers are examples the builder sets. Quiz takers are never
+  texted; Joe may call.
 - Work on a branch, open a PR into the repo's default branch
   **`claude/build-homefront-marketing-site-ybRhh`** (there is no `main`);
   Vercel deploys `homefront-marketing` to production from that branch.

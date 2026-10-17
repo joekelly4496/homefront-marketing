@@ -22,6 +22,7 @@ const routes: {
     changeFrequency: "monthly" as const,
   })),
   { path: "/faq", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/scorecard", priority: 0.7, changeFrequency: "monthly" },
   { path: "/compare", priority: 0.7, changeFrequency: "monthly" },
   { path: "/for-subcontractors", priority: 0.6, changeFrequency: "monthly" },
   { path: "/for-homeowners", priority: 0.6, changeFrequency: "monthly" },
