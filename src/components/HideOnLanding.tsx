@@ -4,9 +4,10 @@ import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { adLanding, welcomePath } from "@/lib/content";
 
-/** Routes that are ad destinations: no site navigation, no footer, no exits. */
+/** Routes that are ad destinations (the ad page and the scorecard quiz): no site navigation, no footer, no exits. */
 export function isLandingPath(pathname: string | null): boolean {
   if (!pathname) return false;
+  if (pathname === "/scorecard") return true;
   return pathname === adLanding.path || pathname.startsWith(`${adLanding.path}/`);
 }
 
