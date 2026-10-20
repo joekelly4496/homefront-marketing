@@ -99,7 +99,7 @@ export const adLanding = {
  * The 30-day money-back guarantee — the risk reversal that replaced the free
  * trial. CANONICAL WORDING from the product repo's CLAUDE.md (Pricing Model
  * v2); use `body` verbatim. "Every dollar Afterkey charged" means the base,
- * the per-home line, and the AI add-on for the period; the carve-out is
+ * the per-home line, and the AI plan (and AI pay-as-you-go) for the period; the carve-out is
  * exactly the $29 SMS number charge and SMS overage. Processing on homeowner
  * payments is not something Afterkey charged the builder, so it is outside
  * the promise by construction — don't add language about it either way.
@@ -164,11 +164,29 @@ export const pricing = {
     includedSegments: 1000,
     overagePer1000: 25,
   },
+  /**
+   * AI plans + credits (owner decision, Oct 20 2026; replaces the $5/home
+   * add-on). A flat monthly plan includes credits; heavier jobs use more
+   * credits, library matches use none. Over the plan: pay-as-you-go per 100
+   * credits, up to a monthly cap the builder sets. Upgrades start at once;
+   * downgrades start next month. Describe credits by the work they do
+   * (manualCredits / planCredits), never by Afterkey's own AI cost.
+   */
   ai: {
-    price: 5,
-    actionsPerHome: 8,
-    overagePerAction: 1.5,
-    freeActionsWithoutAddOn: 5,
+    plans: [
+      { name: "Starter", price: 49, credits: 2000 },
+      { name: "Growth", price: 149, credits: 7500 },
+      { name: "Scale", price: 399, credits: 25000 },
+    ],
+    /** Credits every builder gets each month without a plan. */
+    freeCredits: 100,
+    /** Pay-as-you-go over the plan, per 100 credits. */
+    overagePer100: 3,
+    /** Default monthly cap on pay-as-you-go (builder-adjustable). */
+    defaultCap: 50,
+    /** Typical use, as the app states it. */
+    manualCredits: "40 to 80",
+    planCredits: "about 200",
   },
   /**
    * Payment processing on homeowner payments. There is NO platform fee —
@@ -731,7 +749,7 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "A shared appliance library",
         description:
-          "Afterkey keeps a shared library of appliance maintenance schedules, verified by the Afterkey team or entered by the supplier. When a home’s appliance has a verified entry, its schedule is added instantly and free, with no AI action spent. Your thirtieth home costs less to set up than your first.",
+          "Afterkey keeps a shared library of appliance maintenance schedules, verified by the Afterkey team or entered by the supplier. When a home’s appliance has a verified entry, its schedule is added instantly and free, with no AI credits used. Your thirtieth home costs less to set up than your first.",
       },
       {
         title: "No surprise AI bills",
@@ -1467,7 +1485,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "How does AI billing work?",
-    a: "The AI add-on is $5 per month per active home and includes 8 AI actions per home per month, pooled across all your homes — so a home that needs 20 actions can borrow from homes that need none. An action is one document extraction; matching a home’s appliances to the verified library is free and does not count against the pool. Beyond the pool, actions are $1.50 each, with alerts at 80% and 100% and a $25 overage ceiling that pauses any AI you start. Without the add-on you get 5 free actions per month to try it.",
+    a: "AI is an optional monthly plan with credits included: Starter is $49 a month for 2,000 credits, Growth $149 for 7,500, and Scale $399 for 25,000, with custom plans for bigger builders. Credits follow the work: reading a manual usually takes 40 to 80, and building and checking a typical home’s maintenance plan about 200. Matching a home’s appliances to the verified library is free and uses none. Over your plan, credits are $3 per 100, up to a monthly cap you set (default $50), with alerts at 80%, 100% and the cap. Upgrades start right away; downgrades start next month. Without a plan you get 100 free credits a month, about one manual read.",
   },
   {
     q: "Does Afterkey take a cut of homeowner payments?",
@@ -1697,8 +1715,8 @@ export const useCases: UseCase[] = [
         a: "It marks the appliance “needs source” instead of filling in an interval. Every maintenance line comes from a document uploaded for that home or a verified entry in Afterkey’s appliance library, and cites it. The AI is told to leave out anything the document does not state. The builder reviews the proposed list and saves what belongs before it reaches a homeowner.",
       },
       {
-        q: "What does an AI action cost?",
-        a: "The AI add-on is $5 per month per active home and includes 8 AI actions per home per month, pooled across all of your homes — an action is one document extraction. Matching appliances to the verified library is free and does not count against the pool. Additional actions are $1.50 each, with alerts at 80% and 100% and a $25 overage ceiling that pauses AI you start. Without the add-on, you get 5 free actions per month to try it.",
+        q: "What does the AI cost?",
+        a: "AI runs on a monthly plan with credits included: Starter $49 for 2,000 credits, Growth $149 for 7,500, Scale $399 for 25,000, or a custom plan. Reading a manual usually takes 40 to 80 credits, and building and checking a typical home’s plan about 200. Matching appliances to the verified library is free and uses no credits. Beyond your plan, credits are $3 per 100 up to a monthly cap you set (default $50). Without a plan, you get 100 free credits a month.",
       },
       {
         q: "Can homeowners see the maintenance schedule themselves?",

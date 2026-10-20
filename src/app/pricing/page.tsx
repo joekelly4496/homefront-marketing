@@ -37,6 +37,8 @@ import {
 const money = (n: number) => `$${n.toLocaleString("en-US")}`;
 
 const title = `Pricing: $${pricing.base}/month + $${pricing.perHome} Per Active Home`;
+const starterAi = pricing.ai.plans[0];
+
 const description = `One plan, published. $${pricing.base}/month plus $${pricing.perHome} per active home, unlimited users and subcontractors. Optional AI and SMS add-ons. No contracts, no quote calls.`;
 
 export const metadata = pageMetadata({
@@ -60,10 +62,10 @@ const priceLines = [
     description: `Flat at any age, for homes you’re actively serving. Next to it: one home on a $${workedExample.planPrice}-a-month maintenance plan brings in $${(workedExample.planPrice * 12).toLocaleString("en-US")} a year; on a $${workedExample.fullServicePrice} whole-house plan, $${(workedExample.fullServicePrice * 12).toLocaleString("en-US")} — at prices you set. Prospect homes are free while you pitch them, and archived homes are free, read-only, and keep their full history.`,
   },
   {
-    price: `+ $${pricing.ai.price}`,
-    unit: "/month per active home (optional)",
-    title: "AI add-on",
-    description: `${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all your homes. Appliances already in the shared library are free and don’t count. Beyond the pool, $${pricing.ai.overagePerAction.toFixed(2)} per action, with alerts at 80% and 100% and a $25 overage ceiling that pauses AI you start.`,
+    price: `+ $${starterAi.price}`,
+    unit: "/month and up (optional)",
+    title: "AI plans",
+    description: `${pricing.ai.plans.map((p) => `${p.name} $${p.price} (${p.credits.toLocaleString("en-US")} credits)`).join(", ")}, or a custom plan. Reading a manual usually takes ${pricing.ai.manualCredits} credits; appliances already in the shared library are free. Over your plan, $${pricing.ai.overagePer100} per 100 credits up to a monthly cap you set (default $${pricing.ai.defaultCap}).`,
   },
   {
     price: `+ $${pricing.sms.price}`,
@@ -84,7 +86,7 @@ const exampleBills = [
   { homes: 100 },
 ].map(({ homes }) => {
   const core = pricing.base + homes * pricing.perHome;
-  const withAi = core + homes * pricing.ai.price;
+  const withAi = core + starterAi.price;
   return {
     homes: `${homes} active homes`,
     core: `$${core.toLocaleString()}`,
@@ -232,7 +234,7 @@ export default function PricingPage() {
               <table className="w-full min-w-[560px] text-left text-sm">
                 <caption className="sr-only">
                   Monthly Afterkey cost by number of active homes, with and
-                  without the optional AI and SMS add-ons
+                  without the optional Starter AI plan and SMS add-on
                 </caption>
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -243,7 +245,7 @@ export default function PricingPage() {
                       Base + homes
                     </th>
                     <th scope="col" className="px-5 py-3.5">
-                      + AI add-on
+                      + {starterAi.name} AI plan
                     </th>
                     <th scope="col" className="px-5 py-3.5">
                       + AI and SMS
@@ -360,26 +362,31 @@ export default function PricingPage() {
                 </span>
                 <div className="mt-4 flex flex-wrap items-center gap-2">
                   <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-                    The AI add-on
+                    AI plans
                   </h2>
                   <StatusPill status="live" />
                 </div>
                 <p className="mt-3 text-base text-slate-600">
-                  ${pricing.ai.price}/month per active home, with{" "}
-                  {pricing.ai.actionsPerHome} AI actions per home per month
-                  pooled across your whole portfolio — so a complicated home can
-                  borrow from ten simple ones. Appliances already in the shared
-                  library cost nothing and never touch the pool.
+                  One flat monthly plan with credits included, not a per-home
+                  charge:{" "}
+                  {pricing.ai.plans
+                    .map((p) => `${p.name} $${p.price} for ${p.credits.toLocaleString("en-US")} credits`)
+                    .join(", ")}
+                  , or a custom plan for bigger builders. Credits follow the
+                  work: reading a manual usually takes {pricing.ai.manualCredits}{" "}
+                  credits, and building and checking a typical home’s plan{" "}
+                  {pricing.ai.planCredits}. Appliances already in the shared
+                  library cost nothing.
                 </p>
                 <p className="mt-3 text-base text-slate-600">
-                  Afterkey shows you a cost preview before it spends anything:
-                  which appliances are free, which are new, the dollar estimate,
-                  and a do-it-yourself option if you would rather save the
-                  money. Overage is ${pricing.ai.overagePerAction.toFixed(2)}{" "}
-                  per action, with alerts at 80% and 100% and a $25 ceiling
-                  that pauses AI you start. Without the add-on you
-                  still get {pricing.ai.freeActionsWithoutAddOn} free actions a
-                  month to try it.
+                  Your usage page shows credits used, what used them, and when
+                  they reset. Over your plan, credits are $
+                  {pricing.ai.overagePer100} per 100, up to a monthly cap you
+                  set (default ${pricing.ai.defaultCap}), with alerts at 80%,
+                  100% and the cap. Upgrade any time and it starts right away;
+                  downgrades start next month. Without a plan you still get{" "}
+                  {pricing.ai.freeCredits} free credits a month, about one
+                  manual read.
                 </p>
               </Card>
             </Reveal>
