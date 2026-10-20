@@ -95,7 +95,7 @@ ${section(
 
 - Base: $${pricing.base}/month. Includes unlimited team members and unlimited subcontractors. There are no per-user fees.
 - Per active home: $${pricing.perHome}/month per home, flat at any age, for homes the builder is actively serving. Prospect homes (past builds being pitched a membership — outreach and offers only) and archived homes (read-only history, reactivate any time) are free. A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set.
-- AI add-on (optional): $${pricing.ai.price}/month per active home. Includes ${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all homes. Appliances already in the shared library are free and do not count against the pool. Overage is $${pricing.ai.overagePerAction.toFixed(2)} per action, with a live meter, alerts at 80% and 100%, and a $25 overage ceiling that pauses AI the builder starts. Without the add-on, builders get ${pricing.ai.freeActionsWithoutAddOn} free AI actions per month.
+- AI plans (optional, flat monthly, not per home): ${pricing.ai.plans.map((p) => `${p.name} $${p.price}/month with ${p.credits.toLocaleString("en-US")} credits`).join("; ")}; custom plans for bigger builders. Reading a manual usually takes ${pricing.ai.manualCredits} credits; building and checking a typical home's plan ${pricing.ai.planCredits}. Appliances already in the shared library are free. Over the plan: $${pricing.ai.overagePer100} per 100 credits, up to a monthly cap the builder sets (default $${pricing.ai.defaultCap}), with alerts at 80%, 100% and the cap. Upgrades start at once; downgrades next month. Without a plan, builders get ${pricing.ai.freeCredits} free credits a month.
 - SMS add-on (optional): $${pricing.sms.price}/month. Includes a dedicated business number and ${pricing.sms.includedSegments.toLocaleString()} segments. Overage is $${pricing.sms.overagePer1000} per 1,000 segments, with a live meter and a builder-set ceiling.
 - Platform fee on homeowner payments: none. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for card payments — all-in rates that include every payment processing and payout cost.
 - Onboarding: free. The builder adds homes and subcontractors and starts the same day.
@@ -117,7 +117,7 @@ ${section(
 
 Afterkey maintains a platform-wide shared library of appliance maintenance schedules. Entries are verified by the Afterkey team or entered by the supplier; once a model has a verified entry, every home with that model gets the schedule instantly and at no cost. The library holds equipment maintenance information only; homeowner and home-identifying data is not placed into it.
 
-Matching a home's appliances to verified library entries uses no AI and is free. Before suggesting anything, Afterkey lists which appliances have a verified schedule and which need a source; reading an uploaded manual or spec sheet is one AI action, and the builder can always enter a schedule by hand instead.`,
+Matching a home's appliances to verified library entries uses no AI and is free. Before suggesting anything, Afterkey lists which appliances have a verified schedule and which need a source; reading an uploaded manual or spec sheet uses AI credits (usually ${pricing.ai.manualCredits}), and the builder can always enter a schedule by hand instead.`,
 )}
 ${section(
   "Status of features",

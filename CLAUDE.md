@@ -141,7 +141,7 @@ effect.** Tagline: *Everything after the keys.*
   builder reviews and saves before any homeowner sees it.
 - Shared appliance library: verified by the Afterkey team or entered by the
   supplier; a verified entry is reused free on every home with that model.
-- An AI action = one document extraction; library matching is free. Never
+- AI work draws AI credits (see Pricing canon); library matching is free. Never
   "AI-powered" as a benefit,
   never "never invents", never "AI resolves/closes requests."
 - Roadmap only: a homeowner AI assistant grounded in one home's binder.
@@ -174,9 +174,16 @@ effect.** Tagline: *Everything after the keys.*
   homes are free. A home bills for any month it was active at any point.
 - **SMS add-on $29/month**: dedicated number + 1,000 segments; $25 per extra
   1,000; live meter, 80/100% alerts, adjustable ceiling (default $150).
-- **AI add-on $5/month per active home**: 8 actions per home per month,
-  pooled; $1.50 per extra action; $25 ceiling (not builder-set); 5 free
-  actions a month without the add-on.
+- **AI plans + credits** (owner decision Oct 20 2026; replaces the $5/home
+  add-on): flat monthly plans, never per home - **Starter $49 / 2,000
+  credits, Growth $149 / 7,500, Scale $399 / 25,000**, or a custom plan for
+  bigger builders. Credits follow the work (a manual read is usually 40-80,
+  building and checking a typical home's plan about 200); library matches use
+  none. Over the plan: **$3 per 100 credits**, up to a monthly cap the
+  builder sets (default **$50**), alerts at 80% / 100% / cap. Upgrades start
+  at once, downgrades next month. Without a plan: 100 free credits a month
+  (not a trial). Never describe credits by Afterkey's own AI cost or margin.
+  All numbers live in `pricing.ai` in content.ts.
 - **No platform fee** on homeowner payments. Processing at Afterkey's
   **published flat rates: bank (ACH) 1.25%, card 3.5% + 30¢**, which
   "include every Stripe processing and payout fee." Never "at cost", never

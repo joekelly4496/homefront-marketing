@@ -121,24 +121,21 @@ export function softwareApplicationSchema() {
             },
           },
         },
-        {
+        ...pricing.ai.plans.map((plan) => ({
           "@type": "Offer",
-          name: "AI add-on",
-          description: `Optional AI add-on including ${pricing.ai.actionsPerHome} AI actions per home per month, pooled across all homes. Additional actions are $${pricing.ai.overagePerAction} each.`,
-          price: pricing.ai.price,
+          name: `AI plan - ${plan.name}`,
+          description: `Optional monthly AI plan with ${plan.credits.toLocaleString("en-US")} AI credits included. Additional credits are $${pricing.ai.overagePer100} per 100, up to a monthly cap the builder sets.`,
+          price: plan.price,
           priceCurrency: "USD",
           priceSpecification: {
             "@type": "UnitPriceSpecification",
-            price: pricing.ai.price,
+            price: plan.price,
             priceCurrency: "USD",
             unitText: "MONTH",
-            referenceQuantity: {
-              "@type": "QuantitativeValue",
-              value: 1,
-              unitText: "active home",
-            },
+            billingDuration: 1,
+            billingIncrement: 1,
           },
-        },
+        })),
         {
           "@type": "Offer",
           name: "SMS add-on",
