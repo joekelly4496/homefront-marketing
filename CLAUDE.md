@@ -33,9 +33,13 @@ effect.** Tagline: *Everything after the keys.*
   whole-house renovations). Joe, Oct 14 2026: "remodelers hand over the
   keys, and debatably even more than builders." Say "builders and
   remodelers" wherever the audience is named. "Builder" stays the product's
-  word for the paying account role. The builder or remodeler pays;
-  homeowners and subs use it free. The qualifier routes remodelers exactly
-  like builders.
+  word for the paying account role. The builder or remodeler pays
+  Afterkey. Never write that homeowners "use it free" or "Homeowners: free"
+  (Joe, Oct 27 2026): homeowners pay the builder for the plans and repairs
+  he sells them through Afterkey. Say "Homeowners never pay Afterkey. They
+  pay you, for the plans and repairs you sell them." Warranty repairs stay
+  free. Subs pay nothing to use it; they get paid through it. The qualifier
+  routes remodelers exactly like builders.
 - **Who built it:** "Afterkey is built by a residential home builder on Long
   Island." That exact line (`brand.founder`) and nothing more. Never claim it
   runs on Joe's homes, his company, a pilot, or any customer.
