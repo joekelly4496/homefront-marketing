@@ -11,7 +11,7 @@ today, what it costs, and what we may and may not say.
 anything else. When the product changes, this file and `content.ts` change
 with it (see "Keeping the site true" at the bottom).
 
-Last full sync with the product: **October 14, 2026**.
+Last full sync with the product: **November 9, 2026** (free trial).
 
 ---
 
@@ -189,20 +189,23 @@ effect.** Tagline: *Everything after the keys.*
   "include every Stripe processing and payout fee." Never "at cost", never
   "Stripe's fee", never a bare "we take no cut" / "100% yours" without the
   processing mention. Bank is listed first; never disparage cards.
-- **30-day money-back guarantee** — use `guarantee.body` verbatim (the
-  product CLAUDE.md's canonical wording). Exceptions: the $29 SMS number
-  charge and SMS overage. (The `afterkey-content` skill words this
-  differently; the product canon wins on the site.) Never promise refunds of
-  processing on homeowner payments.
-- **No free trial, ever.** No annual prepay. No promo codes, no public
-  discounts, no founding cohort. Month-to-month, no contracts, 24-month rate
-  lock (60 days' notice after that, never mid-term or retroactive).
+- **30-day free trial** (owner decision, Nov 9 2026; replaces the 30-day
+  money-back guarantee and the invite-only pilot). Use `trial.body` verbatim
+  with `trial.fine` beside it (the product CLAUDE.md's canonical wording): a
+  card goes on file at signup, the $149 base and per-home fees are free for
+  30 days, cancel anytime before day 31 and pay nothing; texting ($29) and
+  paid AI plans aren't part of the trial. There is NO money-back guarantee
+  and NO pilot any more: never write either, never call the trial a pilot,
+  and never offer a longer or second trial publicly.
+- No annual prepay. No promo codes, no public discounts, no founding
+  cohort. Month-to-month, no contracts, 24-month rate lock (60 days' notice
+  after that, never mid-term or retroactive).
 - The $10 per-home fee never appears naked outside /pricing — pair it with
   `perHomeFraming`. Never tell a builder how to account for or pass it
   through.
 - The seven published commitments (`commitments`): no quote calls, 24-month
   rate lock, no per-user fees, no contracts, no surprise bills, email free
-  forever, 30-day money-back guarantee.
+  forever, 30-day free trial.
 - One competitor anchor only: Buildertrend's warranty features from $829/mo
   (`competitorAnchor`) — re-check before each launch.
 

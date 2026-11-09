@@ -21,7 +21,7 @@ import {
   pricingLine,
   whiteLabelPoints,
   signupHref,
-  guarantee,
+  trial,
   primaryCta,
   competitorAnchor,
   thesis,
@@ -128,7 +128,7 @@ export default function HomePage() {
               </li>
               <li className="border-l border-paper/25 pl-5">No contracts</li>
               <li className="border-l border-paper/25 pl-5">
-                {guarantee.headline}
+                {trial.headline}
               </li>
             </ul>
             <p className="mt-2 text-sm text-slate-400">
@@ -466,8 +466,8 @@ export default function HomePage() {
                 Someone who has handed over keys, taken the call three weeks
                 later, and sent a sub over for nothing. We don’t have customer
                 logos to show you yet, and we’re not going to invent any. What
-                we can put in writing is the price, the meters, and the
-                guarantee.
+                we can put in writing is the price, the meters, and a free
+                month to try it on your own homes.
               </p>
             </div>
             <div className="lg:col-span-7">
@@ -570,7 +570,7 @@ export default function HomePage() {
               A builder with a phone full of homeowner texts has a job. Set up
               your first home, add your subs, and put a plan in front of a
               homeowner this week. {onboarding.short}{" "}
-              {guarantee.short}
+              {trial.short}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

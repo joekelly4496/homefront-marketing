@@ -96,22 +96,24 @@ export const adLanding = {
 } as const;
 
 /**
- * The 30-day money-back guarantee — the risk reversal that replaced the free
- * trial. CANONICAL WORDING from the product repo's CLAUDE.md (Pricing Model
- * v2); use `body` verbatim. "Every dollar Afterkey charged" means the base,
- * the per-home line, and the AI plan (and AI pay-as-you-go) for the period; the carve-out is
- * exactly the $29 SMS number charge and SMS overage. Processing on homeowner
- * payments is not something Afterkey charged the builder, so it is outside
- * the promise by construction — don't add language about it either way.
+ * The 30-day free trial (owner decision, Nov 9 2026). It REPLACES the
+ * 30-day money-back guarantee and the invite-only pilot: there is no
+ * guarantee and no pilot any more. CANONICAL WORDING from the product repo's
+ * CLAUDE.md; use `body` verbatim. A card goes on file at signup; the $149
+ * base and the per-home fees are free for 30 days; the first invoice covers
+ * only the days after the trial. Texting ($29) and paid AI plans are not
+ * part of the trial (`fine`). Never call it a pilot, never offer a
+ * money-back guarantee, never offer a longer trial publicly.
  */
-export const guarantee = {
+export const trial = {
   days: 30,
-  headline: "30-day money-back guarantee",
+  headline: "Free for 30 days",
   /** The full promise. Featured on /pricing and echoed in /terms. */
-  body: "30-day money-back guarantee. If it’s not working for you, we refund every dollar Afterkey charged. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
+  body: "Try it free for 30 days. You put a card on file at signup, and nothing is charged for your subscription until day 31. Cancel anytime before then and you pay nothing.",
+  /** What the trial doesn't cover. Shown wherever `body` is. */
+  fine: "Texting ($29 a month) and paid AI plans aren’t part of the free trial. They bill at their normal price if you turn them on.",
   /** One-line version for microcopy under a CTA. */
-  short:
-    "30-day money-back guarantee — if it’s not working for you, we refund every dollar Afterkey charged.",
+  short: "Free for 30 days. Cancel anytime before day 31 and you pay nothing.",
 } as const;
 
 /**
@@ -152,7 +154,7 @@ export const primaryCta = "Set up your first home";
 /* Connect costs (payouts, connected-account fees). There is no        */
 /* platform fee on homeowner payments. Recurring plan dues are paid by */
 /* card OR bank account — never ACH-only, never disparage cards. The   */
-/* guarantee covers subscription fees only. This supersedes any older  */
+/* free trial covers subscription fees only. This supersedes any older */
 /* numbers; do not revert them.                                        */
 /* ------------------------------------------------------------------ */
 
@@ -546,7 +548,7 @@ export const commitments: Commitment[] = [
     icon: BarChart3,
     title: "No surprise bills",
     description:
-      "Every metered feature has a live meter, alerts at 80% and 100% of your allotment, and an overage ceiling — $150 on SMS, which you can adjust, and $25 on AI. You see spend as it happens.",
+      "Every metered feature has a live meter, alerts at 80% and 100% of your allotment, and an overage ceiling — $150 on SMS and $50 on AI, both of which you can adjust. You see spend as it happens.",
   },
   {
     icon: MessageSquare,
@@ -556,9 +558,9 @@ export const commitments: Commitment[] = [
   },
   {
     icon: BadgeCheck,
-    title: "30-day money-back guarantee",
+    title: "30-day free trial",
     description:
-      "If it’s not working for you, we refund every dollar Afterkey charged. The only exceptions: the $29 SMS add-on for the phone number you used, and any SMS usage over your included allotment.",
+      "Your base and per-home fees are free for 30 days, with a card on file. Cancel anytime before day 31 and you pay nothing. Texting and paid AI plans aren’t part of the trial.",
   },
 ];
 
@@ -1350,7 +1352,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is free. Afterkey does not offer a free trial; every new account is instead covered by a 30-day money-back guarantee.",
+    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is free. New accounts get a 30-day free trial: a card goes on file at signup, the base and per-home fees are free for 30 days, and you can cancel anytime before day 31 and pay nothing.",
   },
   {
     q: "Do homeowners have to pay for a membership to get warranty work?",
@@ -1418,7 +1420,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Onboarding is free: you subscribe, add your homes and subcontractors, and start logging requests the same day. There is no free trial — every new account is covered by a 30-day money-back guarantee instead, so you evaluate Afterkey on your real homes rather than in a sandbox. Existing homes come in all at once from a spreadsheet (up to 1,000 at a time), or one at a time; upload a home’s documents and Afterkey extracts the appliances and proposes the maintenance schedule for you to review and save.",
+    a: "Onboarding is free: you subscribe, add your homes and subcontractors, and start logging requests the same day. Every new account starts with a 30-day free trial on your real homes, not a sandbox: the base and per-home fees are free for 30 days, and you can cancel anytime before day 31 and pay nothing. Existing homes come in all at once from a spreadsheet (up to 1,000 at a time), or one at a time; upload a home’s documents and Afterkey extracts the appliances and proposes the maintenance schedule for you to review and save.",
   },
   {
     q: "When does a homeowner’s membership start billing?",
@@ -1434,7 +1436,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Can I cancel Afterkey at any time?",
-    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts are also covered by a 30-day money-back guarantee: if it is not working for you, we refund every dollar Afterkey charged. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment. Your rate is locked for 24 months from signup; after that, any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
+    a: "Yes. Afterkey is month-to-month with no contracts and no termination fees. New accounts start with a 30-day free trial: close your account from Billing before day 31 and your subscription is never charged. Your rate is locked for 24 months from signup; after that, any increase requires 60 days’ notice, takes effect at your next billing cycle, and is never applied mid-term or retroactively.",
   },
 ];
 
@@ -1505,7 +1507,7 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Is there a free trial?",
-    a: "No. Afterkey uses a 30-day money-back guarantee instead of a free trial. You subscribe and use the product on your real homes from day one, and if it is not working for you, we refund every dollar Afterkey charged. The only exceptions are the $29 SMS add-on for the phone number you used and any SMS usage over your included allotment — carrier costs for messages already sent cannot be recovered. A guarantee fits this product better than a trial: the parts worth evaluating, like subcontractor patterns and maintenance schedules across a roster, take longer to show up than a sandbox week.",
+    a: "Yes. Every new account gets 30 days free. You put a card on file at signup, and nothing is charged for your subscription (the $149 base and the per-home fees) until day 31. You use Afterkey on your real homes and subs from day one, and we email you 7 days and 1 day before the trial ends. To stop, close your account from Billing before day 31 and you pay nothing. Texting ($29 a month) and paid AI plans aren’t part of the trial; they bill at their normal price if you turn them on.",
   },
 ];
 

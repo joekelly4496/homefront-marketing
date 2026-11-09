@@ -22,7 +22,7 @@ import {
   pricing,
   coreFaqs,
   signupHref,
-  guarantee,
+  trial,
   primaryCta,
   thesis,
   revenuePoints,
@@ -488,7 +488,7 @@ export default function MembershipsPage() {
             <p className="mt-4 text-base leading-relaxed text-slate-300">
               {brand.name} is ${pricing.base} a month plus ${pricing.perHome}{" "}
               per active home. Past builds you’re pitching are free to add
-              while you court them. {guarantee.short}
+              while you court them. {trial.short}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

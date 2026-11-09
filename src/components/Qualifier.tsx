@@ -8,7 +8,7 @@ import { TrackedCta } from "@/components/TrackedCta";
 import {
   adLanding,
   brand,
-  guarantee,
+  trial,
   primaryCta,
   signupHref,
 } from "@/lib/content";
@@ -309,7 +309,7 @@ export function Qualifier() {
     },
     small: {
       title: "At your size, skip the call.",
-      body: `Onboarding is free: add a home, add your subs, and log a real request today. ${guarantee.short}`,
+      body: `Onboarding is free: add a home, add your subs, and log a real request today. ${trial.short}`,
       href: signupHref,
       label: primaryCta,
       cta: "qualifier_signup",

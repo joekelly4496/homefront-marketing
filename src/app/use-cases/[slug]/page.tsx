@@ -20,7 +20,7 @@ import {
   findUseCase,
   pricing,
   signupHref,
-  guarantee, primaryCta } from "@/lib/content";
+  trial, primaryCta } from "@/lib/content";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -218,7 +218,7 @@ export default async function UseCasePage({ params }: Params) {
             <p className="mt-4 text-base text-slate-600">
               ${pricing.base}/month plus ${pricing.perHome} per active home,
               unlimited users and subs, no contracts. Set up your first home
-              today. {guarantee.short}
+              today. {trial.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
