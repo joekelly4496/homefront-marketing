@@ -19,7 +19,7 @@ import {
   differentiators,
   notList,
   signupHref,
-  guarantee,
+  trial,
   useCases,
   primaryCta,
   membershipDistinctionShort,
@@ -280,7 +280,7 @@ export default function FeaturesPage() {
             </h2>
             <p className="mt-4 text-base text-slate-600">
               Add your first home and log a real request today.{" "}
-              {onboarding.short} {guarantee.short}
+              {onboarding.short} {trial.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

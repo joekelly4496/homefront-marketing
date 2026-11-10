@@ -11,7 +11,7 @@ import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
   signupHref,
-  guarantee,
+  trial,
   primaryCta,
 } from "@/lib/content";
 
@@ -121,9 +121,9 @@ export default function AboutPage() {
                 We are early. There is no customer logo wall on this site
                 because we have not earned one yet, and we would rather show you
                 the product than borrow someone else’s credibility. The pricing
-                is published, onboarding is free, and a 30-day money-back
-                guarantee means you can find out whether it fits your operation
-                without talking to anybody first.
+                is published, onboarding is free, and a 30-day free trial
+                means you can find out whether it fits your operation without
+                talking to anybody first.
               </p>
             </div>
           </Reveal>
@@ -153,7 +153,7 @@ export default function AboutPage() {
               See it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              Run your next closing on {brand.name}. {guarantee.short}
+              Run your next closing on {brand.name}. {trial.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

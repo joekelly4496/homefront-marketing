@@ -8,7 +8,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { graph, breadcrumbSchema, webPageSchema } from "@/lib/schema";
-import { brand, signupHref, guarantee, primaryCta } from "@/lib/content";
+import { brand, signupHref, trial, primaryCta } from "@/lib/content";
 import { ContactForm } from "./ContactForm";
 
 const title = "Contact";
@@ -25,7 +25,7 @@ const options = [
   {
     icon: UserPlus,
     title: "Get started",
-    description: `Create your account and set up your first home today. Onboarding is free, no demo required, and a ${guarantee.days}-day money-back guarantee.`,
+    description: `Create your account and set up your first home today. Onboarding is free, no demo required, and the first ${trial.days} days are free.`,
     cta: { label: "Get started", href: signupHref },
   },
   {

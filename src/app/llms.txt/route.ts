@@ -8,7 +8,7 @@ import {
   coreFaqs,
   notList,
   useCases,
-  guarantee,
+  trial,
   statusLabels,
   thesis,
   revenuePoints,
@@ -99,7 +99,7 @@ ${section(
 - SMS add-on (optional): $${pricing.sms.price}/month. Includes a dedicated business number and ${pricing.sms.includedSegments.toLocaleString()} segments. Overage is $${pricing.sms.overagePer1000} per 1,000 segments, with a live meter and a builder-set ceiling.
 - Platform fee on homeowner payments: none. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for card payments — all-in rates that include every payment processing and payout cost.
 - Onboarding: free. The builder adds homes and subcontractors and starts the same day.
-- Free trial: none. Afterkey uses a ${guarantee.days}-day money-back guarantee instead. ${guarantee.body} No sales call is required.
+- Free trial: ${trial.days} days. ${trial.body} ${trial.fine} There is no money-back guarantee. No sales call is required.
 
 Example monthly totals (published rates multiplied out, not customer averages):
 - 15 active homes: $${(pricing.base + 15 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(15 * pricing.perHome).toLocaleString()} for 15 homes at $${pricing.perHome} each).

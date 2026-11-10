@@ -25,7 +25,7 @@ import {
   commitments,
   pricingFaqs,
   signupHref,
-  guarantee,
+  trial,
   perHomeFraming,
   processingLine,
   primaryCta,
@@ -158,7 +158,7 @@ export default function PricingPage() {
                 See everything included ↓
               </a>
             </div>
-            <p className="mt-5 text-sm text-slate-500">{guarantee.short}</p>
+            <p className="mt-5 text-sm text-slate-500">{trial.short}</p>
           </Reveal>
         </Container>
       </section>
@@ -428,7 +428,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* 6 — The money-back guarantee */}
+      {/* 6 — The 30-day free trial */}
       <section className="pb-4 sm:pb-8">
         <Container size="6xl">
           <Reveal>
@@ -439,10 +439,15 @@ export default function PricingPage() {
                 </span>
                 <div>
                   <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-                    {guarantee.headline}
+                    {trial.headline}
                   </h2>
                   <p className="mt-3 text-base leading-relaxed text-slate-700">
-                    {guarantee.body}
+                    {trial.body}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                    {trial.fine} We email you 7 days and 1 day before your
+                    trial ends, and your first invoice covers only the days
+                    after it.
                   </p>
                   <p className="mt-4 text-base leading-relaxed text-slate-700">
                     Your rate is locked for 24 months from signup. After that,
@@ -451,12 +456,10 @@ export default function PricingPage() {
                     retroactive.
                   </p>
                   <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                    There is no free trial, on purpose. The parts of Afterkey
-                    worth judging — which trade keeps generating callbacks, what
-                    a maintenance schedule does to your callback volume — take
-                    longer than a sandbox week to show up. So run it on real
-                    homes instead, and if it isn’t earning its keep, ask for
-                    your money back.
+                    Use the month on your real homes, not a sandbox: load a
+                    few past builds, send a callback to the sub, price a
+                    maintenance plan. If it isn’t earning its keep, close your
+                    account from Billing before day 31.
                   </p>
                 </div>
               </div>
@@ -539,7 +542,7 @@ export default function PricingPage() {
               rate lock, and no sales call required — though we are happy to
               walk you through it.
             </p>
-            <p className="mt-3 text-sm text-slate-500">{guarantee.short}</p>
+            <p className="mt-3 text-sm text-slate-500">{trial.short}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
                 {primaryCta}

@@ -1,6 +1,6 @@
 import { LegalPage, type LegalSection } from "@/components/ui/LegalPage";
 import { pageMetadata } from "@/lib/seo";
-import { brand, pricing, guarantee } from "@/lib/content";
+import { brand, pricing, trial } from "@/lib/content";
 
 export const metadata = pageMetadata({
   title: "Terms of Service",
@@ -31,11 +31,11 @@ const sections: LegalSection[] = [
   },
   {
     heading: "Billing and payments",
-    body: `Builder subscription fees are billed monthly and consist of a $${pricing.base} platform base plus $${pricing.perHome} per active home, together with any optional add-ons you enable. Metered features are billed against the allowances described on our pricing page, subject to any spending ceiling you set. Where applicable, homeowner subscription and service billing is processed through our payment processor. ${brand.name} charges no platform fee on homeowner payments; payment processing is charged at the published flat rates shown on our pricing page (currently ${pricing.processing.bankPercent}% for bank payments and ${pricing.processing.cardPercent}% plus $0.30 for card payments), which are all-in rates that include payment processing and payout costs. Except as provided under the money-back guarantee below, fees are non-refundable except as required by law.`,
+    body: `Builder subscription fees are billed monthly and consist of a $${pricing.base} platform base plus $${pricing.perHome} per active home, together with any optional add-ons you enable. Metered features are billed against the allowances described on our pricing page, subject to any spending ceiling you set. Where applicable, homeowner subscription and service billing is processed through our payment processor. ${brand.name} charges no platform fee on homeowner payments; payment processing is charged at the published flat rates shown on our pricing page (currently ${pricing.processing.bankPercent}% for bank payments and ${pricing.processing.cardPercent}% plus $0.30 for card payments), which are all-in rates that include payment processing and payout costs. Fees are non-refundable except as required by law.`,
   },
   {
-    heading: "Money-back guarantee",
-    body: `New ${brand.name} accounts are covered by a ${guarantee.days}-day money-back guarantee beginning on the date of your first paid charge. ${guarantee.body} Those exceptions are carrier costs already incurred for a phone number and messages actually used, and cannot be recovered once spent. To request a refund under this guarantee, contact ${brand.email} within ${guarantee.days} days of your first charge.`,
+    heading: "Free trial",
+    body: `New ${brand.name} builder accounts start with a ${trial.days}-day free trial when a payment method is saved at signup. During the trial the monthly platform base and the per-home fees are not charged. Optional add-ons (text messaging and paid AI plans), their usage charges, and processing on homeowner payments are not part of the trial and are charged at their normal prices if used. Unless you close your account before the trial ends, your subscription continues automatically at the then-current monthly rates, billed to the saved payment method; the first invoice covers only the days after the trial. We email you 7 days and 1 day before the trial ends. One trial per business.`,
   },
   {
     heading: "Price changes",

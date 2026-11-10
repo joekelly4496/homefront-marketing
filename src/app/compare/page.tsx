@@ -13,7 +13,7 @@ import {
   comparisons,
   notList,
   signupHref,
-  guarantee, primaryCta } from "@/lib/content";
+  trial, primaryCta } from "@/lib/content";
 
 const title = "Afterkey vs. a CRM, a Spreadsheet, or a Suite";
 const description =
@@ -179,7 +179,7 @@ export default function ComparePage() {
             </h2>
             <p className="mt-4 text-base text-slate-600">
               Your own homes beat a comparison table. Load one in and see
-              whether it fits how you work. {guarantee.short}
+              whether it fits how you work. {trial.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

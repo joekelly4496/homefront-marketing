@@ -7,7 +7,7 @@ import { LandingFooter } from "@/components/LandingFooter";
 import { pageMetadata } from "@/lib/seo";
 import {
   adLanding,
-  guarantee,
+  trial,
   pricing,
   primaryCta,
   signupHref,
@@ -124,7 +124,7 @@ export default function AdLandingPage() {
             </ul>
             <p className="mx-auto mt-3 max-w-xl text-sm text-slate-400">
               The per-home line is small enough to build into each home’s cost
-              at closing. {guarantee.short}
+              at closing. {trial.short}
             </p>
           </div>
         </Container>

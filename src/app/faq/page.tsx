@@ -19,7 +19,7 @@ import {
   coreFaqs,
   pricingFaqs,
   signupHref,
-  guarantee, primaryCta } from "@/lib/content";
+  trial, primaryCta } from "@/lib/content";
 
 const title = "Frequently Asked Questions";
 const description =
@@ -104,7 +104,7 @@ export default function FaqPage() {
               active home, with no contract and a 24-month rate lock. The{" "}
               {pricingQuestionCount} billing questions — what counts as an
               active home, how the add-ons meter, processing on homeowner
-              payments, the guarantee — live on the pricing page, with the
+              payments, the free trial — live on the pricing page, with the
               full breakdown and the worked example.
             </p>
             <p className="mt-4">
@@ -135,7 +135,7 @@ export default function FaqPage() {
                 {brand.email}
               </a>{" "}
               and a person will answer. Or just start and find out for yourself.{" "}
-              {guarantee.short}
+              {trial.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
