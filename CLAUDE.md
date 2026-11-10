@@ -144,7 +144,15 @@ effect.** Tagline: *Everything after the keys.*
 - AI work draws AI credits (see Pricing canon); library matching is free. Never
   "AI-powered" as a benefit,
   never "never invents", never "AI resolves/closes requests."
-- Roadmap only: a homeowner AI assistant grounded in one home's binder.
+- Ask Billie (LIVE since Oct 20 2026; app lib/assistant/): the homeowner
+  assistant. Answers ONLY from that home's records and cites them; not found
+  = says so + request button or "ask your pro" (the responsible sub, builder
+  copied); emergencies = fixed safety text + urgent request, no AI; never
+  warranty coverage, visit times or prices. Needs a paid AI plan, builder
+  turns it on per home, answered questions use the builder's AI credits.
+  Every AI answer carries "Billie is AI and can make mistakes. Always double
+  check work and answers." "Billie" is a product name, fine on homeowner
+  copy.
 
 ### SMS + voice (live, Oct 2026)
 - A dedicated local number per builder; two-way texting matched to the right
