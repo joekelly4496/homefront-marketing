@@ -22,7 +22,7 @@ import {
 export const metadata = pageMetadata({
   title: "Callbacks handled under your brand",
   description:
-    "See how Afterkey turns the after-closing phone calls into one queue your subs close, under your name. $149/month plus $10 per active home.",
+    `See how Afterkey turns the after-closing phone calls into one queue your subs close, under your name. From $${pricing.startingPrice}/month for up to ${pricing.plans[0].homes} active homes.`,
   path: adLanding.path,
   noIndex: true,
 });
@@ -116,15 +116,15 @@ export default function AdLandingPage() {
             <ul className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-slate-300">
               <li className="tabular-nums">
                 <span className="font-semibold text-paper">
-                  ${pricing.base}/month
+                  From ${pricing.startingPrice}/month
                 </span>{" "}
-                + ${pricing.perHome} per active home
+                for up to {pricing.plans[0].homes} active homes
               </li>
               <li className="border-l border-paper/25 pl-5">No contracts</li>
             </ul>
             <p className="mx-auto mt-3 max-w-xl text-sm text-slate-400">
-              The per-home line is small enough to build into each home’s cost
-              at closing. {trial.short}
+              One flat price for your size, so a quiet spec home never runs up
+              the bill. {trial.short}
             </p>
           </div>
         </Container>

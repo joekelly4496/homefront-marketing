@@ -122,9 +122,9 @@ export default function HomePage() {
             <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-300">
               <li className="tabular-nums">
                 <span className="font-semibold text-paper">
-                  ${pricing.base}/month
+                  From ${pricing.startingPrice}/month
                 </span>{" "}
-                + ${pricing.perHome} per active home
+                for up to {pricing.plans[0].homes} active homes
               </li>
               <li className="border-l border-paper/25 pl-5">No contracts</li>
               <li className="border-l border-paper/25 pl-5">
@@ -132,9 +132,9 @@ export default function HomePage() {
               </li>
             </ul>
             <p className="mt-2 text-sm text-slate-400">
-              ${pricing.perHome} a home is small next to a ${ex.planPrice}
-              -a-month plan — or a ${ex.fullServicePrice} whole-house one — on
-              the same home. {membershipDistinctionShort}
+              One flat price for your size, and every home on it can carry a $
+              {ex.planPrice}-a-month plan — or a ${ex.fullServicePrice}{" "}
+              whole-house one — that you price. {membershipDistinctionShort}
             </p>
           </div>
 
@@ -410,7 +410,7 @@ export default function HomePage() {
                     },
                     {
                       label: `Afterkey at ${ex.homes} active homes`,
-                      sub: `${money(ex.afterkeyMonthly)} a month`,
+                      sub: `${ex.afterkeyPlanName} plan · ${money(ex.afterkeyMonthly)} a month`,
                       value: ex.afterkeyYearly,
                     },
                   ].map((row) => (
@@ -506,7 +506,7 @@ export default function HomePage() {
           <div className="max-w-2xl">
             <SectionLabel>Pricing</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              One plan. Published price. The homeowner revenue is yours.
+              Plans by size. Published prices. The homeowner revenue is yours.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-700">
               {pricingLine} What you charge your homeowners is yours; Afterkey

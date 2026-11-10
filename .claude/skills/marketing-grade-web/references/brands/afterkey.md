@@ -65,7 +65,7 @@ The Afterkey diagnostic quiz ("The Post-Closing Callback Scorecard") is fully de
 
 ## Copy reminder
 
-All Afterkey copy follows the afterkey-content skill: plain-spoken builder voice, real specifics, banned-word list, pricing stated openly ($149/month base) with the $10/active-home fee always framed as baked into the home's cost at closing. No deployment or customer claims, ever, without Joe's written sign-off.
+All Afterkey copy follows the afterkey-content skill: plain-spoken builder voice, real specifics, banned-word list, pricing stated openly (plans by size from $199/month for up to 25 active homes; unlimited team and subs on every plan, never per-user or per-home; numbers from `pricing.plans` in content.ts). No deployment or customer claims, ever, without Joe's written sign-off.
 
 ---
 

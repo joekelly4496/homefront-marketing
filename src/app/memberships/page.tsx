@@ -274,7 +274,7 @@ export default function MembershipsPage() {
                       >
                         Afterkey at {ex.homes} active homes
                         <span className="block text-xs font-normal text-slate-600">
-                          ${pricing.base} + {ex.homes} × ${pricing.perHome} ·{" "}
+                          {ex.afterkeyPlanName} plan ·{" "}
                           {money(ex.afterkeyMonthly)} a month
                         </span>
                       </th>
@@ -486,9 +486,10 @@ export default function MembershipsPage() {
               Put a plan in front of a homeowner this week
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-300">
-              {brand.name} is ${pricing.base} a month plus ${pricing.perHome}{" "}
-              per active home. Past builds you’re pitching are free to add
-              while you court them. {trial.short}
+              {brand.name} starts at ${pricing.startingPrice} a month for up to{" "}
+              {pricing.plans[0].homes} active homes. Past builds you’re
+              pitching are free to add while you court them, and they don’t
+              count toward your plan. {trial.short}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

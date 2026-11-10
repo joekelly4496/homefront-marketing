@@ -76,8 +76,8 @@ export default function UseCasesPage() {
               All four, in one platform
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              They are not separate products or separate tiers. One plan
-              includes every one of them.
+              They are not separate products or add-on tiers. Every plan
+              includes all four.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

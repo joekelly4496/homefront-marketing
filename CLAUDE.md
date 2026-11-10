@@ -11,7 +11,7 @@ today, what it costs, and what we may and may not say.
 anything else. When the product changes, this file and `content.ts` change
 with it (see "Keeping the site true" at the bottom).
 
-Last full sync with the product: **November 9, 2026** (free trial).
+Last full sync with the product: **November 10, 2026** (plans by size).
 
 ---
 
@@ -167,11 +167,25 @@ effect.** Tagline: *Everything after the keys.*
   sub works for the builder). Afterkey is party to neither, and a split
   payment doesn't create a homeowner–sub contract.
 
-## Pricing canon (Pricing Model v2)
+## Pricing canon (plans by size)
 
-- **$149/month** base — unlimited team members and subs, never per-user.
-- **+ $10/month per active home**, flat at any age. Prospect and archived
-  homes are free. A home bills for any month it was active at any point.
+- **Plans by size** (owner decision, Nov 10 2026; replaces the old base +
+  per-active-home pricing): one flat monthly price for the number of ACTIVE
+  homes a builder covers — **up to 25 active homes $199/month, up to 75
+  $399, up to 200 $749**; more than 200 = a custom plan (book a call /
+  contact us). Numbers live in `pricing.plans` (+ `customAbove`,
+  `startingPrice`, `planFor(homes)`, `planSummary`) in content.ts.
+- **Unlimited team members and unlimited subs on every plan**, never
+  per-user, and NOT billed per home. Only active homes count toward the
+  plan; prospect and archived homes are free and don't count.
+- Change plans any time from Billing: upgrades start right away,
+  downgrades next month (if the active homes fit). If a homeowner joining a
+  membership or approving a job puts the builder over the plan, nothing is
+  blocked and the bill doesn't change; the builder just can't activate more
+  homes until they upgrade or archive one.
+- One-liner outside /pricing: `pricingLine` ("Plans from $199/month for up
+  to 25 active homes..."). Framing: `planFraming` (one price at your size,
+  so a quiet spec home never runs up the bill). Never "per seat".
 - **SMS add-on $29/month**: dedicated number + 1,000 segments; $25 per extra
   1,000; live meter, 80/100% alerts, adjustable ceiling (default $150).
 - **AI plans + credits** (owner decision Oct 20 2026; replaces the $5/home
@@ -192,18 +206,17 @@ effect.** Tagline: *Everything after the keys.*
 - **30-day free trial** (owner decision, Nov 9 2026; replaces the 30-day
   money-back guarantee and the invite-only pilot). Use `trial.body` verbatim
   with `trial.fine` beside it (the product CLAUDE.md's canonical wording): a
-  card goes on file at signup, the $149 base and per-home fees are free for
-  30 days, cancel anytime before day 31 and pay nothing; texting ($29) and
+  card goes on file at signup, your plan is free for 30 days, cancel
+  anytime before day 31 and pay nothing; texting ($29) and
   paid AI plans aren't part of the trial. There is NO money-back guarantee
   and NO pilot any more: never write either, never call the trial a pilot,
   and never offer a longer or second trial publicly.
 - No annual prepay. No promo codes, no public discounts, no founding
   cohort. Month-to-month, no contracts, 24-month rate lock (60 days' notice
   after that, never mid-term or retroactive).
-- The $10 per-home fee never appears naked outside /pricing — pair it with
-  `perHomeFraming`. Never tell a builder how to account for or pass it
-  through.
-- The seven published commitments (`commitments`): no quote calls, 24-month
+- Never tell a builder how to account for the plan or pass it through.
+- The seven published commitments (`commitments`): no quote calls (every
+  plan up to 200 active homes is published; only above 200 is custom), 24-month
   rate lock, no per-user fees, no contracts, no surprise bills, email free
   forever, 30-day free trial.
 - One competitor anchor only: Buildertrend's warranty features from $829/mo
