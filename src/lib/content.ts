@@ -817,7 +817,7 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "No surprise AI bills",
         description:
-          "Matching a home’s binder to the shared library is always free and shows which appliances still need a source. Reading a document costs one action on upload. Alerts at 80% and 100% of your allotment, and a $25 overage ceiling that pauses AI you start.",
+          `Matching a home’s binder to the shared library is always free and shows which appliances still need a source. Reading a manual uses AI credits, usually ${pricing.ai.manualCredits}, from your plan’s monthly credits. Past your plan it’s pay-as-you-go up to a monthly cap you set (default $${pricing.ai.defaultCap}), with alerts at 80%, 100% and the cap; AI you start pauses at the cap.`,
       },
     ],
   },
@@ -1088,22 +1088,32 @@ export const featureGroups: FeatureGroup[] = [
   {
     id: "homeowner-assistant",
     icon: MessageSquare,
-    accent: "slate",
-    status: "roadmap",
-    label: "Roadmap",
-    title: "Homeowner AI assistant",
+    accent: "violet",
+    status: "live",
+    label: "Ask Billie",
+    title: "Answers for your homeowners, from their own home’s records",
     summary:
-      "A homeowner-facing assistant that answers questions using only that home’s binder — and that you can resell as part of a plan.",
+      "Turn on Ask Billie for a home and your homeowner can ask about their house — what filter the furnace takes, when the water heater was last flushed — and get an answer from that home’s own records, with the source shown. When the records don’t have it, the question goes to the right pro, or to you.",
     points: [
       {
         title: "Grounded in one home",
         description:
-          "It answers from the documents in that home’s binder and nothing else, so it can’t make something up about a house it doesn’t know.",
+          "Billie answers only from that home’s binder: its appliances, maintenance schedule, care notes and documents. Every answer cites the record it came from. If the records don’t say, Billie says so instead of guessing, and offers to submit a request.",
       },
       {
-        title: "Resellable by the builder",
+        title: "Ask the pro, in one tap",
         description:
-          "Planned as something you can include in a membership tier and charge for.",
+          "When Billie can’t answer, the homeowner can send the question to the sub responsible for that part of the house, with you copied. The answer lands back in their thread. If the pro doesn’t reply within a business day, you’re told.",
+      },
+      {
+        title: "Emergencies never go to the AI",
+        description:
+          "A question about a gas smell, a leak or a fire gets a fixed safety message and an urgent-request button, with no AI involved. Billie never says what a warranty covers, never promises a visit time, and never quotes a price.",
+      },
+      {
+        title: "You decide where it runs",
+        description:
+          "Ask Billie needs a paid AI plan, and you turn it on home by home. Each answered question uses your AI credits; emergencies and record lookups use none. You see every question and answer, and you can include it in the maintenance plans you sell. Every AI answer says, word for word, that Billie is AI and can make mistakes.",
       },
     ],
   },
@@ -1445,7 +1455,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "What does the AI in Afterkey actually do?",
-    a: "Afterkey’s AI does three things: it extracts appliances (brand, model, serial, warranty) from uploaded invoices, spec sheets, and photos; it extracts the maintenance tasks a manual prescribes, citing the document; and it reads a sub’s paper invoice. Appliances already in Afterkey’s verified appliance library get their schedule from the library, cited by entry, at no charge. A maintenance interval always comes from one of those two sources; an appliance with neither is marked “needs source.” The builder reviews the proposed list, removes or edits lines, and saves it; nothing reaches a homeowner before that. It does not answer homeowner questions, close requests, or decide anything about a repair.",
+    a: "Afterkey’s AI does four things: it extracts appliances (brand, model, serial, warranty) from uploaded invoices, spec sheets, and photos; it extracts the maintenance tasks a manual prescribes, citing the document; it reads a sub’s paper invoice; and, on homes where the builder turns on Ask Billie, it answers the homeowner’s questions from that home’s own records, citing them. Appliances already in Afterkey’s verified appliance library get their schedule from the library, cited by entry, at no charge. A maintenance interval always comes from one of those two sources; an appliance with neither is marked “needs source.” The builder reviews the proposed list, removes or edits lines, and saves it; nothing reaches a homeowner before that. Emergencies never go to the AI. It does not close requests, price or approve a repair, or say what a warranty covers.",
   },
   {
     q: "Is my data safe with Afterkey?",
