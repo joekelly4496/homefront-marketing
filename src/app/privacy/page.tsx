@@ -46,7 +46,7 @@ const sections: LegalSection[] = [
   },
   {
     heading: "Cookies",
-    body: "This website uses first-party analytics (PostHog) to count visits and see which pages people use, and to report errors. We record a visit (session replay) only if you choose Allow when we ask; anything typed into a form is hidden from the recording either way, and you can say no without losing anything. Fonts are served from our own servers. We do not use advertising or cross-site tracking cookies. The Afterkey app itself uses only the cookies needed to sign you in.",
+    body: "This website uses first-party analytics (PostHog) to count visits and see which pages people use, and to report errors. Our server passes that analytics on to PostHog without your IP address, and PostHog is set to discard IP data. We record a visit (session replay) only if you choose Allow when we ask; anything typed into a form is hidden from the recording either way, and you can say no without losing anything. Fonts are served from our own servers. We do not use advertising or cross-site tracking cookies. The Afterkey app itself uses only the cookies needed to sign you in.",
   },
   {
     heading: "Children",

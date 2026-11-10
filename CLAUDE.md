@@ -236,6 +236,12 @@ voice, imagery and page craft; run the humanizer pass on every visible word.
 ## Privacy and analytics
 
 - PostHog (first-party via `/ingest`) counts pageviews and reports errors.
+  `/ingest` is a route handler (`src/app/ingest/[...path]/route.ts`), NOT a
+  rewrite: it re-sends each request from our server with only content-type /
+  content-encoding / accept / user-agent, so PostHog never receives a
+  visitor's IP address (owner decision Nov 2026). The PostHog project also
+  has "Discard client IP data" (anonymize_ips) on. Never switch back to a
+  rewrite, and never add a tracker or embed that loads before a click.
 - **Session replay is off until the visitor clicks "Allow"** in
   `ReplayConsent` (`src/lib/consent.ts` key). Never turn recording on by
   default — California treats recording a visit without consent as a wiretap.
