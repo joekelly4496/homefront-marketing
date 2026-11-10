@@ -36,10 +36,10 @@ Key exports:
 | `brand` | Name, legal name, domain, support email, and the canonical one-sentence definition |
 | `pricing` | Every dollar figure on the site |
 | `smsStatus` | `'live'` or `'coming-soon'` — flips all SMS copy site-wide |
-| `guarantee` | The 30-day money-back guarantee wording. Also quoted in `/terms` |
+| `trial` | The 30-day free trial wording (`body` verbatim). Also echoed in `/terms` |
 | `brand.whiteLabel` | The white-label fact — a top-tier selling point, state it high |
 | `brand.founder` | Approved founder line. Do not extend it (see Copy rules) |
-| `perHomeFraming` | Mandatory framing for the per-home fee (see Copy rules) |
+| `planFraming`, `pricingLine`, `planFor()` | Plans-by-size framing, the one-line price summary, and the plan that fits a home count |
 | `featureGroups` | Feature list, each tagged `live` / `coming-soon` / `roadmap` |
 | `portals` | The three-portal story |
 | `commitments` | The six published pricing commitments |
@@ -63,15 +63,11 @@ creates legal, carrier, or credibility exposure:
   is the selling point — do not soften it into generic "AI-powered" language.
 - **Mark unreleased features.** Anything not shipping carries a `StatusPill` of
   `coming-soon` or `roadmap`.
-- **There is no free trial.** Afterkey sells with a 30-day money-back
-  guarantee instead. Never write "free trial," "try it free," or "start free" —
-  the FAQ answers the trial question directly with a no, which is deliberate:
-  an answer engine should find an explicit denial, not silence.
-- **The guarantee covers subscription fees only.** The canonical wording is
-  `guarantee.body` in `content.ts`: the monthly base and every per-home fee are
-  refunded; the SMS add-on and SMS overage are not. Never write "every dollar
-  Afterkey charged," and never promise refunds of processing on homeowner
-  payments already collected.
+- **The 30-day free trial covers the plan only.** The canonical wording is
+  `trial.body` in `content.ts` (use it verbatim, with `trial.fine` beside it):
+  a card goes on file at signup and the plan is free for 30 days; texting and
+  paid AI plans are not part of the trial. There is no money-back guarantee
+  and no pilot — never write either.
 - **Processing rates are "our published rates."** Cards 3.5% + 30¢, ACH flat
   1.25%, no platform fee (decision note dated Sept 2026 in `content.ts`). Never
   "at cost," "we never mark it up," or "Stripe's rate." Allowed: "you pay only
@@ -80,11 +76,11 @@ creates legal, carrier, or credibility exposure:
 - **Plan dues are paid by card or bank account.** Never describe billing as
   ACH-only and never disparage cards. If a payment method on file is mentioned,
   write "a payment method on file — card or bank account."
-- **The per-home fee never appears as a naked recurring charge.** Wherever
-  `$10 per active home` shows up outside `/pricing`, pair it with
-  `perHomeFraming` — it is small enough to price into the home at closing, so
-  post-closing is a line item on the home rather than overhead the builder
-  absorbs.
+- **Plans by size, not per home.** Afterkey is one flat monthly price for the
+  number of active homes a builder covers (`pricing.plans`: up to 25 / 75 /
+  200, custom above 200), with unlimited team members and subs on every plan.
+  Never describe it as per-user, per-seat, or billed per home. Outside
+  `/pricing`, use `pricingLine`; `planFraming` is the approved framing.
 - **Lead with white-labeling.** It is one of the strongest reasons a builder
   buys, so it gets its own home-page section and a `/features` group — not a
   bullet. What is confirmed real: logo upload in settings, brand color theming
@@ -229,16 +225,17 @@ Copy rules that follow from it:
   branded sender. AI: sources on every line, never "never
   invents"; the AI overage ceiling is $25 and not builder-set.
 - Pricing/policy canon is the product repo's CLAUDE.md (joekelly4496/
-  builder-service-platform): guarantee wording verbatim, onboarding free
+  builder-service-platform): trial wording verbatim, onboarding free
   (concierge is not offered on the site), processing "includes every Stripe
-  processing and payout fee," no trial, no annual prepay.
+  processing and payout fee," no money-back guarantee, no annual prepay.
 - The worked example (`workedExample`: 60 homes, $40 plan, one $400 repair a
   quarter at 15% markup) is labeled an example everywhere. Never a customer
   result.
-- The $10 per-home fee is framed as small next to what the same home can
-  carry, and "small enough to build into the home's cost at closing, if
-  that's how you want to run it" — always the builder's call, never an
-  instruction.
+- Plans by size (Nov 10 2026): $199 up to 25 active homes, $399 up to 75,
+  $749 up to 200, custom above 200; unlimited team and subs on every plan;
+  prospect and archived homes don't count. Framed by `planFraming`: one price
+  at your size, so a quiet spec home never runs up the bill. Never tell the
+  builder how to account for the plan.
 - Onboarding is free (`onboarding` in content.ts). Concierge onboarding is
   not offered on the site until the product can sell it. Never promise a
   setup timeline.

@@ -2,6 +2,7 @@ import { absoluteUrl } from "@/lib/site";
 import {
   brand,
   pricing,
+  planFor,
   featureGroups,
   portals,
   commitments,
@@ -91,21 +92,28 @@ ${section(
 ${section("Features", featureLines)}
 ${section(
   "Pricing",
-  `Afterkey has one plan with no tiers. All prices are published; there are no quote calls or volume brackets.
+  `Afterkey is priced by plan size: one flat monthly price for the number of active homes the builder covers. Every plan up to ${pricing.customAbove} active homes is published; there are no quote calls. Above ${pricing.customAbove} active homes, the builder gets a custom plan (book a call or contact Afterkey).
 
-- Base: $${pricing.base}/month. Includes unlimited team members and unlimited subcontractors. There are no per-user fees.
-- Per active home: $${pricing.perHome}/month per home, flat at any age, for homes the builder is actively serving. Prospect homes (past builds being pitched a membership — outreach and offers only) and archived homes (read-only history, reactivate any time) are free. A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set.
+${pricing.plans.map((p) => `- Up to ${p.homes} active homes: $${p.price}/month.`).join("\n")}
+- More than ${pricing.customAbove} active homes: custom plan.
+- Every plan includes unlimited team members and unlimited subcontractors. There are no per-user fees, and nothing is billed per home.
+- Only active homes (homes the builder is actively serving, at any age) count toward the plan. Prospect homes (past builds being pitched a membership — outreach and offers only) and archived homes (read-only history, reactivate any time) are free and don't count. A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set.
+- Changing plans: any time from Billing. Upgrades start right away; downgrades start next month, if the builder's active homes fit the smaller plan. If a homeowner joining a membership or approving a job takes the builder over the plan, nothing is blocked and the bill doesn't change; the builder can't activate more homes until they upgrade or archive one.
 - AI plans (optional, flat monthly, not per home): ${pricing.ai.plans.map((p) => `${p.name} $${p.price}/month with ${p.credits.toLocaleString("en-US")} credits`).join("; ")}; custom plans for bigger builders. Reading a manual usually takes ${pricing.ai.manualCredits} credits; building and checking a typical home's plan ${pricing.ai.planCredits}. Appliances already in the shared library are free. Over the plan: $${pricing.ai.overagePer100} per 100 credits, up to a monthly cap the builder sets (default $${pricing.ai.defaultCap}), with alerts at 80%, 100% and the cap. Upgrades start at once; downgrades next month. Without a plan, builders get ${pricing.ai.freeCredits} free credits a month.
 - SMS add-on (optional): $${pricing.sms.price}/month. Includes a dedicated business number and ${pricing.sms.includedSegments.toLocaleString()} segments. Overage is $${pricing.sms.overagePer1000} per 1,000 segments, with a live meter and a builder-set ceiling.
 - Platform fee on homeowner payments: none. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for card payments — all-in rates that include every payment processing and payout cost.
 - Onboarding: free. The builder adds homes and subcontractors and starts the same day.
 - Free trial: ${trial.days} days. ${trial.body} ${trial.fine} There is no money-back guarantee. No sales call is required.
 
-Example monthly totals (published rates multiplied out, not customer averages):
-- 15 active homes: $${(pricing.base + 15 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(15 * pricing.perHome).toLocaleString()} for 15 homes at $${pricing.perHome} each).
-- 30 active homes: $${(pricing.base + 30 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(30 * pricing.perHome).toLocaleString()} for 30 homes at $${pricing.perHome} each).
-- 50 active homes: $${(pricing.base + 50 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(50 * pricing.perHome).toLocaleString()} for 50 homes at $${pricing.perHome} each).
-- 100 active homes: $${(pricing.base + 100 * pricing.perHome).toLocaleString()}/month total ($${pricing.base} base + $${(100 * pricing.perHome).toLocaleString()} for 100 homes at $${pricing.perHome} each).`,
+Example monthly totals (the published plans, not customer averages; before any add-ons):
+${[15, 30, 50, 100]
+  .map((homes) => {
+    const plan = planFor(homes);
+    return plan
+      ? `- ${homes} active homes: $${plan.price}/month (the ${plan.name} plan).`
+      : `- ${homes} active homes: custom plan.`;
+  })
+  .join("\n")}`,
 )}
 ${section(
   "Published commitments",

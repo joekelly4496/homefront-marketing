@@ -49,4 +49,4 @@ Build it custom in Next.js with results stored in Supabase. Hosted quiz tools co
 
 **Gating:** partial result (bucket name + one-line diagnosis + the cost number) shown ungated; full scorecard (breakdown, benchmark vs. other tiers, 5-item fix checklist) emailed after a single email field. Firefighters and Jugglers get a Cal.com booking link in the result email; Starters and Buttoned-Up get the nurture sequence.
 
-**Copy rules apply:** builder voice, no fabricated benchmarks beyond the stated assumption, pricing mentioned plainly on the result page ($149/month base; per-home fee framed as baked into closing cost).
+**Copy rules apply:** builder voice, no fabricated benchmarks beyond the stated assumption, pricing mentioned plainly on the result page (`pricingLine`: plans from $199/month for up to 25 active homes).

@@ -99,8 +99,8 @@ export const adLanding = {
  * The 30-day free trial (owner decision, Nov 9 2026). It REPLACES the
  * 30-day money-back guarantee and the invite-only pilot: there is no
  * guarantee and no pilot any more. CANONICAL WORDING from the product repo's
- * CLAUDE.md; use `body` verbatim. A card goes on file at signup; the $149
- * base and the per-home fees are free for 30 days; the first invoice covers
+ * CLAUDE.md; use `body` verbatim. A card goes on file at signup; your plan
+ * is free for 30 days; the first invoice covers
  * only the days after the trial. Texting ($29) and paid AI plans are not
  * part of the trial (`fine`). Never call it a pilot, never offer a
  * money-back guarantee, never offer a longer trial publicly.
@@ -156,11 +156,53 @@ export const primaryCta = "Set up your first home";
 /* card OR bank account — never ACH-only, never disparage cards. The   */
 /* free trial covers subscription fees only. This supersedes any older */
 /* numbers; do not revert them.                                        */
+/*                                                                     */
+/* DECISION NOTE (Nov 10 2026): PLANS BY SIZE replace the old base +   */
+/* per-active-home pricing. One flat monthly price for the number of   */
+/* ACTIVE homes a builder covers (25 / 75 / 200; custom above 200).    */
+/* Unlimited team members and subs on every plan; never per-user, not  */
+/* billed per home. Prospect and archived homes are free and don’t     */
+/* count. Upgrades start at once; downgrades next month (if the active */
+/* homes fit). A homeowner joining or approving a job that puts the    */
+/* builder over the plan is never blocked and doesn’t change the bill; */
+/* the builder just can’t activate more homes until they upgrade or    */
+/* archive one. No annual pricing, no promo codes, no per-seat.        */
 /* ------------------------------------------------------------------ */
 
+/** The plans by size, smallest first. `homes` is the active-home limit. */
+const homePlans = [
+  {
+    key: "homes_25",
+    name: "Up to 25 homes",
+    homes: 25,
+    price: 199,
+    blurb: "Most spec and custom builders.",
+  },
+  {
+    key: "homes_75",
+    name: "Up to 75 homes",
+    homes: 75,
+    price: 399,
+    blurb: "Growing builders.",
+  },
+  {
+    key: "homes_200",
+    name: "Up to 200 homes",
+    homes: 200,
+    price: 749,
+    blurb: "Production builders.",
+  },
+] as const;
+
+export type HomePlan = (typeof homePlans)[number];
+
 export const pricing = {
-  base: 149,
-  perHome: 10,
+  /** Plans by size: one flat monthly price per active-home limit. */
+  plans: homePlans,
+  /** Above this many active homes the plan is custom (book a call). */
+  customAbove: 200,
+  /** For “from $199/month” one-liners. */
+  startingPrice: homePlans[0].price,
   sms: {
     price: 29,
     includedSegments: 1000,
@@ -225,17 +267,33 @@ export const competitorAnchor = {
   what: "warranty features",
 } as const;
 
+/**
+ * The smallest plan that fits a number of active homes, or null above
+ * `pricing.customAbove` (a custom plan).
+ */
+export function planFor(homes: number): HomePlan | null {
+  return pricing.plans.find((p) => homes <= p.homes) ?? null;
+}
+
+/** The plans in one phrase: “$199 a month for up to 25 active homes, $399 for up to 75, and $749 for up to 200”. */
+export const planSummary = pricing.plans
+  .map((p, i) =>
+    i === 0
+      ? `$${p.price} a month for up to ${p.homes} active homes`
+      : `${i === pricing.plans.length - 1 ? "and " : ""}$${p.price} for up to ${p.homes}`,
+  )
+  .join(", ");
+
 /** The only approved one-line price summary for use outside /pricing. */
-export const pricingLine = `One plan: $${pricing.base}/month plus $${pricing.perHome} per active home. No per-user fees, no contracts, no quote calls.`;
+export const pricingLine = `Plans from $${pricing.startingPrice}/month for up to ${pricing.plans[0].homes} active homes. Unlimited team and subs, no per-user fees, no contracts, no quote calls.`;
 
 /**
- * The per-home fee is never stated as a naked recurring charge. Its framing
- * is opportunity: the same home can carry a maintenance membership the
- * builder prices himself, so $10 reads as small next to what the home brings
- * in. Never tell the builder how to account for or pass through the fee —
- * that is his business. Pair it with `pricingLine` anywhere outside /pricing.
+ * How to frame a flat plan: a home that sits quiet doesn’t move the bill,
+ * and every home on the plan can carry a maintenance membership the builder
+ * prices himself. Never tell the builder how to account for the plan or
+ * pass it through — that is his business.
  */
-export const perHomeFraming = `At $${pricing.perHome} per active home, the fee is small next to what the same home can carry — a maintenance plan you price yourself — and small enough to build into the home’s cost at closing, if that’s how you want to run it.`;
+export const planFraming = `Your plan is one price whether ${pricing.plans[0].homes} active homes are on it or 3, so a quiet spec home never runs up the bill — and every one of those homes can carry a maintenance plan you price yourself.`;
 
 /**
  * Onboarding is free and self-run: add homes and subs and start the same
@@ -467,7 +525,9 @@ export const workedExample = (() => {
   const membershipMonthly = homes * planPrice;
   const membershipYearly = membershipMonthly * 12;
   const repairMarkupYearly = homes * repairsPerHomePerYear * markupPerJob;
-  const afterkeyMonthly = pricing.base + homes * pricing.perHome;
+  // 60 homes fit a published plan; the non-null fallback keeps the type honest.
+  const afterkeyPlan = planFor(homes) ?? pricing.plans[pricing.plans.length - 1];
+  const afterkeyMonthly = afterkeyPlan.price;
   const fullServiceMonthly = fullServiceHomes * fullServicePrice;
   return {
     homes,
@@ -484,6 +544,7 @@ export const workedExample = (() => {
     membershipYearly,
     membershipYearlyAtHalf: membershipYearly / 2,
     repairMarkupYearly,
+    afterkeyPlanName: afterkeyPlan.name,
     afterkeyMonthly,
     afterkeyYearly: afterkeyMonthly * 12,
     label: "Example, not a customer result",
@@ -524,7 +585,7 @@ export const commitments: Commitment[] = [
     icon: BookMarked,
     title: "No quote calls",
     description:
-      "Every price is published on this page. No volume brackets, no sales gate, no “contact us for pricing.”",
+      "Every plan up to 200 active homes is published on this page, and you sign up without talking to anyone. No sales gate, no “contact us for pricing.” Only a portfolio of more than 200 active homes gets a custom plan.",
   },
   {
     icon: ShieldCheck,
@@ -560,7 +621,7 @@ export const commitments: Commitment[] = [
     icon: BadgeCheck,
     title: "30-day free trial",
     description:
-      "Your base and per-home fees are free for 30 days, with a card on file. Cancel anytime before day 31 and you pay nothing. Texting and paid AI plans aren’t part of the trial.",
+      "Your plan is free for 30 days, with a card on file. Cancel anytime before day 31 and you pay nothing. Texting and paid AI plans aren’t part of the trial.",
   },
 ];
 
@@ -1220,7 +1281,7 @@ export const comparisons: Comparison[] = [
         "Tracks warranty periods, appliances, and maintenance intervals",
         "Per-trade dispatch with ratings and compliance gating built in",
         "A homeowner portal your buyers actually use, under your brand",
-        "Priced per home, with unlimited users at no extra cost",
+        "Priced by how many homes you cover, with unlimited users at no extra cost",
       ],
     },
   },
@@ -1270,7 +1331,7 @@ export const comparisons: Comparison[] = [
       label: "Afterkey",
       points: [
         "Post-closing is the entire product, including the revenue in it: memberships and paid repairs",
-        "Every feature is in the one plan — there is no upsell tier",
+        "Every feature is on every plan — plans differ only by how many active homes they cover",
         "Runs alongside whatever you already use to build",
         "Onboarding is free",
       ],
@@ -1352,7 +1413,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How much does Afterkey cost?",
-    a: "Afterkey has one plan with no tiers: $149 per month base, which includes unlimited team members and subcontractors, plus $10 per month per active home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free; a home bills while you are actively serving it. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is free. New accounts get a 30-day free trial: a card goes on file at signup, the base and per-home fees are free for 30 days, and you can cancel anytime before day 31 and pay nothing.",
+    a: `Afterkey is priced by plan size: one flat monthly price for the number of active homes you cover — ${planSummary}, with a custom plan above ${pricing.customAbove}. Every plan includes unlimited team members and unlimited subcontractors; there are no per-user fees and nothing is billed per home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free and don’t count toward your plan. You can change plans any time from Billing. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is free. New accounts get a 30-day free trial: a card goes on file at signup, your plan is free for 30 days, and you can cancel anytime before day 31 and pay nothing.`,
   },
   {
     q: "Do homeowners have to pay for a membership to get warranty work?",
@@ -1392,7 +1453,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How is Afterkey different from a general CRM?",
-    a: "A CRM is organized around leads, deals, and a pipeline that ends when a sale closes. Afterkey is organized around homes, service requests, and subcontractors, and begins at the moment a CRM would finish. Afterkey understands warranty periods, appliances, and maintenance intervals; it dispatches subcontractors by trade and tracks their insurance and license expirations; and it gives the homeowner a portal of their own. Afterkey is also priced per home with unlimited users, rather than per seat.",
+    a: "A CRM is organized around leads, deals, and a pipeline that ends when a sale closes. Afterkey is organized around homes, service requests, and subcontractors, and begins at the moment a CRM would finish. Afterkey understands warranty periods, appliances, and maintenance intervals; it dispatches subcontractors by trade and tracks their insurance and license expirations; and it gives the homeowner a portal of their own. Afterkey is also priced by the number of active homes you cover, with unlimited users, rather than per seat.",
   },
   {
     q: "Is Afterkey white-labeled?",
@@ -1404,7 +1465,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Do subcontractors have to pay for Afterkey?",
-    a: "No. Subcontractors use Afterkey free. They open each job from a link — no app, no login — update status from the jobsite, upload the completion photos every job requires, and keep compliance documents such as general liability, workers’ compensation, auto insurance, trade licenses, and W-9s current. Once they link a bank, their share of paid work is sent to them automatically. The builder’s $149 monthly base includes unlimited subcontractors, so adding trades never increases the bill.",
+    a: "No. Subcontractors use Afterkey free. They open each job from a link — no app, no login — update status from the jobsite, upload the completion photos every job requires, and keep compliance documents such as general liability, workers’ compensation, auto insurance, trade licenses, and W-9s current. Once they link a bank, their share of paid work is sent to them automatically. Every Afterkey plan includes unlimited subcontractors, so adding trades never increases the bill.",
   },
   {
     q: "Does Afterkey find new subcontractors for me?",
@@ -1412,15 +1473,15 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "What is an “active home”?",
-    a: "An active home is a home you are actively serving on Afterkey. It bills at $10 per month, flat, regardless of the home’s age. Two home states are free. A prospect home is a past build you are trying to win back: adding it costs nothing, and you can pitch memberships and send claim invites, but full service features stay off until it converts — which happens automatically when the homeowner starts a membership or a warranty date is set, or when you activate it yourself. An archived home is the honest exit: free and read-only, with the full history and binder preserved, and you can reactivate it any time, which resumes billing.",
+    a: "An active home is a home you are actively serving on Afterkey. Active homes are what count toward your plan, and a home counts the same regardless of its age. Two home states are free and don’t count toward your plan. A prospect home is a past build you are trying to win back: adding it costs nothing, and you can pitch memberships and send claim invites, but full service features stay off until it converts — which happens automatically when the homeowner starts a membership or a warranty date is set, or when you activate it yourself. An archived home is the honest exit: free and read-only, with the full history and binder preserved, and you can reactivate it any time, which counts it toward your plan again.",
   },
   {
     q: "Can Afterkey help me win back homes I built years ago?",
-    a: "Yes. Add a past build as a prospect home — it costs nothing while you court it. You build a maintenance-plan proposal with one or more tiers at prices you set, and Afterkey emails it to the homeowner with a claim link: it opens their own portal with the home already set up, they set a password, and your offer is in front of them. If they join, the home converts to active automatically and normal billing starts. You can also put an expiration on any offer so an old quote does not linger at old pricing.",
+    a: "Yes. Add a past build as a prospect home — it costs nothing while you court it. You build a maintenance-plan proposal with one or more tiers at prices you set, and Afterkey emails it to the homeowner with a claim link: it opens their own portal with the home already set up, they set a password, and your offer is in front of them. If they join, the home converts to active automatically and counts toward your plan. You can also put an expiration on any offer so an old quote does not linger at old pricing.",
   },
   {
     q: "How long does it take to get started with Afterkey?",
-    a: "Onboarding is free: you subscribe, add your homes and subcontractors, and start logging requests the same day. Every new account starts with a 30-day free trial on your real homes, not a sandbox: the base and per-home fees are free for 30 days, and you can cancel anytime before day 31 and pay nothing. Existing homes come in all at once from a spreadsheet (up to 1,000 at a time), or one at a time; upload a home’s documents and Afterkey extracts the appliances and proposes the maintenance schedule for you to review and save.",
+    a: "Onboarding is free: you subscribe, add your homes and subcontractors, and start logging requests the same day. Every new account starts with a 30-day free trial on your real homes, not a sandbox: your plan is free for 30 days, and you can cancel anytime before day 31 and pay nothing. Existing homes come in all at once from a spreadsheet (up to 1,000 at a time), or one at a time; upload a home’s documents and Afterkey extracts the appliances and proposes the maintenance schedule for you to review and save.",
   },
   {
     q: "When does a homeowner’s membership start billing?",
@@ -1474,20 +1535,28 @@ export const homeownerFaqs: Faq[] = [
 /** Pricing-specific FAQs, shown on /pricing. */
 export const pricingFaqs: Faq[] = [
   {
-    q: "What counts as an active home?",
-    a: "An active home is one you are actively serving on the platform — it bills $10 per month, flat. Two states are free: prospect homes (past builds you are pitching a membership — outreach and offers only, until they convert) and archived homes (read-only, full history kept, reactivate any time). A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set.",
+    q: "What counts toward my plan?",
+    a: "Active homes, and nothing else. An active home is one you are actively serving on the platform, and it counts the same whether it is six months old or six years old. Two states are free and don’t count: prospect homes (past builds you are pitching a membership — outreach and offers only, until they convert) and archived homes (read-only, full history kept, reactivate any time). A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set. Team members and subcontractors never count; every plan includes unlimited of both.",
   },
   {
-    q: "Do older homes cost more?",
-    a: "No. It is $10 per month flat, whether the home is six months old or six years old.",
+    q: "Can I change plans?",
+    a: "Yes, any time from Billing. An upgrade starts right away. A downgrade starts next month, as long as your active homes fit the smaller plan.",
+  },
+  {
+    q: "What if a homeowner joins and puts me over my plan?",
+    a: "Nothing is blocked and your bill doesn’t change. When a homeowner joins a membership or approves a job, the home goes active as it always would, even if that takes you past your plan. You just can’t activate more homes yourself until you upgrade or archive one.",
+  },
+  {
+    q: `What if I have more than ${pricing.customAbove} active homes?`,
+    a: `Above ${pricing.customAbove} active homes, we set up a custom plan with you. Book a call or send a note from the contact page.`,
   },
   {
     q: "Are there per-user fees?",
-    a: "Never. Unlimited team members and unlimited subcontractors are included in the $149 base. Your headcount does not change your bill.",
+    a: "Never. Unlimited team members and unlimited subcontractors are included on every plan. Your headcount does not change your bill.",
   },
   {
     q: "How does AI billing work?",
-    a: "AI is an optional monthly plan with credits included: Starter is $49 a month for 2,000 credits, Growth $149 for 7,500, and Scale $399 for 25,000, with custom plans for bigger builders. Credits follow the work: reading a manual usually takes 40 to 80, and building and checking a typical home’s maintenance plan about 200. Matching a home’s appliances to the verified library is free and uses none. Over your plan, credits are $3 per 100, up to a monthly cap you set (default $50), with alerts at 80%, 100% and the cap. Upgrades start right away; downgrades start next month. Without a plan you get 100 free credits a month, about one manual read.",
+    a: "AI is an optional monthly plan with credits included: Starter is $49 a month for 2,000 credits, Growth $149 for 7,500, and Scale $399 for 25,000, with custom plans for bigger builders. Credits follow the work: reading a manual usually takes 40 to 80, and building and checking a typical home’s maintenance plan about 200. Matching a home’s appliances to the verified library is free and uses none. Over your AI plan, credits are $3 per 100, up to a monthly cap you set (default $50), with alerts at 80%, 100% and the cap. Upgrades start right away; downgrades start next month. Without a plan you get 100 free credits a month, about one manual read.",
   },
   {
     q: "Does Afterkey take a cut of homeowner payments?",
@@ -1503,11 +1572,11 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "Can prices go up after I sign up?",
-    a: "Not for the first 24 months: your rate is locked from the day you sign up. After that, any increase comes with 60 days’ notice and applies only at your next billing cycle. Increases are never applied mid-term and never retroactively. Prices are published on this page rather than quoted, so you can always see exactly what the plan costs.",
+    a: "Not for the first 24 months: your rate is locked from the day you sign up. After that, any increase comes with 60 days’ notice and applies only at your next billing cycle. Increases are never applied mid-term and never retroactively. Plans are published on this page rather than quoted, so you can always see exactly what your plan costs.",
   },
   {
     q: "Is there a free trial?",
-    a: "Yes. Every new account gets 30 days free. You put a card on file at signup, and nothing is charged for your subscription (the $149 base and the per-home fees) until day 31. You use Afterkey on your real homes and subs from day one, and we email you 7 days and 1 day before the trial ends. To stop, close your account from Billing before day 31 and you pay nothing. Texting ($29 a month) and paid AI plans aren’t part of the trial; they bill at their normal price if you turn them on.",
+    a: "Yes. Every new account gets 30 days free. You put a card on file at signup, and nothing is charged for your plan until day 31. You use Afterkey on your real homes and subs from day one, and we email you 7 days and 1 day before the trial ends. To stop, close your account from Billing before day 31 and you pay nothing. Texting ($29 a month) and paid AI plans aren’t part of the trial; they bill at their normal price if you turn them on.",
   },
 ];
 
@@ -1656,7 +1725,7 @@ export const useCases: UseCase[] = [
       },
       {
         q: "Do subcontractors pay to use Afterkey?",
-        a: "No. Subcontractors use Afterkey free, and the builder’s $149 monthly base includes unlimited subcontractors. Adding trades never increases your bill.",
+        a: "No. Subcontractors use Afterkey free, and every builder plan includes unlimited subcontractors. Adding trades never increases your bill.",
       },
     ],
   },
@@ -1784,7 +1853,7 @@ export const useCases: UseCase[] = [
       },
       {
         q: "Does the homeowner portal cost extra?",
-        a: "No. The homeowner portal is included for every active home at $10 per month per home. There is no separate charge to the builder or the homeowner for portal access.",
+        a: "No. The homeowner portal is included for every active home on every plan. There is no separate charge to the builder or the homeowner for portal access.",
       },
       {
         q: "Can homeowners see my subcontractor pricing?",

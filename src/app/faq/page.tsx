@@ -64,9 +64,10 @@ export default function FaqPage() {
                 The short version
               </h2>
               <p className="mt-3 text-base leading-relaxed text-slate-700">
-                {brand.definition} {brand.purpose} It costs ${pricing.base} per
-                month plus ${pricing.perHome} per active home, includes
-                unlimited team members and subcontractors, and is sold
+                {brand.definition} {brand.purpose} It is priced by plan size,
+                from ${pricing.startingPrice} a month for up to{" "}
+                {pricing.plans[0].homes} active homes, includes unlimited team
+                members and subcontractors on every plan, and is sold
                 month-to-month with no contract.
               </p>
             </Card>
@@ -100,10 +101,10 @@ export default function FaqPage() {
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-8 max-w-3xl">
             <p className="text-base leading-relaxed text-slate-700">
-              Afterkey is ${pricing.base} a month plus ${pricing.perHome} per
-              active home, with no contract and a 24-month rate lock. The{" "}
-              {pricingQuestionCount} billing questions — what counts as an
-              active home, how the add-ons meter, processing on homeowner
+              Afterkey plans start at ${pricing.startingPrice} a month for up
+              to {pricing.plans[0].homes} active homes, with no contract and a
+              24-month rate lock. The {pricingQuestionCount} billing questions
+              — what counts toward your plan, how the add-ons meter, processing on homeowner
               payments, the free trial — live on the pricing page, with the
               full breakdown and the worked example.
             </p>

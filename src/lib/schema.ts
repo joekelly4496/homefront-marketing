@@ -49,11 +49,13 @@ export function websiteSchema() {
 }
 
 /**
- * SoftwareApplication with the full price breakdown as Offers. The base and
- * per-home charges are separate offers because they are separate line items —
+ * SoftwareApplication with the full price breakdown as Offers. Each plan by
+ * size is its own offer (a flat monthly price for an active-home limit), and
+ * each add-on is a separate offer because it is a separate line item —
  * flattening them into one number would misstate the price.
  */
 export function softwareApplicationSchema() {
+  const offers = softwareOffers();
   return {
     "@type": "SoftwareApplication",
     "@id": softwareId,
@@ -83,75 +85,69 @@ export function softwareApplicationSchema() {
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "USD",
-      lowPrice: pricing.base,
-      offerCount: 4,
-      offers: [
-        {
-          "@type": "Offer",
-          name: "Platform base",
-          description:
-            "Base subscription including unlimited team members and unlimited subcontractors.",
-          price: pricing.base,
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: pricing.base,
-            priceCurrency: "USD",
-            unitText: "MONTH",
-            billingDuration: 1,
-            billingIncrement: 1,
-          },
-        },
-        {
-          "@type": "Offer",
-          name: "Per active home",
-          description:
-            "Charged per home the builder is actively serving, flat at any age. Prospect and archived homes are not billed.",
-          price: pricing.perHome,
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: pricing.perHome,
-            priceCurrency: "USD",
-            unitText: "MONTH",
-            referenceQuantity: {
-              "@type": "QuantitativeValue",
-              value: 1,
-              unitText: "active home",
-            },
-          },
-        },
-        ...pricing.ai.plans.map((plan) => ({
-          "@type": "Offer",
-          name: `AI plan - ${plan.name}`,
-          description: `Optional monthly AI plan with ${plan.credits.toLocaleString("en-US")} AI credits included. Additional credits are $${pricing.ai.overagePer100} per 100, up to a monthly cap the builder sets.`,
-          price: plan.price,
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: plan.price,
-            priceCurrency: "USD",
-            unitText: "MONTH",
-            billingDuration: 1,
-            billingIncrement: 1,
-          },
-        })),
-        {
-          "@type": "Offer",
-          name: "SMS add-on",
-          description: `Optional dedicated business number including ${pricing.sms.includedSegments.toLocaleString()} segments per month. Additional segments are $${pricing.sms.overagePer1000} per 1,000.`,
-          price: pricing.sms.price,
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: pricing.sms.price,
-            priceCurrency: "USD",
-            unitText: "MONTH",
-          },
-        },
-      ],
+      lowPrice: pricing.startingPrice,
+      offerCount: offers.length,
+      offers,
     },
   };
+}
+
+/**
+ * Every published offer: one per plan by size, then the optional add-ons.
+ * Plans are flat monthly prices for an active-home limit, so each carries
+ * its limit as the price specification's eligible quantity.
+ */
+function softwareOffers() {
+  return [
+    ...pricing.plans.map((plan) => ({
+      "@type": "Offer",
+      name: `Plan - ${plan.name}`,
+      description: `Flat monthly plan for up to ${plan.homes} active homes, including unlimited team members and unlimited subcontractors. Prospect and archived homes don't count toward the plan.`,
+      price: plan.price,
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: plan.price,
+        priceCurrency: "USD",
+        unitText: "MONTH",
+        billingDuration: 1,
+        billingIncrement: 1,
+        eligibleQuantity: {
+          "@type": "QuantitativeValue",
+          maxValue: plan.homes,
+          unitText: "active homes",
+        },
+      },
+    })),
+    ...pricing.ai.plans.map((plan) => ({
+      "@type": "Offer",
+      name: `AI plan - ${plan.name}`,
+      description: `Optional monthly AI plan with ${plan.credits.toLocaleString("en-US")} AI credits included. Additional credits are $${pricing.ai.overagePer100} per 100, up to a monthly cap the builder sets.`,
+      price: plan.price,
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: plan.price,
+        priceCurrency: "USD",
+        unitText: "MONTH",
+        billingDuration: 1,
+        billingIncrement: 1,
+      },
+    })),
+    {
+      "@type": "Offer",
+      name: "SMS add-on",
+      description: `Optional dedicated business number including ${pricing.sms.includedSegments.toLocaleString()} segments per month. Additional segments are $${pricing.sms.overagePer1000} per 1,000.`,
+      price: pricing.sms.price,
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: pricing.sms.price,
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+    },
+  ];
 }
 
 /** FAQPage — only emit on pages that actually render the same Q&A visibly. */

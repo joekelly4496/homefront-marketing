@@ -216,8 +216,9 @@ export default async function UseCasePage({ params }: Params) {
               Try it on your own homes
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              ${pricing.base}/month plus ${pricing.perHome} per active home,
-              unlimited users and subs, no contracts. Set up your first home
+              From ${pricing.startingPrice}/month for up to{" "}
+              {pricing.plans[0].homes} active homes, unlimited users and subs,
+              no contracts. Set up your first home
               today. {trial.short}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">

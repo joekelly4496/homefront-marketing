@@ -7,7 +7,7 @@ import { ReplayConsent } from "@/components/ReplayConsent";
 import { HideOnLanding } from "@/components/HideOnLanding";
 import { JsonLd } from "@/components/JsonLd";
 import { siteUrl, absoluteUrl } from "@/lib/site";
-import { brand } from "@/lib/content";
+import { brand, pricing } from "@/lib/content";
 import {
   graph,
   organizationSchema,
@@ -33,7 +33,7 @@ const body = Hanken_Grotesk({
 // vocabulary for body copy, never a target query.
 const defaultTitle = "Warranty Callback Software for Home Builders | Afterkey";
 const defaultDescription =
-  "Warranty callback software for home builders and remodelers. Turn finished homes into membership and repair revenue, under your brand. $149/month.";
+  `Warranty callback software for home builders and remodelers. Turn finished homes into membership and repair revenue, under your brand. From $${pricing.startingPrice}/month.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

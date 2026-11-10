@@ -20,13 +20,16 @@ import {
   webPageSchema,
 } from "@/lib/schema";
 import {
+  adLanding,
   brand,
   pricing,
+  planFor,
+  planFraming,
+  planSummary,
   commitments,
   pricingFaqs,
   signupHref,
   trial,
-  perHomeFraming,
   processingLine,
   primaryCta,
   smsStatus,
@@ -36,10 +39,10 @@ import {
 
 const money = (n: number) => `$${n.toLocaleString("en-US")}`;
 
-const title = `Pricing: $${pricing.base}/month + $${pricing.perHome} Per Active Home`;
+const title = `Pricing: Plans From $${pricing.startingPrice}/Month by Active Homes`;
 const starterAi = pricing.ai.plans[0];
 
-const description = `One plan, published. $${pricing.base}/month plus $${pricing.perHome} per active home, unlimited users and subcontractors. Optional AI and SMS add-ons. No contracts, no quote calls.`;
+const description = `Plans by size: ${pricing.plans.map((p, i) => `$${p.price}${i === 0 ? "/month" : ""} up to ${p.homes}${i === 0 ? " active homes" : ""}`).join(", ")}. Unlimited users and subcontractors. No contracts, no quote calls.`;
 
 export const metadata = pageMetadata({
   title,
@@ -47,20 +50,17 @@ export const metadata = pageMetadata({
   path: "/pricing",
 });
 
+/** The plan cards: every published plan. The custom card follows them. */
+const planCards = pricing.plans.map((plan) => ({
+  key: plan.key,
+  name: plan.name,
+  price: money(plan.price),
+  unit: "/month",
+  description: `${plan.blurb} Up to ${plan.homes} active homes, with unlimited team members and subcontractors.`,
+}));
+
+/** Optional add-ons, on top of any plan. */
 const priceLines = [
-  {
-    price: `$${pricing.base}`,
-    unit: "/month",
-    title: "Platform base",
-    description:
-      "Unlimited team members and unlimited subcontractors. Headcount never changes your bill.",
-  },
-  {
-    price: `+ $${pricing.perHome}`,
-    unit: "/month per active home",
-    title: "Per active home",
-    description: `Flat at any age, for homes you’re actively serving. Next to it: one home on a $${workedExample.planPrice}-a-month maintenance plan brings in $${(workedExample.planPrice * 12).toLocaleString("en-US")} a year; on a $${workedExample.fullServicePrice} whole-house plan, $${(workedExample.fullServicePrice * 12).toLocaleString("en-US")} — at prices you set. Prospect homes are free while you pitch them, and archived homes are free, read-only, and keep their full history.`,
-  },
   {
     price: `+ $${starterAi.price}`,
     unit: "/month and up (optional)",
@@ -85,10 +85,13 @@ const exampleBills = [
   { homes: 50 },
   { homes: 100 },
 ].map(({ homes }) => {
-  const core = pricing.base + homes * pricing.perHome;
+  // Every example row fits a published plan (all are 200 homes or fewer).
+  const plan = planFor(homes) ?? pricing.plans[pricing.plans.length - 1];
+  const core = plan.price;
   const withAi = core + starterAi.price;
   return {
     homes: `${homes} active homes`,
+    plan: plan.name,
     core: `$${core.toLocaleString()}`,
     withAi: `$${withAi.toLocaleString()}`,
     withBoth: `$${(withAi + pricing.sms.price).toLocaleString()}`,
@@ -116,7 +119,7 @@ const included = [
   "Shared appliance library — reused models are always free",
   "Maintenance memberships at your price, billed monthly to your account",
   "Photo documentation on every request",
-  "Unlimited homes, team members, and subcontractors",
+  "Unlimited team members and subcontractors on every plan",
 ];
 
 export default function PricingPage() {
@@ -136,13 +139,14 @@ export default function PricingPage() {
           <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>Pricing</SectionLabel>
             <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              One plan. Published price. No quote calls.
+              Plans by size. Published prices. No quote calls.
             </h1>
             <p className="mt-5 text-lg text-slate-600">
-              Afterkey costs ${pricing.base} per month plus ${pricing.perHome}{" "}
-              per active home. Unlimited team members and unlimited
-              subcontractors are included, there are no tiers, and there is no
-              per-user fee. Your rate is locked for 24 months. What you charge
+              Afterkey is one flat monthly price for the number of active
+              homes you cover: {planSummary}. Unlimited team members and
+              unlimited subcontractors are on every plan, there is no per-user
+              fee, and nothing is billed per home. Your rate is locked for 24
+              months. What you charge
               your homeowners for a membership or a repair is yours — Afterkey
               never sets it, and there is no platform fee on their
               payments.
@@ -167,8 +171,71 @@ export default function PricingPage() {
       <section className="py-16 sm:py-20">
         <Container size="6xl">
           <Reveal>
-            <Card className="mx-auto max-w-3xl p-6 sm:p-10">
-              <h2 className="sr-only">Price breakdown</h2>
+            <h2 className="sr-only">Plans</h2>
+            <ul className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {planCards.map((plan) => (
+                <li key={plan.key}>
+                  <Card className="flex h-full flex-col p-6">
+                    <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                      {plan.name}
+                    </h3>
+                    <p className="mt-3">
+                      <span className="text-3xl font-semibold tracking-tight text-slate-900">
+                        {plan.price}
+                      </span>
+                      <span className="text-sm text-slate-500">
+                        {plan.unit}
+                      </span>
+                    </p>
+                    <p className="mt-3 text-sm text-slate-600">
+                      {plan.description}
+                    </p>
+                  </Card>
+                </li>
+              ))}
+              <li>
+                <Card className="flex h-full flex-col p-6">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                    More than {pricing.customAbove} homes
+                  </h3>
+                  <p className="mt-3">
+                    <span className="text-3xl font-semibold tracking-tight text-slate-900">
+                      Custom
+                    </span>
+                  </p>
+                  <p className="mt-3 text-sm text-slate-600">
+                    A plan set up with you for a bigger portfolio, with
+                    unlimited team members and subcontractors like every plan.
+                  </p>
+                  <p className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-4 text-sm font-semibold">
+                    <a
+                      href={adLanding.bookCallUrl}
+                      className="text-brand-600 hover:text-brand-700"
+                    >
+                      Book a call
+                    </a>
+                    <Link
+                      href="/contact"
+                      className="text-brand-600 hover:text-brand-700"
+                    >
+                      Contact us
+                    </Link>
+                  </p>
+                </Card>
+              </li>
+            </ul>
+            <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-slate-600">
+              Only active homes count toward your plan — prospect homes you’re
+              pitching and archived homes are free. Change plans any time from
+              Billing: an upgrade starts right away, and a downgrade starts
+              next month if your active homes fit.
+            </p>
+          </Reveal>
+          <Reveal delay={60}>
+            <Card className="mx-auto mt-10 max-w-3xl p-6 sm:p-10">
+              <h2 className="mb-5 text-sm font-semibold uppercase tracking-wide text-slate-900">
+                Optional add-ons, on any plan
+              </h2>
               <ul className="divide-y divide-slate-200">
                 {priceLines.map((line) => (
                   <li
@@ -198,7 +265,7 @@ export default function PricingPage() {
           </Reveal>
           <Reveal delay={70} className="mx-auto mt-6 max-w-3xl">
             <p className="text-center text-base text-slate-600">
-              {perHomeFraming}
+              {planFraming}
             </p>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-5 max-w-3xl">
@@ -225,8 +292,9 @@ export default function PricingPage() {
               What the plan costs at your size
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              The published rates, multiplied out. Nothing here is an estimate —
-              it is the same arithmetic you can do yourself.
+              The published plans, matched to a home count, with the add-ons
+              on top. Nothing here is an estimate — it is the same arithmetic
+              you can do yourself.
             </p>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
@@ -242,7 +310,7 @@ export default function PricingPage() {
                       Active homes
                     </th>
                     <th scope="col" className="px-5 py-3.5">
-                      Base + homes
+                      Your plan
                     </th>
                     <th scope="col" className="px-5 py-3.5">
                       + {starterAi.name} AI plan
@@ -260,6 +328,9 @@ export default function PricingPage() {
                         className="px-5 py-4 text-left font-medium text-slate-900"
                       >
                         {row.homes}
+                        <span className="block text-xs font-normal text-slate-500">
+                          {row.plan} plan
+                        </span>
                       </th>
                       <td className="px-5 py-4 text-slate-600">{row.core}</td>
                       <td className="px-5 py-4 text-slate-600">{row.withAi}</td>
@@ -273,7 +344,7 @@ export default function PricingPage() {
             </div>
             <p className="mt-4 text-xs text-slate-500">
               Per month, before any AI or SMS overage. Only homes you’re
-              actively serving count toward the total — prospect and archived
+              actively serving count toward your plan — prospect and archived
               homes are free.
             </p>
           </Reveal>
@@ -306,7 +377,8 @@ export default function PricingPage() {
                 {money(workedExample.fullServiceYearly)} a year, gross, before
                 you pay your subs for the work. Your Afterkey bill at{" "}
                 {workedExample.homes} active homes is{" "}
-                {money(workedExample.afterkeyMonthly)}/month.
+                {money(workedExample.afterkeyMonthly)}/month, on the{" "}
+                {workedExample.afterkeyPlanName} plan.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 There is no platform fee on those homeowner payments — you pay
@@ -328,11 +400,11 @@ export default function PricingPage() {
         <Container size="6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-              One plan. Everything in it.
+              Every plan. Everything in it.
             </h2>
             <p className="mt-4 text-base text-slate-600">
-              There is no upsell tier. Everything below is in the $
-              {pricing.base} base plus your per-home rate.
+              There is no upsell tier. Everything below is on every plan; the
+              plans differ only by how many active homes they cover.
             </p>
           </Reveal>
           <Reveal delay={80} className="mx-auto mt-10 max-w-3xl">
