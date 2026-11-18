@@ -287,6 +287,12 @@ voice, imagery and page craft; run the humanizer pass on every visible word.
   README), JSON-LD from `src/lib/schema.ts`.
 - `/start` is the ad landing page (noindex); `/welcome` is the page builders
   send homeowners (noindex). Details in README.
+  `/start` shows its buttons right under the promise (no scrolling to act)
+  and again after the walkthrough. `?offer=trial` (the Instagram /trial
+  link) makes "Start your free 30-day trial" the main button and booking a
+  call the secondary link; without it, booking a call stays the main button.
+  On phones the main button is also pinned to the bottom of the screen
+  whenever the top one is out of view (src/components/StickyCta.tsx).
 - Instagram bio short links (next.config.ts redirects, 307): `/trial` ->
   `/start`, `/quiz` -> `/scorecard` and `/demo` -> `/start/book` (qualify,
   then book a call), all tagged utm_source=instagram,
