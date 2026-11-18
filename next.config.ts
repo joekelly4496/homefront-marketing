@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
         destination: "/scorecard?utm_source=instagram&utm_medium=bio&utm_campaign=scorecard",
         permanent: false,
       },
+      {
+        source: "/demo",
+        destination: "/start/book?utm_source=instagram&utm_medium=bio&utm_campaign=demo",
+        permanent: false,
+      },
     ];
   },
 };
