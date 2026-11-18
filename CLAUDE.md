@@ -288,7 +288,8 @@ voice, imagery and page craft; run the humanizer pass on every visible word.
 - `/start` is the ad landing page (noindex); `/welcome` is the page builders
   send homeowners (noindex). Details in README.
 - Instagram bio short links (next.config.ts redirects, 307): `/trial` ->
-  `/start` and `/quiz` -> `/scorecard`, both tagged utm_source=instagram,
+  `/start`, `/quiz` -> `/scorecard` and `/demo` -> `/start/book` (qualify,
+  then book a call), all tagged utm_source=instagram,
   utm_medium=bio. Keep them working; they are printed in the bio.
 - `/scorecard` is the After-the-Keys Scorecard quiz (Oct 17 2026, Joe
   approved the copy): 9 questions, then first name, company, email and phone
