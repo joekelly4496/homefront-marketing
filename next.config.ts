@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/trial",
-        destination: "/start?utm_source=instagram&utm_medium=bio&utm_campaign=trial",
+        destination: "/start?offer=trial&utm_source=instagram&utm_medium=bio&utm_campaign=trial",
         permanent: false,
       },
       {
