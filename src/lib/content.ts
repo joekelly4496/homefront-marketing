@@ -364,7 +364,7 @@ export const callbackPoints: CallbackPoint[] = [
     icon: CalendarClock,
     title: "After hours, nothing sits until morning",
     body:
-      "Every request is sent the moment it comes in, day or night. Urgent ones alert you and the sub right away when your after-hours setting is on, which it is by default. Normal ones wait for your next opening.",
+      "Every request is sent the moment it comes in, day or night. With your after-hours setting on (the default), urgent ones start their response clock right away. Normal ones wait for your next opening.",
   },
   {
     id: "billable",
@@ -386,7 +386,7 @@ export const afterHours = {
   title: "After hours, handled the way you set it",
   points: [
     "Every request is sent the moment it’s submitted, nights and weekends included: the sub gets the email and the job link, and you get an email and an in-app alert.",
-    "Urgent requests alert you and the sub right away when your after-hours setting is on. It’s on by default. The response clock starts at once, so if the sub doesn’t pick it up in time, he’s nudged and you’re escalated overnight instead of when you open.",
+    "Urgent requests reach you and the sub the moment they’re sent. With your after-hours setting on (the default), the response clock starts at once too, so if the sub doesn’t pick it up in time, he’s nudged and you’re escalated overnight instead of when you open.",
     "Turn the setting off and urgent requests are still sent at once, with the clock starting when you open. Normal requests are queued for your next opening either way.",
     "With the texting add-on, the sub gets a text too, and urgent requests text the escalation phone you save. Without it, after-hours alerts reach you by email.",
     "The homeowner is told what happens next in your words, from your own response targets: who was alerted, when to expect an answer, and, on an urgent request, to shut off what they safely can and call for help first.",
@@ -861,7 +861,7 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "After hours, sent anyway",
         description:
-          "Every request goes out the moment it’s submitted, nights and weekends included. Urgent ones alert you and the sub right away when your after-hours setting is on (the default), so the reminders and escalation run overnight; normal ones wait for your next opening. The homeowner is told what happens next, from your own response targets.",
+          "Every request goes out the moment it’s submitted, nights and weekends included. With your after-hours setting on (the default), urgent ones start their response clock right away, so the reminders and escalation run overnight; normal ones wait for your next opening. The homeowner is told what happens next, from your own response targets.",
       },
       {
         title: dailyBrief.title,
@@ -1397,7 +1397,7 @@ export const differentiators: Differentiator[] = [
   {
     title: "After hours, handled the way you set it",
     description:
-      "Every request is sent the moment it’s submitted, nights and weekends included. Urgent ones alert you and the sub right away when your after-hours setting is on, and the homeowner is told what happens next, based on the response targets you set.",
+      "Every request is sent the moment it’s submitted, nights and weekends included. With your after-hours setting on, urgent ones start their response clock right away, and the homeowner is told what happens next, based on the response targets you set.",
   },
 ];
 
@@ -1626,7 +1626,7 @@ export const useCases: UseCase[] = [
         {
           title: "After hours, sent anyway",
           description:
-            "A request submitted at 10pm goes to the sub at 10pm. Urgent ones alert you and the sub right away when your after-hours setting is on, which it is by default; normal ones are queued for your next opening.",
+            "A request submitted at 10pm goes to the sub at 10pm. With your after-hours setting on (the default), urgent ones start their response clock right away; normal ones are queued for your next opening.",
         },
         {
           title: "Warranty or billable, decided before the argument",
