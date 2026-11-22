@@ -177,8 +177,9 @@ content.ts and must not be rendered anywhere else.
 
 - **Plans by size** (owner decision, Nov 10 2026; replaces the old base +
   per-active-home pricing): one flat monthly price for the number of ACTIVE
-  homes a builder covers — **up to 25 active homes $199/month, up to 75
-  $399, up to 200 $749**; more than 200 = a custom plan (book a call /
+  homes a builder covers — **up to 10 active homes $99/month (starter,
+  owner decision Nov 22 2026), up to 25 $199, up to 75 $399, up to 200
+  $749**; more than 200 = a custom plan (book a call /
   contact us). Numbers live in `pricing.plans` (+ `customAbove`,
   `startingPrice`, `planFor(homes)`, `planSummary`) in content.ts.
 - **Unlimited team members and unlimited subs on every plan**, never
@@ -187,8 +188,8 @@ content.ts and must not be rendered anywhere else.
   homes: they belong to the hidden win-back flow).
 - Change plans any time from Billing: upgrades start right away,
   downgrades next month (if the active homes fit).
-- One-liner outside /pricing: `pricingLine` ("Plans from $199/month for up
-  to 25 active homes..."). Framing: `planFraming` (one price at your size,
+- One-liner outside /pricing: `pricingLine` ("Plans from $99/month for up
+  to 10 active homes..."). Framing: `planFraming` (one price at your size,
   so a quiet spec home never runs up the bill). Never "per seat".
 - **SMS add-on $29/month**: dedicated number + 1,000 segments; $25 per extra
   1,000; live meter, 80/100% alerts, adjustable ceiling (default $150).

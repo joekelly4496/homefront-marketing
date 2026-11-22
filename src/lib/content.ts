@@ -177,6 +177,14 @@ export const primaryCta = "Set up your first home";
 /** The plans by size, smallest first. `homes` is the active-home limit. */
 const homePlans = [
   {
+    // Starter plan (owner decision, Nov 22 2026): "From $99/month".
+    key: "homes_10",
+    name: "Up to 10 homes",
+    homes: 10,
+    price: 99,
+    blurb: "Small builders and remodelers.",
+  },
+  {
     key: "homes_25",
     name: "Up to 25 homes",
     homes: 25,
@@ -206,7 +214,7 @@ export const pricing = {
   plans: homePlans,
   /** Above this many active homes the plan is custom (book a call). */
   customAbove: 200,
-  /** For “from $199/month” one-liners. */
+  /** For “from $99/month” one-liners. */
   startingPrice: homePlans[0].price,
   sms: {
     price: 29,
@@ -280,7 +288,7 @@ export function planFor(homes: number): HomePlan | null {
   return pricing.plans.find((p) => homes <= p.homes) ?? null;
 }
 
-/** The plans in one phrase: “$199 a month for up to 25 active homes, $399 for up to 75, and $749 for up to 200”. */
+/** The plans in one phrase: “$99 a month for up to 10 active homes, $199 for up to 25, $399 for up to 75, and $749 for up to 200”. */
 export const planSummary = pricing.plans
   .map((p, i) =>
     i === 0

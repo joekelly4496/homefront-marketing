@@ -171,7 +171,7 @@ export default function PricingPage() {
         <Container size="6xl">
           <Reveal>
             <h2 className="sr-only">Plans</h2>
-            <ul className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {planCards.map((plan) => (
                 <li key={plan.key}>
                   <Card className="flex h-full flex-col p-6">

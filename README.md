@@ -219,7 +219,8 @@ Copy rules that follow from it:
   builder-service-platform): trial wording verbatim, onboarding free
   (concierge is not offered on the site), processing "includes every Stripe
   processing and payout fee," no money-back guarantee, no annual prepay.
-- Plans by size (Nov 10 2026): $199 up to 25 active homes, $399 up to 75,
+- Plans by size (Nov 10 2026; $99 starter added Nov 22 2026): $99 up to 10
+  active homes, $199 up to 25, $399 up to 75,
   $749 up to 200, custom above 200; unlimited team and subs on every plan;
   archived homes don't count. Framed by `planFraming`: one price
   at your size, so a quiet spec home never runs up the bill. Never tell the
