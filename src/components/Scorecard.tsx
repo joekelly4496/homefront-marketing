@@ -2,16 +2,13 @@
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import posthog from "posthog-js";
 import { buttonVariants } from "@/components/ui/Button";
-import { adLanding, pricingLine } from "@/lib/content";
+import { adLanding, callbackPoints, pricingLine, thesis } from "@/lib/content";
 import {
-  calculator,
-  defaultPastHomes,
   fitOf,
   painLineOf,
-  planMonthly,
   promptFor,
   questions,
   resultTypeOf,
@@ -46,9 +43,6 @@ function bookingHref(name: string, email: string): string | null {
     return null;
   }
 }
-
-const usd = (n: number) =>
-  n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
 type Phase = "intro" | "questions" | "contact" | "result";
 
@@ -136,8 +130,8 @@ export function Scorecard() {
           Are your finished homes making you money, or just making you calls?
         </h1>
         <p className="mt-4 text-base leading-relaxed text-slate-300">
-          Nine quick questions about the year after the keys. Get your After-the-Keys Score, the one change
-          that cuts the most calls, and what a maintenance plan could bring in across your past homes.
+          Nine quick questions about the year after the keys. Get your After-the-Keys Score and the one change
+          that cuts the most calls.
         </p>
         <button type="button" onClick={start} className={buttonVariants({ size: "lg", className: "mt-8 w-full sm:w-auto" })}>
           Get my score (60 seconds)
@@ -259,34 +253,6 @@ function Bar({ label, value, max }: { label: string; value: number; max: number 
   );
 }
 
-function Slider(props: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  display: string;
-  onChange: (v: number) => void;
-}) {
-  return (
-    <label className="grid gap-2 text-sm">
-      <span className="flex items-baseline justify-between">
-        <span className="font-medium text-paper">{props.label}</span>
-        <span className="tabular-nums font-semibold text-paper">{props.display}</span>
-      </span>
-      <input
-        type="range"
-        min={props.min}
-        max={props.max}
-        step={props.step}
-        value={props.value}
-        onChange={(e) => props.onChange(Number(e.target.value))}
-        className="w-full accent-brass"
-      />
-    </label>
-  );
-}
-
 function Result({ answers, name, email }: { answers: Answers; name: string; email: string }) {
   const s = useMemo(() => scoreOf(answers), [answers]);
   const type = resultTypeOf(s.total);
@@ -294,10 +260,6 @@ function Result({ answers, name, email }: { answers: Answers; name: string; emai
   const fit = fitOf(answers);
   const first = name.trim().split(/\s+/)[0] || "";
 
-  const [homes, setHomes] = useState(() => defaultPastHomes(answers));
-  const [price, setPrice] = useState<number>(calculator.price.start);
-  const [join, setJoin] = useState<number>(calculator.join.start);
-  const monthly = planMonthly(homes, join, price);
   const booking = bookingHref(name, email);
 
   return (
@@ -333,48 +295,17 @@ function Result({ answers, name, email }: { answers: Answers; name: string; emai
         </div>
       ) : (
         <div className={card}>
-          <h3 className="text-xl font-semibold tracking-tight text-paper">What a plan could bring in</h3>
-          <p className="mt-2 text-sm leading-relaxed text-slate-400">Drag the numbers. Every one of them is yours to set.</p>
-          <div className="mt-6 grid gap-6">
-            <Slider
-              label="Past homes you could offer a plan to"
-              value={homes}
-              min={calculator.homes.min}
-              max={calculator.homes.max}
-              step={calculator.homes.step}
-              display={String(homes)}
-              onChange={setHomes}
-            />
-            <Slider
-              label="Monthly plan price you’d charge"
-              value={price}
-              min={calculator.price.min}
-              max={calculator.price.max}
-              step={calculator.price.step}
-              display={usd(price)}
-              onChange={setPrice}
-            />
-            <Slider
-              label="Share of homeowners who join"
-              value={join}
-              min={calculator.join.min}
-              max={calculator.join.max}
-              step={calculator.join.step}
-              display={`${join}%`}
-              onChange={setJoin}
-            />
-          </div>
-          <p className="mt-8 text-lg leading-relaxed text-paper" aria-live="polite">
-            {homes} homes × {join}% × {usd(price)} ={" "}
-            <span className="font-semibold">
-              {usd(monthly)} a month, {usd(monthly * 12)} a year
-            </span>{" "}
-            running through your company.
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-slate-400">
-            Example only. You set the price and the plan. Plan revenue is gross, before your subs are paid.{" "}
-            {pricingLine}
-          </p>
+          <h3 className="text-xl font-semibold tracking-tight text-paper">What changes with Afterkey</h3>
+          <p className="mt-3 text-base leading-relaxed text-slate-300">{thesis.short}</p>
+          <ul className="mt-6 grid gap-3">
+            {callbackPoints.map((p) => (
+              <li key={p.id} className="flex gap-2.5">
+                <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-brass" aria-hidden="true" />
+                <span className="text-base text-paper">{p.title}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm leading-relaxed text-slate-400">{pricingLine}</p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             {fit === "qualified" && booking ? (

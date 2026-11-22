@@ -11,18 +11,22 @@ today, what it costs, and what we may and may not say.
 anything else. When the product changes, this file and `content.ts` change
 with it (see "Keeping the site true" at the bottom).
 
-Last full sync with the product: **November 10, 2026** (plans by size).
+Last full sync with the product: **November 22, 2026** (callbacks only:
+memberships, win-back, one-time proposals and plan quotes hidden).
 
 ---
 
 ## The mission, in one breath
 
-Every home a builder has closed is a customer he isn't earning on. Afterkey
-turns those homes into a service business: a maintenance membership the
-builder prices, repair work billed through the builder's own branded portal
-with his markup on it, and warranty callbacks routed straight to his subs.
-**More money from homes you already built is the point; easier is the side
-effect.** Tagline: *Everything after the keys.*
+**Owner decision, Nov 22 2026: Afterkey focuses ONLY on callbacks**
+(post-closing service requests and warranty callbacks). The builder stops
+being the middleman: the homeowner submits the request with photos in the
+builder's branded portal, it goes straight to the sub for that trade on a
+response clock, and the builder is only pulled in when something needs him.
+A callback that isn't warranty is priced with his markup, approved by the
+homeowner and paid through the portal. Tagline: *Everything after the keys.*
+Headline (`thesis.headline`, also `/start`): "Stop being the middleman on
+every callback." 
 
 - **Category sentence:** post-closing software platform for residential home
   builders and remodelers (`brand.category`).
@@ -35,27 +39,25 @@ effect.** Tagline: *Everything after the keys.*
   remodelers" wherever the audience is named. "Builder" stays the product's
   word for the paying account role. The builder or remodeler pays
   Afterkey. Never write that homeowners "use it free" or "Homeowners: free"
-  (Joe, Oct 27 2026): homeowners pay the builder for the plans and repairs
-  he sells them through Afterkey. Say "Homeowners never pay Afterkey. They
-  pay you, for the plans and repairs you sell them." Warranty repairs stay
-  free. Subs pay nothing to use it; they get paid through it. The qualifier
+  (Joe, Oct 27 2026): homeowners pay the builder for the billable repairs
+  they approve. Say "Homeowners never pay Afterkey; they pay you only for
+  billable repairs they approve." Warranty repairs stay free. Subs pay nothing to use it; they get paid through it. The qualifier
   routes remodelers exactly like builders.
 - **Who built it:** "Afterkey is built by a residential home builder on Long
   Island." That exact line (`brand.founder`) and nothing more. Never claim it
   runs on Joe's homes, his company, a pilot, or any customer.
-- **Positioning order** (`revenuePoints`): the membership he prices → the
-  repair revenue he was giving away → out of the middle → a business he can
-  sell → first call for the next job.
+- **Positioning order** (`callbackPoints`): straight to the sub, not your
+  cell → a clock on every request → the homeowner sees the status → after
+  hours, nothing sits until morning → billable callbacks get billed.
 
 ## What the product does today (all live unless marked)
 
 ### Three portals
-1. **Builder portal** — homes, requests, subs, memberships, repair billing,
-   payouts, reports.
+1. **Builder portal** — homes, requests, subs, response clocks, repair
+   billing, payouts, reports, the Daily Brief.
 2. **Homeowner portal** — white-labeled under the builder; browser-based, no
    app. Requests with photos, status, messaging the sub, approving repair
-   prices, the maintenance schedule, documents, service history, joining
-   and cancelling a plan.
+   prices, documents, maintenance reminders, service history.
 3. **Subcontractor portal** — every job from a link (no app, no login),
    status from the jobsite, required completion photos, compliance
    documents, payout setup.
@@ -65,10 +67,20 @@ effect.** Tagline: *Everything after the keys.*
   that home. The builder is notified, not asked.
 - SLA clocks per priority, automated reminders to the sub, escalation to the
   builder. Email is free forever.
+- **After hours** (`afterHours`): every request is sent at once, any hour
+  (sub email + no-login job link; a text too with the texting add-on;
+  builder email + in-app). With "Handle urgent requests after hours" ON
+  (default), an urgent request's clock starts now, so the sub is nudged and
+  the builder escalated overnight; OFF, the urgent clock starts at the next
+  opening. Normal/low requests wait for the next opening. Urgent requests
+  text the builder's escalation phone only with the texting add-on. The
+  homeowner is told what happens next from the builder's own SLA targets
+  (never a hard-coded "2 hours"), always with the shut-off-and-call line.
+- **Daily Brief** (`dailyBrief`): a 7 AM email per builder, house by house.
 - Day-of arrival tracking (confirm, on my way, running late).
 - Every request, dispatch and completion timestamped on the home's record.
 - **Warranty vs. billable** is classified automatically at submit from the
-  home's warranty dates (plus per-trade extensions) and plan. No date on file
+  home's warranty dates (plus per-trade extensions). No date on file
   = warranty. The sub can only **flag**; the builder decides; the homeowner is
   told. The homeowner — never the builder — approves prices.
 
@@ -84,36 +96,18 @@ effect.** Tagline: *Everything after the keys.*
   builder. A sub without a linked bank is paid by the builder as before, and
   Afterkey keeps his invoice on the record.
 - Paid by check or cash? Mark it paid; the homeowner gets a receipt.
-- One-time proposals: the builder prices a one-off visit and sends it; the
-  homeowner approves on a no-login page.
 
-### Memberships (maintenance plans)
-- The builder sets every price and every line item; Afterkey never sets or
-  caps it. Ladder (examples only): $20–40 schedule and reminders, $100–250
-  scheduled service, $500+ the whole house.
-- **Billing starts the day the homeowner joins**, warranty or not (owner
-  decision, Oct 2026). A builder enrolling by hand may pick a later date. The
-  homeowner portal itself (warranty requests, callbacks, messages) is always
-  free to homeowners.
-- **Warranty work stays free, always**, member or not. Never imply a
-  homeowner pays monthly for warranty service or that non-members wait
-  longer (`membershipDistinction`).
-- The homeowner **joins and pays in one step** for a plan priced for their
-  home; card or bank account on file. Renewal terms sit next to the button, a
-  confirmation email follows, and they **cancel online**. Builders can cancel
-  or pause too.
-- Included visits ("vouchers" in the product) are laid out across each
-  membership year and **sent to the right sub about two weeks ahead**. The
-  builder sees used vs. included; unused visits don't roll over.
-- **Subs are paid every month**: each sub on the plan gets his share of each
-  monthly payment straight to his bank; the builder gets the rest.
-- Sent plans get automatic follow-ups (day 3 and day 7).
-- Plan dollars on whole-house plans are **gross, before the subs are paid**.
-
-### Win-back
-- Past builds go in free as **prospect** homes; billing starts only when the
-  homeowner joins a plan or the builder activates the home.
-- Claim invites carry the pitch; offers can expire.
+### HIDDEN — never on the site (owner decision, Nov 22 2026)
+Homeowner **memberships** (maintenance plans the builder prices, monthly
+plan revenue, tiers, check-ins, vouchers), **win-back** outreach and
+prospect homes, **one-time proposals**, and **sub quotes for plans** are
+hidden in the app. The site must not promise, describe or price any of
+them: no membership ladder, no worked membership math, no plan calculator,
+no "recurring revenue", no "keep paying you". `/memberships` redirects
+(307, next.config.ts) to `/features`; its source and the content.ts exports
+it reads (`membershipDistinction`, `membershipLadder`, `revenuePoints`,
+`workedExample`, `newHomeMaintenance`) sit in the HIDDEN block of
+content.ts and must not be rendered anywhere else.
 
 ### Setup and data
 - **Spreadsheet import** of up to 1,000 homes; nothing is sent on import.
@@ -175,7 +169,7 @@ effect.** Tagline: *Everything after the keys.*
 - The builder is the **merchant of record** on homeowner charges.
 
 ### Who contracts with whom
-- Homeowner ↔ builder (memberships, repairs, proposals). Builder ↔ sub (the
+- Homeowner ↔ builder (repairs). Builder ↔ sub (the
   sub works for the builder). Afterkey is party to neither, and a split
   payment doesn't create a homeowner–sub contract.
 
@@ -189,12 +183,10 @@ effect.** Tagline: *Everything after the keys.*
   `startingPrice`, `planFor(homes)`, `planSummary`) in content.ts.
 - **Unlimited team members and unlimited subs on every plan**, never
   per-user, and NOT billed per home. Only active homes count toward the
-  plan; prospect and archived homes are free and don't count.
+  plan; archived homes are free and don't count (never mention prospect
+  homes: they belong to the hidden win-back flow).
 - Change plans any time from Billing: upgrades start right away,
-  downgrades next month (if the active homes fit). If a homeowner joining a
-  membership or approving a job puts the builder over the plan, nothing is
-  blocked and the bill doesn't change; the builder just can't activate more
-  homes until they upgrade or archive one.
+  downgrades next month (if the active homes fit).
 - One-liner outside /pricing: `pricingLine` ("Plans from $199/month for up
   to 25 active homes..."). Framing: `planFraming` (one price at your size,
   so a quiet spec home never runs up the bill). Never "per seat".
@@ -247,7 +239,9 @@ effect.** Tagline: *Everything after the keys.*
 - Guarantees like "never miss a callback again."
 - Branded SMS sender, custom domains, emails "from your address."
 - Concierge onboarding or any setup timeline (until it's sold in-product).
-- Anything implying warranty is behind the membership.
+- Anything implying warranty work costs the homeowner anything.
+- Memberships, maintenance plans the builder sells, win-back, one-time
+  proposals or plan quotes (hidden, Nov 22 2026; see HIDDEN above).
 
 ## Voice
 
@@ -287,6 +281,7 @@ voice, imagery and page craft; run the humanizer pass on every visible word.
   README), JSON-LD from `src/lib/schema.ts`.
 - `/start` is the ad landing page (noindex); `/welcome` is the page builders
   send homeowners (noindex). Details in README.
+  The `/start` headline and subhead live in `adLanding` (callbacks only).
   `/start` shows its buttons right under the promise (no scrolling to act)
   and again after the walkthrough. `?offer=trial` (the Instagram /trial
   link) makes "Start your free 30-day trial" the main button and booking a
@@ -297,10 +292,14 @@ voice, imagery and page craft; run the humanizer pass on every visible word.
   `/start`, `/quiz` -> `/scorecard` and `/demo` -> `/start/book` (qualify,
   then book a call), all tagged utm_source=instagram,
   utm_medium=bio. Keep them working; they are printed in the bio.
+  `/memberships` -> `/features` (307) since Nov 22 2026 (memberships hidden).
 - `/scorecard` is the After-the-Keys Scorecard quiz (Oct 17 2026, Joe
   approved the copy): 9 questions, then first name, company, email and phone
   (required), then a score out of 100 (time after the keys /60, money after
-  the keys /40), a result type, a pain line and a plan calculator. Questions,
+  the keys /40), a result type and a pain line. The plan calculator card was
+  removed Nov 22 2026 (callbacks only) and the result-type copy no longer
+  sells plans; questions and scoring are unchanged, and q7/q9 still mention
+  a maintenance plan (Joe's call). Questions,
   scoring and copy live in `src/lib/scorecard.ts`; `/api/scorecard`
   recomputes everything server-side and forwards the lead to Afterkey Sales
   (kind `scorecard`), which emails the scorecard and the follow-ups. No site

@@ -56,8 +56,8 @@ export default function OpengraphImage() {
         </div>
         <div style={{ fontSize: "30px", color: "#4f4c46", maxWidth: "920px" }}>
           Post-closing software for home builders and remodelers — warranty
-          callbacks, sub dispatch, and AI-built maintenance schedules for
-          every home, under your brand.
+          callbacks sent straight to your subs, with a clock on every
+          request, under your brand.
         </div>
       </div>
 

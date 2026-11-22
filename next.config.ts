@@ -28,6 +28,14 @@ const nextConfig: NextConfig = {
         destination: "/start/book?utm_source=instagram&utm_medium=bio&utm_campaign=demo",
         permanent: false,
       },
+      // Memberships are hidden (owner decision, Nov 22 2026: the site sells
+      // callbacks only). Temporary so the page can come back later; the
+      // source in src/app/memberships stays but is never reached.
+      {
+        source: "/memberships",
+        destination: "/features",
+        permanent: false,
+      },
     ];
   },
 };

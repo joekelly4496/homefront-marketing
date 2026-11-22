@@ -65,7 +65,7 @@ const benefits = [
     icon: Landmark,
     title: "Paid straight to your bank",
     description:
-      "Link your bank once. When the homeowner pays for a job, your share is sent to you automatically, and plan work pays every month. No invoice to chase, no waiting on a check from the builder.",
+      "Link your bank once. When the homeowner pays for a job, your share is sent to you automatically. No invoice to chase, no waiting on a check from the builder.",
   },
   {
     icon: Bell,
@@ -91,7 +91,7 @@ const subFaqs: Faq[] = [
   },
   {
     q: "How do I get paid?",
-    a: "Link your bank in your portal, once. After that, when a homeowner pays for a job, your share is sent to your bank automatically, and work on a builder’s maintenance plan pays every month. Until your bank is linked, the builder pays you the way he does today.",
+    a: "Link your bank in your portal, once. After that, when a homeowner pays for a job, your share is sent to your bank automatically. Until your bank is linked, the builder pays you the way he does today.",
   },
   {
     q: "Do I need to install an app?",

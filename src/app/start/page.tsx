@@ -23,7 +23,7 @@ import {
 export const metadata = pageMetadata({
   title: "Callbacks handled under your brand",
   description:
-    `See how Afterkey turns the after-closing phone calls into one queue your subs close, under your name. From $${pricing.startingPrice}/month for up to ${pricing.plans[0].homes} active homes.`,
+    `Homeowner requests go straight to the sub for that trade, with photos and a response clock, under your name. From $${pricing.startingPrice}/month for up to ${pricing.plans[0].homes} active homes.`,
   path: adLanding.path,
   noIndex: true,
 });
@@ -98,13 +98,10 @@ export default async function AdLandingPage({ searchParams }: Props) {
               For home builders and remodelers
             </p>
             <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-paper sm:text-5xl lg:text-[3.5rem]">
-              You’ve built hundreds of homes. They should still be paying you.
+              {adLanding.headline}
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-balance text-base leading-relaxed text-slate-300 sm:mt-5 sm:text-lg">
-              A maintenance plan you price (maintenance, never warranty —
-              that stays free), repairs paid through your portal with your
-              markup on them, and your subs on the work. Here’s how the homes
-              you’ve already closed start paying you.
+              {adLanding.subhead}
             </p>
             <div id="lp-top-cta" className="mt-6 sm:mt-8">
               <Decision primary={primary} secondary={secondary} trialFirst={trialFirst} />

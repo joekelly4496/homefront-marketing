@@ -22,13 +22,12 @@ import {
   trial,
   useCases,
   primaryCta,
-  membershipDistinctionShort,
   onboarding,
 } from "@/lib/content";
 
 const title = "Home Builder Warranty Software";
 const description =
-  "Afterkey is home builder warranty software: callbacks, sub dispatch and compliance, a white-labeled homeowner portal, and AI-built maintenance schedules. See every feature.";
+  "Afterkey is home builder warranty software: callbacks sent straight to the sub, response clocks, after-hours handling, sub compliance, billable repairs, and a white-labeled homeowner portal.";
 
 export const metadata = pageMetadata({
   title,
@@ -52,16 +51,15 @@ export default function FeaturesPage() {
           <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>Features</SectionLabel>
             <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Everything after closing, and the revenue in it
+              Everything after closing, built around the callback
             </h1>
             <p className="mt-5 text-lg text-slate-600">
               Afterkey is home builder warranty software built around the
-              money a closed home can earn: a maintenance membership you
-              price, paid repairs with your markup paid out automatically,
-              warranty callbacks routed to your subs, and a homeowner portal
-              under your brand. Then the work underneath it — compliance, the
-              AI-built maintenance schedule, the record.{" "}
-              {membershipDistinctionShort}
+              callback: the request comes in with photos, goes straight to the
+              sub for that trade, runs on a clock you set, and closes on the
+              home’s record. Around it, the homeowner portal under your brand,
+              sub compliance, billable repairs with your markup, and the home
+              binder.
             </p>
             <p className="mt-4 text-sm text-slate-500">
               Every feature below is marked with its real availability. Nothing

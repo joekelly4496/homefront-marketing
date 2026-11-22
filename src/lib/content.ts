@@ -38,10 +38,10 @@ export const brand = {
    * Change it here or nowhere.
    */
   definition:
-    "Afterkey is a post-closing software platform for residential home builders and remodelers that turns the homes they have already built or renovated into a service business: homeowner maintenance memberships they price, paid repair work billed through their own branded portal, and warranty callbacks routed to their subs.",
+    "Afterkey is a post-closing software platform for residential home builders and remodelers that runs their warranty callbacks: homeowners submit requests with photos in the builder’s branded portal, each request goes straight to the subcontractor assigned to that trade on that home, and the builder is notified, not asked.",
   /** The second sentence — what it's for. */
   purpose:
-    "Builders and remodelers use Afterkey after the keys are handed over so every finished home keeps earning — monthly membership revenue, billed repair work, and the next job — instead of eating margin.",
+    "Builders and remodelers use Afterkey after the keys are handed over so callbacks stop running through their cell phone: every request has a sub, a response clock and a record, and anything that isn’t warranty is priced and approved by the homeowner before the work is charged.",
   /**
    * White-labeling is a top-tier selling point, not a footnote: the homeowner
    * experience carries the builder's business, not Afterkey's. State it high
@@ -89,6 +89,10 @@ export const signupHref = `${appBase}/builder/login?signup=1`;
  */
 export const adLanding = {
   path: "/start",
+  /** The /start promise (owner decision, Nov 22 2026: callbacks only). */
+  headline: "Stop being the middleman on every callback.",
+  subhead:
+    "Homeowners send the request with photos through your portal. It goes straight to the sub for that trade, and you’re only pulled in when something needs you. All under your name.",
   videoUrl: "",
   videoDuration: "",
   videoPoster: "/images/hero-colonial-dusk.webp",
@@ -152,21 +156,22 @@ export const primaryCta = "Set up your first home";
 /* DECISION NOTE (Sept 2026): processing rates are cards 3.5% + 30¢    */
 /* and ACH flat 1.25%, raised from at-cost / 1% to absorb Stripe       */
 /* Connect costs (payouts, connected-account fees). There is no        */
-/* platform fee on homeowner payments. Recurring plan dues are paid by */
-/* card OR bank account — never ACH-only, never disparage cards. The   */
-/* free trial covers subscription fees only. This supersedes any older */
-/* numbers; do not revert them.                                        */
+/* platform fee on homeowner payments. Homeowners pay by card OR bank  */
+/* account — never ACH-only, never disparage cards. The free trial     */
+/* covers subscription fees only. This supersedes any older numbers;   */
+/* do not revert them.                                                 */
 /*                                                                     */
 /* DECISION NOTE (Nov 10 2026): PLANS BY SIZE replace the old base +   */
 /* per-active-home pricing. One flat monthly price for the number of   */
 /* ACTIVE homes a builder covers (25 / 75 / 200; custom above 200).    */
 /* Unlimited team members and subs on every plan; never per-user, not  */
-/* billed per home. Prospect and archived homes are free and don’t     */
+/* billed per home. Archived (and prospect) homes are free and don’t  */
 /* count. Upgrades start at once; downgrades next month (if the active */
-/* homes fit). A homeowner joining or approving a job that puts the    */
-/* builder over the plan is never blocked and doesn’t change the bill; */
-/* the builder just can’t activate more homes until they upgrade or    */
-/* archive one. No annual pricing, no promo codes, no per-seat.        */
+/* homes fit). No annual pricing, no promo codes, no per-seat.         */
+/*                                                                     */
+/* DECISION NOTE (Nov 22 2026): the site sells CALLBACKS only. Do not  */
+/* mention prospect homes, memberships, maintenance plans the builder  */
+/* prices, win-back, one-time proposals or plan quotes anywhere.       */
 /* ------------------------------------------------------------------ */
 
 /** The plans by size, smallest first. `homes` is the active-home limit. */
@@ -288,12 +293,11 @@ export const planSummary = pricing.plans
 export const pricingLine = `Plans from $${pricing.startingPrice}/month for up to ${pricing.plans[0].homes} active homes. Unlimited team and subs, no per-user fees, no contracts, no quote calls.`;
 
 /**
- * How to frame a flat plan: a home that sits quiet doesn’t move the bill,
- * and every home on the plan can carry a maintenance membership the builder
- * prices himself. Never tell the builder how to account for the plan or
- * pass it through — that is his business.
+ * How to frame a flat plan: a home that sits quiet doesn’t move the bill.
+ * Never tell the builder how to account for the plan or pass it through —
+ * that is his business.
  */
-export const planFraming = `Your plan is one price whether ${pricing.plans[0].homes} active homes are on it or 3, so a quiet spec home never runs up the bill — and every one of those homes can carry a maintenance plan you price yourself.`;
+export const planFraming = `Your plan is one price whether ${pricing.plans[0].homes} active homes are on it or 3, so a quiet spec home never runs up the bill.`;
 
 /**
  * Onboarding is free and self-run: add homes and subs and start the same
@@ -308,21 +312,160 @@ export const onboarding = {
 } as const;
 
 /* ------------------------------------------------------------------ */
-/* The frame — every home a builder has closed is a customer he isn't   */
-/* earning on. "Easier" is the side effect; "more money from homes you  */
-/* already built" is the headline. Every page carries at least one of   */
-/* the five points below, in roughly this order of weight.              */
+/* The frame (owner decision, Nov 22 2026): Afterkey sells CALLBACKS.   */
+/* The builder stops being the relay between the homeowner and the sub: */
+/* requests come in with photos, go straight to the sub for that trade, */
+/* run on a response clock, and only come back to the builder when      */
+/* something needs him. Billable repairs ride on the same flow.         */
 /* ------------------------------------------------------------------ */
 
 export const thesis = {
-  /** The H1. Revenue on homes already built. */
-  headline: "You’ve built hundreds of homes. They should still be paying you.",
+  /** The H1. */
+  headline: "Stop being the middleman on every callback.",
   /** Supporting line only — never the H1. */
-  supporting: "You stop being the only number they have.",
+  supporting: "You’re told, not called.",
   /** The one-sentence version of the whole shift. */
   short:
-    "Every home you’ve closed is a customer you aren’t earning on. Afterkey turns those homes into a service business with recurring revenue.",
+    "Afterkey takes callbacks off your phone: homeowners submit requests with photos, each one goes straight to the sub for that trade, and you’re only pulled in when something needs you.",
 } as const;
+
+export type CallbackPoint = {
+  id: "straight-to-sub" | "clock" | "status" | "after-hours" | "billable";
+  icon: LucideIcon;
+  title: string;
+  body: string;
+};
+
+/** What changes for the builder, in order of weight. */
+export const callbackPoints: CallbackPoint[] = [
+  {
+    id: "straight-to-sub",
+    icon: HardHat,
+    title: "Straight to the sub, not your cell",
+    body:
+      "The homeowner submits the request in your branded portal with photos and two sentences. It goes to the sub you assigned to that trade on that home the moment it’s sent: an email and a job link he opens without logging in, and a text too with the texting add-on. You’re notified, not asked.",
+  },
+  {
+    id: "clock",
+    icon: FileClock,
+    title: "A clock on every request",
+    body:
+      "You set response targets per priority. The sub is reminded before his deadline and again after he misses it, and you’re escalated when he does. You stop chasing subs, and the record shows where every request sat.",
+  },
+  {
+    id: "status",
+    icon: MessageSquare,
+    title: "The homeowner sees the status",
+    body:
+      "Received, assigned, scheduled, done, with the sub’s photos. The homeowner and the sub talk in one thread, so the “did anyone get my text?” call doesn’t come to you.",
+  },
+  {
+    id: "after-hours",
+    icon: CalendarClock,
+    title: "After hours, nothing sits until morning",
+    body:
+      "Every request is sent the moment it comes in, day or night. Urgent ones alert you and the sub right away when your after-hours setting is on, which it is by default. Normal ones wait for your next opening.",
+  },
+  {
+    id: "billable",
+    icon: Wallet,
+    title: "Billable callbacks get billed",
+    body:
+      "When it isn’t warranty, the sub quotes it, your markup goes on top, and the homeowner approves the price before the work is charged. They pay in your portal and the money settles to your account. The favor becomes a line item.",
+  },
+];
+
+/**
+ * After hours (product decision, Nov 10 2026). Every request is sent at
+ * once at any hour. With the builder's after-hours setting on (default), an
+ * urgent request's response clock starts right away, so the reminders and
+ * escalation run overnight; with it off, the urgent clock starts at the
+ * next opening. Normal and low requests always wait for the next opening.
+ */
+export const afterHours = {
+  title: "After hours, handled the way you set it",
+  points: [
+    "Every request is sent the moment it’s submitted, nights and weekends included: the sub gets the email and the job link, and you get an email and an in-app alert.",
+    "Urgent requests alert you and the sub right away when your after-hours setting is on. It’s on by default. The response clock starts at once, so if the sub doesn’t pick it up in time, he’s nudged and you’re escalated overnight instead of when you open.",
+    "Turn the setting off and urgent requests are still sent at once, with the clock starting when you open. Normal requests are queued for your next opening either way.",
+    "With the texting add-on, the sub gets a text too, and urgent requests text the escalation phone you save. Without it, after-hours alerts reach you by email.",
+    "The homeowner is told what happens next in your words, from your own response targets: who was alerted, when to expect an answer, and, on an urgent request, to shut off what they safely can and call for help first.",
+  ],
+} as const;
+
+/** The Daily Brief (live): one email per builder each morning. */
+export const dailyBrief = {
+  title: "A Daily Brief every morning",
+  body: "One email at 7 AM your time, house by house: the follow-ups Afterkey sent for you yesterday, what changed, the open jobs, and a short list of what needs you. You start the day knowing where every callback stands without opening a text thread.",
+} as const;
+
+/**
+ * Warranty vs. billable — the homeowner-facing comparison, shown under the
+ * builder's brand. Warranty is free; anything else is priced and approved
+ * by the homeowner before the work is charged.
+ */
+export const warrantyVsBillable = {
+  warranty: {
+    title: "Warranty",
+    lede: "What your builder is responsible for fixing. Free, always.",
+    items: [
+      "A window that leaks at the seal",
+      "Drywall cracks beyond normal settling",
+      "A door that won’t latch after the house settles",
+      "Grout, caulk, and finish defects in year one",
+      "Plumbing and electrical that was installed wrong",
+    ],
+    foot: "Covered by your builder’s warranty. You’re never charged for it.",
+  },
+  billable: {
+    title: "Billable",
+    lede: "Upkeep, wear, and anything outside the warranty. Priced before any work is charged.",
+    items: [
+      "A dryer vent that needs cleaning",
+      "A hose bib left open over the winter",
+      "HVAC service and filter changes",
+      "A clogged drain or a running toilet",
+      "Something added after closing, like a TV mount",
+    ],
+    foot: "You see the price in the portal and approve it before you’re charged.",
+  },
+} as const;
+
+/** How a repair gets paid — one line per step, no jargon. */
+export const repairPaySteps = [
+  "The homeowner submits the request in your branded portal, and it goes straight to the sub assigned to that trade.",
+  "It’s classified warranty or billable from the home’s warranty dates. A sub who disagrees flags it; you decide.",
+  "If it’s billable, the sub quotes it, your markup goes on top, and the homeowner approves the price. Their card or bank account goes on file. Nothing is charged yet.",
+  "The sub does the work, confirms on site that the quote still covers it, and posts completion photos — required before anything can bill.",
+  "The homeowner approves the finished job, or the review window passes (24 hours by default), and the saved card or bank account is charged — never more than they approved.",
+  "The money splits the moment it’s paid: the sub’s share goes straight to his bank, and the rest — your markup included — to yours, at our published processing rates and no platform fee. A sub who hasn’t linked a bank yet, you pay as you do today, and Afterkey keeps his invoice on the record.",
+] as const;
+
+/**
+ * Warranty vs. billable — how every repair request gets classified.
+ * Described as a feature, sold to both sides.
+ */
+export const classification = {
+  title: "Warranty or billable, decided before the argument",
+  how: [
+    "Every request is classified warranty or billable the moment it comes in — from the home’s warranty dates and your per-trade extensions. Unknown warranty date? It defaults to warranty, never to a surprise bill.",
+    "The sub can’t change it. If he gets there and it isn’t warranty — the “leak” that turns out to be a hose bib the homeowner left open — he flags it. You decide, and the homeowner is told.",
+    "Nothing billable is charged until the homeowner has approved the price. Your markup is on the estimate before they see it.",
+    "You can convert a request yourself at any point, and the homeowner hears about it the same minute.",
+  ],
+  homeowner:
+    "No surprise bills. You see what it is and what it costs, and you approve the price before any work is charged.",
+  builder:
+    "Warranty work stays warranty, billable work gets billed, and nobody — not the sub, not the homeowner, not you at 9pm — has to argue about which is which after the fact.",
+} as const;
+
+/* ------------------------------------------------------------------ */
+/* HIDDEN (owner decision, Nov 22 2026). Memberships, maintenance plans */
+/* the builder prices, win-back and plan pricing are hidden in the app. */
+/* The exports below are read ONLY by the /memberships page source,     */
+/* which next.config.ts redirects to /features. Never render them on a  */
+/* live page, in llms.txt or in JSON-LD.                                */
+/* ------------------------------------------------------------------ */
 
 /**
  * The membership is maintenance, never warranty. Every mention of the
@@ -336,51 +479,6 @@ export const membershipDistinction =
 /** The same rule for tight spots: hero fine print, button captions. */
 export const membershipDistinctionShort =
   "The plan covers maintenance; warranty work stays free.";
-
-/**
- * What's warranty, what's maintenance — the homeowner-facing comparison,
- * shown under the builder's brand. It educates the homeowner so the plan
- * makes sense, and shows the builder how the two stay separate so the
- * "why am I paying for this" call never comes.
- */
-export const warrantyVsMaintenance = {
-  warranty: {
-    title: "Warranty",
-    lede: "What your builder is responsible for fixing. Free, always.",
-    items: [
-      "A window that leaks at the seal",
-      "Drywall cracks beyond normal settling",
-      "A door that won’t latch after the house settles",
-      "Grout, caulk, and finish defects in year one",
-      "Plumbing and electrical that was installed wrong",
-    ],
-    foot: "Covered by your builder’s warranty, member or not.",
-  },
-  maintenance: {
-    title: "Maintenance",
-    lede: "What every house needs on a schedule, from day one, whoever built it.",
-    items: [
-      "HVAC serviced twice a year",
-      "Boiler or furnace serviced annually",
-      "Dryer vent cleaned",
-      "Water heater flushed",
-      "Appliances maintained on the manufacturer’s schedule",
-      "Plumbing checked before it leaks",
-      "Septic pumped, gutters cleaned, lawn and grounds kept up",
-    ],
-    foot: "What a maintenance plan covers — up to the whole house.",
-  },
-} as const;
-
-/** How a repair gets paid — one line per step, no jargon. */
-export const repairPaySteps = [
-  "The homeowner submits the request in your branded portal, and it goes straight to the sub assigned to that trade.",
-  "It’s classified warranty or billable from the home’s warranty dates and plan. A sub who disagrees flags it; you decide.",
-  "If it’s billable, the sub quotes it, your markup goes on top, and the homeowner approves the price. Their card or bank account goes on file. Nothing is charged yet.",
-  "The sub does the work, confirms on site that the quote still covers it, and posts completion photos — required before anything can bill.",
-  "The homeowner approves the finished job, or the review window passes (24 hours by default), and the saved card or bank account is charged — never more than they approved.",
-  "The money splits the moment it’s paid: the sub’s share goes straight to his bank, and the rest — your markup included — to yours, at our published processing rates and no platform fee. A sub who hasn’t linked a bank yet, you pay as you do today, and Afterkey keeps his invoice on the record.",
-] as const;
 
 /**
  * The objection to say out loud: "my homes are new, nothing needs service."
@@ -551,23 +649,7 @@ export const workedExample = (() => {
   };
 })();
 
-/**
- * Warranty vs. billable — how every repair request gets classified.
- * Described as a feature, sold to both sides.
- */
-export const classification = {
-  title: "Warranty or billable, decided before the argument",
-  how: [
-    "Every request is classified warranty or billable the moment it comes in — from the home’s warranty dates, your per-trade extensions, and whether it’s on a plan. Unknown warranty date? It defaults to warranty, never to a surprise bill.",
-    "The sub can’t change it. If he gets there and it isn’t warranty — the “leak” that turns out to be a hose bib the homeowner left open — he flags it. You decide, and the homeowner is told.",
-    "Nothing billable is charged until the homeowner has approved the price. Your markup is on the estimate before they see it.",
-    "You can convert a request yourself at any point, and the homeowner hears about it the same minute.",
-  ],
-  homeowner:
-    "No surprise bills. You see what it is and what it costs, and you approve the price before any work is charged.",
-  builder:
-    "Warranty work stays warranty, billable work gets billed, and nobody — not the sub, not the homeowner, not you at 9pm — has to argue about which is which after the fact.",
-} as const;
+/* End of HIDDEN. */
 
 /* ------------------------------------------------------------------ */
 /* The seven published commitments — brand promises, quoted verbatim   */
@@ -646,12 +728,13 @@ export const portals: Portal[] = [
     accent: "brand",
     audience: "You and your team",
     description:
-      "Every home, every open request, every sub, and the money: memberships billing to your account, repair work paid out with your markup on it.",
+      "Every home, every open request and every sub in one place, with a clock on each request and billable repairs paid out with your markup on them.",
     points: [
-      "Memberships, repair billing, and payouts",
-      "Homes and warranty callbacks",
+      "Homes and warranty callbacks, with response clocks",
       "Subcontractor dispatch and compliance",
-      "AI Home Binder and maintenance schedules",
+      "Billable repairs and payouts",
+      "A Daily Brief email every morning",
+      "Home binder and maintenance reminders",
     ],
     href: loginUrls.builder,
   },
@@ -661,14 +744,13 @@ export const portals: Portal[] = [
     accent: "emerald",
     audience: "Your buyers",
     description:
-      "Your brand, not ours. Where your homeowner joins the maintenance plan, submits a request, approves a repair price before anyone is charged, and talks to the sub directly.",
+      "Your brand, not ours. Where your homeowner submits a request with photos, watches its status, talks to the sub directly, and approves the price of any billable repair before anyone is charged.",
     points: [
       "White-labeled under your business",
-      "Join a maintenance plan and pay in one step, card or bank account on file",
-      "Cancel the plan online any time",
-      "Submit a request and talk to the sub",
+      "Submit a request with photos and talk to the sub",
+      "Status on every request, without calling you",
       "Approve repair prices — no surprise bills",
-      "Maintenance schedule, and a service history that shows what they paid",
+      "Documents, maintenance reminders, and the home’s service history",
     ],
     href: loginUrls.homeowner,
   },
@@ -776,6 +858,15 @@ export const featureGroups: FeatureGroup[] = [
         description:
           "Every request, dispatch, and completion is timestamped on the home’s record — the documentation that ends a dispute two years later in one screenshot.",
       },
+      {
+        title: "After hours, sent anyway",
+        description:
+          "Every request goes out the moment it’s submitted, nights and weekends included. Urgent ones alert you and the sub right away when your after-hours setting is on (the default), so the reminders and escalation run overnight; normal ones wait for your next opening. The homeowner is told what happens next, from your own response targets.",
+      },
+      {
+        title: dailyBrief.title,
+        description: dailyBrief.body,
+      },
     ],
   },
   {
@@ -797,7 +888,7 @@ export const featureGroups: FeatureGroup[] = [
     label: "AI Home Binder",
     title: "Maintenance intelligence that shows its sources",
     summary:
-      "Upload a home’s documents and Afterkey proposes the maintenance schedule for you — with the source on every line: the document you uploaded, or a verified entry in Afterkey’s shared appliance library. A line without one is marked “needs source.” The schedule is the reason a homeowner keeps paying dues: real upkeep they watch happen, with your name on every reminder.",
+      "Upload a home’s documents and Afterkey proposes the maintenance schedule for you — with the source on every line: the document you uploaded, or a verified entry in Afterkey’s shared appliance library. A line without one is marked “needs source.” Every reminder goes out with your name on it.",
     points: [
       {
         title: "Documents in, schedule out",
@@ -886,100 +977,11 @@ export const featureGroups: FeatureGroup[] = [
     ],
   },
   {
-    id: "memberships",
-    icon: Wallet,
-    accent: "emerald",
-    status: "live",
-    label: "Recurring revenue",
-    title: "A maintenance membership you price, billed to your account",
-    summary:
-      "Every home you’ve closed can carry a monthly maintenance membership. You set the price, the homeowner pays in your branded portal, and the money lands in your account — recurring revenue from homes you’ve already built.",
-    points: [
-      {
-        title: "Your price, never ours",
-        description:
-          "$40 a month for the schedule and reminders, $500 for the whole house — whatever your market carries. Afterkey never sets your price. Offer one plan or several tiers, priced per home. Billing starts the day the homeowner joins, or on a later date you pick when you enroll them yourself. The revenue line is sized to your market, not to ours.",
-      },
-      {
-        title: "From reminders to the whole house",
-        description:
-          "The bottom tier is the schedule and the reminders, with visits priced per job. The top tier is your subs handling lawn care, HVAC, appliances, plumbing, septic — labor included, on the schedule, billed as one number a month. The homeowner has one company to call for the life of the home, and it’s you.",
-      },
-      {
-        title: "You decide what’s in each tier",
-        description:
-          "Every plan is a list you wrote: which visits are included, which are priced per job, what it costs. The homeowner sees that list before they join, so what $40 or $500 a month buys is never a mystery, and the “what am I paying for” call never comes.",
-      },
-      {
-        title: "They join and pay in one step",
-        description:
-          "Send the plan and the homeowner joins from your branded portal: pick the tier, put a card or bank account on file, done. The renewal terms sit right next to the button, a confirmation email follows, and they can cancel online any time, which is how a monthly plan should work.",
-      },
-      {
-        title: "The visits schedule themselves",
-        description:
-          "Every visit a plan includes is laid out across the membership year and sent to the right sub about two weeks before it’s due. You see what’s been used and what’s left on every home; the homeowner sees their visits for the year in the portal. Nobody books anything.",
-      },
-      {
-        title: "Your subs paid every month, without you",
-        description:
-          "When a monthly payment comes in, each sub on the plan gets his share straight to his bank and the rest lands in your account. No checks to cut, no month-end math. A sub who hasn’t linked a bank yet stays with you to pay the way you do today.",
-      },
-      {
-        title: "Card or bank on file, billed monthly",
-        description:
-          "The homeowner puts a card or bank account on file in your branded portal and the plan bills every month to your own account. There’s no platform fee on homeowner payments — you pay only processing, at our published rates; membership dues are one clean price to the homeowner. Recurring revenue without an invoice ever leaving your office.",
-      },
-      {
-        title: "Maintenance, never warranty",
-        description:
-          "Warranty covers what the builder got wrong and stays free; the membership covers maintenance, which every house needs from day one. It is never a paywall in front of warranty work, so you never get the “why am I paying for this” call.",
-      },
-      {
-        title: "What the plan actually delivers",
-        description:
-          "The maintenance schedule built from the home’s own manuals, the reminders, the filter change, the furnace tune-up — real upkeep the homeowner watches happen, not a line item on a statement. That is why the dues keep coming.",
-      },
-    ],
-  },
-  {
-    id: "win-back",
-    icon: Home,
-    accent: "emerald",
-    status: "live",
-    label: "Win-back",
-    title: "Win back the homes you’ve already built",
-    summary:
-      "Every home you’ve ever delivered is a maintenance-plan prospect. Add past builds free, send the pitch, and pay only when they say yes. The plan covers maintenance; warranty work stays free.",
-    points: [
-      {
-        title: "Prospect homes are free",
-        description:
-          "Add a past build as a prospect and it costs nothing while you court it. Billing starts only when the homeowner joins a plan or you activate the home to start working it. Your back catalog costs nothing to court.",
-      },
-      {
-        title: "Claim invites with the pitch inside",
-        description:
-          "Send the homeowner a personalized maintenance-plan proposal by email: your tiers, prices, and what each includes. The link opens their own portal with the home already set up; they set a password and the offer is in front of them.",
-      },
-      {
-        title: "Your pitch, your tiers",
-        description:
-          "Offer one plan or several, at prices you set per home — Afterkey suggests a number from the home’s real costs and your markup, and the price is always yours. The homeowner joins and pays in one step from the email, and the dues bill to your account. Plans you send get a polite follow-up on day 3 and day 7 if they haven’t joined.",
-      },
-      {
-        title: "Quotes that expire",
-        description:
-          "Set how long each offer is good for, so a homeowner who circles back two years later gets today’s pricing — not a quote from a different economy.",
-      },
-    ],
-  },
-  {
     id: "repair-billing",
     icon: FileClock,
     accent: "amber",
     status: "live",
-    label: "Repair revenue",
+    label: "Billable repairs",
     title: "Paid repairs, with your markup, paid out automatically",
     summary:
       "Today a homeowner calls, you send a sub, the sub bills direct, and you coordinated the whole thing for free. On Afterkey the sub quotes it, your markup goes on top, the homeowner approves and pays in your portal, and the money lands in your account.",
@@ -987,7 +989,7 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Warranty or billable, decided up front",
         description:
-          "Every request is classified when it comes in, from the home’s warranty dates (plus your per-trade extensions) and whether it’s on a plan. A sub who thinks it isn’t warranty flags it; you decide, and the homeowner is told. Nobody argues about which is which after the fact.",
+          "Every request is classified when it comes in, from the home’s warranty dates (plus your per-trade extensions). A sub who thinks it isn’t warranty flags it; you decide, and the homeowner is told. Nobody argues about which is which after the fact.",
       },
       {
         title: "The homeowner approves the price first",
@@ -1024,7 +1026,7 @@ export const featureGroups: FeatureGroup[] = [
     label: "SMS + Voice",
     title: "A dedicated business line for every builder",
     summary:
-      "Your own dedicated business number for real two-way texting, automated maintenance reminders, day-of coordination, and inbound calls forwarded straight to you.",
+      "Your own dedicated business number for two-way texting matched to the right request, job texts to your subs, urgent after-hours alerts, day-of coordination, and inbound calls forwarded straight to you.",
     points: [
       {
         title: "Your own dedicated number",
@@ -1032,9 +1034,9 @@ export const featureGroups: FeatureGroup[] = [
           "Each builder gets a dedicated local number, provisioned by Afterkey in your area code and forwarding calls to you. Messages send under Afterkey’s carrier registration. The number on the record is the business, not your cell.",
       },
       {
-        title: "Automated maintenance reminders",
+        title: "Job texts and urgent alerts",
         description:
-          "The maintenance schedule sends itself by text. The reminder is the reason the homeowner keeps paying dues, and you never had to remember to send it.",
+          "A new request is texted to the sub along with the email and job link. An urgent request texts the escalation phone you save, nights and weekends included, and maintenance reminders can go out by text too.",
       },
       {
         title: "Day-of coordination",
@@ -1066,12 +1068,12 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "Import every home from a spreadsheet",
         description:
-          "Upload up to 1,000 homes at a time. Mark each one current or win-back: current homes are active, win-back homes are free prospects until they join a plan. Nothing is sent to a homeowner on import.",
+          "Upload up to 1,000 homes at a time, with the homeowner, the address and the warranty end date. Nothing is sent to a homeowner on import.",
       },
       {
         title: "Invite them when you’re ready",
         description:
-          "Tick the homes and invite them in one go. Each homeowner gets one email with a link that opens their portal already set up. Past customers get a version about their home’s records and your plans, not a warranty promise.",
+          "Tick the homes and invite them in one go. Each homeowner gets one email with a link that opens their portal already set up, ready for their first request.",
       },
       {
         title: "Export everything, any time, free",
@@ -1113,24 +1115,22 @@ export const featureGroups: FeatureGroup[] = [
       {
         title: "You decide where it runs",
         description:
-          "Ask Billie needs a paid AI plan, and you turn it on home by home. Each answered question uses your AI credits; emergencies and record lookups use none. You see every question and answer, and you can include it in the maintenance plans you sell. Every AI answer says, word for word, that Billie is AI and can make mistakes.",
+          "Ask Billie needs a paid AI plan, and you turn it on home by home. Each answered question uses your AI credits; emergencies and record lookups use none. You see every question and answer. Every AI answer says, word for word, that Billie is AI and can make mistakes.",
       },
     ],
   },
 ];
 
-// Sales order: the revenue first, then the work that earns it.
+// Sales order: the callback first, then the work around it.
 const featureOrder = [
-  "memberships",
-  "repair-billing",
   "warranty",
-  "white-label",
   "subcontractors",
+  "white-label",
+  "repair-billing",
   "compliance",
-  "ai-binder",
-  "win-back",
   "sms",
   "setup-and-data",
+  "ai-binder",
   "homeowner-assistant",
 ];
 featureGroups.sort(
@@ -1184,9 +1184,9 @@ export const builderValue: Highlight[] = [
   {
     icon: Wallet,
     accent: "violet",
-    title: "Revenue from homes you already built",
+    title: "Billable work that actually gets billed",
     description:
-      "Sell maintenance memberships to your buyers and bill them through the platform. Post-closing stops being pure cost.",
+      "When a callback isn’t warranty, it’s priced with your markup, approved by the homeowner, and paid through your portal. The favor you used to do for free becomes a line item.",
   },
 ];
 
@@ -1250,7 +1250,7 @@ export const steps: Step[] = [
     icon: FileClock,
     title: "Warranty stays warranty. Billable gets billed.",
     description:
-      "Classified when it comes in, from the home’s warranty dates and plan. If the sub thinks it isn’t warranty, he flags it and you decide. Anything billable is priced and approved by the homeowner before a dollar moves, and it closes on the home’s record.",
+      "Classified when it comes in, from the home’s warranty dates. If the sub thinks it isn’t warranty, he flags it and you decide. Anything billable is priced and approved by the homeowner before a dollar moves, and it closes on the home’s record.",
   },
 ];
 
@@ -1340,7 +1340,7 @@ export const comparisons: Comparison[] = [
     ours: {
       label: "Afterkey",
       points: [
-        "Post-closing is the entire product, including the revenue in it: memberships and paid repairs",
+        "Post-closing is the entire product: callbacks, subs, the homeowner portal, and billable repairs",
         "Every feature is on every plan — plans differ only by how many active homes they cover",
         "Runs alongside whatever you already use to build",
         "Onboarding is free",
@@ -1372,7 +1372,7 @@ export const differentiators: Differentiator[] = [
   {
     title: "Warranty and billable decided before the argument",
     description:
-      "Every request is classified the moment it comes in, from the home’s warranty dates and plan. A sub who disagrees flags it and you decide; nothing billable is charged until the homeowner approves the price. Nobody relitigates it after the fact.",
+      "Every request is classified the moment it comes in, from the home’s warranty dates. A sub who disagrees flags it and you decide; nothing billable is charged until the homeowner approves the price. Nobody relitigates it after the fact.",
   },
   {
     title: "Your buyers see your brand, not ours",
@@ -1395,9 +1395,9 @@ export const differentiators: Differentiator[] = [
       "Subs upload against your requirements, expirations alert both of you on a countdown, a red flag sits on the roster until it’s fixed, and when you dispatch a sub whose paperwork lapsed, Afterkey makes you acknowledge it and logs that you did.",
   },
   {
-    title: "A business you can sell",
+    title: "After hours, handled the way you set it",
     description:
-      "Memberships turn the homes you’ve already delivered into recurring revenue at a price you set. A builder with 200 homes on a plan has an asset; a builder with a phone full of homeowner texts has a job.",
+      "Every request is sent the moment it’s submitted, nights and weekends included. Urgent ones alert you and the sub right away when your after-hours setting is on, and the homeowner is told what happens next, based on the response targets you set.",
   },
 ];
 
@@ -1411,39 +1411,27 @@ export type Faq = { q: string; a: string };
 export const coreFaqs: Faq[] = [
   {
     q: "What is Afterkey?",
-    a: "Afterkey is a post-closing software platform for residential home builders and remodelers that turns the homes they have already built or renovated into a service business: homeowner maintenance memberships they price, paid repair work billed through their own branded portal, and warranty callbacks routed to their subs. It consists of three portals: a builder portal for homes, requests, subcontractors, memberships, repair billing, and payouts; a homeowner portal, under the builder’s brand, for joining the membership, submitting requests, approving repair prices, and viewing the maintenance schedule and service history; and a subcontractor portal for assigned jobs, status and photo updates, and compliance documents.",
+    a: `${brand.definition} It consists of three portals: a builder portal for homes, requests, subcontractors, response clocks, billable repairs, and payouts; a homeowner portal, under the builder’s brand, for submitting requests with photos, following their status, talking to the sub, and approving the price of any billable repair; and a subcontractor portal for assigned jobs, status and photo updates, and compliance documents.`,
   },
   {
     q: "Who is Afterkey for?",
-    a: "Afterkey is built for residential home builders, production and custom, roughly 5 to 50 homes a year, and for residential remodelers who do additions, extensions, and whole-house renovations. Both hand a homeowner the keys at the end of the job and then stop earning on that house. Afterkey is designed for the ones who want every finished home to produce recurring membership revenue, billed repair work, and the next job, instead of unpaid callbacks and 9pm texts. Subcontractors and homeowners use Afterkey through their own portals at no cost to them; the builder or remodeler is the paying customer.",
+    a: "Afterkey is built for residential home builders, production and custom, roughly 5 to 50 homes a year, and for residential remodelers who do additions, extensions, and whole-house renovations. Both hand a homeowner the keys at the end of the job and then take the callbacks for months or years after. Afterkey is for the ones who want those callbacks off their cell phone: sent straight to the right sub, on a clock, with a record, and billed when they aren’t warranty. The builder or remodeler is the paying customer. Subcontractors use Afterkey free, and homeowners never pay Afterkey; they pay the builder only for billable repairs they approve.",
   },
   {
     q: "Does Afterkey work for remodelers?",
-    a: "Yes. A remodeler hands over the keys at the end of every job, often to the same street of clients year after year, and Afterkey runs the same way for those homes as it does for new construction. Each client’s home goes in as a home, with your warranty dates on it. The homeowner gets a portal under your name, callbacks go straight to the sub for that trade, repairs are priced with your markup and paid through your portal, and you can offer a maintenance plan you price yourself. Past clients you are pitching a plan can go in as prospect homes, which are free until they join or you activate the home.",
+    a: "Yes. A remodeler hands over the keys at the end of every job, often to the same street of clients year after year, and the callbacks that follow run the same way they do for new construction. Each client’s home goes in as a home, with your warranty dates on it. The homeowner gets a portal under your name, requests go straight to the sub for that trade, and anything outside your warranty is priced with your markup and paid through your portal.",
   },
   {
     q: "How much does Afterkey cost?",
-    a: `Afterkey is priced by plan size: one flat monthly price for the number of active homes you cover — ${planSummary}, with a custom plan above ${pricing.customAbove}. Every plan includes unlimited team members and unlimited subcontractors; there are no per-user fees and nothing is billed per home. Prospect homes (past builds you are pitching a membership) and archived homes (read-only history) are free and don’t count toward your plan. You can change plans any time from Billing. Optional AI and SMS add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on membership dues and repair payments is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps what the builder charges homeowners for a membership or a repair. Onboarding is free. New accounts get a 30-day free trial: a card goes on file at signup, your plan is free for 30 days, and you can cancel anytime before day 31 and pay nothing.`,
+    a: `Afterkey is priced by plan size: one flat monthly price for the number of active homes you cover — ${planSummary}, with a custom plan above ${pricing.customAbove}. Every plan includes unlimited team members and unlimited subcontractors; there are no per-user fees and nothing is billed per home. Archived homes (read-only history) are free and don’t count toward your plan. You can change plans any time from Billing. Optional AI and texting add-ons are priced on the pricing page. There is no platform fee on homeowner payments; the only cost on a repair a homeowner pays through Afterkey is payment processing, at Afterkey’s published flat rates, also on the pricing page. Afterkey never sets or caps the markup you charge on a repair. Onboarding is free. New accounts get a 30-day free trial: a card goes on file at signup, your plan is free for 30 days, and you can cancel anytime before day 31 and pay nothing.`,
   },
   {
-    q: "Do homeowners have to pay for a membership to get warranty work?",
-    a: "No. Warranty repairs are the builder’s obligation and stay free for every homeowner, member or not, and a homeowner who does not join never waits longer for warranty work. The membership sells maintenance — what every house needs from day one, regardless of who built it — and it is never a paywall in front of warranty service.",
+    q: "What happens when a homeowner submits a request after hours?",
+    a: "It is sent at once, any hour of any day: the assigned sub gets the email and the job link, and you get an email and an in-app alert. What happens next depends on the priority and one setting. With “Handle urgent requests after hours” on, which is the default, an urgent request’s response clock starts right away, so if the sub doesn’t respond in time he is nudged and you are escalated overnight. With it off, an urgent request is still sent at once and its clock starts when you open. Normal and low-priority requests are queued for your next opening. With the texting add-on, the sub also gets a text and urgent requests text the escalation phone you save; without it, after-hours alerts reach you by email. The homeowner is told what happens next based on your own response targets, and an urgent request always tells them to shut off what they safely can and call for help first.",
   },
   {
-    q: "My homes are new. What is there to maintain?",
-    a: "A brand-new house needs its HVAC serviced twice a year, the boiler or furnace serviced annually, the dryer vent cleaned, the water heater flushed, and its appliances maintained on the manufacturer’s schedule — from day one, regardless of who built it. Warranty covers what the builder got wrong; maintenance covers what every house needs. A maintenance membership sells the second one, starting at closing.",
-  },
-  {
-    q: "What should I charge homeowners for a maintenance membership?",
-    a: "Whatever your market carries — Afterkey never sets your price. Builders typically think in tiers: $20 to $40 a month for the maintenance schedule and the reminders; $100 to $250 for scheduled service, where your subs come on the schedule for HVAC, the boiler, the dryer vent, the water heater, and the appliances; and $500 a month or more for a full-service plan that covers everything that goes into a house — lawn and grounds, gutters, plumbing, septic, snow. You define the plan and its tiers, the homeowner puts a card or bank account on file in your branded portal, and the plan bills monthly to your own account. There is no platform fee on homeowner payments; you pay only processing, at Afterkey’s published flat rates.",
-  },
-  {
-    q: "What does a homeowner actually get for $40 a month?",
-    a: "Whatever you put in the plan — you define each tier and the portal shows the homeowner the list before they join. In the example bottom tier, $40 a month buys the calendar: a maintenance schedule built from that house’s own manuals, a reminder by email or text when something is due, your branded portal to submit a request and talk to the sub, and the home’s documents and service history in one place. The service visits are not included at that tier; the homeowner books one from the reminder, the sub quotes it, and they approve the price before anyone comes out. Move up a tier and the visits and labor are in: two HVAC tune-ups a year, the annual boiler service, the dryer vent, the water heater flush, appliances on the manufacturer’s interval. At the top, the whole house — lawn, gutters, septic, snow — for one number a month.",
-  },
-  {
-    q: "Can the membership cover more than reminders — lawn care, septic, the whole house?",
-    a: "Yes. A maintenance plan is whatever you decide to sell. At the top of the ladder it is a full-service plan: your subs handle lawn care, HVAC maintenance, appliance maintenance, plumbing, septic, gutters, snow — everything that goes into a house — on a schedule, and the homeowner pays one number a month to you. Afterkey holds the schedule, routes each visit to the right sub, sends the reminders, bills the plan to your account, and keeps the record. The trades who built the house keep it running, and the homeowner has one company to call for the life of the home. Whatever the tier, the plan covers maintenance; warranty work stays free.",
+    q: "If requests go straight to the sub, how do I know what’s happening?",
+    a: "You are notified of every request as it comes in, and every message, status update, and photo is on the request for you to see. If a sub misses his response target, you are escalated. Each morning at 7 the Daily Brief email lists, house by house, the follow-ups Afterkey sent for you the day before, what changed, the open jobs, and what needs you. You step in when something needs you instead of relaying every message.",
   },
   {
     q: "How does paid repair work get billed and paid?",
@@ -1451,7 +1439,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "Who decides whether a request is warranty or billable?",
-    a: "Every request is classified warranty or billable automatically when it comes in, from the home’s warranty dates (plus any per-trade extension you set) and whether the home is on a plan; a home with no warranty date on file defaults to warranty, never to a bill. The sub cannot change it: if the “leak” turns out to be a hose bib left open, he flags it, you decide, and the homeowner is told. You can also convert a request yourself at any time. Nothing billable is ever charged until the homeowner has approved the price. Warranty work stays warranty, billable work gets billed, and nobody argues about which is which after the fact.",
+    a: "Every request is classified warranty or billable automatically when it comes in, from the home’s warranty dates (plus any per-trade extension you set); a home with no warranty date on file defaults to warranty, never to a bill. The sub cannot change it: if the “leak” turns out to be a hose bib left open, he flags it, you decide, and the homeowner is told. You can also convert a request yourself at any time. Nothing billable is ever charged until the homeowner has approved the price. Warranty work stays warranty, billable work gets billed, and nobody argues about which is which after the fact.",
   },
   {
     q: "What does the AI in Afterkey actually do?",
@@ -1471,7 +1459,7 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "How do homeowners use Afterkey?",
-    a: "Homeowners get access to a browser-based portal, white-labeled under the builder's business — there is no app to download. They submit warranty and service requests with photos, talk directly with the sub assigned to the job, approve the price of any billable repair before they are charged, view the maintenance schedule built for their specific home and appliances, and see the full service history of the house. If the builder offers a maintenance plan priced for their home, the homeowner joins and pays in one step in the portal, with a card or bank account on file, and can cancel online any time. Warranty work is never behind the plan.",
+    a: "Homeowners get access to a browser-based portal, white-labeled under the builder's business — there is no app to download. They submit warranty and service requests with photos, talk directly with the sub assigned to the job, approve the price of any billable repair before they are charged, see the documents and maintenance reminders for their home, and see the full service history of the house. Warranty work is never charged.",
   },
   {
     q: "Do subcontractors have to pay for Afterkey?",
@@ -1483,23 +1471,15 @@ export const coreFaqs: Faq[] = [
   },
   {
     q: "What is an “active home”?",
-    a: "An active home is a home you are actively serving on Afterkey. Active homes are what count toward your plan, and a home counts the same regardless of its age. Two home states are free and don’t count toward your plan. A prospect home is a past build you are trying to win back: adding it costs nothing, and you can pitch memberships and send claim invites, but full service features stay off until it converts — which happens automatically when the homeowner starts a membership or a warranty date is set, or when you activate it yourself. An archived home is the honest exit: free and read-only, with the full history and binder preserved, and you can reactivate it any time, which counts it toward your plan again.",
-  },
-  {
-    q: "Can Afterkey help me win back homes I built years ago?",
-    a: "Yes. Add a past build as a prospect home — it costs nothing while you court it. You build a maintenance-plan proposal with one or more tiers at prices you set, and Afterkey emails it to the homeowner with a claim link: it opens their own portal with the home already set up, they set a password, and your offer is in front of them. If they join, the home converts to active automatically and counts toward your plan. You can also put an expiration on any offer so an old quote does not linger at old pricing.",
+    a: "An active home is a home you are actively serving on Afterkey: the homeowner can submit requests, subs get dispatched, and the record keeps growing. Active homes are what count toward your plan, and a home counts the same regardless of its age. An archived home is free and doesn’t count: it is read-only, with the full history and binder preserved, and you can reactivate it any time, which counts it toward your plan again.",
   },
   {
     q: "How long does it take to get started with Afterkey?",
     a: "Onboarding is free: you subscribe, add your homes and subcontractors, and start logging requests the same day. Every new account starts with a 30-day free trial on your real homes, not a sandbox: your plan is free for 30 days, and you can cancel anytime before day 31 and pay nothing. Existing homes come in all at once from a spreadsheet (up to 1,000 at a time), or one at a time; upload a home’s documents and Afterkey extracts the appliances and proposes the maintenance schedule for you to review and save.",
   },
   {
-    q: "When does a homeowner’s membership start billing?",
-    a: "The day the homeowner joins. A membership is a maintenance plan, so it bills from day one whether or not the home is still under warranty; warranty repairs stay free either way. When you enroll a homeowner yourself, you can choose a later start date. The renewal terms are shown next to the button before they join, they get a confirmation email, and they can cancel online any time.",
-  },
-  {
     q: "Does Afterkey pay my subcontractors?",
-    a: "Yes, once a sub links a bank. When a homeowner pays for a repair, the sub’s share goes straight to the sub’s bank and the rest, your markup included, to yours. On a membership, each sub on the plan gets his share of every monthly payment as it comes in. A sub who hasn’t linked a bank yet stays with you to pay the way you do today, and Afterkey keeps his invoice on the record.",
+    a: "Yes, once a sub links a bank. When a homeowner pays for a repair, the sub’s share goes straight to the sub’s bank and the rest, your markup included, to yours. A sub who hasn’t linked a bank yet stays with you to pay the way you do today, and Afterkey keeps his invoice on the record.",
   },
   {
     q: "Can I export my data?",
@@ -1512,17 +1492,17 @@ export const coreFaqs: Faq[] = [
 ];
 
 /**
- * Written for the buyer of a new home, not the builder. The builder is
- * watching too — this page is the homeowner side of the membership pitch.
+ * Written for the buyer of a new home, not the builder. Used on
+ * /for-homeowners and /welcome, where the builder's name stands in.
  */
 export const homeownerFaqs: Faq[] = [
   {
-    q: "What do I actually get for the monthly price?",
-    a: "Whatever your builder put in the plan — the portal shows the list before you join. A basic plan runs the calendar: a maintenance schedule built from your house’s own manuals, a reminder when something is due, the portal to submit a request and talk to the sub, and your documents and service history in one place; service visits are booked from the reminder and quoted before anyone comes out. A scheduled-service plan includes the visits and the labor — HVAC tune-ups, the boiler, the dryer vent, the water heater, the appliances. A whole-house plan adds lawn, gutters, septic, and snow for one number a month. At every tier, a repair outside the plan is priced and approved by you before it is charged.",
+    q: "How do I know my request was received?",
+    a: "The portal shows it the moment you send it, and you get a confirmation email. From there you can see that it was assigned to the trade, when they’re coming, and their photos when it’s done, without calling anyone to ask.",
   },
   {
-    q: "Do I have to join the maintenance plan to get warranty repairs?",
-    a: "No. Warranty repairs are your builder’s obligation and are free whether or not you join a plan, and joining never changes how quickly warranty work is handled. The maintenance plan covers upkeep — the service every house needs from day one, regardless of who built it.",
+    q: "What if something goes wrong at night or on a weekend?",
+    a: "Submit it anyway. It goes to your builder and the trade the moment you send it, and the screen tells you what happens next and when to expect an answer. Mark it urgent if it can’t wait. If anything is dangerous, like a gas smell, a fire, or water you can’t stop, shut off what you safely can and call for help first.",
   },
   {
     q: "Can I be charged for a repair without agreeing to it?",
@@ -1531,10 +1511,6 @@ export const homeownerFaqs: Faq[] = [
   {
     q: "Who shows up to do the work?",
     a: "The same trades your builder uses — the plumber, electrician, or HVAC company who already know the house. Your request goes to them the moment you submit it; you and the sub talk directly in the portal to schedule it, and they post status and photos as they go. Your builder sees every step.",
-  },
-  {
-    q: "How do I cancel the plan?",
-    a: "Online, any time, from Billing in your portal. The plan renews monthly until you cancel; when you do, you keep your benefits through the month you’ve already paid for, and nothing more is charged.",
   },
   {
     q: "Do I need an app?",
@@ -1546,15 +1522,11 @@ export const homeownerFaqs: Faq[] = [
 export const pricingFaqs: Faq[] = [
   {
     q: "What counts toward my plan?",
-    a: "Active homes, and nothing else. An active home is one you are actively serving on the platform, and it counts the same whether it is six months old or six years old. Two states are free and don’t count: prospect homes (past builds you are pitching a membership — outreach and offers only, until they convert) and archived homes (read-only, full history kept, reactivate any time). A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set. Team members and subcontractors never count; every plan includes unlimited of both.",
+    a: "Active homes, and nothing else. An active home is one you are actively serving on the platform, and it counts the same whether it is six months old or six years old. Archived homes are free and don’t count: they are read-only, keep their full history, and can be reactivated any time. Team members and subcontractors never count; every plan includes unlimited of both.",
   },
   {
     q: "Can I change plans?",
     a: "Yes, any time from Billing. An upgrade starts right away. A downgrade starts next month, as long as your active homes fit the smaller plan.",
-  },
-  {
-    q: "What if a homeowner joins and puts me over my plan?",
-    a: "Nothing is blocked and your bill doesn’t change. When a homeowner joins a membership or approves a job, the home goes active as it always would, even if that takes you past your plan. You just can’t activate more homes yourself until you upgrade or archive one.",
   },
   {
     q: `What if I have more than ${pricing.customAbove} active homes?`,
@@ -1566,15 +1538,15 @@ export const pricingFaqs: Faq[] = [
   },
   {
     q: "How does AI billing work?",
-    a: "AI is an optional monthly plan with credits included: Starter is $49 a month for 2,000 credits, Growth $149 for 7,500, and Scale $399 for 25,000, with custom plans for bigger builders. Credits follow the work: reading a manual usually takes 40 to 80, and building and checking a typical home’s maintenance plan about 200. Matching a home’s appliances to the verified library is free and uses none. Over your AI plan, credits are $3 per 100, up to a monthly cap you set (default $50), with alerts at 80%, 100% and the cap. Upgrades start right away; downgrades start next month. Without a plan you get 100 free credits a month, about one manual read.",
+    a: "AI is an optional monthly plan with credits included: Starter is $49 a month for 2,000 credits, Growth $149 for 7,500, and Scale $399 for 25,000, with custom plans for bigger builders. Credits follow the work: reading a manual usually takes 40 to 80, and building and checking a typical home’s maintenance schedule about 200. Matching a home’s appliances to the verified library is free and uses none. Over your AI plan, credits are $3 per 100, up to a monthly cap you set (default $50), with alerts at 80%, 100% and the cap. Upgrades start right away; downgrades start next month. Without a plan you get 100 free credits a month, about one manual read.",
   },
   {
     q: "Does Afterkey take a cut of homeowner payments?",
-    a: "No — there is no platform fee on homeowner payments. When homeowners pay through Afterkey, whether for a membership or a repair invoice, you pay only processing, at our published flat rates: 1.25% for bank (ACH) payments and 3.5% plus 30¢ for cards. Those are Afterkey’s all-in rates and include every Stripe processing and payout fee; bank is listed first everywhere because it is the cheaper rail. On repairs you choose whether the homeowner’s displayed price includes processing or your margin absorbs it; membership dues are one clean price and you cover processing. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
+    a: "No — there is no platform fee on homeowner payments. When homeowners pay a repair invoice through Afterkey, you pay only processing, at our published flat rates: 1.25% for bank (ACH) payments and 3.5% plus 30¢ for cards. Those are Afterkey’s all-in rates and include every Stripe processing and payout fee; bank is listed first everywhere because it is the cheaper rail. You choose whether the homeowner’s displayed price includes processing or your margin absorbs it. If you do not process homeowner payments through Afterkey, there is nothing to pay.",
   },
   {
-    q: "Does Afterkey set or cap what I charge homeowners?",
-    a: "No. The membership price, the tiers, and the markup on a paid repair are yours — $20 a month, $40, $60, whatever your market carries. Afterkey never sets them or takes a percentage of them. Membership dues bill monthly to your own account, and paid repairs settle to your account with your markup on them.",
+    q: "Does Afterkey set or cap my markup on repairs?",
+    a: "No. The markup on a paid repair is yours, whatever your market carries. Afterkey never sets it, caps it, or takes a percentage of it. Paid repairs settle to your account with your markup on them.",
   },
   {
     q: "Is there a contract?",
@@ -1652,9 +1624,14 @@ export const useCases: UseCase[] = [
             "The homeowner documents the problem; the subcontractor documents the fix. Both attach to the same request.",
         },
         {
+          title: "After hours, sent anyway",
+          description:
+            "A request submitted at 10pm goes to the sub at 10pm. Urgent ones alert you and the sub right away when your after-hours setting is on, which it is by default; normal ones are queued for your next opening.",
+        },
+        {
           title: "Warranty or billable, decided before the argument",
           description:
-            "Every request is classified when it comes in, from the home’s warranty dates and plan. When the “leak” turns out to be a hose bib left open, the sub flags it and you decide. Nothing billable is charged until the homeowner approves the price, so warranty stays warranty and billable gets billed.",
+            "Every request is classified when it comes in, from the home’s warranty dates. When the “leak” turns out to be a hose bib left open, the sub flags it and you decide. Nothing billable is charged until the homeowner approves the price, so warranty stays warranty and billable gets billed.",
         },
         {
           title: "A record that outlives the argument",
@@ -1740,72 +1717,6 @@ export const useCases: UseCase[] = [
     ],
   },
   {
-    slug: "home-maintenance-reminders",
-    icon: CalendarClock,
-    accent: "violet",
-    navLabel: "Maintenance reminders",
-    title: "AI-built maintenance schedules and reminders",
-    h1: "Home maintenance reminder software for builders",
-    metaTitle: "Home Maintenance Reminder Software for Home Builders",
-    metaDescription:
-      "Afterkey builds each home’s maintenance schedule from its own documents, cites every source, and reminds homeowners automatically. See how it works.",
-    lede: "Afterkey is home maintenance reminder software for residential home builders. It reads a home’s own documents — owner’s manuals, spec sheets, invoices — proposes the maintenance schedule for that specific house, cites the source behind every interval, and sends the reminders to the homeowner automatically once the builder confirms the schedule.",
-    problem: {
-      title: "Why builders stop giving homeowners maintenance guidance",
-      points: [
-        "Building a real schedule means reading every manual in the house, per house.",
-        "A generic “change your filters” checklist is not worth handing to a buyer.",
-        "Nobody remembers to send the reminder six months after closing.",
-        "Deferred maintenance turns into a callback the builder ends up eating.",
-        "Homeowners lose the paper binder within a year.",
-      ],
-    },
-    solution: {
-      title: "What Afterkey does about it",
-      points: [
-        {
-          title: "The schedule builds itself from the home’s documents",
-          description:
-            "Upload the manuals, spec sheets, and invoices you already have. Afterkey proposes a maintenance schedule for the actual equipment in that home.",
-        },
-        {
-          title: "Every line shows where it came from",
-          description:
-            "Every line cites the document you uploaded or the verified library entry it came from. An appliance with neither is marked “needs source” until you upload its manual.",
-        },
-        {
-          title: "You review before a homeowner sees it",
-          description:
-            "The AI proposes a list; you drop what you don’t want, edit any interval, and save. Nothing reaches a homeowner until you do.",
-        },
-        {
-          title: "Reminders go out on their own",
-          description:
-            "Once confirmed, the schedule sends its own reminders by email, and by text with the SMS add-on. Flag a reminder as schedulable and it arrives as a one-tap offer — “Want us to handle this?” — that books your assigned sub with no login. The reminder is the reason the homeowner keeps paying dues, and the maintenance that would have become your callback gets done.",
-        },
-        {
-          title: "It gets cheaper the more it is used",
-          description:
-            "The appliance library is shared across every builder on Afterkey and verified by the Afterkey team or the supplier. Once a model has a verified entry, every home with that model gets the schedule instantly and free.",
-        },
-      ],
-    },
-    faqs: [
-      {
-        q: "Does the AI make up maintenance intervals?",
-        a: "It marks the appliance “needs source” instead of filling in an interval. Every maintenance line comes from a document uploaded for that home or a verified entry in Afterkey’s appliance library, and cites it. The AI is told to leave out anything the document does not state. The builder reviews the proposed list and saves what belongs before it reaches a homeowner.",
-      },
-      {
-        q: "What does the AI cost?",
-        a: "AI runs on a monthly plan with credits included: Starter $49 for 2,000 credits, Growth $149 for 7,500, Scale $399 for 25,000, or a custom plan. Reading a manual usually takes 40 to 80 credits, and building and checking a typical home’s plan about 200. Matching appliances to the verified library is free and uses no credits. Beyond your plan, credits are $3 per 100 up to a monthly cap you set (default $50). Without a plan, you get 100 free credits a month.",
-      },
-      {
-        q: "Can homeowners see the maintenance schedule themselves?",
-        a: "Yes. The saved schedule appears in the homeowner portal alongside their service history, each line with its source link. Builders who sell maintenance plans use the schedule as the substance of the plan.",
-      },
-    ],
-  },
-  {
     slug: "homeowner-portal",
     icon: Users,
     accent: "emerald",
@@ -1850,9 +1761,9 @@ export const useCases: UseCase[] = [
             "Their home’s maintenance schedule, documents, warranties, and every request ever made — in one place that stays useful for years and keeps your name on it.",
         },
         {
-          title: "The membership, and no surprise bills",
+          title: "No surprise bills",
           description:
-            "They join your maintenance plan with a card or bank account on file, and they approve the price of any billable repair before anyone is charged. Warranty covers what the builder got wrong and stays free; the membership covers maintenance, which every house needs from day one.",
+            "Warranty work is never charged. For anything billable, they see the price and approve it before anyone is charged, with a card or bank account on file, and they can approve the finished job or report a problem before the charge goes through.",
         },
       ],
     },
@@ -1868,6 +1779,72 @@ export const useCases: UseCase[] = [
       {
         q: "Can homeowners see my subcontractor pricing?",
         a: "No. Homeowners see their own requests, status, messages, maintenance schedule, and service history. Subcontractor costs, ratings, and cost intelligence are private to the builder and are never exposed to homeowners.",
+      },
+    ],
+  },
+  {
+    slug: "home-maintenance-reminders",
+    icon: CalendarClock,
+    accent: "violet",
+    navLabel: "Maintenance reminders",
+    title: "AI-built maintenance schedules and reminders",
+    h1: "Home maintenance reminder software for builders",
+    metaTitle: "Home Maintenance Reminder Software for Home Builders",
+    metaDescription:
+      "Afterkey builds each home’s maintenance schedule from its own documents, cites every source, and reminds homeowners automatically. See how it works.",
+    lede: "Afterkey is home maintenance reminder software for residential home builders. It reads a home’s own documents — owner’s manuals, spec sheets, invoices — proposes the maintenance schedule for that specific house, cites the source behind every interval, and sends the reminders to the homeowner automatically once the builder confirms the schedule.",
+    problem: {
+      title: "Why builders stop giving homeowners maintenance guidance",
+      points: [
+        "Building a real schedule means reading every manual in the house, per house.",
+        "A generic “change your filters” checklist is not worth handing to a buyer.",
+        "Nobody remembers to send the reminder six months after closing.",
+        "Deferred maintenance turns into a callback the builder ends up eating.",
+        "Homeowners lose the paper binder within a year.",
+      ],
+    },
+    solution: {
+      title: "What Afterkey does about it",
+      points: [
+        {
+          title: "The schedule builds itself from the home’s documents",
+          description:
+            "Upload the manuals, spec sheets, and invoices you already have. Afterkey proposes a maintenance schedule for the actual equipment in that home.",
+        },
+        {
+          title: "Every line shows where it came from",
+          description:
+            "Every line cites the document you uploaded or the verified library entry it came from. An appliance with neither is marked “needs source” until you upload its manual.",
+        },
+        {
+          title: "You review before a homeowner sees it",
+          description:
+            "The AI proposes a list; you drop what you don’t want, edit any interval, and save. Nothing reaches a homeowner until you do.",
+        },
+        {
+          title: "Reminders go out on their own",
+          description:
+            "Once confirmed, the schedule sends its own reminders by email, and by text with the SMS add-on. Flag a reminder as schedulable and it arrives as a one-tap offer — “Want us to handle this?” — that books your assigned sub with no login. The maintenance that would have become your callback gets done.",
+        },
+        {
+          title: "It gets cheaper the more it is used",
+          description:
+            "The appliance library is shared across every builder on Afterkey and verified by the Afterkey team or the supplier. Once a model has a verified entry, every home with that model gets the schedule instantly and free.",
+        },
+      ],
+    },
+    faqs: [
+      {
+        q: "Does the AI make up maintenance intervals?",
+        a: "It marks the appliance “needs source” instead of filling in an interval. Every maintenance line comes from a document uploaded for that home or a verified entry in Afterkey’s appliance library, and cites it. The AI is told to leave out anything the document does not state. The builder reviews the proposed list and saves what belongs before it reaches a homeowner.",
+      },
+      {
+        q: "What does the AI cost?",
+        a: "AI runs on a monthly plan with credits included: Starter $49 for 2,000 credits, Growth $149 for 7,500, Scale $399 for 25,000, or a custom plan. Reading a manual usually takes 40 to 80 credits, and building and checking a typical home’s maintenance schedule about 200. Matching appliances to the verified library is free and uses no credits. Beyond your plan, credits are $3 per 100 up to a monthly cap you set (default $50). Without a plan, you get 100 free credits a month.",
+      },
+      {
+        q: "Can homeowners see the maintenance schedule themselves?",
+        a: "Yes. The saved schedule appears in the homeowner portal alongside their service history, each line with its source link.",
       },
     ],
   },

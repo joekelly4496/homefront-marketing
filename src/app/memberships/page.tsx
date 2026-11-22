@@ -1,3 +1,6 @@
+// HIDDEN (owner decision, Nov 22 2026): next.config.ts redirects /memberships
+// to /features, so this page is never served. Kept for when memberships
+// come back; nothing on the live site links here.
 import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
@@ -6,7 +9,7 @@ import { Card } from "@/components/ui/Card";
 import { Container, SectionLabel } from "@/components/ui/Container";
 import { FaqList } from "@/components/ui/FaqList";
 import { JsonLd } from "@/components/JsonLd";
-import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
+import { WarrantyVsBillable } from "@/components/WarrantyVsBillable";
 import { RepairPaySteps } from "@/components/RepairPaySteps";
 import { MembershipLadder } from "@/components/MembershipLadder";
 import { WelcomeLink } from "@/components/WelcomeLink";
@@ -332,7 +335,7 @@ export default function MembershipsPage() {
               </div>
             </div>
             <div className="lg:col-span-7">
-              <WarrantyVsMaintenance />
+              <WarrantyVsBillable />
             </div>
           </div>
         </Container>

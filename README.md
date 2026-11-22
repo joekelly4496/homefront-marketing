@@ -180,30 +180,21 @@ Narration goes in `video/vo/1.m4a … 7.m4a` (any format ffmpeg reads) (one file
 the audio lengths). Copy the result to `public/videos/afterkey-explainer.mp4`
 and `public/videos/afterkey-explainer-poster.jpg`.
 
-## Positioning (Oct 2026)
+## Positioning (Nov 22 2026: callbacks only)
 
-The site sells revenue, not relief. Every home a builder has closed is a
-customer he isn't earning on; Afterkey turns those homes into a service
-business. "Easier" is the side effect. The five points, in order of weight,
-live in `revenuePoints` in `src/lib/content.ts`: the membership the builder
-prices, the repair revenue he was giving away, being out of the middle, a
-business he can sell, and first call for the next job.
+The site sells one thing: callbacks off the builder's phone. Homeowner
+requests come in with photos, go straight to the sub for that trade, run on
+a response clock, and only come back to the builder when something needs
+him. The five points, in order of weight, live in `callbackPoints` in
+`src/lib/content.ts`; `afterHours` and `dailyBrief` carry the detail.
+
+Memberships, win-back, one-time proposals and plan quotes are HIDDEN in the
+product (owner decision, Nov 22 2026). Never describe them on the site.
+`/memberships` redirects to `/features`; the exports its source reads sit in
+the HIDDEN block of content.ts and are not rendered anywhere else.
 
 Copy rules that follow from it:
 
-- Every mention of the membership carries `membershipDistinction`: warranty
-  covers what the builder got wrong and stays free; the membership covers
-  maintenance, which every house needs from day one. Never imply a homeowner
-  pays monthly for warranty service or that non-members wait longer.
-- Say the "my homes are new" objection out loud and answer it with
-  `newHomeMaintenance` (HVAC twice a year, boiler annually, dryer vent, water
-  heater, appliances on the manufacturer's schedule).
-- The builder sets the membership price; Afterkey never sets or caps it. The
-  $40 plan is the floor, not the product: `membershipLadder` runs from "the
-  schedule and the reminders" up to "the whole house" ($500+/month — lawn,
-  HVAC, appliances, plumbing, septic, with the builder's subs on the work).
-  Whole-house revenue is always labeled gross, before the subs are paid. Plans bill monthly to the
-  builder's own account from a card or bank account on file.
 - Paid repairs, as the product works today: the sub quotes, the builder's
   markup is added automatically, the homeowner approves the price (nothing is
   charged yet), completion photos are required, and the charge fires when the
@@ -213,7 +204,7 @@ Copy rules that follow from it:
   are LIVE (product `PAYOUTS_ENABLED`, Oct 2026); a sub without a linked
   bank is paid by the builder as before.
 - Warranty vs. billable (`classification`): classified automatically at
-  submit from the home's warranty dates and plan. The sub can only FLAG a
+  submit from the home's warranty dates. The sub can only FLAG a
   job; the builder decides and the homeowner is told. The builder never
   approves prices; the homeowner does. Never write "both approve."
 - Dispatch: homeowner requests go straight to the assigned sub; the builder
@@ -228,12 +219,9 @@ Copy rules that follow from it:
   builder-service-platform): trial wording verbatim, onboarding free
   (concierge is not offered on the site), processing "includes every Stripe
   processing and payout fee," no money-back guarantee, no annual prepay.
-- The worked example (`workedExample`: 60 homes, $40 plan, one $400 repair a
-  quarter at 15% markup) is labeled an example everywhere. Never a customer
-  result.
 - Plans by size (Nov 10 2026): $199 up to 25 active homes, $399 up to 75,
   $749 up to 200, custom above 200; unlimited team and subs on every plan;
-  prospect and archived homes don't count. Framed by `planFraming`: one price
+  archived homes don't count. Framed by `planFraming`: one price
   at your size, so a quiet spec home never runs up the bill. Never tell the
   builder how to account for the plan.
 - Onboarding is free (`onboarding` in content.ts). Concierge onboarding is
@@ -245,9 +233,9 @@ Copy rules that follow from it:
 `/welcome?builder=Whitfield+Homes` greets the homeowner in the builder's
 name (sanitized, 60 chars, falls back to "your builder"): what the portal
 is, why to use it instead of texting, a five-step walkthrough, warranty vs.
-maintenance, the plan ladder in homeowner voice, FAQ. No site nav or
-footer, noindex, not in the sitemap. `WelcomeLink` on /memberships builds
-the link for the builder to copy. `/for-homeowners` stays the indexable
+billable, FAQ. No site nav or footer, noindex, not in the sitemap. (The
+`WelcomeLink` builder lived on /memberships, which is now redirected; until
+it moves, share the URL by hand.) `/for-homeowners` stays the indexable
 page for a homeowner who arrives on their own.
 
 ## Environment
