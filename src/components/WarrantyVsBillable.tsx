@@ -1,16 +1,16 @@
-import { CheckCircle2, Wrench, CalendarClock } from "lucide-react";
-import { warrantyVsMaintenance } from "@/lib/content";
+import { CheckCircle2, Wrench, Receipt } from "lucide-react";
+import { warrantyVsBillable } from "@/lib/content";
 
 /**
- * What's warranty, what's maintenance — drawn as the homeowner sees it,
- * under the demo builder's brand ("Whitfield Homes"), so a builder reading
- * it sees how the two stay separate on his own portal.
+ * What's warranty, what's billable — drawn as the homeowner sees it, under
+ * the demo builder's brand ("Whitfield Homes"), so a builder reading it sees
+ * how the two stay separate on his own portal.
  */
-export function WarrantyVsMaintenance({ className = "" }: { className?: string }) {
-  const { warranty, maintenance } = warrantyVsMaintenance;
+export function WarrantyVsBillable({ className = "" }: { className?: string }) {
+  const { warranty, billable } = warrantyVsBillable;
   const columns = [
     { ...warranty, icon: Wrench, tone: "text-tape" },
-    { ...maintenance, icon: CalendarClock, tone: "text-brass-dark" },
+    { ...billable, icon: Receipt, tone: "text-brass-dark" },
   ];
   return (
     <div

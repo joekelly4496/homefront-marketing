@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container, SectionLabel } from "@/components/ui/Container";
@@ -8,8 +7,7 @@ import { FaqList } from "@/components/ui/FaqList";
 import { PhoneMockup } from "@/components/mockups/PhoneMockup";
 import { BinderMockup } from "@/components/mockups/BinderMockup";
 import { RequestFlow } from "@/components/mockups/RequestFlow";
-import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
-import { MembershipLadder } from "@/components/MembershipLadder";
+import { WarrantyVsBillable } from "@/components/WarrantyVsBillable";
 import { LandingFooter } from "@/components/LandingFooter";
 import { pageMetadata } from "@/lib/seo";
 import {
@@ -33,7 +31,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   return pageMetadata({
     title: name ? `Your home portal from ${name}` : "Welcome to your home portal",
     description:
-      "One place for everything about your new house: the maintenance schedule, your documents, requests to the trades who built it, and the history.",
+      "One place for everything about your new house: requests to the trades who built it, their status, your documents, and the history.",
     path: welcomePath,
     noIndex: true,
   });
@@ -65,13 +63,8 @@ export default async function WelcomePage({ searchParams }: Props) {
       visual: null,
     },
     {
-      title: "Your home, documented",
-      body: `Manuals, warranties, appliance details, and a maintenance schedule built from them, with the source on every line. When something’s due, the reminder comes from ${Name} by email or text.`,
-      visual: <BinderMockup className="w-full max-w-md" />,
-    },
-    {
       title: "Something’s wrong? Submit a request",
-      body: "A photo and two sentences: what, and where. It’s marked warranty or billable from your home’s warranty dates and plan, and goes straight to the trade who knows your house.",
+      body: "A photo and two sentences: what, and where. It’s marked warranty or billable from your home’s warranty dates, and goes straight to the trade who knows your house, nights and weekends included.",
       visual: null,
     },
     {
@@ -81,8 +74,13 @@ export default async function WelcomePage({ searchParams }: Props) {
     },
     {
       title: "Nothing is charged without your OK",
-      body: "Warranty work is free, always. If something is billable, you see the price in the portal and approve it before any work is charged; after the job you get a completion notice and can approve it or report a problem before the charge goes through. If you’re on a maintenance plan, it bills monthly to the card or bank account you put on file.",
+      body: "Warranty work is free, always. If something is billable, you see the price in the portal and approve it before any work is charged; after the job you get a completion notice and can approve it or report a problem before the charge goes through.",
       visual: null,
+    },
+    {
+      title: "Your home, documented",
+      body: `Manuals, warranties, appliance details, and a maintenance schedule built from them, with the source on every line. When something’s due, the reminder comes from ${Name} by email or text.`,
+      visual: <BinderMockup className="w-full max-w-md" />,
     },
   ];
 
@@ -100,8 +98,8 @@ export default async function WelcomePage({ searchParams }: Props) {
                   : `${Name} set you up with a home portal`}
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-700">
-                One place for everything about your house: the maintenance
-                schedule, your documents, requests to the trades who built it,
+                One place for everything about your house: requests to the
+                trades who built it, the status of each one, your documents,
                 and the history — from {Name}, not a stranger.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -196,67 +194,27 @@ export default async function WelcomePage({ searchParams }: Props) {
             <div className="lg:col-span-5">
               <SectionLabel>Two different lists</SectionLabel>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-                What’s warranty, what’s maintenance
+                What’s warranty, what isn’t
               </h2>
               <p className="mt-4 text-base leading-relaxed text-slate-700">
-                A new house still needs maintenance from the day you get the
-                keys, whoever built it — and that’s a different list from what{" "}
-                {Name} is responsible for fixing.
+                Some things are {Name}’s to fix. Others are upkeep and wear
+                that every house needs, whoever built it. Every request is
+                marked one or the other when you send it.
               </p>
               <p className="mt-4 text-base font-medium leading-relaxed text-ink">
-                Warranty covers what the builder got wrong, and it stays free.
-                A maintenance plan covers what every house needs. One never
-                stands in front of the other.
+                Warranty work is free. Anything billable is priced first, and
+                nothing is charged until you approve it.
               </p>
             </div>
             <div className="lg:col-span-7">
-              <WarrantyVsMaintenance />
+              <WarrantyVsBillable />
             </div>
           </div>
-        </Container>
-      </section>
-
-      {/* The maintenance plan, if offered */}
-      <section className="bg-paper py-20 sm:py-28">
-        <Container size="7xl">
-          <div className="max-w-2xl">
-            <SectionLabel>If {Name} offers a maintenance plan</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              One company to call, for the life of the house
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-700">
-              Plans range from the schedule and the reminders to the whole
-              house — the trades who built it handling the HVAC, the
-              appliances, the lawn, the septic, on a schedule, for one number a
-              month. What {Name} offers, what it includes, and what it costs
-              is on your portal before you join.
-            </p>
-          </div>
-          <MembershipLadder
-            className="mt-10"
-            foot={`Example plans. What ${Name} offers, and what it costs, is on your portal before you join. Whatever the plan, warranty work stays free.`}
-          />
-          <ul className="mt-8 grid gap-x-8 gap-y-2 sm:grid-cols-2">
-            {[
-              "You see the full list of what’s included before you join",
-              "Pick a plan in the portal; your builder enrolls your home and you put a card or bank account on file",
-              "Anything outside the plan is priced and approved by you first",
-              "Warranty repairs are free whether you join or not",
-            ].map((line) => (
-              <li key={line} className="flex gap-2.5">
-                <CheckCircle2
-                  className="mt-1 h-4 w-4 shrink-0 text-tape"
-                  aria-hidden="true"
-                />
-                <span className="text-base text-slate-700">{line}</span>
-              </li>
-            ))}
-          </ul>
         </Container>
       </section>
 
       {/* FAQ */}
-      <section className="bg-drywall py-20 sm:py-28">
+      <section className="bg-paper py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">

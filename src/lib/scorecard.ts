@@ -1,8 +1,15 @@
 /**
  * The After-the-Keys Scorecard (getafterkey.com/scorecard): nine one-tap
  * questions, an email + phone step, then a score out of 100 with two
- * sub-scores (time after the keys, money after the keys), a result type, a
- * line about the part the builder hates most, and a plan calculator.
+ * sub-scores (time after the keys, money after the keys), a result type, and
+ * a line about the part the builder hates most.
+ *
+ * Nov 22 2026 (callbacks only): the plan calculator card was removed from
+ * the result page and the result-type copy no longer sells maintenance
+ * plans. Questions and scoring are unchanged (Joe-approved); q7/q9 still
+ * mention a maintenance plan and are flagged for Joe. `calculator`,
+ * `defaultPastHomes` and `planMonthly` stay because /api/scorecard still
+ * sends the example figures to Afterkey Sales.
  *
  * Shared by the page (src/components/Scorecard.tsx) and the API route
  * (src/app/api/scorecard/route.ts), which recomputes everything from the raw
@@ -10,7 +17,7 @@
  *
  * Copy approved by Joe, Oct 17 2026 (Project doc "After-the-Keys Scorecard").
  * The score is never compared to other builders: there is no real data to
- * compare against. Calculator numbers are examples the builder sets.
+ * compare against.
  */
 
 export type QuestionId = "q1" | "q2" | "q3" | "q4" | "q5" | "q6" | "q7" | "q8" | "q9";
@@ -174,13 +181,13 @@ export function resultTypeOf(total: number): ResultType {
     return {
       key: "halfway",
       title: "Halfway There",
-      body: "You have some system after the keys, but the work still runs through you and the money doesn’t. Next: get out of the middle, then put a plan on your past homes.",
+      body: "You have some system after the keys, but the work still runs through you and the money doesn’t. Next: get out of the middle, then bill the callbacks that aren’t warranty.",
     };
   }
   return {
     key: "tight-ship",
     title: "The Tight Ship",
-    body: "Your after-closing work is under control. The open question is money: a plan you price turns past homes into monthly revenue.",
+    body: "Your after-closing work is under control. The open question is money: the callbacks that aren’t warranty can be priced with your markup and paid through your company.",
   };
 }
 

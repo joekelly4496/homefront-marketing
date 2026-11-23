@@ -5,8 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { Container, SectionLabel } from "@/components/ui/Container";
 import { FaqList } from "@/components/ui/FaqList";
 import { PhoneMockup } from "@/components/mockups/PhoneMockup";
-import { WarrantyVsMaintenance } from "@/components/WarrantyVsMaintenance";
-import { MembershipLadder } from "@/components/MembershipLadder";
+import { WarrantyVsBillable } from "@/components/WarrantyVsBillable";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import {
@@ -18,22 +17,19 @@ import {
 import {
   brand,
   loginUrls,
-  newHomeMaintenance,
   classification,
   homeownerFaqs,
 } from "@/lib/content";
 
-const title = "Maintenance Plans for New Homes, From Your Builder";
+const title = "Warranty Requests to Your Builder, Without the Phone Tag";
 const description =
-  "A new house needs maintenance from day one. If your builder runs on Afterkey, you get a maintenance plan, reminders, and repairs priced before you’re charged.";
+  "If your builder runs on Afterkey, you send a warranty or service request with photos, it goes straight to the trade who knows your house, and you can see the status without calling.";
 
 export const metadata = pageMetadata({
   title,
   description,
   path: "/for-homeowners",
 });
-
-
 
 export default function ForHomeownersPage() {
   const pageGraph = graph([
@@ -53,22 +49,21 @@ export default function ForHomeownersPage() {
             <div>
               <p className="text-sm font-medium text-tape">For homeowners</p>
               <h1 className="mt-3 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl">
-                Your builder can keep your new house running
+                Something wrong with the house? Send it to the right person.
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-700">
-                A new house needs maintenance from the day you get the keys.
-                If your builder runs on {brand.name}, you get a maintenance
-                plan under their name — from the reminders up to a
-                full-service plan where the trades who built the house handle
-                the lawn, the HVAC, the appliances, the plumbing, the septic,
-                all of it — in one place that isn’t a text thread.
+                If your builder runs on {brand.name}, you have a portal under
+                their name. Describe the problem, add a photo, and it goes
+                straight to the trade who knows your house. You see when it’s
+                received, who’s coming and when, and photos when it’s done,
+                without a single “did you get my text?”
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button href={loginUrls.homeowner} external size="lg">
                   Homeowner sign in
                 </Button>
-                <Button href="#maintenance" size="lg" variant="secondary">
-                  What a new house needs
+                <Button href="#warranty" size="lg" variant="secondary">
+                  What’s warranty, what isn’t
                 </Button>
               </div>
               <p className="mt-6 text-sm text-slate-600">
@@ -82,24 +77,24 @@ export default function ForHomeownersPage() {
         </Container>
       </section>
 
-      {/* What's warranty, what's maintenance — under the builder's brand */}
-      <section id="maintenance" className="scroll-mt-24 bg-paper py-20 sm:py-28">
+      {/* What's warranty, what's billable — under the builder's brand */}
+      <section id="warranty" className="scroll-mt-24 bg-paper py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-16">
             <div className="lg:col-span-5">
-              <SectionLabel>From day one</SectionLabel>
+              <SectionLabel>Before anyone comes out</SectionLabel>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-                What’s warranty, what’s maintenance
+                What’s warranty, what isn’t
               </h2>
               <p className="mt-4 text-base leading-relaxed text-slate-700">
-                New doesn’t mean maintenance-free. {newHomeMaintenance.heading}
-                , whoever built it — and that is a different list from what
-                your builder is on the hook to fix.
+                Every request is marked warranty or billable when you send it,
+                from your home’s warranty dates. If the trade finds it isn’t
+                what it looked like, your builder makes the call and you’re
+                told.
               </p>
               <p className="mt-4 text-base font-medium leading-relaxed text-ink">
-                Warranty covers what the builder got wrong, and it stays free.
-                The maintenance plan covers what every house needs. One never
-                stands in front of the other.
+                Warranty work is free. Anything billable is priced first, and
+                nothing is charged until you approve it.
               </p>
               <div className="relative mt-8 hidden aspect-[3/2] overflow-hidden lg:block">
                 <Image
@@ -112,33 +107,14 @@ export default function ForHomeownersPage() {
               </div>
             </div>
             <div className="lg:col-span-7">
-              <WarrantyVsMaintenance />
+              <WarrantyVsBillable />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* What's in the plan — what physically happens for the money */}
-      <section id="plans" className="scroll-mt-24 bg-drywall py-20 sm:py-28">
-        <Container size="7xl">
-          <div className="max-w-2xl">
-            <SectionLabel>What you get for the money</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              What’s in the plan, exactly
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-700">
-              Your builder decides what each plan includes and what it costs,
-              and the portal shows you the list before you join. These are
-              examples of how builders set them up — the names and prices on
-              your builder’s portal are theirs.
-            </p>
-          </div>
-          <MembershipLadder className="mt-10" />
-        </Container>
-      </section>
-
-      {/* What the plan does for you */}
-      <section className="bg-paper py-20 sm:py-28">
+      {/* What the portal does for you */}
+      <section className="bg-drywall py-20 sm:py-28">
         <Container size="7xl">
           <div className="max-w-2xl">
             <SectionLabel>What you get</SectionLabel>
@@ -149,23 +125,13 @@ export default function ForHomeownersPage() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             <Card className="p-6">
               <h3 className="text-lg font-semibold text-ink">
-                A maintenance schedule for your actual house
-              </h3>
-              <p className="mt-2 text-base leading-relaxed text-slate-700">
-                Built from the manuals for the equipment in your home, with the
-                source on every line. The reminders come from your builder, by
-                email or text, when something is due — and on a full-service
-                plan, the visit is already booked.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold text-ink">
                 A request that goes to the right person
               </h3>
               <p className="mt-2 text-base leading-relaxed text-slate-700">
                 Describe the problem, add a photo, and it routes to the trade
                 who knows your house. You talk to them directly, watch the
-                status move, and see their photos when it’s done.
+                status move, and see their photos when it’s done. At night or
+                on a weekend it still goes out the moment you send it.
               </p>
             </Card>
             <Card className="p-6">
@@ -177,6 +143,16 @@ export default function ForHomeownersPage() {
                 nothing billable is charged until you’ve approved the price.
               </p>
             </Card>
+            <Card className="p-6">
+              <h3 className="text-lg font-semibold text-ink">
+                The record of your house
+              </h3>
+              <p className="mt-2 text-base leading-relaxed text-slate-700">
+                Documents, warranties, maintenance reminders, and every
+                request you’ve made, in one place that stays useful for as
+                long as you own the home.
+              </p>
+            </Card>
           </div>
           <p className="mt-8 max-w-2xl text-sm leading-relaxed text-slate-600">
             The portal carries your builder’s name because it is their
@@ -186,7 +162,7 @@ export default function ForHomeownersPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-drywall py-20 sm:py-28">
+      <section className="bg-paper py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
@@ -210,12 +186,12 @@ export default function ForHomeownersPage() {
               Your builder isn’t on {brand.name} yet?
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-300">
-              Send them the page written for them. It explains how the
-              maintenance plan works, what it costs them, and why the trades
-              who built your house are the ones who should keep it running.
+              Send them the page written for them. It shows how your requests
+              would go straight to the trades who built the house, and how
+              your builder hears about each one without being in the middle.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/memberships" size="lg">
+              <Button href="/features" size="lg">
                 Show my builder how it works
               </Button>
               <Button
@@ -231,10 +207,10 @@ export default function ForHomeownersPage() {
             <p className="mt-6 text-sm text-slate-400">
               Builders:{" "}
               <Link
-                href="/memberships"
+                href="/features"
                 className="font-semibold text-paper underline decoration-brass decoration-2 underline-offset-4 hover:text-brass"
               >
-                this is the homeowner side of the membership pitch
+                see how callbacks run on {brand.name}
               </Link>
               .
             </p>

@@ -106,7 +106,7 @@ export default function FaqPage() {
               24-month rate lock. The {pricingQuestionCount} billing questions
               — what counts toward your plan, how the add-ons meter, processing on homeowner
               payments, the free trial — live on the pricing page, with the
-              full breakdown and the worked example.
+              full breakdown and example bills.
             </p>
             <p className="mt-4">
               <Link

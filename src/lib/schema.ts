@@ -71,10 +71,12 @@ export function softwareApplicationSchema() {
       audienceType: "Residential home builders and remodelers",
     },
     featureList: [
-      "Homeowner maintenance memberships priced by the builder, billed monthly to the builder's account",
-      "Paid repair billing with the builder's markup, settled to the builder's account",
-      "Warranty vs. billable request classification with builder and homeowner approval",
       "Warranty and service request management with SLA tracking",
+      "Homeowner requests sent straight to the assigned subcontractor by trade",
+      "After-hours handling for urgent requests",
+      "Warranty vs. billable request classification, with homeowner price approval",
+      "Paid repair billing with the builder's markup, settled to the builder's account",
+      "Daily Brief email for the builder each morning",
       "Subcontractor dispatch, ratings, and cost intelligence",
       "Subcontractor compliance document tracking with dispatch gating",
       "AI-built home maintenance schedules with cited sources",
@@ -102,7 +104,7 @@ function softwareOffers() {
     ...pricing.plans.map((plan) => ({
       "@type": "Offer",
       name: `Plan - ${plan.name}`,
-      description: `Flat monthly plan for up to ${plan.homes} active homes, including unlimited team members and unlimited subcontractors. Prospect and archived homes don't count toward the plan.`,
+      description: `Flat monthly plan for up to ${plan.homes} active homes, including unlimited team members and unlimited subcontractors. Archived homes don't count toward the plan.`,
       price: plan.price,
       priceCurrency: "USD",
       priceSpecification: {

@@ -12,11 +12,10 @@ import {
   trial,
   statusLabels,
   thesis,
-  revenuePoints,
-  membershipDistinction,
-  newHomeMaintenance,
+  callbackPoints,
+  afterHours,
+  dailyBrief,
   classification,
-  membershipLadder,
 } from "@/lib/content";
 
 /**
@@ -67,16 +66,15 @@ What Afterkey is not:
 ${notList.map((n) => `- ${n}`).join("\n")}`,
 )}
 ${section(
-  "The business model for builders",
+  "How callbacks run on Afterkey",
   `${thesis.short}
 
-${revenuePoints.map((p) => `- ${p.title}: ${p.body}`).join("\n")}
+${callbackPoints.map((p) => `- ${p.title}: ${p.body}`).join("\n")}
 
-${membershipDistinction} A new house still needs maintenance from day one, whoever built it: ${newHomeMaintenance.items.join("; ").toLowerCase()}.
+${afterHours.title}:
+${afterHours.points.map((p) => `- ${p}`).join("\n")}
 
-${membershipLadder.heading}: ${membershipLadder.lede}
-${membershipLadder.tiers.map((t) => `- ${t.name} (${t.price}): ${t.summary} Includes: ${t.includes.join("; ")}. ${t.visits}`).join("\n")}
-${membershipLadder.builder} ${membershipLadder.foot}
+${dailyBrief.title}: ${dailyBrief.body}
 
 Warranty vs. billable: ${classification.how.join(" ")} For the homeowner: ${classification.homeowner} For the builder: ${classification.builder}`,
 )}
@@ -97,11 +95,11 @@ ${section(
 ${pricing.plans.map((p) => `- Up to ${p.homes} active homes: $${p.price}/month.`).join("\n")}
 - More than ${pricing.customAbove} active homes: custom plan.
 - Every plan includes unlimited team members and unlimited subcontractors. There are no per-user fees, and nothing is billed per home.
-- Only active homes (homes the builder is actively serving, at any age) count toward the plan. Prospect homes (past builds being pitched a membership — outreach and offers only) and archived homes (read-only history, reactivate any time) are free and don't count. A prospect converts to active automatically when the homeowner starts a membership or a warranty date is set.
-- Changing plans: any time from Billing. Upgrades start right away; downgrades start next month, if the builder's active homes fit the smaller plan. If a homeowner joining a membership or approving a job takes the builder over the plan, nothing is blocked and the bill doesn't change; the builder can't activate more homes until they upgrade or archive one.
-- AI plans (optional, flat monthly, not per home): ${pricing.ai.plans.map((p) => `${p.name} $${p.price}/month with ${p.credits.toLocaleString("en-US")} credits`).join("; ")}; custom plans for bigger builders. Reading a manual usually takes ${pricing.ai.manualCredits} credits; building and checking a typical home's plan ${pricing.ai.planCredits}. Appliances already in the shared library are free. Over the plan: $${pricing.ai.overagePer100} per 100 credits, up to a monthly cap the builder sets (default $${pricing.ai.defaultCap}), with alerts at 80%, 100% and the cap. Upgrades start at once; downgrades next month. Without a plan, builders get ${pricing.ai.freeCredits} free credits a month.
+- Only active homes (homes the builder is actively serving, at any age) count toward the plan. Archived homes (read-only history, reactivate any time) are free and don't count.
+- Changing plans: any time from Billing. Upgrades start right away; downgrades start next month, if the builder's active homes fit the smaller plan.
+- AI plans (optional, flat monthly, not per home): ${pricing.ai.plans.map((p) => `${p.name} $${p.price}/month with ${p.credits.toLocaleString("en-US")} credits`).join("; ")}; custom plans for bigger builders. Reading a manual usually takes ${pricing.ai.manualCredits} credits; building and checking a typical home's maintenance schedule ${pricing.ai.planCredits}. Appliances already in the shared library are free. Over the plan: $${pricing.ai.overagePer100} per 100 credits, up to a monthly cap the builder sets (default $${pricing.ai.defaultCap}), with alerts at 80%, 100% and the cap. Upgrades start at once; downgrades next month. Without a plan, builders get ${pricing.ai.freeCredits} free credits a month.
 - SMS add-on (optional): $${pricing.sms.price}/month. Includes a dedicated business number and ${pricing.sms.includedSegments.toLocaleString()} segments. Overage is $${pricing.sms.overagePer1000} per 1,000 segments, with a live meter and a builder-set ceiling.
-- Platform fee on homeowner payments: none. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for card payments — all-in rates that include every payment processing and payout cost.
+- Platform fee on homeowner payments (billable repairs): none. Payment processing runs at published flat rates — ${pricing.processing.bankPercent}% for bank payments, ${pricing.processing.cardPercent}% + ${pricing.processing.cardFixedCents}¢ for card payments — all-in rates that include every payment processing and payout cost.
 - Onboarding: free. The builder adds homes and subcontractors and starts the same day.
 - Free trial: ${trial.days} days. ${trial.body} ${trial.fine} There is no money-back guarantee. No sales call is required.
 
@@ -131,7 +129,7 @@ Matching a home's appliances to verified library entries uses no AI and is free.
 )}
 ${section(
   "Status of features",
-  `Available now: warranty and service request management with automatic dispatch to the assigned subcontractor; homeowner maintenance plans the builder prices, which the homeowner joins and pays for in one step and can cancel online, billing monthly from the day they join; included plan visits scheduled across the membership year and sent to the assigned subcontractor automatically; automatic payouts that send each subcontractor's share (repairs and monthly plan payments) straight to the subcontractor's bank once linked, with the rest to the builder; win-back prospect homes with claim invites, follow-ups and expiring offers; paid repair work with homeowner-approved estimates charged on completion; spreadsheet import of up to 1,000 homes with bulk invites; a full data export of every record, photo and document; an in-app help button on every page; the SMS and voice business line (a dedicated number per builder, two-way texting matched to requests, inbound calls forwarded to the builder; messages send under Afterkey Inc.'s carrier registration); the AI Home Binder with sourced maintenance schedules; Ask Billie, a homeowner assistant that answers only from that home's records (on homes where the builder turns it on, with a paid AI plan); and subcontractor compliance tracking with expiration alerts and a stop-and-acknowledge gate on builder-created dispatch.`,
+  `Available now: warranty and service request management, with each homeowner request sent straight to the subcontractor assigned to that trade on that home (email and a no-login job link; a text too with the SMS add-on); response-time (SLA) clocks per priority with automatic reminders to the subcontractor and escalation to the builder; after-hours handling (every request sent at once; urgent requests start their response clock immediately when the builder's after-hours setting is on, which is the default; normal requests wait for the next opening); required completion photos; warranty vs. billable classification from the home's warranty dates; paid repair work with homeowner-approved estimates charged on completion, and automatic payouts that send the subcontractor's share straight to the subcontractor's bank once linked, with the rest to the builder; the Daily Brief, a 7 AM email per builder, house by house; subcontractor insurance and license tracking; spreadsheet import of up to 1,000 homes with bulk invites; a full data export of every record, photo and document; an in-app help button on every page; the SMS and voice business line (a dedicated number per builder, two-way texting matched to requests, inbound calls forwarded to the builder; messages send under Afterkey Inc.'s carrier registration); the AI Home Binder with sourced maintenance schedules and reminders; Ask Billie, a homeowner assistant that answers only from that home's records (on homes where the builder turns it on, with a paid AI plan); and subcontractor compliance tracking with expiration alerts and a stop-and-acknowledge gate on builder-created dispatch.`,
 )}
 ${section(
   "Key pages",

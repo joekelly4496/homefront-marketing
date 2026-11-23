@@ -58,7 +58,7 @@ export default function AboutPage() {
 
       <PageHeader
         eyebrow="About"
-        title="The customers every builder already has"
+        title="Built for the year after the keys"
         subtitle={`${brand.definition}`}
       />
 
@@ -74,36 +74,28 @@ export default function AboutPage() {
                 runs on a phone, a truck-seat notepad, and whoever remembers.
               </p>
               <p>
-                That is the weaker half of the story, and it is the half most
-                software tells: make the builder’s life easier. The stronger
-                half is that every home a builder has already closed is a
-                customer he isn’t earning on. The homeowner needs the HVAC
-                serviced twice a year, the water heater flushed, the dryer vent
-                cleaned, the dishwasher looked at — from day one, whoever built
-                the house — and today they find someone else to do it, or they
-                call the builder, who sends a sub over for free.
+                So the builder becomes the relay. The homeowner texts him at
+                9pm, he forwards it to the plumber, the plumber calls the
+                homeowner back Thursday, and the homeowner texts the builder
+                again to ask if anyone is coming. Multiply that by every home
+                still under warranty and it is a second job, unpaid.
               </p>
               <p>
-                {brand.name} turns those homes into a service business. The
-                builder sells a maintenance plan at whatever price his market
-                carries — $40 a month for the schedule and the reminders, $500
-                for the whole house, lawn to septic, with his subs on the work
-                — and it bills monthly to his own account from a portal that
-                carries his name. Repairs get priced, approved by
-                the homeowner before anyone is charged, and paid out with the
-                builder’s markup on them, the sub and the builder paid
-                separately. Warranty work stays warranty and stays free; the
-                membership is never a paywall in front of it.
+                {brand.name} takes the builder out of the middle. The homeowner
+                submits the request in a portal that carries the builder’s
+                name, with photos and two sentences. It goes straight to the
+                sub assigned to that trade on that home, with a response clock
+                the builder set. The sub accepts it, schedules it, and closes
+                it with completion photos. The homeowner sees the status
+                without calling anyone, and the builder is notified, not
+                asked, and escalated only when a sub goes quiet.
               </p>
               <p>
-                Easier is the side effect. The homeowner and the sub talk to
-                each other in the portal, the builder sees everything and
-                touches nothing he doesn’t want to, and the reminders keep him
-                in the homeowner’s life every month — which is why he gets the
-                call for the basement, the addition, and the neighbor. A
-                builder with 200 homes on a membership has recurring revenue,
-                an asset he can sell or step back from. A builder with a phone
-                full of homeowner texts has a job.
+                When a callback isn’t warranty, it stops being a favor. The sub
+                quotes it, the builder’s markup goes on top, the homeowner
+                approves the price before anything is charged, and the payment
+                splits between the sub and the builder. Warranty work stays
+                warranty and stays free.
               </p>
               <p>
                 {brand.founder} That is why it starts at closing instead of at

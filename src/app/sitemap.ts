@@ -12,7 +12,6 @@ const routes: {
   changeFrequency: "weekly" | "monthly" | "yearly";
 }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
-  { path: "/memberships", priority: 0.9, changeFrequency: "monthly" },
   { path: "/features", priority: 0.9, changeFrequency: "monthly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },
   { path: "/use-cases", priority: 0.8, changeFrequency: "monthly" },

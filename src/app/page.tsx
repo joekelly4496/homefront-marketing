@@ -10,7 +10,7 @@ import { BuilderDashboard } from "@/components/mockups/BuilderDashboard";
 import { PhoneMockup } from "@/components/mockups/PhoneMockup";
 import { WhiteLabelSwap } from "@/components/mockups/WhiteLabelSwap";
 import { RequestFlow } from "@/components/mockups/RequestFlow";
-import { MembershipLadder } from "@/components/MembershipLadder";
+import { RepairPaySteps } from "@/components/RepairPaySteps";
 import { graph, faqPageSchema, webPageSchema } from "@/lib/schema";
 import {
   brand,
@@ -19,41 +19,39 @@ import {
   coreFaqs,
   pricing,
   pricingLine,
+  planFraming,
+  processingLine,
   whiteLabelPoints,
   signupHref,
   trial,
   primaryCta,
   competitorAnchor,
   thesis,
-  revenuePoints,
-  workedExample,
-  membershipDistinctionShort,
-  newHomeMaintenance,
+  callbackPoints,
+  afterHours,
+  dailyBrief,
   classification,
-  membershipLadder,
   onboarding,
 } from "@/lib/content";
 
-const money = (n: number) => `$${n.toLocaleString("en-US")}`;
-
-/** Points 1, 2 and 5 carry the revenue story; 3 and 4 live in the workflow and the CTA. */
-const moneyPoints = revenuePoints.filter((p) =>
-  ["membership", "repairs", "next-job"].includes(p.id),
+/** The three points the opening section carries; billing gets its own. */
+const leadPoints = callbackPoints.filter((p) =>
+  ["straight-to-sub", "clock", "status"].includes(p.id),
 );
 
 /** What the homeowner sees — the consumer side, in four lines. */
 const homeownerGets = [
-  "A maintenance schedule built from their own house’s manuals, with reminders when something is due",
-  "A portal under your name to submit a request with photos, watch it move, and talk to the sub directly",
+  "A portal under your name to submit a request with photos and two sentences",
+  "The status of every request, and a thread with the sub, without calling you",
   classification.homeowner,
-  "Their documents, warranties, and service history in one place, for the life of the home",
+  "Their documents, maintenance reminders, and service history in one place, for the life of the home",
 ];
 
 /** The FAQs surfaced on the home page — the four a builder asks first. */
 const homeFaqs = coreFaqs.filter((f) =>
   [
-    "What does a homeowner actually get for $40 a month?",
-    "Do homeowners have to pay for a membership to get warranty work?",
+    "If requests go straight to the sub, how do I know what’s happening?",
+    "What happens when a homeowner submits a request after hours?",
     "Who decides whether a request is warranty or billable?",
     "How much does Afterkey cost?",
   ].includes(f.q),
@@ -68,8 +66,6 @@ export default function HomePage() {
     }),
     faqPageSchema(homeFaqs),
   ]);
-
-  const ex = workedExample;
 
   return (
     <>
@@ -100,23 +96,22 @@ export default function HomePage() {
               {thesis.headline}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
-              Afterkey turns the homes you’ve already closed into a service
-              business: a maintenance plan you price — from reminders to the
-              whole house — repairs paid through your branded portal with your
-              markup on them, and your subs on the work.{" "}
-              {thesis.supporting}
+              Homeowners send the request with photos through your portal. It
+              goes straight to the sub for that trade, on a response clock,
+              and you’re only pulled in when something needs you. All under
+              your name.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">
                 {primaryCta}
               </Button>
               <Button
-                href="#economics"
+                href="#how-it-works"
                 size="lg"
                 variant="secondary"
                 className="border-paper/40 text-paper hover:border-paper hover:bg-paper/10"
               >
-                See the math on {ex.homes} homes
+                See how a callback runs
               </Button>
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-300">
@@ -131,11 +126,7 @@ export default function HomePage() {
                 {trial.headline}
               </li>
             </ul>
-            <p className="mt-2 text-sm text-slate-400">
-              One flat price for your size, and every home on it can carry a $
-              {ex.planPrice}-a-month plan — or a ${ex.fullServicePrice}{" "}
-              whole-house one — that you price. {membershipDistinctionShort}
-            </p>
+            <p className="mt-2 text-sm text-slate-400">{planFraming}</p>
           </div>
 
           <div className="relative z-10 mt-14 -mb-16 sm:mt-16 sm:-mb-24 lg:-mb-28">
@@ -149,30 +140,29 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* 2 — How you make money. The definition, the three revenue points,
-          the ladder, and the one objection that comes before all of it. */}
+      {/* 2 — What changes. The definition, the three callback points, and
+          the two things that keep running when you aren't looking. */}
       <section
-        id="every-home"
+        id="every-callback"
         className="scroll-mt-24 bg-paper pb-20 pt-28 sm:pb-28 sm:pt-36 lg:pt-40"
       >
         <Container size="7xl">
           <div className="max-w-2xl">
-            <SectionLabel>How you make money</SectionLabel>
+            <SectionLabel>What changes</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              Every home you’ve built is a customer
+              Every callback, out of your phone and onto a record
             </h2>
             {/* The definition, quotable without context. */}
             <p className="mt-4 text-base leading-relaxed text-slate-700">
               <strong className="font-semibold text-ink">
                 {brand.definition}
               </strong>{" "}
-              Easier is the side effect. More money from homes you already
-              built is the point.
+              {thesis.supporting}
             </p>
           </div>
 
           <div className="mt-12 grid gap-x-16 gap-y-8 lg:grid-cols-3">
-            {moneyPoints.map((point) => (
+            {leadPoints.map((point) => (
               <div key={point.id}>
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-[6px] bg-ink text-paper">
                   <point.icon className="h-5 w-5" aria-hidden="true" />
@@ -187,41 +177,35 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* What the plan actually is — the thing a homeowner asks first,
-              and the pitch a builder has to picture landing. */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-semibold tracking-tight text-ink">
-              {membershipLadder.heading}
-            </h3>
-            <p className="mt-2 max-w-2xl text-base leading-relaxed text-slate-700">
-              {membershipLadder.lede}
-            </p>
-            <MembershipLadder compact className="mt-6" />
-            <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-700">
-              <strong className="font-semibold text-ink">
-                “My homes are new.”
-              </strong>{" "}
-              {newHomeMaintenance.lede.replace(/:$/, " —")}{" "}
-              {newHomeMaintenance.items
-                .slice(0, 4)
-                // Lowercase a leading capital, but leave acronyms (HVAC) alone.
-                .map((i) =>
-                  i.charAt(1) === i.charAt(1).toLowerCase()
-                    ? i.charAt(0).toLowerCase() + i.slice(1)
-                    : i,
-                )
-                .join(", ")}
-              , appliances on the manufacturer’s schedule. Warranty covers
-              what you got wrong and stays free. The plan covers the rest.
-            </p>
-            <p className="mt-4">
-              <Link
-                href="/memberships"
-                className="text-sm font-semibold text-tape underline decoration-brass decoration-2 underline-offset-4 hover:text-ink"
-              >
-                Every line item in each tier, and how the money moves
-              </Link>
-            </p>
+          <div className="mt-16 grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <h3 className="text-2xl font-semibold tracking-tight text-ink">
+                {afterHours.title}
+              </h3>
+              <ul className="mt-5 space-y-3">
+                {afterHours.points.map((line) => (
+                  <li key={line} className="flex gap-2.5">
+                    <CheckCircle2
+                      className="mt-1 h-4 w-4 shrink-0 text-tape"
+                      aria-hidden="true"
+                    />
+                    <span className="text-base leading-relaxed text-slate-700">
+                      {line}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="lg:col-span-5">
+              <Card className="p-6 sm:p-8">
+                <h3 className="text-lg font-semibold text-ink">
+                  {dailyBrief.title}
+                </h3>
+                <p className="mt-2 text-base leading-relaxed text-slate-700">
+                  {dailyBrief.body}
+                </p>
+              </Card>
+            </div>
           </div>
         </Container>
       </section>
@@ -307,7 +291,7 @@ export default function HomePage() {
               <WhiteLabelSwap />
               <p className="mt-3 text-sm text-slate-600">
                 Two builders, one platform, and each buyer sees their own
-                builder’s name on the portal they pay in.
+                builder’s name on the portal they send requests through.
               </p>
             </div>
           </div>
@@ -333,16 +317,16 @@ export default function HomePage() {
                 Your subs get a list, not a group text
               </h2>
               <p className="mt-4 text-base leading-relaxed text-slate-700">
-                A sub signs in to one list: the jobs assigned to him, each
-                with the address, the issue, the homeowner’s photos, and the
-                home’s history. He taps a status and attaches a finished-work
-                photo from the driveway. On a paid job, his share arrives
-                without him invoicing anyone.
+                A sub opens each job from a link, no app and no login: the
+                address, the issue, the homeowner’s photos, and the home’s
+                history. He accepts it, schedules it, taps a status from the
+                driveway, and can’t close it without completion photos. On a
+                paid job, his share arrives without him invoicing anyone.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-700">
                 The homeowner says nobody came; the sub says he called. Now
                 there’s a record, so you don’t eat the second trip. Subs use
-                it free, and unlimited subs are included in your base.
+                it free, and unlimited subs are included in every plan.
               </p>
               <p className="mt-6">
                 <Link
@@ -357,92 +341,40 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* 6 — Real economics. The worked example, labeled as one. */}
-      <section id="economics" className="scroll-mt-24 bg-paper py-20 sm:py-28">
+      {/* 6 — Billable callbacks. When it isn't warranty, it gets priced,
+          approved by the homeowner, and paid through the portal. */}
+      <section id="billable" className="scroll-mt-24 bg-paper py-20 sm:py-28">
         <Container size="7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <SectionLabel>Real economics</SectionLabel>
+              <SectionLabel>When it isn’t warranty</SectionLabel>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-                The math on {ex.homes} closed homes
+                The callback that isn’t warranty doesn’t have to be a favor
               </h2>
               <p className="mt-4 text-base leading-relaxed text-slate-700">
-                Arithmetic on inputs you control: your plan price, your
-                markup, and how many homeowners say yes. Afterkey is early and
-                has no customer averages to publish, so none of this is a
-                benchmark. Substitute your own numbers.
+                The dryer vent, the hose bib left open, the TV mount. Today
+                you coordinate it for nothing and the sub bills the homeowner
+                direct. On {brand.name} it runs through the same request: the
+                sub quotes it, your markup goes on top, and the homeowner
+                approves the price before anything is charged.
               </p>
-              <p className="mt-4 text-base leading-relaxed text-slate-700">
-                The repair line is the part most builders miss: one $
-                {ex.repairJob} job a quarter per home — a dryer vent, a hose
-                bib, a dishwasher — at {ex.markupPercent}% markup is $
-                {ex.markupPerJob} to you each time, on work you were already
-                coordinating for nothing.
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                {processingLine}{" "}
+                <Link
+                  href="/pricing"
+                  className="font-semibold text-tape underline decoration-brass decoration-2 underline-offset-2 hover:text-ink"
+                >
+                  See pricing
+                </Link>
+                .
               </p>
             </div>
             <div className="lg:col-span-7">
               <Card className="p-6 sm:p-8">
-                <p className="text-sm font-medium text-tape">{ex.label}</p>
-                <h3 className="mt-2 text-xl font-semibold text-ink">
-                  {ex.homes} closed homes, a ${ex.planPrice}/month plan, per
-                  year
+                <h3 className="text-xl font-semibold text-ink">
+                  How a billable repair gets paid
                 </h3>
-                <dl className="mt-6 divide-y divide-drywall">
-                  {[
-                    {
-                      label: "Membership, every home joins",
-                      sub: `${money(ex.membershipMonthly)} a month`,
-                      value: ex.membershipYearly,
-                    },
-                    {
-                      label: "Membership, half of them join",
-                      value: ex.membershipYearlyAtHalf,
-                    },
-                    {
-                      label: `${ex.fullServiceHomes} of them take a $${ex.fullServicePrice}/month whole-house plan instead`,
-                      sub: "gross, before you pay your subs for the work",
-                      value: ex.fullServiceYearly,
-                    },
-                    {
-                      label: "Your markup on one priced repair a quarter",
-                      sub: `${ex.homes} homes × ${ex.repairsPerHomePerYear} jobs × $${ex.markupPerJob}`,
-                      value: ex.repairMarkupYearly,
-                    },
-                    {
-                      label: `Afterkey at ${ex.homes} active homes`,
-                      sub: `${ex.afterkeyPlanName} plan · ${money(ex.afterkeyMonthly)} a month`,
-                      value: ex.afterkeyYearly,
-                    },
-                  ].map((row) => (
-                    <div
-                      key={row.label}
-                      className="flex items-baseline justify-between gap-4 py-3"
-                    >
-                      <dt className="text-sm text-slate-700">
-                        {row.label}
-                        {row.sub && (
-                          <span className="block text-xs text-slate-600">
-                            {row.sub}
-                          </span>
-                        )}
-                      </dt>
-                      <dd className="text-lg font-semibold tabular-nums text-ink">
-                        {money(row.value)}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                <p className="mt-5 text-xs leading-relaxed text-slate-600">
-                  There’s no platform fee on what your homeowners pay you —
-                  you pay only processing, at the published rates on{" "}
-                  <Link
-                    href="/pricing"
-                    className="font-semibold text-tape underline decoration-brass decoration-2 underline-offset-2 hover:text-ink"
-                  >
-                    the pricing page
-                  </Link>
-                  .
-                </p>
+                <RepairPaySteps className="mt-5" />
               </Card>
             </div>
           </div>
@@ -506,11 +438,11 @@ export default function HomePage() {
           <div className="max-w-2xl">
             <SectionLabel>Pricing</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              Plans by size. Published prices. The homeowner revenue is yours.
+              Plans by size. Published prices. No quote calls.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-700">
-              {pricingLine} What you charge your homeowners is yours; Afterkey
-              never sets it, and takes no platform fee on it.
+              {pricingLine} The markup you charge on a billable repair is
+              yours; Afterkey never sets it, and takes no platform fee on it.
             </p>
             <p className="mt-3 text-base leading-relaxed text-slate-700">
               It replaces the spreadsheet, the group text, the free
@@ -559,18 +491,16 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* 10 — CTA. Point 4, in two sentences. */}
+      {/* 10 — CTA */}
       <section className="bg-ink py-20 text-paper sm:py-28">
         <Container size="7xl">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-semibold tracking-tight text-paper sm:text-4xl">
-              A builder with 200 homes on a plan has an asset.
+              The next callback can skip your cell.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-300">
-              A builder with a phone full of homeowner texts has a job. Set up
-              your first home, add your subs, and put a plan in front of a
-              homeowner this week. {onboarding.short}{" "}
-              {trial.short}
+              Set up your first home, add your subs, and let the next request
+              go straight to the trade. {onboarding.short} {trial.short}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={signupHref} size="lg">

@@ -33,7 +33,6 @@ import {
   processingLine,
   primaryCta,
   smsStatus,
-  workedExample,
   onboarding,
 } from "@/lib/content";
 
@@ -100,8 +99,11 @@ const exampleBills = [
 
 const included = [
   "Warranty and service request management with SLA tracking",
+  "Requests sent straight to the assigned sub, with a no-login job link",
+  "After-hours handling for urgent requests, on by default",
   "Punch list and closeout items in the same queue",
   "Automated email reminders, free and unmetered",
+  "A Daily Brief email every morning, house by house",
   "Subcontractor dispatch with per-trade assignment",
   "Day-of arrival tracking and subcontractor ratings",
   "Subcontractor cost intelligence across every home",
@@ -109,16 +111,14 @@ const included = [
   "Compliance gating on dispatch, with logged overrides",
   "White-labeled homeowner experience — your logo, colors, and name",
   "Homeowner portal — requests, status, messaging, history",
-  "Win-back prospect homes with claim invites that carry your proposal",
-  "Maintenance plan proposals by email, with your tiers and offer expirations",
-  "Warranty vs. billable classification, approved by you and the homeowner",
+  "Warranty vs. billable classification: you decide, the homeowner approves any price",
   "Paid repairs with your markup, settled to your account; mark check or cash payments paid with an emailed receipt",
   "Two-way messaging with homeowners and subs, ticket or general",
   "Subcontractor portal — jobs, photo updates, documents",
   "AI Home Binder with cited maintenance schedules",
   "Shared appliance library — reused models are always free",
-  "Maintenance memberships at your price, billed monthly to your account",
   "Photo documentation on every request",
+  "Spreadsheet import of up to 1,000 homes, and a full data export any time",
   "Unlimited team members and subcontractors on every plan",
 ];
 
@@ -146,10 +146,9 @@ export default function PricingPage() {
               homes you cover: {planSummary}. Unlimited team members and
               unlimited subcontractors are on every plan, there is no per-user
               fee, and nothing is billed per home. Your rate is locked for 24
-              months. What you charge
-              your homeowners for a membership or a repair is yours — Afterkey
-              never sets it, and there is no platform fee on their
-              payments.
+              months. The markup you
+              charge your homeowners on a repair is yours — Afterkey never
+              sets it, and there is no platform fee on their payments.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href={signupHref} size="lg">
@@ -172,7 +171,7 @@ export default function PricingPage() {
         <Container size="6xl">
           <Reveal>
             <h2 className="sr-only">Plans</h2>
-            <ul className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {planCards.map((plan) => (
                 <li key={plan.key}>
                   <Card className="flex h-full flex-col p-6">
@@ -225,8 +224,8 @@ export default function PricingPage() {
               </li>
             </ul>
             <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-slate-600">
-              Only active homes count toward your plan — prospect homes you’re
-              pitching and archived homes are free. Change plans any time from
+              Only active homes count toward your plan — archived homes are
+              free. Change plans any time from
               Billing: an upgrade starts right away, and a downgrade starts
               next month if your active homes fit.
             </p>
@@ -344,53 +343,9 @@ export default function PricingPage() {
             </div>
             <p className="mt-4 text-xs text-slate-500">
               Per month, before any AI or SMS overage. Only homes you’re
-              actively serving count toward your plan — prospect and archived
-              homes are free.
+              actively serving count toward your plan — archived homes are
+              free.
             </p>
-          </Reveal>
-
-          {/* Membership math — explicitly illustrative, not a customer claim */}
-          <Reveal delay={120} className="mx-auto mt-10 max-w-3xl">
-            <Card className="border-emerald-200 bg-emerald-50/50 p-6 sm:p-8">
-              <h3 className="text-lg font-semibold text-slate-900">
-                {workedExample.label}: what the homes themselves bring in
-              </h3>
-              <p className="mt-2 text-sm font-medium text-emerald-800">
-                Arithmetic, not a benchmark. Afterkey is early and has no
-                customer averages to publish. Substitute your own plan price,
-                your own markup, and your own attach rate.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                Say you have <strong>{workedExample.homes} closed homes</strong>{" "}
-                and sell a <strong>${workedExample.planPrice}/month</strong>{" "}
-                maintenance membership. If every home joins, that is{" "}
-                <strong>{money(workedExample.membershipMonthly)}/month</strong>,
-                or {money(workedExample.membershipYearly)} a year; if half
-                join, {money(workedExample.membershipYearlyAtHalf)}. Add one
-                priced repair a quarter per home — a ${workedExample.repairJob}{" "}
-                job at {workedExample.markupPercent}% markup is $
-                {workedExample.markupPerJob} to you each time — and that is
-                another {money(workedExample.repairMarkupYearly)} a year on work
-                you were coordinating for free. If {workedExample.fullServiceHomes}{" "}
-                of those homes take a ${workedExample.fullServicePrice}/month
-                whole-house plan instead, that line alone is{" "}
-                {money(workedExample.fullServiceYearly)} a year, gross, before
-                you pay your subs for the work. Your Afterkey bill at{" "}
-                {workedExample.homes} active homes is{" "}
-                {money(workedExample.afterkeyMonthly)}/month, on the{" "}
-                {workedExample.afterkeyPlanName} plan.
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                There is no platform fee on those homeowner payments — you pay
-                only processing at the published flat rates (
-                {pricing.processing.bankPercent}% bank,{" "}
-                {pricing.processing.cardPercent}% +{" "}
-                {pricing.processing.cardFixedCents}¢ card). Whether the math
-                works depends on your plan price, your markup, and how many
-                buyers say yes — all of which you control, and none of which we
-                are going to pretend to predict for you.
-              </p>
-            </Card>
           </Reveal>
         </Container>
       </section>
@@ -446,7 +401,7 @@ export default function PricingPage() {
                     .join(", ")}
                   , or a custom plan for bigger builders. Credits follow the
                   work: reading a manual usually takes {pricing.ai.manualCredits}{" "}
-                  credits, and building and checking a typical home’s plan{" "}
+                  credits, and building and checking a typical home’s maintenance schedule{" "}
                   {pricing.ai.planCredits}. Appliances already in the shared
                   library cost nothing.
                 </p>
@@ -480,8 +435,9 @@ export default function PricingPage() {
                   ${pricing.sms.price}/month for your own dedicated business
                   number, including{" "}
                   {pricing.sms.includedSegments.toLocaleString()} segments.
-                  Automated maintenance reminders, day-of coordination, and
-                  inbound calls forwarded to you.
+                  Job texts to your subs, urgent after-hours alerts to your
+                  escalation phone, day-of coordination, maintenance
+                  reminders, and inbound calls forwarded to you.
                 </p>
                 <p className="mt-3 text-base text-slate-600">
                   Additional segments are ${pricing.sms.overagePer1000} per
@@ -528,10 +484,10 @@ export default function PricingPage() {
                     retroactive.
                   </p>
                   <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                    Use the month on your real homes, not a sandbox: load a
-                    few past builds, send a callback to the sub, price a
-                    maintenance plan. If it isn’t earning its keep, close your
-                    account from Billing before day 31.
+                    Use the month on your real homes, not a sandbox: load
+                    your open warranty homes, add your subs, and let the next
+                    callback go straight to the trade. If it isn’t earning its
+                    keep, close your account from Billing before day 31.
                   </p>
                 </div>
               </div>

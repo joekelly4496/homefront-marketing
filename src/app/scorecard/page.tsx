@@ -12,7 +12,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "After-the-Keys Scorecard for builders and remodelers",
   description:
-    "Nine quick questions about the year after the keys. Get your score, the one change that cuts the most calls, and what a maintenance plan could bring in.",
+    "Nine quick questions about the year after the keys. Get your score and the one change that cuts the most after-closing calls.",
   path: "/scorecard",
 });
 
